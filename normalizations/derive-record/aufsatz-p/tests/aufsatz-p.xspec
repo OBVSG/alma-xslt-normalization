@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../aufsatz-p.xsl">
+
+  <x:scenario label="Aufsatz ableiten -- ganzer Datensatz">
+    <x:context>
+      <record>
+         <leader>01955nam a2200493 cb4500</leader>
+         <controlfield tag="001">99146118886903331</controlfield>
+         <controlfield tag="005">20231109121128.0</controlfield>
+         <controlfield tag="007">tu</controlfield>
+         <controlfield tag="008">210629|2021    |||           10| | ger c</controlfield>
+         <controlfield tag="009">AC16239609</controlfield>
+         <datafield ind1=" " ind2=" " tag="015">
+            <subfield code="a">OeB2021,A,18 930</subfield>
+            <subfield code="2">oeb</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="020">
+            <subfield code="a">9783700184638</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(AT-OBV)AC16239609</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(DE-599)OBVAC16239609</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="040">
+            <subfield code="a">AT-OeAW</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBS</subfield>
+            <subfield code="e">rda</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="041">
+            <subfield code="a">ger</subfield>
+            <subfield code="a">eng</subfield>
+            <subfield code="a">fre</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="044">
+            <subfield code="c">XA-AT</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="084">
+            <subfield code="a">15.17</subfield>
+            <subfield code="2">bkl</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="084">
+            <subfield code="a">21.88</subfield>
+            <subfield code="2">bkl</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="084">
+            <subfield code="a">LG 4000</subfield>
+            <subfield code="2">rvk</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="084">
+            <subfield code="a">LG 4200</subfield>
+            <subfield code="2">rvk</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="084">
+            <subfield code="a">LG 4290</subfield>
+            <subfield code="2">rvk</subfield>
+         </datafield>
+         <datafield ind1="2" ind2=" " tag="111">
+            <subfield code="a">Internationales Symposion Griechische Vasen als Kommunikationsmedium</subfield>
+            <subfield code="d">2017</subfield>
+            <subfield code="c">Wien</subfield>
+            <subfield code="0">(DE-588)1245486985</subfield>
+            <subfield code="4">aut</subfield>
+         </datafield>
+         <datafield ind1="1" ind2="0" tag="245">
+            <subfield code="a">Griechische Vasen als Medium für Kommunikation</subfield>
+            <subfield code="b">ausgewählte Aspekte : Akten des Internationalen Symposiums im Kunsthistorischen Museum Wien : 5.-7. Oktober 2017</subfield>
+            <subfield code="c">herausgegeben von Claudia Lang-Auinger und Elisabeth Trinkl</subfield>
+         </datafield>
+         <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="a">Wien</subfield>
+            <subfield code="b">Verlag der Österreichischen Akademie der Wissenschaften</subfield>
+            <subfield code="c">[2021]</subfield>
+         </datafield>
+         <datafield ind1=" " ind2="4" tag="264">
+            <subfield code="c">© 2021</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="300">
+            <subfield code="a">412 Seiten</subfield>
+            <subfield code="b">Illustrationen</subfield>
+            <subfield code="c">30 cm</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="336">
+            <subfield code="b">txt</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="337">
+            <subfield code="b">n</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="338">
+            <subfield code="b">nc</subfield>
+         </datafield>
+         <datafield ind1="1" ind2=" " tag="490">
+            <subfield code="a">Corpus vasorum antiquorum Österreich. Beiheft</subfield>
+            <subfield code="v">3</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Enthält Literaturangaben</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="546">
+            <subfield code="a">Beiträge in deutsch, englisch und französisch</subfield>
+         </datafield>
+         <datafield ind1=" " ind2="7" tag="655">
+            <subfield code="a">Konferenzschrift</subfield>
+            <subfield code="y">05.10.2017-07.10.2017</subfield>
+            <subfield code="z">Wien</subfield>
+            <subfield code="0">(DE-588)1071861417</subfield>
+            <subfield code="2">gnd-content</subfield>
+         </datafield>
+         <datafield ind1="0" ind2="0" tag="689">
+            <subfield code="a">Griechenland</subfield>
+            <subfield code="g">Altertum</subfield>
+            <subfield code="D">g</subfield>
+            <subfield code="0">(DE-588)4093976-5</subfield>
+         </datafield>
+         <datafield ind1="0" ind2="1" tag="689">
+            <subfield code="a">Vasenmalerei</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4062377-4</subfield>
+         </datafield>
+         <datafield ind1="0" ind2="2" tag="689">
+            <subfield code="a">Keramik</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4030270-2</subfield>
+         </datafield>
+         <datafield ind1="0" ind2=" " tag="689">
+            <subfield code="5">AT-OBV</subfield>
+            <subfield code="5">ubw0201 UBITHP</subfield>
+         </datafield>
+         <datafield ind1="1" ind2=" " tag="700">
+            <subfield code="a">Lang-Auinger, Claudia</subfield>
+            <subfield code="0">(DE-588)1096848074</subfield>
+            <subfield code="4">edt</subfield>
+         </datafield>
+         <datafield ind1="1" ind2=" " tag="700">
+            <subfield code="a">Trinkl, Elisabeth</subfield>
+            <subfield code="d">1964-</subfield>
+            <subfield code="0">(DE-588)132832542</subfield>
+            <subfield code="4">edt</subfield>
+         </datafield>
+         <datafield ind1=" " ind2="0" tag="830">
+            <subfield code="w">(AT-OBV)AC10925709</subfield>
+            <subfield code="v">3</subfield>
+         </datafield>
+         <datafield ind1="4" ind2="2" tag="856">
+            <subfield code="m">V:AT-OBV;B:AT-OeNB</subfield>
+            <subfield code="q">application/pdf</subfield>
+            <subfield code="u">http://media.obvsg.at/AC16239609-1003</subfield>
+            <subfield code="x">ONB-IV</subfield>
+            <subfield code="3">Inhaltsverzeichnis</subfield>
+            <subfield code="o">OBV-ONB-IV</subfield>
+         </datafield>
+         <datafield ind1="1" ind2=" " tag="970">
+            <subfield code="c">55</subfield>
+         </datafield>
+         <datafield ind1="2" ind2=" " tag="970">
+            <subfield code="d">IV-SCAN</subfield>
+         </datafield>
+      </record>
+   </x:context>
+   <x:expect label="">
+      <record>
+        <leader>     naa a22      c 4500</leader>
+         <controlfield tag="007">tu</controlfield>
+         <controlfield tag="008">      s????    |||        |        ger c</controlfield>
+         <datafield ind1=" " ind2=" " tag="041">
+            <subfield code="a">ger</subfield>
+            <subfield code="a">eng</subfield>
+            <subfield code="a">fre</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="044">
+            <subfield code="c">XA-AT</subfield>
+         </datafield>
+            <datafield ind1="0" ind2="0" tag="245">
+            <subfield code="a"></subfield>
+            <subfield code="b"></subfield>
+            <subfield code="c"></subfield>
+         </datafield>
+         <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="a">Wien</subfield>
+            <subfield code="b">Verlag der Österreichischen Akademie der Wissenschaften</subfield>
+            <subfield code="c">[2021]</subfield>
+         </datafield>
+         <datafield ind1=" " ind2="4" tag="264">
+            <subfield code="c">© 2021</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="336">
+            <subfield code="b">txt</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="337">
+            <subfield code="b">n</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="338">
+            <subfield code="b">nc</subfield>
+         </datafield>
+         <datafield ind1="1" ind2=" " tag="490">
+            <subfield code="a">Corpus vasorum antiquorum Österreich. Beiheft</subfield>
+            <subfield code="v">3</subfield>
+         </datafield>
+        <datafield tag="773" ind1="0" ind2="8">
+          <subfield code="i">Enthalten in</subfield>
+          <subfield code="t">Griechische Vasen als Medium für Kommunikation / herausgegeben von Claudia Lang-Auinger und Elisabeth Trinkl</subfield>
+          <subfield code="d" />
+          <subfield code="g" />
+          <subfield code="k" />
+          <subfield code="w">(AT-OBV)AC16239609</subfield>
+          <subfield code="x" />
+          <subfield code="z" />
+        </datafield>
+      </record>
+   </x:expect>
+</x:scenario>
+
+</x:description>
