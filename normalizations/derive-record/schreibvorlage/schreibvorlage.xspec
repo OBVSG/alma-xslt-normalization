@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="schreibvorlage.xsl">
+  <x:scenario label="ganzer record">
+    <x:context>
+      <record>
+        <leader>01318nam a2200361 c 4500</leader>
+        <controlfield tag="001">990138567160203331</controlfield>
+        <controlfield tag="005">20240705123912.0</controlfield>
+        <controlfield tag="007">tu</controlfield>
+        <controlfield tag="008">171013|2014    |||           ||| | ger c</controlfield>
+        <controlfield tag="009">AC14469657</controlfield>
+        <datafield ind1=" " ind2=" " tag="020">
+          <subfield code="a">9783832162931</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="035">
+          <subfield code="a">(AT-OBV)AC14469657</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="035">
+          <subfield code="a">(DE-599)OBVAC14469657</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="040">
+          <subfield code="a">RDA</subfield>
+          <subfield code="b">ger</subfield>
+          <subfield code="d">AT-OeAW</subfield>
+          <subfield code="e">rda</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="041">
+          <subfield code="a">ger</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="044">
+          <subfield code="c">XA-DE</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="084">
+          <subfield code="a">18.91</subfield>
+          <subfield code="2">bkl</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="084">
+          <subfield code="a">17.97</subfield>
+          <subfield code="2">bkl</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="100">
+          <subfield code="a">Murakami, Haruki</subfield>
+          <subfield code="d">1949-</subfield>
+          <subfield code="0">(DE-588)119037092</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+        <datafield ind1="1" ind2="0" tag="240">
+          <subfield code="a">Toshokan kitan</subfield>
+          <subfield code="0">(DE-588)110657334X</subfield>
+        </datafield>
+        <datafield ind1="1" ind2="0" tag="245">
+          <subfield code="a">&lt;&lt;Die&gt;&gt; unheimliche Bibliothek</subfield>
+          <subfield code="c">Haruki Murakami ; aus dem Japanischen von Ursula Gräfe ; mit Illustrationen von Kat Menschik</subfield>
+        </datafield>
+        <datafield ind1="1" ind2="0" tag="246">
+          <subfield code="a">Beispiel 3.10 | Monografie / Einzelne Einheit / Übersetzer (RDA-E-E165) / Übersetzung - Bevorzugter Titel des Werks (RDA-E-W010)</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="250">
+          <subfield code="a">Erste Auflage</subfield>
+        </datafield>
+        <datafield ind1=" " ind2="1" tag="264">
+          <subfield code="a">Köln</subfield>
+          <subfield code="b">DuMont</subfield>
+          <subfield code="c">2014</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="300">
+          <subfield code="a">63 Seiten</subfield>
+          <subfield code="b">Illustrationen</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="336">
+          <subfield code="b">txt</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="337">
+          <subfield code="b">n</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="338">
+          <subfield code="b">nc</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="700">
+          <subfield code="a">Gräfe, Ursula</subfield>
+          <subfield code="d">1956-</subfield>
+          <subfield code="0">(DE-588)13004296X</subfield>
+          <subfield code="4">trl</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="700">
+          <subfield code="a">Menschik, Kat</subfield>
+          <subfield code="d">1968-</subfield>
+          <subfield code="0">(DE-588)124028136</subfield>
+          <subfield code="4">ill</subfield>
+        </datafield>
+        <datafield ind1="4" ind2=" " tag="856">
+          <subfield code="u">https://wiki.dnb.de/download/attachments/106041499/Modul_3_10_T.pdf?version=2&amp;modificationDate=1458311764000&amp;api=v2</subfield>
+          <subfield code="z">dnb-wiki Vorlage</subfield>
+        </datafield>
+        <datafield ind1="0" ind2=" " tag="970">
+          <subfield code="a">RDA-Beispiel</subfield>
+        </datafield>
+        <datafield ind1="2" ind2=" " tag="970">
+          <subfield code="a">RDA</subfield>
+        </datafield>
+      </record>
+    </x:context>
+    <x:expect label="008 has 40 characters"
+              test="string-length(record/controlfield[@tag='008'])"
+              select="40" />
+    <x:expect label="Satz angeglichen">
+      <record>
+        <leader>01318nam a2200361 c 4500</leader>
+        <controlfield tag="005">20240705123912.0</controlfield>
+        <controlfield tag="007">tu</controlfield>
+        <controlfield tag="008">171013|2014    |||           ||| | ger c</controlfield>
+        <datafield ind1=" " ind2=" " tag="020">
+          <subfield code="a"></subfield>
+          <subfield code="c"></subfield>
+          <subfield code="q"></subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="041">
+          <subfield code="a">ger</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="044">
+          <subfield code="c">XA-DE</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="084">
+          <subfield code="a">18.91</subfield>
+          <subfield code="2">bkl</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="084">
+          <subfield code="a">17.97</subfield>
+          <subfield code="2">bkl</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="100">
+          <subfield code="a">Murakami, Haruki</subfield>
+          <subfield code="d">1949-</subfield>
+          <subfield code="0">(DE-588)119037092</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+        <datafield ind1="1" ind2="0" tag="240">
+          <subfield code="a">Toshokan kitan</subfield>
+          <subfield code="0">(DE-588)110657334X</subfield>
+        </datafield>
+        <datafield ind1="1" ind2="0" tag="245">
+          <subfield code="a">&lt;&lt;Die&gt;&gt; unheimliche Bibliothek</subfield>
+          <subfield code="c">Haruki Murakami ; aus dem Japanischen von Ursula Gräfe ; mit Illustrationen von Kat Menschik</subfield>
+        </datafield>
+        <datafield ind1="1" ind2="0" tag="246">
+          <subfield code="a">Beispiel 3.10 | Monografie / Einzelne Einheit / Übersetzer (RDA-E-E165) / Übersetzung - Bevorzugter Titel des Werks (RDA-E-W010)</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="250">
+          <subfield code="a"></subfield>
+        </datafield>
+        <datafield ind1=" " ind2="1" tag="264">
+          <subfield code="a">Köln</subfield>
+          <subfield code="b">DuMont</subfield>
+          <subfield code="c"></subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="300">
+          <subfield code="a"></subfield>
+          <subfield code="b"></subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="336">
+          <subfield code="b">txt</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="337">
+          <subfield code="b">n</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="338">
+          <subfield code="b">nc</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="700">
+          <subfield code="a">Gräfe, Ursula</subfield>
+          <subfield code="d">1956-</subfield>
+          <subfield code="0">(DE-588)13004296X</subfield>
+          <subfield code="4">trl</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="700">
+          <subfield code="a">Menschik, Kat</subfield>
+          <subfield code="d">1968-</subfield>
+          <subfield code="0">(DE-588)124028136</subfield>
+          <subfield code="4">ill</subfield>
+        </datafield>
+        <datafield ind1="0" ind2=" " tag="970">
+          <subfield code="a">RDA-Beispiel</subfield>
+        </datafield>
+        <datafield ind1="2" ind2=" " tag="970">
+          <subfield code="a">RDA</subfield>
+        </datafield>
+        <datafield tag="970" ind1="1" ind2=" ">
+          <subfield code="c"></subfield>
+        </datafield>
+      </record>
+    </x:expect>
+  </x:scenario>
+</x:description>
