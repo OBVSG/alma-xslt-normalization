@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:marc="http://www.loc.gov/MARC21/slim"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:marc="http://www.loc.gov/MARC21/slim"
+                xmlns:x="http://www.jenitennison.com/xslt/xspec"
                 xmlns:config="http://www.obvsg.at/ns/xslt/config"
                 xmlns:doc="http://www.obvsg.at/ns/xslt/doc"
                 xmlns:fn="http://www.w3.org/2005/xpath-functions"
                 xmlns:utils="http://www.obvsg.at/xslt/utils"
+                exclude-result-prefixes="config doc fn xs"
                 expand-text="yes"
                 version="3.0">
 
@@ -21,17 +24,35 @@
       => replace("^file:", "")
       => replace("[^/]+$", "")
     }</xsl:variable>
+    <xsl:variable name="testRoot"
+                  select="$projectRoot || 'test/' " />
+
     <xsl:for-each select="$config/config:normalization">
-      <xsl:result-document href="dist/{@distName}">
-        <xsl:apply-templates select="doc($projectRoot || @master)" />
+      <xsl:variable name="distStylesheet"
+                    select="$projectRoot || 'dist/' || @distName || '.xsl'" as="xs:string" />
+
+      <!-- bundle the source code -->
+      <xsl:result-document href="{$distStylesheet}">
+        <xsl:apply-templates select="doc($projectRoot || @main)" />
       </xsl:result-document>
+
+      <!-- bundle the tests -->
+      <xsl:apply-templates select="doc($projectRoot || @testMain)">
+        <xsl:with-param name="testDir"
+                        select="$testRoot || @distName || '/'" />
+        <xsl:with-param name="testFileName"
+                        select="@distName || '.xspec'" />
+        <xsl:with-param name="distStylesheet"
+                        select="$distStylesheet" />
+      </xsl:apply-templates>
     </xsl:for-each>
   </xsl:template>
 
+  <!-- Templates for bundling stylesheets into one file -->
   <xsl:template match="xsl:stylesheet">
     <xsl:variable name="modulePaths" select="utils:getModules(.)" />
     <xsl:copy>
-      <xsl:apply-templates select="@* | node()"/>
+      <xsl:apply-templates select="@* | node()" />
       <xsl:comment>
       === IMPORTS STARTING HERE ===
    </xsl:comment>
@@ -76,4 +97,39 @@
     <xsl:sequence select="$modulePaths => distinct-values()" />
   </xsl:function>
 
+  <!-- transform tests for CI i. e. copy them to into a directory and use the bundled stylesheet -->
+  <xsl:template match="x:description">
+    <xsl:param name="distStylesheet" />
+    <xsl:param name="testDir" />
+    <xsl:param name="testFileName" />
+    <xsl:variable name="xspecFile"
+                  select="$testDir || $testFileName" />
+
+    <xsl:result-document href="{$xspecFile}">
+      <xsl:copy>
+        <xsl:apply-templates select="node() | @*">
+          <xsl:with-param name="distStylesheet" select="$distStylesheet" />
+          <xsl:with-param name="testDir" select="$testDir" />
+        </xsl:apply-templates>
+      </xsl:copy>
+    </xsl:result-document>
+  </xsl:template>
+
+  <xsl:template match="x:description/@stylesheet">
+    <xsl:param name="distStylesheet" required="yes" />
+    <xsl:attribute name="stylesheet">{$distStylesheet}</xsl:attribute>
+  </xsl:template>
+
+  <xsl:template match="x:import">
+    <xsl:param name="testDir" />
+    <xsl:param name="distStylesheet" required="yes" />
+    <xsl:variable name="uriBaseInput">{base-uri() => replace("^file:", "") => replace("[^/]+$", "")}</xsl:variable>
+
+    <xsl:sequence select="." />
+    <xsl:apply-templates select="doc($uriBaseInput || @href)">
+      <xsl:with-param name="distStylesheet" select="$distStylesheet" />
+      <xsl:with-param name="testDir" />
+      <xsl:with-param name="testFileName" select="$testDir || @href" />
+    </xsl:apply-templates>
+  </xsl:template>
 </xsl:stylesheet>
