@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns="http://www.obvsg.at/ns/xslt/config">
+  <normalizations>
+    <normalization name="Normalize on Save"
+                   distName="OBV_normalize-on-save"
+                   main="normalizations/on-save/normalize-on-save.xsl"
+                   testMain="normalizations/on-save/tests/00_normalize-on-save-main.xspec" />
+    <normalization name="Schreibvorlage"
+                   distName="OBV_schreibvorlage"
+                   main="normalizations/derive-record/schreibvorlage/schreibvorlage.xsl"
+                   testMain="normalizations/on-save/tests/00_normalize-on-save-main.xspec" />
+    <normalization name="Aufsatz ableiten - print"
+                   distName="OBV_aufsatz-ableiten-p"
+                   main="normalizations/derive-record/aufsatz-p/aufsatz-p.xsl"
+                   testMain="normalizations/derive-record/aufsatz-p/tests/aufsatz-p.xspec" />
+  </normalizations>
+</config>
