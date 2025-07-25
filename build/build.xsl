@@ -27,6 +27,7 @@
     <xsl:variable name="testRoot"
                   select="$projectRoot || 'test/' " />
 
+    <!-- bundle source and tests -->
     <xsl:for-each select="$config/config:normalization">
       <xsl:variable name="distStylesheet"
                     select="$projectRoot || 'dist/' || @distName || '.xsl'" as="xs:string" />
@@ -46,6 +47,12 @@
                         select="$distStylesheet" />
       </xsl:apply-templates>
     </xsl:for-each>
+
+    <!-- create testrunner -->
+    <xsl:call-template name="createTestRunner">
+      <xsl:with-param name="testRoot" select="$testRoot" />
+      <xsl:with-param name="config" select="$config" />
+    </xsl:call-template>
   </xsl:template>
 
   <!-- Templates for bundling stylesheets into one file -->
@@ -132,4 +139,18 @@
       <xsl:with-param name="testFileName" select="$testDir || @href" />
     </xsl:apply-templates>
   </xsl:template>
+
+  <!-- create testrunner shell script -->
+  <xsl:template name="createTestRunner">
+      <xsl:param name="projectRoot" />
+      <xsl:param name="testRoot" />
+      <xsl:param name="config" />
+      <xsl:result-document href="{$projectRoot}bin/testrunner.sh"
+                           method="text">#!/usr/bin/bash
+export TEST_DIR="test/xspec"
+
+<xsl:for-each select="$config/config:normalization">xspec.sh -j {$testRoot || @distName}/{@distName}.xspec
+</xsl:for-each>
+      </xsl:result-document>
+    </xsl:template>
 </xsl:stylesheet>
