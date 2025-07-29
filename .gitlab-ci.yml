@@ -1,0 +1,25 @@
+image: registry.obvsg.at:443/container/docker/saxon/xspec:debian-slim
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  GIT_SUBMODULE_FORCE_HTTPS: "true"
+
+stages:
+  - build
+
+compile:
+  stage: build
+  script:
+    - mkdir -p test/xspec
+    - mkdir dist
+    - saxon -xsl:build/build.xsl -it:main configFile=../config.xml
+    - bash bin/testrunner.sh
+  artifacts:
+    when: always
+    name: package
+    expire_in: 30 days
+    paths:
+      - dist/*
+      - test/*
+    reports:
+      junit: test/xspec/*junit.xml
