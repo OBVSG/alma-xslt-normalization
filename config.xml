@@ -8,7 +8,8 @@
     <normalization name="Schreibvorlage"
                    distName="OBV_schreibvorlage"
                    main="normalizations/derive-record/schreibvorlage/schreibvorlage.xsl"
-                   testMain="normalizations/on-save/tests/00_normalize-on-save-main.xspec" />
+                   testMain="normalizations/derive-record/schreibvorlage/schreibvorlage.xspec"
+                   />
     <normalization name="Aufsatz ableiten - print"
                    distName="OBV_aufsatz-ableiten-p"
                    main="normalizations/derive-record/aufsatz-p/aufsatz-p.xsl"
