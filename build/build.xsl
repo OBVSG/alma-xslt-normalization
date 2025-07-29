@@ -145,7 +145,7 @@
       <xsl:param name="projectRoot" />
       <xsl:param name="testRoot" />
       <xsl:param name="config" />
-      <xsl:result-document href="{$projectRoot}bin/testrunner.sh"
+      <xsl:result-document href="{$projectRoot}temp/testrunner.sh"
                            method="text">#!/usr/bin/bash
 export TEST_DIR="test/xspec"
 
