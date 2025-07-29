@@ -108,7 +108,7 @@
         <leader>01318nam a2200361 c 4500</leader>
         <controlfield tag="005">20240705123912.0</controlfield>
         <controlfield tag="007">tu</controlfield>
-        <controlfield tag="008">171013|2014    |||           ||| | ger c</controlfield>
+        <controlfield tag="008">      |????    |||           ||| | ger c</controlfield>
         <datafield ind1=" " ind2=" " tag="020">
           <subfield code="a"></subfield>
           <subfield code="c"></subfield>

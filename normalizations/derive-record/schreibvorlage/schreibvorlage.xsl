@@ -8,7 +8,7 @@
 
   <xsl:include href="../../../mrclib-xslt/mrclib.xsl" />
   <!--
-    # | 008, Pos. 30-31 | Literary text for sound recordings| bei Musikdrucken von # auf | normalisieren                                                |
+    TODO # | 008, Pos. 30-31 | Literary text for sound recordings| bei Musikdrucken von # auf | normalisieren                                                |
 -->
 
   <xsl:mode on-no-match="shallow-copy" />
@@ -91,7 +91,7 @@
 
   <xsl:template match="controlfield[@tag='008']">
     <controlfield tag="008">{
-      mrclib:replace-substring(., 0, 14, "######|????####")
+      mrclib:replace-substring(., 1, 15, "######|????####")
       => replace("#", " ")
     }</controlfield>
   </xsl:template>
