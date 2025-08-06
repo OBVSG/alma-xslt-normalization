@@ -7,16 +7,18 @@
       <xsl:apply-templates />
     </datafield>
 
-    <datafield tag="255" ind1=" " ind2=" ">
-      <subfield code="c">{utils:formatCoordinatesFrom034(.)}</subfield>
-    </datafield>
+    <xsl:if test="utils:df034isValid(.)">
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="c">{utils:formatCoordinatesFrom034(.)}</subfield>
+      </datafield>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="datafield[@tag='255']">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
       <xsl:apply-templates select="subfield[@code=('a', 'b')]" />
       <xsl:choose>
-        <xsl:when test="../datafield[@tag='034']">
+        <xsl:when test="../datafield[@tag='034'] and utils:df034isValid(../datafield[@tag='034'])">
           <subfield code="c">{utils:formatCoordinatesFrom034(../datafield[@tag='034'])}</subfield>
         </xsl:when>
         <xsl:otherwise>
@@ -26,6 +28,21 @@
       <xsl:apply-templates select="subfield[not(@code=('a', 'b', 'c'))]" />
     </datafield>
   </xsl:template>
+
+  <xsl:function name="utils:df034isValid" as="xs:boolean">
+    <xsl:param name="df034" as="element(datafield)" />
+    <xsl:variable name="subfieldCountValid"
+                  as="xs:boolean*"
+                  select="for $code in ('d', 'e', 'f', 'g') return count($df034/subfield[@code=$code]) eq 1">
+    </xsl:variable>
+    <xsl:variable name="stringsValid" as="xs:boolean*">
+      <xsl:for-each select="$df034/subfield[@code=('d', 'e', 'f', 'g')]">
+        <xsl:value-of select="matches(., '^[NESW]\d{7}$')" />
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:value-of select="not($subfieldCountValid = false())
+                          and not($stringsValid = false())" />
+  </xsl:function>
 
   <xsl:function name="utils:formatCoordinatesFrom034" as="xs:string">
     <xsl:param name="df035" as="element(datafield)" />
@@ -46,9 +63,9 @@
   <xsl:function name="utils:mapCoordinates" as="map(*)">
     <xsl:param name="coordRaw" />
     <xsl:variable name="dir" select="substring($coordRaw, 1, 1)" />
-    <xsl:variable name="deg" select="substring($coordRaw, 2, 3) => replace('^0+', '')" />
-    <xsl:variable name="min" select="substring($coordRaw, 5, 2) => replace('^0+', '')" />
-    <xsl:variable name="sec" select="substring($coordRaw, 7, 2) => replace('^0+', '')" />
+    <xsl:variable name="deg" select="substring($coordRaw, 2, 3) => xs:integer() => format-integer('00')" />
+    <xsl:variable name="min" select="substring($coordRaw, 5, 2) => xs:integer() => format-integer('00')" />
+    <xsl:variable name="sec" select="substring($coordRaw, 7, 2) => xs:integer() => format-integer('00')" />
 
     <xsl:map>
       <xsl:map-entry key="'dir'" select="$dir" />
