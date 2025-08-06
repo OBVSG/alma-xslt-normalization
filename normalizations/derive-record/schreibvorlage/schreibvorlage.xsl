@@ -7,9 +7,6 @@
 
 
   <xsl:include href="../../../mrclib-xslt/mrclib.xsl" />
-  <!--
-    TODO # | 008, Pos. 30-31 | Literary text for sound recordings| bei Musikdrucken von # auf | normalisieren                                                |
--->
 
   <xsl:mode on-no-match="shallow-copy" />
 
@@ -28,7 +25,7 @@
         <subfield code="q"></subfield>
       </datafield>
       <xsl:if test="datafield[@tag='024'][@ind1='8'][@ind2=' ']">
-        <datafield tag="024" ind1=" " ind2=" ">
+        <datafield tag="024" ind1="8" ind2=" ">
           <subfield code="a"></subfield>
           <subfield code="q"></subfield>
         </datafield>
