@@ -48,6 +48,7 @@
       <datafield tag="300" ind1=" " ind2=" ">
         <subfield code="a"></subfield>
         <subfield code="b"></subfield>
+        <subfield code="c"></subfield>
       </datafield>
       <xsl:variable name="cmcTags"
                     select="datafield[@tag=('336', '337', '338')]/@tag" />
