@@ -14,7 +14,7 @@
   <xsl:output indent="yes" />
   <xsl:mode on-no-match="shallow-copy" />
 
-  <xsl:param name="configFile" required="yes" />
+  <xsl:param name="configFile" />
 
   <xsl:template name="main">
     <xsl:variable name="config"
@@ -64,9 +64,9 @@
       === IMPORTS STARTING HERE ===
    </xsl:comment>
       <xsl:for-each select="$modulePaths">
-        <xsl:comment> START == Imported from {.} </xsl:comment>
+        <xsl:comment> START == Import from {.} </xsl:comment>
         <xsl:apply-templates select="doc(.)/xsl:stylesheet/child::node()" />
-        <xsl:comment> END == Imported from {.} </xsl:comment>
+        <xsl:comment> END == Import from {.} </xsl:comment>
       </xsl:for-each>
     </xsl:copy>
   </xsl:template>
@@ -96,8 +96,9 @@
     <xsl:variable name="uriBase">{base-uri($stylesheetRoot) => replace("^file:", "") => replace("[^/]+$", "")}</xsl:variable>
     <xsl:variable name="modulePaths" as="xs:string*">
       <xsl:for-each select="$stylesheetRoot/xsl:include/@href">
-        <xsl:sequence select="$uriBase || ." />
-        <xsl:sequence select="utils:getModules(doc($uriBase || .)/xsl:stylesheet)" />
+        <xsl:variable name="absHref" select="if (starts-with(., 'http')) then . else ($uriBase || .)" />
+        <xsl:sequence select="$absHref" />
+        <xsl:sequence select="utils:getModules(doc($absHref)/xsl:stylesheet)" />
       </xsl:for-each>
     </xsl:variable>
 
