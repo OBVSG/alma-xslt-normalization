@@ -6,8 +6,13 @@
   <xsl:include href="src/034to255.xsl" />
 
   <xsl:template match="record">
-    <record>
+    <xsl:variable name="transformedFields" as="item()*">
       <xsl:apply-templates />
+    </xsl:variable>
+    <record>
+      <xsl:perform-sort select="$transformedFields">
+        <xsl:sort select="@tag" />
+      </xsl:perform-sort>
     </record>
   </xsl:template>
 
