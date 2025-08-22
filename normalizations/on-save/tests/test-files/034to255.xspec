@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:utils="http://www.obvsg.at/xslt/utils" stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="034 valid no 255">
+    <x:context>
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E0044125</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="f">N0474830</subfield>
+        <subfield code="g">N0455314</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="255 created">
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E0044125</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="f">N0474830</subfield>
+        <subfield code="g">N0455314</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="c">E 04°41'25"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+  <x:scenario label="034 valid, 255">
+    <x:context>
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E0044125</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="f">N0474830</subfield>
+        <subfield code="g">N0455314</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="c">E 09°99'99"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="255 created">
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E0044125</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="f">N0474830</subfield>
+        <subfield code="g">N0455314</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="c">E 04°41'25"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+  <x:scenario label="034 valid, 255 without SFc">
+    <x:context>
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E0044125</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="f">N0474830</subfield>
+        <subfield code="g">N0455314</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="a">Maßstab 1:50.000</subfield>
+        <subfield code="d">Subfield d</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="255 SFc added">
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E0044125</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="f">N0474830</subfield>
+        <subfield code="g">N0455314</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="a">Maßstab 1:50.000</subfield>
+        <subfield code="c">E 04°41'25"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        <subfield code="d">Subfield d</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+  <x:scenario label="034 not valid (repeated subfield), 255 without SFc">
+    <x:context>
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E0044125</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="f">N0474830</subfield>
+        <subfield code="g">N0455314</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="a">Maßstab 1:50.000</subfield>
+        <subfield code="d">Subfield d</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="no 255 SFc added">
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E0044125</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="e">E0102931</subfield>
+        <subfield code="f">N0474830</subfield>
+        <subfield code="g">N0455314</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="a">Maßstab 1:50.000</subfield>
+        <subfield code="d">Subfield d</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+  <x:scenario label="034 not valid no 255">
+    <x:context>
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E00441</subfield>
+        <subfield code="e">0102931</subfield>
+        <subfield code="f">N047483099999</subfield>
+        <subfield code="g">abrakadabra</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="no 255 created">
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E00441</subfield>
+        <subfield code="e">0102931</subfield>
+        <subfield code="f">N047483099999</subfield>
+        <subfield code="g">abrakadabra</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+  <x:scenario label="034 not valid, 255">
+    <x:context>
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E00441</subfield>
+        <subfield code="e">0102931</subfield>
+        <subfield code="f">N047483099999</subfield>
+        <subfield code="g">abrakadabra</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="c">Value of 255##SFc</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="255 unchanged">
+      <datafield tag="034" ind1=" " ind2=" ">
+        <subfield code="d">E00441</subfield>
+        <subfield code="e">0102931</subfield>
+        <subfield code="f">N047483099999</subfield>
+        <subfield code="g">abrakadabra</subfield>
+        <subfield code="2">bound</subfield>
+      </datafield>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="c">Value of 255##SFc</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+  <x:scenario label="no 034, 255">
+    <x:context>
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="a">Maßstab 1:50.000</subfield>
+        <subfield code="c">E 04°41'25"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        <subfield code="d">Subfield d</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="1:1">
+      <datafield tag="255" ind1=" " ind2=" ">
+        <subfield code="a">Maßstab 1:50.000</subfield>
+        <subfield code="c">E 04°41'25"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        <subfield code="d">Subfield d</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+</x:description>

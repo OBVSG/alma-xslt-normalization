@@ -1,5 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/bash
 
-saxon-xslt -s:normalizations/on-save/normalize-on-save.xsl build/build.xsl > dist/OBV_KATA_XSLT.xsl
-saxon-xslt -s:normalizations/derive-record/schreibvorlage/schreibvorlage.xsl build/build.xsl > dist/OBV_Schreibvorlage_XSLT.xsl
-saxon-xslt -s:normalizations/derive-record/aufsatz-p/aufsatz-p.xsl build/build.xsl > dist/OBV_Aufsatz_Ableiten_XSLT.xsl
+rm -rf test/*
+# build distributable files and tests
+saxon-xslt -xsl:build/build.xsl -it:main configFile=../config.xml
+
+# run tests
+export TEST_DIR="test/xspec"
+bash temp/testrunner.sh
