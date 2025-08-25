@@ -1,3 +1,6 @@
 [submodule "mrclib-xslt"]
 	path = mrclib-xslt
 	url = https://gitlab.obvsg.at/ss/mrclib-xslt.git
+[submodule "xslt-bundler"]
+	path = xslt-bundler
+	url = git@gitlab.obvsg.at:AlmaConfig/xslt-bundler.git
