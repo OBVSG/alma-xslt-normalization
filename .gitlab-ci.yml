@@ -33,7 +33,8 @@ docs:
     - mkdir docs
     - saxon-xslt -xsl:xslt-documentation-generator/xslt/documentation-generator.xsl -it:main lang=ger configFile=../../config.xml
   artifacts:
-    - docs
+    paths:
+      - docs
 
 deploy_development:
   stage: deploy
@@ -45,4 +46,4 @@ deploy_development:
     - ls -l CIKey* ~/.ssh
     - rsync -r -p -i CIKey docs/* obvsoft@galileo:/work/obvsoft/evol/apps/Alma/xslt-normalization/docs
   only:
-    - develompent
+    - deploy
