@@ -68,6 +68,6 @@ deploy_development:
     - chmod 644 ~/.ssh/known_hosts
 
   script:
-    - rsync -r -p docs/* obvsoft@galileo:/work/obvsoft/evol/apps/Alma/xslt-normalization/docs
+    - rsync -r -p docs/* obvsoft@galileo:/work/obvsoft/evol/apps/work_area/ss/docs/xslt-normalization
   only:
     - development
