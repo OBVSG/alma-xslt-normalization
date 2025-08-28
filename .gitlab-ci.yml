@@ -68,7 +68,7 @@ deploy_development:
     - chmod 644 ~/.ssh/known_hosts
 
   script:
-    - rsync -r -p -i CIKey docs/* obvsoft@galileo:/work/obvsoft/evol/apps/Alma/xslt-normalization/docs
+    - rsync -r -p docs/* obvsoft@galileo:/work/obvsoft/evol/apps/Alma/xslt-normalization/docs
   #   - echo "${DEPLOY_KEY}" > CIKey && chmod 0600 CIKey && echo "${DEPLOY_KEY_PUB}" > CIKey.pub
   #   # - ls -l CIKey* ~/.ssh
   # only:
