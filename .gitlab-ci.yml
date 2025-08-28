@@ -43,7 +43,7 @@ deploy_development:
     url: http://share-test.obvsg.at/docs/xsltNormalization
   script:
     - echo "${DEPLOY_KEY}" > CIKey && chmod 0600 CIKey && echo "${DEPLOY_KEY_PUB}" > CIKey.pub
-    - ls -l CIKey* ~/.ssh
+    # - ls -l CIKey* ~/.ssh
     - rsync -r -p -i CIKey docs/* obvsoft@galileo:/work/obvsoft/evol/apps/Alma/xslt-normalization/docs
   only:
     - deploy
