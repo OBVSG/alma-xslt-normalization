@@ -6,6 +6,8 @@ variables:
 
 stages:
   - build
+  - docs
+  - deploy
 
 compile:
   stage: build
@@ -24,3 +26,23 @@ compile:
       - test/*
     reports:
       junit: test/xspec/*junit.xml
+
+docs:
+  stage: docs
+  script:
+    - mkdir docs
+    - saxon-xslt -xsl:xslt-documentation-generator/xslt/documentation-generator.xsl -it:main lang=ger configFile=../../config.xml
+  artifacts:
+    - docs
+
+deploy_development:
+  stage: deploy
+  environment:
+    name: development
+    url: http://share-test.obvsg.at/docs/xsltNormalization
+  script:
+    - echo "${DEPLOY_KEY}" > CIKey && chmod 0600 CIKey && echo "${DEPLOY_KEY_PUB}" > CIKey.pub
+    - ls -l CIKey* ~/.ssh
+    - rsync -r -p -i CIKey docs/* obvsoft@galileo:/work/obvsoft/evol/apps/Alma/xslt-normalization/docs
+  only:
+    - develompent
