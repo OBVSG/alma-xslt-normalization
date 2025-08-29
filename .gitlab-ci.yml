@@ -105,7 +105,7 @@ deploy_main:
     - chmod 644 ~/.ssh/known_hosts
 
   script:
-    - rsync -r -p docs/* obvsoft@oblelix:/var/www/vhosts/share.obvsg.at/htdocs/xsldocs/xslt-normalization
+    - rsync -r -p docs/* obvsoft@obelix:/var/www/vhosts/share.obvsg.at/htdocs/xsldocs/xslt-normalization
 
   only:
     - main
