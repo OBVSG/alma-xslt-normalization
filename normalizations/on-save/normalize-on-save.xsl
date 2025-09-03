@@ -2,6 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="http://www.obvsg.at/xslt/utils" xmlns:doc="http://www.obvsg.at/ns/doc" expand-text="yes" version="3.0">
 
   <doc:doc scope="global">
+    <doc:title>Normalize on Save</doc:title>
     <doc:includeMd href="normalize-on-save.md" />
   </doc:doc>
   <doc:doc scope="stylesheet">

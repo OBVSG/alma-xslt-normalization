@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="http://www.obvsg.at/doc" exclude-result-prefixes="xsl xs doc" expand-text="yes" version="3.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="http://www.obvsg.at/ns/doc" exclude-result-prefixes="xsl xs doc" expand-text="yes" version="3.0">
 
-  <!-- <xsl:mode on-no-match="shallow-copy" /> -->
+  <doc:doc scope="global">
+    <doc:title>Aufsatz ableiten - Print</doc:title>
+    <doc:desc>Ableiten von Aufsätzen von einem Druckwerk.</doc:desc>
+  </doc:doc>
+
+  <doc:doc scope="stylesheet">
+    <doc:title>aufsatz-p.xsl</doc:title>
+    <doc:desc>Hallo!</doc:desc>
+  </doc:doc>
 
   <xsl:template match="record">
     <record>

@@ -2,9 +2,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:utils="http://www.obvsg.at/xslt/utils"
                 xmlns:mrclib="http://www.obvsg.at/xml/mrclib-xslt"
+                xmlns:doc="http://www.obvsg.at/ns/doc"
                 expand-text="yes" version="3.0"
                 exclude-result-prefixes="mrclib utils xs">
 
+  <doc:doc scope="global">
+    <doc:title>Schreibvorlage P2P</doc:title>
+  </doc:doc>
 
   <xsl:include href="../../../mrclib-xslt/mrclib.xsl" />
 
