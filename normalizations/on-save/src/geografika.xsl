@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="http://www.obvsg.at/xslt/utils" xmlns:xs="http://www.w3.org/2001/XMLSchema" expand-text="yes" version="3.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="http://www.obvsg.at/xslt/utils" xmlns:doc="http://www.obvsg.at/ns/doc" xmlns:xs="http://www.w3.org/2001/XMLSchema" expand-text="yes" version="3.0">
 
+  <doc:doc scope="stylesheet">
+    <doc:title>geografika.xsl</doc:title>
+    <doc:desc>Hier finden sich Templates und Funktionen, die sich speziell auf geografische Ressourcen beziehen.
 
+Das sind z. B.:
+- Das Erstellen einer `255` aus der `034`
+    </doc:desc>
+  </doc:doc>
+
+  <!--
+      Wenn es noch kein Feld `255` gibt, erstelle eines, mit den Koordinaten aus `034 $$d $$e $$f $$g`.
+  -->
   <xsl:template match="datafield[@tag='034'][not(../datafield[@tag='255'])]">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
       <xsl:apply-templates />
@@ -14,6 +25,11 @@
     </xsl:if>
   </xsl:template>
 
+  <!--
+      Template für MARC `255`.
+
+      - Wenn es ein Feld `034` mit validen Koordinaten gibt, aktualisiere `$$c`.
+  -->
   <xsl:template match="datafield[@tag='255']">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
       <xsl:apply-templates select="subfield[@code=('a', 'b')]" />
@@ -29,6 +45,10 @@
     </datafield>
   </xsl:template>
 
+  <!--
+      Überprüfe, ob die Koordinaten in MARC `034` formal valide aussehen, d. h. dem
+      Regulären Ausdruck `^[NESW]\d{7}$` entsprechen.
+  -->
   <xsl:function name="utils:df034isValid" as="xs:boolean">
     <xsl:param name="df034" as="element(datafield)" />
     <xsl:variable name="subfieldCountValid"
@@ -44,6 +64,9 @@
                           and not($stringsValid = false())" />
   </xsl:function>
 
+  <!--
+      Bringe die Koordinaten aus `034 $$d $$e $$f $$g` in eine menschenlesbare Form.
+  -->
   <xsl:function name="utils:formatCoordinatesFrom034" as="xs:string">
     <xsl:param name="df035" as="element(datafield)" />
     <xsl:variable name="westernmostLong" select="utils:mapCoordinates($df035/subfield[@code='d'])" />
@@ -60,15 +83,23 @@
     <xsl:sequence select="$formattedCoordinates" />
   </xsl:function>
 
+  <!--
+      Helferfunktion für `utils:formatCoordinatesFrom034`
+
+      Teilt die Eingabedaten in Himmelsrichtung, Grade, Minuten und Sekunden und gibt eine `map`
+      mit den Teilen zurück.
+
+      @returns Eine `map` mit den einzelnen Datenelementen (Himmelsrichtung, Grade, Minuten, Sekunden)
+  -->
   <xsl:function name="utils:mapCoordinates" as="map(*)">
-    <xsl:param name="coordRaw" />
+    <xsl:param name="coordRaw" as="xs:string" />
     <xsl:variable name="dir" select="substring($coordRaw, 1, 1)" />
     <xsl:variable name="deg" select="substring($coordRaw, 2, 3) => xs:integer() => format-integer('00')" />
     <xsl:variable name="min" select="substring($coordRaw, 5, 2) => xs:integer() => format-integer('00')" />
     <xsl:variable name="sec" select="substring($coordRaw, 7, 2) => xs:integer() => format-integer('00')" />
 
     <xsl:map>
-      <xsl:map-entry key="'dir'" select="$dir" />
+      <xsl:map-entry key="'dir'">{$dir}</xsl:map-entry>
       <xsl:map-entry key="'deg'">{if (not($deg eq '')) then $deg || '°' else ''}</xsl:map-entry>
       <xsl:map-entry key="'min'">{if (not($min eq '')) then $min || "'" else ''}</xsl:map-entry>
       <xsl:map-entry key="'sec'">{if (not($sec eq '')) then $sec || '"' else ''}</xsl:map-entry>

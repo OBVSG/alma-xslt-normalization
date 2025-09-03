@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:utils="http://www.obvsg.at/xslt/utils" stylesheet="../normalize-on-save.xsl">
 
-  <x:import href="test-files/034to255.xspec" />
+  <x:import href="test-files/geografika.xspec" />
 
 </x:description>

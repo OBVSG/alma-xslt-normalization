@@ -1,6 +1,8 @@
 .directory
 AlmaXSLTNormalization.xpr
 
+docs/
 dist/
+temp/
 xspec/
 /test/
