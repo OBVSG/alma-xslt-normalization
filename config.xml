@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns="http://www.obvsg.at/ns/xslt/config">
+  <projectInfo>
+    <name>XSLT Normalisierungen für Alma</name>
+  </projectInfo>
+  <documentation>
+    <docDir>docs</docDir>
+    <readme href="README.md" />
+  </documentation>
   <normalizations>
     <normalization name="Normalize on Save"
                    distName="OBV_normalize-on-save"
@@ -8,8 +15,7 @@
     <normalization name="Schreibvorlage"
                    distName="OBV_schreibvorlage"
                    main="normalizations/derive-record/schreibvorlage/schreibvorlage.xsl"
-                   testMain="normalizations/derive-record/schreibvorlage/schreibvorlage.xspec"
-                   />
+                   testMain="normalizations/derive-record/schreibvorlage/schreibvorlage.xspec" />
     <normalization name="Aufsatz ableiten - print"
                    distName="OBV_aufsatz-ableiten-p"
                    main="normalizations/derive-record/aufsatz-p/aufsatz-p.xsl"
