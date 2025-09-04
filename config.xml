@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<config xmlns="http://www.obvsg.at/ns/xslt/config">
+<config xmlns="https://share.obvsg.at/xml/misc/config">
   <projectInfo>
     <name>XSLT Normalisierungen für Alma</name>
   </projectInfo>
