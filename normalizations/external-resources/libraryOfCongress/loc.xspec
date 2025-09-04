@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:marc="http://www.loc.gov/MARC21/slim" stylesheet="loc.xsl">
+
+  <x:scenario label="unit tests">
+    <x:scenario label="remove subfields 0, 1, 4 containing 'id.loc.gov'">
+      <x:context>
+        <datafield tag="650" ind1=" " ind2="0">
+          <subfield code="a">Social justice</subfield>
+          <subfield code="z">Great Britain</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+          <subfield code="a">Black people</subfield>
+          <subfield code="z">Great Britain</subfield>
+          <subfield code="0">http://www.salzamt.at</subfield>
+          <subfield code="0">http://id.loc.gov/authorities/subjects/sh2009117251</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Williams, Elizabeth M.</subfield>
+          <subfield code="q">(Elizabeth May),</subfield>
+          <subfield code="d">1971-</subfield>
+          <subfield code="4">edt</subfield>
+          <subfield code="4">http://id.loc.gov/vocabulary/relators/edt</subfield>
+          <subfield code="0">http://id.loc.gov/authorities/names/no2015135381</subfield>
+          <subfield code="1">http://id.loc.gov/rwo/agents/no2015135381</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="">
+        <datafield tag="650" ind1=" " ind2="0">
+          <subfield code="a">Social justice</subfield>
+          <subfield code="z">Great Britain</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+          <subfield code="a">Black people</subfield>
+          <subfield code="z">Great Britain</subfield>
+          <subfield code="0">http://www.salzamt.at</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Williams, Elizabeth M.</subfield>
+          <subfield code="q">(Elizabeth May),</subfield>
+          <subfield code="d">1971-</subfield>
+          <subfield code="4">edt</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
+    <x:scenario label="replace 800, 810, 811, 830 with empty 830">
+      <x:context>
+        <datafield tag="800" ind1=" " ind2=" ">
+          <subfield code="a">Beliebige 800</subfield>
+        </datafield>
+        <datafield tag="810" ind1=" " ind2=" ">
+          <subfield code="a">Beliebige 810</subfield>
+        </datafield>
+        <datafield tag="811" ind1=" " ind2=" ">
+          <subfield code="a">Beliebige 811</subfield>
+        </datafield>
+        <datafield tag="830" ind1=" " ind2=" ">
+          <subfield code="a">Beliebige 830</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="">
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w"></subfield>
+          <subfield code="v"></subfield>
+        </datafield>
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w"></subfield>
+          <subfield code="v"></subfield>
+        </datafield>
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w"></subfield>
+          <subfield code="v"></subfield>
+        </datafield>
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w"></subfield>
+          <subfield code="v"></subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
+    <x:scenario label="delete 263, 334, 353, 758, 884">
+      <x:context>
+        <datafield tag="263" ind1=" " ind2=" ">
+          <subfield code="a">Beliebige 263</subfield>
+        </datafield>
+        <datafield tag="334" ind1=" " ind2=" ">
+          <subfield code="a">single unit</subfield>
+          <subfield code="b">mono</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/issuance/mono</subfield>
+        </datafield>
+        <datafield tag="353" ind1=" " ind2=" ">
+          <subfield code="a">bibliography</subfield>
+          <subfield code="b">bibliography</subfield>
+          <subfield code="0">
+            http://id.loc.gov/vocabulary/msupplcont/bibliography</subfield>
+        </datafield>
+        <datafield tag="758" ind1=" " ind2=" ">
+          <subfield code="1">http://id.loc.gov/resources/instances/24207693</subfield>
+        </datafield>
+        <datafield tag="884" ind1=" " ind2=" ">
+          <subfield code="a">DLC bibframe2marc v2.10-dev</subfield>
+          <subfield code="g">20250603</subfield>
+          <subfield code="q">DLC</subfield>
+          <subfield code="u">
+            https://github.com/lcnetdev/bibframe2marc/releases/tag/v2.10-dev</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="n'thn" select="()" />
+    </x:scenario>
+  </x:scenario>
+
+  <x:scenario label="delete 035 SF9">
+    <x:context>
+      <datafield tag="035" ind1=" " ind2=" ">
+        <subfield code="9">(DLC)  123456</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="subfield 9 deleted">
+      <datafield tag="035" ind1=" " ind2=" " />
+    </x:expect>
+  </x:scenario>
+
+
+  <x:scenario label="full record" pending="not all implemented">
+    <x:context>
+      <record>
+        <leader>03955cam a2200553 i 4500</leader>
+        <controlfield tag="001">24207693</controlfield>
+        <controlfield tag="007">t|</controlfield>
+        <controlfield tag="008">250516s2025    enka     b    001 0 eng d</controlfield>
+        <controlfield tag="005">20250630022248.4</controlfield>
+        <datafield tag="010" ind1=" " ind2=" ">
+          <subfield code="a">  2025421774</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a">9781350340770</subfield>
+          <subfield code="q">hardcover</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a">1350340774</subfield>
+          <subfield code="q">hardcover</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="z">9781350340794</subfield>
+          <subfield code="q">PDF</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="z">9781350340800</subfield>
+          <subfield code="q">eBook</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(OCoLC)1417753460</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(DLC)24207693</subfield>
+        </datafield>
+        <datafield tag="040" ind1=" " ind2=" ">
+          <subfield code="a">YDX</subfield>
+          <subfield code="b">eng</subfield>
+          <subfield code="e">rda</subfield>
+          <subfield code="c">YDX</subfield>
+          <subfield code="d">BDX</subfield>
+          <subfield code="d">YDX</subfield>
+          <subfield code="d">OCLCO</subfield>
+          <subfield code="d">CBY</subfield>
+          <subfield code="d">FUG</subfield>
+          <subfield code="d">DLC</subfield>
+          <subfield code="d">DLC-MRC</subfield>
+        </datafield>
+        <datafield tag="042" ind1=" " ind2=" ">
+          <subfield code="a">lccopycat</subfield>
+        </datafield>
+        <datafield tag="043" ind1=" " ind2=" ">
+          <subfield code="a">e-uk---</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/geographicAreas/e-uk</subfield>
+        </datafield>
+        <datafield tag="050" ind1="0" ind2="0">
+          <subfield code="a">DA125.B53</subfield>
+          <subfield code="b">B528 2025</subfield>
+        </datafield>
+        <datafield tag="082" ind1="0" ind2="4">
+          <subfield code="a">305.896041</subfield>
+          <subfield code="2">23</subfield>
+        </datafield>
+        <datafield tag="245" ind1="0" ind2="0">
+          <subfield code="a">Black Britain and Nelson Mandela :</subfield>
+          <subfield code="b">"pulling the branch of a tree" /</subfield>
+          <subfield code="c">edited by Elizabeth M. Williams.</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="1">
+          <subfield code="a">London ;</subfield>
+          <subfield code="a">New York :</subfield>
+          <subfield code="b">Bloomsbury Academic,</subfield>
+          <subfield code="c">2025.</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+          <subfield code="a">xxvii, 252 pages</subfield>
+          <subfield code="b">illustrations</subfield>
+          <subfield code="c">24 cm</subfield>
+        </datafield>
+        <datafield tag="334" ind1=" " ind2=" ">
+          <subfield code="a">single unit</subfield>
+          <subfield code="b">mono</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/issuance/mono</subfield>
+        </datafield>
+        <datafield tag="336" ind1=" " ind2=" ">
+          <subfield code="a">text</subfield>
+          <subfield code="b">txt</subfield>
+          <subfield code="2">rdacontent</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/contentTypes/txt</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+          <subfield code="a">unmediated</subfield>
+          <subfield code="b">n</subfield>
+          <subfield code="2">rdamedia</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/mediaTypes/n</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+          <subfield code="a">volume</subfield>
+          <subfield code="b">nc</subfield>
+          <subfield code="2">rdacarrier</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/carriers/nc</subfield>
+        </datafield>
+        <datafield tag="340" ind1=" " ind2=" ">
+          <subfield code="p">illustrations</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/millus/ill</subfield>
+        </datafield>
+        <datafield tag="353" ind1=" " ind2=" ">
+          <subfield code="a">bibliography</subfield>
+          <subfield code="b">bibliography</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/msupplcont/bibliography</subfield>
+        </datafield>
+        <datafield tag="353" ind1=" " ind2=" ">
+          <subfield code="a">index</subfield>
+          <subfield code="b">index</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/msupplcont/index</subfield>
+        </datafield>
+        <datafield tag="504" ind1=" " ind2=" ">
+          <subfield code="a">Includes bibliographical references and index</subfield>
+        </datafield>
+        <datafield tag="520" ind1=" " ind2=" ">
+          <subfield code="a">In this open access book, Elizabeth Williams leads a cast of renowned scholars to explore the impact of Nelson Mandela's legacy on Black intellectual thought on race and social justice in Britain. This engaging book presents an original collection of chapters authored by leading Black voices across the academy, foregrounding the Black British perspective in historical discourse for the first time. This fresh take on Mandela the Man, rather than the enduring myth around his branding, explores the life of Nelson Mandela; his contribution to the peace in South Africa and the impact of British law on Mandela and his legal jurisprudence. Not only does this innovative collection highlight the lessons which can be learned from Mandela's life, it also connects with contemporary issues of race in Britain today, taking in the Rhodes Must Fall movement and Black Lives Matter movement. The result is a much-needed revival of existing literature, and a collection which will be of interest to students and scholars of Black British History.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+          <subfield code="a">Mandela, Nelson,</subfield>
+          <subfield code="d">1918-2013</subfield>
+          <subfield code="x">Influence</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+          <subfield code="a">Social justice</subfield>
+          <subfield code="z">Great Britain</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+          <subfield code="a">Black people</subfield>
+          <subfield code="z">Great Britain</subfield>
+          <subfield code="0">http://id.loc.gov/authorities/subjects/sh2009117251</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="6">
+          <subfield code="a">Justice sociale</subfield>
+          <subfield code="z">Grande-Bretagne</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="6">
+          <subfield code="a">Personnes noires</subfield>
+          <subfield code="z">Grande-Bretagne</subfield>
+        </datafield>
+        <datafield tag="651" ind1=" " ind2="0">
+          <subfield code="a">Great Britain</subfield>
+          <subfield code="x">Race relations</subfield>
+          <subfield code="0">http://id.loc.gov/authorities/subjects/sh2007006281</subfield>
+        </datafield>
+        <datafield tag="651" ind1=" " ind2="6">
+          <subfield code="a">Grande-Bretagne</subfield>
+          <subfield code="x">Relations raciales</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Williams, Elizabeth M.</subfield>
+          <subfield code="q">(Elizabeth May),</subfield>
+          <subfield code="d">1971-</subfield>
+          <subfield code="e">editor</subfield>
+          <subfield code="4">http://id.loc.gov/vocabulary/relators/edt</subfield>
+          <subfield code="0">http://id.loc.gov/authorities/names/no2015135381</subfield>
+          <subfield code="1">http://id.loc.gov/rwo/agents/no2015135381</subfield>
+        </datafield>
+        <datafield tag="758" ind1=" " ind2=" ">
+          <subfield code="1">http://id.loc.gov/resources/instances/24207693</subfield>
+        </datafield>
+        <datafield tag="758" ind1=" " ind2=" ">
+          <subfield code="4">http://id.loc.gov/ontologies/bibframe/instanceOf</subfield>
+          <subfield code="1">http://id.loc.gov/resources/works/24207693</subfield>
+        </datafield>
+        <datafield tag="776" ind1="1" ind2=" ">
+          <subfield code="i">Electronic version</subfield>
+          <subfield code="4">http://id.loc.gov/entities/relationships/electronicversion</subfield>
+          <subfield code="t">BLACK BRITAIN AND NELSON MANDELA</subfield>
+          <subfield code="d">S.l. : BLOOMSBURY ACADEMIC, 2024</subfield>
+          <subfield code="z">9781350340794</subfield>
+          <subfield code="w">(OCoLC)1468785708</subfield>
+        </datafield>
+        <datafield tag="884" ind1=" " ind2=" ">
+          <subfield code="a">DLC bibframe2marc v2.10-dev</subfield>
+          <subfield code="g">20250603</subfield>
+          <subfield code="q">DLC</subfield>
+          <subfield code="u">https://github.com/lcnetdev/bibframe2marc/releases/tag/v2.10-dev</subfield>
+        </datafield>
+        <datafield tag="906" ind1=" " ind2=" ">
+          <subfield code="a">7</subfield>
+          <subfield code="b">cbc</subfield>
+          <subfield code="c">copycat</subfield>
+          <subfield code="d">2</subfield>
+          <subfield code="e">ncip</subfield>
+          <subfield code="f">20</subfield>
+          <subfield code="g">y-gencatlg</subfield>
+        </datafield>
+        <datafield tag="925" ind1="0" ind2=" ">
+          <subfield code="a">acquire</subfield>
+          <subfield code="b">1 shelf copy</subfield>
+          <subfield code="x">policy default</subfield>
+        </datafield>
+        <datafield tag="955" ind1=" " ind2=" ">
+          <subfield code="b">rn06 2025-05-16 z-processor to USASH</subfield>
+          <subfield code="i">rq05 2025-06-03 Bf2MARC to CMD</subfield>
+        </datafield>
+        <datafield tag="985" ind1=" " ind2=" ">
+          <subfield code="e">BIBFRAME</subfield>
+          <subfield code="d">2025-06-03T13:36:14</subfield>
+        </datafield>
+      </record>
+    </x:context>
+    <x:expect label="fields removed etc.">
+      <record>
+                0....5....10...15...20...25...30...35...
+        <leader>03955cam a2200553 c 4500</leader>
+        <controlfield tag="001">24207693</controlfield>
+        <controlfield tag="007">tu</controlfield>
+        <controlfield tag="008">250516s2025    enka     b    001 0 eng d</controlfield>
+        <controlfield tag="005">20250630022248.4</controlfield>
+        <datafield tag="010" ind1=" " ind2=" ">
+          <subfield code="a">  2025421774</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a">9781350340770</subfield>
+          <subfield code="q">hardcover</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a">1350340774</subfield>
+          <subfield code="q">hardcover</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="z">9781350340794</subfield>
+          <subfield code="q">PDF</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="z">9781350340800</subfield>
+          <subfield code="q">eBook</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(OCoLC)1417753460</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(DLC)24207693</subfield>
+        </datafield>
+        <datafield tag="041" ind1=" " ind2=" ">
+          <subfield code="a">eng</subfield>
+        </datafield>
+        <datafield tag="044" ind1=" " ind2=" ">
+          <subfield code="c" />
+        </datafield>
+        <datafield tag="050" ind1="0" ind2="0">
+          <subfield code="a">DA125.B53</subfield>
+          <subfield code="b">B528 2025</subfield>
+        </datafield>
+        <datafield tag="082" ind1="0" ind2="4">
+          <subfield code="a">305.896041</subfield>
+          <subfield code="2">23</subfield>
+        </datafield>
+        <datafield tag="245" ind1="0" ind2="0">
+          <subfield code="a">Black Britain and Nelson Mandela</subfield>
+          <subfield code="b">"pulling the branch of a tree"</subfield>
+          <subfield code="c">edited by Elizabeth M. Williams</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="1">
+          <subfield code="a">London</subfield>
+          <subfield code="a">New York</subfield>
+          <subfield code="b">Bloomsbury Academic</subfield>
+          <subfield code="c">2025</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+          <subfield code="a">xxvii, 252 pages</subfield>
+          <subfield code="b">illustrations</subfield>
+          <subfield code="c">24 cm</subfield>
+        </datafield>
+        <datafield tag="336" ind1=" " ind2=" ">
+          <subfield code="b">txt</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+          <subfield code="b">n</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+          <subfield code="b">nc</subfield>
+        </datafield>
+        <datafield tag="504" ind1=" " ind2=" ">
+          <subfield code="a">Includes bibliographical references and index</subfield>
+        </datafield>
+        <datafield tag="520" ind1=" " ind2=" ">
+          <subfield code="a">In this open access book, Elizabeth Williams leads a cast of renowned scholars to explore the impact of Nelson Mandela's legacy on Black intellectual thought on race and social justice in Britain. This engaging book presents an original collection of chapters authored by leading Black voices across the academy, foregrounding the Black British perspective in historical discourse for the first time. This fresh take on Mandela the Man, rather than the enduring myth around his branding, explores the life of Nelson Mandela; his contribution to the peace in South Africa and the impact of British law on Mandela and his legal jurisprudence. Not only does this innovative collection highlight the lessons which can be learned from Mandela's life, it also connects with contemporary issues of race in Britain today, taking in the Rhodes Must Fall movement and Black Lives Matter movement. The result is a much-needed revival of existing literature, and a collection which will be of interest to students and scholars of Black British History.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+          <subfield code="a">Mandela, Nelson,</subfield>
+          <subfield code="d">1918-2013</subfield>
+          <subfield code="x">Influence</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+          <subfield code="a">Social justice</subfield>
+          <subfield code="z">Great Britain</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+          <subfield code="a">Black people</subfield>
+          <subfield code="z">Great Britain</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="6">
+          <subfield code="a">Justice sociale</subfield>
+          <subfield code="z">Grande-Bretagne</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="6">
+          <subfield code="a">Personnes noires</subfield>
+          <subfield code="z">Grande-Bretagne</subfield>
+        </datafield>
+        <datafield tag="651" ind1=" " ind2="0">
+          <subfield code="a">Great Britain</subfield>
+          <subfield code="x">Race relations</subfield>
+        </datafield>
+        <datafield tag="651" ind1=" " ind2="6">
+          <subfield code="a">Grande-Bretagne</subfield>
+          <subfield code="x">Relations raciales</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Williams, Elizabeth M.</subfield>
+          <subfield code="d">1971-</subfield>
+          <subfield code="4">edt</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Electronic version</subfield>
+          <subfield code="t">BLACK BRITAIN AND NELSON MANDELA</subfield>
+          <subfield code="d">S.l. : BLOOMSBURY ACADEMIC, 2024</subfield>
+          <subfield code="z">9781350340794</subfield>
+          <subfield code="w"></subfield>
+        </datafield>
+      </record>
+    </x:expect>
+  </x:scenario>
+</x:description>
