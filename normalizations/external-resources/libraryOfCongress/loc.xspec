@@ -43,6 +43,23 @@
       </x:expect>
     </x:scenario>
 
+    <x:scenario label="remove $$1 with isni">
+      <x:context>
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Hahn, Daniel</subfield>
+          <subfield code="4">aut</subfield>
+          <subfield code="1">https://isni.org/isni/0000000116255911</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="isni removed">
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Hahn, Daniel</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
+
     <x:scenario label="replace 800, 810, 811, 830 with empty 830">
       <x:context>
         <datafield tag="800" ind1=" " ind2=" ">
