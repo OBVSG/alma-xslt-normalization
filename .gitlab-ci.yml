@@ -31,7 +31,7 @@ docs:
   stage: docs
   script:
     - mkdir docs
-    - saxon-xslt -xsl:xslt-documentation-generator/xslt/documentation-generator.xsl -it:main lang=ger configFile=../../config.xml
+    - saxon-xslt -xsl:xslt-documentation-generator/xslt/documentation-generator.xsl -it:main lang=de configFile=../../config.xml
   artifacts:
     paths:
       - docs
