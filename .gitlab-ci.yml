@@ -40,7 +40,7 @@ deploy_development:
   stage: deploy
   environment:
     name: development
-    url: http://share-test.obvsg.at/docs/xslt-normalization
+    url: http://share-test.obvsg.at/xsldocs/xslt-normalization
   before_script:
     ##
     ## Install ssh-agent if not already installed, it is required by Docker.
@@ -68,7 +68,7 @@ deploy_development:
     - chmod 644 ~/.ssh/known_hosts
 
   script:
-    - rsync -r -p docs/* obvsoft@galileo:/work/obvsoft/evol/apps/work_area/ss/docs/xslt-normalization
+    - rsync -r -p docs/* obvsoft@galileo:/work/obvsoft/evol/apps/work_area/ss/xsldocs/xslt-normalization
   only:
     - development
 
