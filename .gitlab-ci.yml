@@ -15,7 +15,7 @@ compile:
     - mkdir dist
     - mkdir temp
     - mkdir -p test/xspec
-    - saxon -xsl:xslt-bundler/xslt-builder.xsl -it:main configFile=../config.xml
+    - saxon -xsl:xslt-bundler/xslt-bundler.xsl -it:main configFile=../config.xml
     - bash temp/testrunner.sh
   artifacts:
     when: always
