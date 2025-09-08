@@ -2,27 +2,27 @@
 <config xmlns="https://share.obvsg.at/xml/misc/config">
   <projectInfo>
     <name>XSLT Normalisierungen für Alma</name>
-  </projectInfo>
-  <documentation>
+    <distDir>dist</distDir>
     <docDir>docs</docDir>
     <readme href="README.md" />
-  </documentation>
-  <normalizations>
-    <normalization name="Normalize on Save"
+  </projectInfo>
+
+  <transformations>
+    <transformation name="Normalize on Save"
                    distName="OBV_normalize-on-save"
                    main="normalizations/on-save/normalize-on-save.xsl"
                    testMain="normalizations/on-save/tests/00_normalize-on-save-main.xspec" />
-    <normalization name="Schreibvorlage"
+    <transformation name="Schreibvorlage"
                    distName="OBV_schreibvorlage"
                    main="normalizations/derive-record/schreibvorlage/schreibvorlage.xsl"
                    testMain="normalizations/derive-record/schreibvorlage/schreibvorlage.xspec" />
-    <normalization name="Aufsatz ableiten - print"
+    <transformation name="Aufsatz ableiten - print"
                    distName="OBV_aufsatz-ableiten-p"
                    main="normalizations/derive-record/aufsatz-p/aufsatz-p.xsl"
                    testMain="normalizations/derive-record/aufsatz-p/tests/aufsatz-p.xspec" />
-    <normalization name="Import Library of Congress"
+    <transformation name="Import Library of Congress"
                    distName="OBV_EXR_LoC"
                    main="normalizations/external-resources/libraryOfCongress/loc.xsl"
                    testMain="normalizations/external-resources/libraryOfCongress/loc.xspec" />
-  </normalizations>
+  </transformations>
 </config>
