@@ -5,6 +5,9 @@
     <distDir>dist</distDir>
     <docDir>docs</docDir>
     <readme href="README.md" />
+    <contributors>
+      <contributor email="stefan.schuh@obvsg.at">Stefan Schuh</contributor>
+    </contributors>
   </projectInfo>
 
   <transformations>

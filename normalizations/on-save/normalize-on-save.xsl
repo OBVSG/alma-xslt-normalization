@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:doc="https://share.obvsg.at/xml/xsl/doc" expand-text="yes" version="3.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" expand-text="yes" version="3.0">
 
-  <doc:doc scope="global">
-    <doc:title>Normalize on Save</doc:title>
-    <doc:includeMd href="normalize-on-save.md" />
-  </doc:doc>
-  <doc:doc scope="stylesheet">
-    <doc:title>normalize-on-save.xsl</doc:title>
-    <doc:desc>Dies ist das Haupt-Stylesheet für `OBV_normalize-on-save`.
+  <!--~doc:global
+      @title Normalize on Save
+      @includeMd normalize-on-save.md
+  -->
+  <!--~doc:stylesheet
+      Dies ist das Haupt-Stylesheet für `OBV_normalize-on-save`.
 
-Hier wird der Datensatz gematcht und die grundsätzliche Logik abgearbeitet. Danach werden die Felder sortiert in einem `record`-Element ausgegeben. Alles darüber hinaus wird in den inkludierten Dateien deklariert.
+      Hier wird der Datensatz gematcht und die grundsätzliche Logik abgearbeitet. Danach werden die Felder sortiert in einem `record`-Element ausgegeben. Alles darüber hinaus wird in den inkludierten Dateien deklariert.
 
-Alles, wofür kein Template vorhanden ist, wird 1:1 in die Ausgabe kopiert.
-    </doc:desc>
-  </doc:doc>
+      Alles, wofür kein Template vorhanden ist, wird 1:1 in die Ausgabe kopiert.
+
+      @title normalize-on-save.xsl
+  -->
 
   <xsl:mode on-no-match="shallow-copy" />
 

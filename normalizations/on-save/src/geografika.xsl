@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:doc="https://share.obvsg.at/xml/xsl/doc" xmlns:xs="http://www.w3.org/2001/XMLSchema" expand-text="yes" version="3.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:xs="http://www.w3.org/2001/XMLSchema" expand-text="yes" version="3.0">
 
-  <doc:doc scope="stylesheet">
-    <doc:title>geografika.xsl</doc:title>
-    <doc:desc>Hier finden sich Templates und Funktionen, die sich speziell auf geografische Ressourcen beziehen.
+  <!--~doc:stylesheet
+      Hier finden sich Templates und Funktionen, die sich speziell auf geografische Ressourcen beziehen.
 
-Das sind z. B.:
-- Das Erstellen einer `255` aus der `034`
-    </doc:desc>
-  </doc:doc>
+      Das sind z. B.:
+      - Das Erstellen einer `255` aus der `034`
+  -->
 
   <!--
       Wenn es noch kein Feld `255` gibt, erstelle eines, mit den Koordinaten aus `034 $$d $$e $$f $$g`.

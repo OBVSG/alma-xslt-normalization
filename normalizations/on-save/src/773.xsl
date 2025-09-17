@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="https://share.obvsg.at/xml/xsl/doc" xmlns:utils="http://share.obvsg.at/xml/xsl/utils" expand-text="yes" version="3.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="http://share.obvsg.at/xml/xsl/utils" expand-text="yes" version="3.0">
 
   <!--~doc:stylesheet
       773 enthält im OBV Links zu Überordnungen bei TATs, Aufsätzen und Sonderdrucken.
