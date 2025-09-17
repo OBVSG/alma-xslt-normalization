@@ -18,6 +18,7 @@ Alles, wofür kein Template vorhanden ist, wird 1:1 in die Ausgabe kopiert.
   <xsl:mode on-no-match="shallow-copy" />
 
   <xsl:include href="src/geografika.xsl" />
+  <xsl:include href="src/773.xsl" />
 
   <!--
       Dieses Template ist der Einsprungspunkt für die Normalisierung.
