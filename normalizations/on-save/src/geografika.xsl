@@ -64,13 +64,22 @@
 
   <!--
       Bringe die Koordinaten aus `034 $$d $$e $$f $$g` in eine menschenlesbare Form.
+
+      Das heißt
+      ```
+      034 ## $$d E0044125 $$e E0102931 $$f N0474830 $$g N0455314 $$2 bound
+
+      wird zu
+
+      255 ## $$c E 04°41"25'-E 10°29"31'/N 47°48"30'-N 45°53"14'
+      ```
   -->
   <xsl:function name="utils:formatCoordinatesFrom034" as="xs:string">
-    <xsl:param name="df035" as="element(datafield)" />
-    <xsl:variable name="westernmostLong" select="utils:mapCoordinates($df035/subfield[@code='d'])" />
-    <xsl:variable name="easternmostLong" select="utils:mapCoordinates($df035/subfield[@code='e'])" />
-    <xsl:variable name="northernmostLat" select="utils:mapCoordinates($df035/subfield[@code='f'])" />
-    <xsl:variable name="southernmostLat" select="utils:mapCoordinates($df035/subfield[@code='g'])" />
+    <xsl:param name="df034" as="element(datafield)" />
+    <xsl:variable name="westernmostLong" select="utils:mapCoordinates($df034/subfield[@code='d'])" />
+    <xsl:variable name="easternmostLong" select="utils:mapCoordinates($df034/subfield[@code='e'])" />
+    <xsl:variable name="northernmostLat" select="utils:mapCoordinates($df034/subfield[@code='f'])" />
+    <xsl:variable name="southernmostLat" select="utils:mapCoordinates($df034/subfield[@code='g'])" />
     <xsl:variable name="formattedCoordinates">{
       $westernmostLong('dir') || " " || $westernmostLong('deg') || $westernmostLong('min') || $westernmostLong('sec') || "-" ||
       $easternmostLong('dir') || " " || $easternmostLong('deg') || $easternmostLong('min') || $easternmostLong('sec') || "/" ||
