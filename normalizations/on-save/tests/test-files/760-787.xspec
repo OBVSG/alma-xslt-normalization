@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="760-787">
+    <x:scenario label="760-787 $$w, ISIL ergänzen">
+      <x:scenario label="773 ISIL vorhanden">
+        <x:context>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">(AT-OBV)AC12345678</subfield>
+            <subfield code="v">1</subfield>
+          </datafield>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">(DE-599)BVBBV002896631</subfield>
+            <subfield code="v">1</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">(AT-OBV)AC12345678</subfield>
+            <subfield code="v">1</subfield>
+          </datafield>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">(DE-599)BVBBV002896631</subfield>
+            <subfield code="v">1</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="773 ISIL fehlt, AC-Nummer">
+        <x:context>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">AC12345678</subfield>
+            <subfield code="v">1</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="ISIL ergänzt">
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">(AT-OBV)AC12345678</subfield>
+            <subfield code="v">1</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="773 ISIL fehlt, keine AC-Nummer">
+        <x:context>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">123456-7</subfield>
+            <subfield code="v">1</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">123456-7</subfield>
+            <subfield code="v">1</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+
+    <x:scenario label="773">
+      <x:scenario label="Indikatoren fix auf '08' setzen">
+        <x:context>
+          <datafield tag="773" ind1="3" ind2="3">
+            <subfield code="w">(AT-OBV)AC12345678</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="indikatoren auf '08' gesetzt">
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">(AT-OBV)AC12345678</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+      <x:scenario label="773 mit SFa">
+        <x:context>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="a">Titel</subfield>
+            <subfield code="w">(AT-OBV)AC12345678</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="SFa entfernt">
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="w">(AT-OBV)AC12345678</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+      <x:scenario label="773 löschen, die nur Template-Texte enthält">
+        <x:context>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="i">Sonderdruck aus</subfield>
+            <subfield code="t"></subfield>
+          </datafield>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="i">Sonderdruck aus</subfield>
+          </datafield>
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="i">Sonderdruck aus</subfield>
+            <subfield code="t">Schildaer Anzeiger</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="richtige 773 gelöscht">
+          <datafield tag="773" ind1="0" ind2="8">
+            <subfield code="i">Sonderdruck aus</subfield>
+            <subfield code="t">Schildaer Anzeiger</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+    </x:scenario>
+
+  </x:scenario>
+</x:description>

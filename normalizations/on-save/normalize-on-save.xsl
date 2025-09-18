@@ -5,6 +5,7 @@
       @title Normalize on Save
       @includeMd normalize-on-save.md
   -->
+
   <!--~doc:stylesheet
       Dies ist das Haupt-Stylesheet für `OBV_normalize-on-save`.
 
@@ -18,7 +19,8 @@
   <xsl:mode on-no-match="shallow-copy" />
 
   <xsl:include href="src/geografika.xsl" />
-  <xsl:include href="src/773.xsl" />
+  <xsl:include href="src/760-787.xsl" />
+  <xsl:include href="src/80X-83X.xsl" />
 
   <!--
       Dieses Template ist der Einsprungspunkt für die Normalisierung.
