@@ -6,6 +6,10 @@
                 expand-text="yes"
                 version="3.0">
 
+  <!--~doc:stylesheet
+      Dieses Stylesheet sorgt für die Verarbeitung der Felder 80X-83X. Im OBV bedeutet das de facto: `830`. Andere Felder in diesem Bereich sind im Verbund nicht in Verwendung.
+  -->
+
   <!--
       Ergänze ISIL-Präfix "(AT-OBV)", wenn der Subfeldwert mit "AC" beginnt
   -->
