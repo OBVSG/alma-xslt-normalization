@@ -1,60 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
-               xmlns:utils="https://share.obvsg.at/xml/xsl/utils"
-               stylesheet="../utlis.xsl">
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" stylesheet="../utlis.xsl">
 
-  <x:scenario label="utils:calculate-flags">
-    <x:scenario label="record with some flags">
-      <x:call function="utils:calculate-flags">
-        <x:param name="record">
-          <record>
-            <leader>1234567a</leader>
-                                    0....5....10...15...20...25...30...35...
-            <controlfield tag="008"></controlfield>
-            <datafield tag="035" ind1=" " ind2=" ">
-              <subfield code="a">(DE-600)2381644-2</subfield>
-            </datafield>
-            <datafield tag="591" ind1=" " ind2=" ">
-              <subfield code="a">B</subfield>
-            </datafield>
-            <datafield tag="970" ind1="2" ind2=" ">
-              <subfield code="d">NAK</subfield>
-            </datafield>
-          </record>
-        </x:param>
-      </x:call>
-      <x:expect label="flags calculated"
-        select="('article', 'E', 'NAK', 'B', 'ZDB')" />
-    </x:scenario>
-    <x:scenario label="record with no flags">
-      <x:call function="utils:calculate-flags">
-        <x:param name="record">
-          <record>
-            <leader>02382nam a2200697 c 4500</leader>
-            <controlfield tag="005">20241003131455.0</controlfield>
-            <controlfield tag="007">tu</controlfield>
-            <controlfield tag="008"></controlfield>
-            <controlfield tag="009">AC13107579</controlfield>
-            <controlfield tag="001">990129047990203331</controlfield>
-            <datafield tag="100" ind1="1" ind2=" ">
-              <subfield code="a">Kubitza, Nicole</subfield>
-              <subfield code="0">(DE-588)1095908375</subfield>
-              <subfield code="4">aut</subfield>
-            </datafield>
-            <datafield tag="245" ind1="1" ind2="0">
-              <subfield code="a">Pretty in space</subfield>
-              <subfield code="b">die Frauendarstellung in Star Trek und anderen US-amerikanischen Dramaserien der 1960er Jahre</subfield>
-              <subfield code="c">Nicole Kubitza</subfield>
-            </datafield>
-            <datafield tag="264" ind1=" " ind2="1">
-              <subfield code="a">Göttingen</subfield>
-              <subfield code="b">V&amp;R unipress</subfield>
-              <subfield code="c">[2016]</subfield>
-            </datafield>
-          </record>
-        </x:param>
-      </x:call>
-      <x:expect label="flags calculated" select="()" />
+
+  <x:scenario label="utils">
+    <x:scenario label="function utils:calculate-flags">
+      <x:scenario label="record with some flags">
+        <x:call function="utils:calculate-flags">
+          <x:param name="record">
+            <record>
+              <leader>1234567a</leader>
+              <controlfield tag="008">181015|2016####xx######om#|##|||#|#ger#u</controlfield>
+              <datafield tag="035" ind1=" " ind2=" ">
+                <subfield code="a">(DE-600)2381644-2</subfield>
+              </datafield>
+              <datafield tag="591" ind1=" " ind2=" ">
+                <subfield code="a">B</subfield>
+              </datafield>
+              <datafield tag="970" ind1="2" ind2=" ">
+                <subfield code="d">NAK</subfield>
+              </datafield>
+            </record>
+          </x:param>
+        </x:call>
+        <x:expect label="flags calculated" select="('article', 'E', 'NAK', 'B', 'ZDB')" />
+      </x:scenario>
+      <x:scenario label="record with no flags">
+        <x:call function="utils:calculate-flags">
+          <x:param name="record">
+            <record>
+              <leader>02382nam a2200697 c 4500</leader>
+              <controlfield tag="005">20241003131455.0</controlfield>
+              <controlfield tag="007">tu</controlfield>
+              <controlfield tag="008">181015|2016####xx#######m#|##|||#|#ger#u</controlfield>
+              <controlfield tag="009">AC13107579</controlfield>
+              <controlfield tag="001">990129047990203331</controlfield>
+              <datafield tag="100" ind1="1" ind2=" ">
+                <subfield code="a">Kubitza, Nicole</subfield>
+                <subfield code="0">(DE-588)1095908375</subfield>
+                <subfield code="4">aut</subfield>
+              </datafield>
+              <datafield tag="245" ind1="1" ind2="0">
+                <subfield code="a">Pretty in space</subfield>
+                <subfield code="b">die Frauendarstellung in Star Trek und anderen US-amerikanischen Dramaserien der 1960er Jahre</subfield>
+                <subfield code="c">Nicole Kubitza</subfield>
+              </datafield>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Göttingen</subfield>
+                <subfield code="b">V&amp;R unipress</subfield>
+                <subfield code="c">[2016]</subfield>
+              </datafield>
+            </record>
+          </x:param>
+        </x:call>
+        <x:expect label="flags calculated" select="()" />
+      </x:scenario>
     </x:scenario>
   </x:scenario>
 </x:description>
