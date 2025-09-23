@@ -3,6 +3,82 @@
 
 
   <x:scenario label="utils">
+    <x:scenario label="template utils:sortSubfields">
+      <x:scenario label="call with empty string as sortSpec">
+        <x:context>
+          <datafield tag="999" ind1=" " ind2=" ">
+            <subfield code="x">SFx</subfield>
+            <subfield code="a">SFa1</subfield>
+            <subfield code="a">SFa2</subfield>
+            <subfield code="0">SF0</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:context>
+        <x:call template="utils:sortSubfields">
+          <x:param name="sortSpec" select="''" />
+        </x:call>
+        <x:expect label="subfelder alphabetisch sortiert">
+          <datafield tag="999" ind1=" " ind2=" ">
+            <subfield code="0">SF0</subfield>
+            <subfield code="a">SFa1</subfield>
+            <subfield code="a">SFa2</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="x">SFx</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="call with sortSpec for all subfields">
+        <x:context>
+          <datafield tag="999" ind1=" " ind2=" ">
+            <subfield code="x">SFx</subfield>
+            <subfield code="a">SFa</subfield>
+            <subfield code="0">SF0</subfield>
+            <subfield code="c">SFc1</subfield>
+            <subfield code="c">SFc2</subfield>
+          </datafield>
+        </x:context>
+        <x:call template="utils:sortSubfields">
+          <x:param name="sortSpec" select="'axc0'" />
+        </x:call>
+        <x:expect label="keine Änderung">
+          <datafield tag="999" ind1=" " ind2=" ">
+            <subfield code="a">SFa</subfield>
+            <subfield code="x">SFx</subfield>
+            <subfield code="c">SFc1</subfield>
+            <subfield code="c">SFc2</subfield>
+            <subfield code="0">SF0</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="call with incomplete sortSpec">
+        <x:context>
+          <datafield tag="999" ind1=" " ind2=" ">
+            <subfield code="x">SFx</subfield>
+            <subfield code="a">SFa</subfield>
+            <subfield code="d">SFd</subfield>
+            <subfield code="c">SFc1</subfield>
+            <subfield code="c">SFc2</subfield>
+            <subfield code="2">SF2</subfield>
+            <subfield code="0">SF0</subfield>
+          </datafield>
+        </x:context>
+        <x:call template="utils:sortSubfields">
+          <x:param name="sortSpec" select="'ax0'" />
+        </x:call>
+        <x:expect
+          label="spezifizierte Subfelder sortiert, unspezifizierte alphabetisch danach">
+          <datafield tag="999" ind1=" " ind2=" ">
+            <subfield code="a">SFa</subfield>
+            <subfield code="x">SFx</subfield>
+            <subfield code="0">SF0</subfield>
+            <subfield code="2">SF2</subfield>
+            <subfield code="c">SFc1</subfield>
+            <subfield code="c">SFc2</subfield>
+            <subfield code="d">SFd</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="function utils:calculate-flags">
       <x:scenario label="record with some flags">
         <x:call function="utils:calculate-flags">
