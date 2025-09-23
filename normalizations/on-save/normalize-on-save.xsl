@@ -18,9 +18,10 @@
 
   <xsl:mode on-no-match="shallow-copy" />
 
-  <xsl:include href="src/geografika.xsl" />
   <xsl:include href="src/760-787.xsl" />
   <xsl:include href="src/80X-83X.xsl" />
+  <xsl:include href="src/geografika.xsl" />
+  <xsl:include href="../utils/utils.xsl" />
 
   <!--
       Dieses Template ist der Einsprungspunkt für die Normalisierung.
@@ -30,14 +31,18 @@
       resultierenden Datensatz geschrieben werden können.
   -->
   <xsl:template match="record">
+  <xsl:variable name="meta" select="utils:collect-metadata(.)" />
     <xsl:variable name="transformedFields" as="item()*">
-      <xsl:apply-templates />
+      <xsl:apply-templates>
+        <xsl:with-param name="meta" select="$meta" tunnel="yes" />
+      </xsl:apply-templates>
     </xsl:variable>
     <record>
-      <xsl:perform-sort select="$transformedFields">
+      <xsl:apply-templates select="$transformedFields" mode="sort">
         <xsl:sort select="@tag" />
-      </xsl:perform-sort>
+      </xsl:apply-templates>
     </record>
   </xsl:template>
+
 
 </xsl:stylesheet>

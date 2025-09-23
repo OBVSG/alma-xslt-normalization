@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" stylesheet="../utlis.xsl">
-
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" stylesheet="../utils.xsl">
 
   <x:scenario label="utils">
     <x:scenario label="template utils:sortSubfields">
