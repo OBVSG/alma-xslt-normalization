@@ -17,10 +17,12 @@
   -->
 
   <xsl:mode on-no-match="shallow-copy" />
+  <xsl:output indent="yes" />
 
   <xsl:include href="src/760-787.xsl" />
   <xsl:include href="src/80X-83X.xsl" />
   <xsl:include href="src/geografika.xsl" />
+  <xsl:include href="src/sort.xsl" />
   <xsl:include href="../utils/utils.xsl" />
 
   <!--
