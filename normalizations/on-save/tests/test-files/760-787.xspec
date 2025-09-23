@@ -33,11 +33,23 @@
             <subfield code="w">AC12345678</subfield>
             <subfield code="v">1</subfield>
           </datafield>
+          <datafield tag="770" ind1="0" ind2="8">
+            <subfield code="i">Supplement</subfield>
+            <subfield code="n">2012-</subfield>
+            <subfield code="t">3H-Aktuell</subfield>
+            <subfield code="w">AC12345678</subfield>
+          </datafield>
         </x:context>
         <x:expect label="ISIL ergänzt">
           <datafield tag="773" ind1="0" ind2="8">
             <subfield code="w">(AT-OBV)AC12345678</subfield>
             <subfield code="v">1</subfield>
+          </datafield>
+          <datafield tag="770" ind1="0" ind2="8">
+            <subfield code="i">Supplement</subfield>
+            <subfield code="n">2012-</subfield>
+            <subfield code="t">3H-Aktuell</subfield>
+            <subfield code="w">(AT-OBV)AC12345678</subfield>
           </datafield>
         </x:expect>
       </x:scenario>
@@ -52,6 +64,24 @@
           <datafield tag="773" ind1="0" ind2="8">
             <subfield code="w">123456-7</subfield>
             <subfield code="v">1</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="77608 mit ISBNS">
+        <x:context>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Druck-Ausgabe</subfield>
+            <subfield code="z">9781138211865</subfield>
+            <subfield code="z">9781138211889</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Druck-Ausgabe</subfield>
+            <subfield code="z">9781138211865</subfield>
+            <subfield code="z">9781138211889</subfield>
           </datafield>
         </x:expect>
       </x:scenario>
@@ -107,7 +137,282 @@
         </x:expect>
       </x:scenario>
 
+      <x:scenario label="77308$$d bei Aufsätzen aus 264 generieren">
+        <x:scenario label="alle Bedingungen erfüllt, vollständige 264, wiederholtes SFa">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Mainz</subfield>
+                <subfield code="a">Stuttgart</subfield>
+                <subfield code="b">Ammerhuber</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="$$d ergänzt" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="d">Mainz; Stuttgart: Ammerhuber, 2024</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="alle Bedingungen erfüllt, kein 264 SFb">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Mainz</subfield>
+                <subfield code="a">Stuttgart</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="$$d ergänzt" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="d">Mainz; Stuttgart, 2024</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="alle Bedingungen erfüllt, wiederholte 264#1">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Mainz</subfield>
+                <subfield code="a">Stuttgart</subfield>
+                <subfield code="b">Ammerhuber</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Graz</subfield>
+                <subfield code="b">Leykam</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="$$d mit Daten aus erster 264#1 ergänzt" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="d">Mainz; Stuttgart: Ammerhuber, 2024</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="keine 264#1">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="unverändert" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="NAK">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Mainz</subfield>
+                <subfield code="a">Stuttgart</subfield>
+                <subfield code="b">Ammerhuber</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Graz</subfield>
+                <subfield code="b">Leykam</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+              <datafield tag="970" ind1="2" ind2=" ">
+                <subfield code="d">NAK</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="unverändert" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="Monografie">
+          <x:context>
+            <record>
+              <leader>01203nam a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Mainz</subfield>
+                <subfield code="a">Stuttgart</subfield>
+                <subfield code="b">Ammerhuber</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Graz</subfield>
+                <subfield code="b">Leykam</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="unverändert" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="keine 773 $$iEnthalten in">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Mainz</subfield>
+                <subfield code="a">Stuttgart</subfield>
+                <subfield code="b">Ammerhuber</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Graz</subfield>
+                <subfield code="b">Leykam</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Sonderdruck aus</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="unverändert" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Sonderdruck aus</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="773 $$d vorhanden">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Mainz</subfield>
+                <subfield code="a">Stuttgart</subfield>
+                <subfield code="b">Ammerhuber</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="a">Graz</subfield>
+                <subfield code="b">Leykam</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="d">München: Berger, 2023</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="unverändert" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="d">München: Berger, 2023</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
     </x:scenario>
-
   </x:scenario>
 </x:description>

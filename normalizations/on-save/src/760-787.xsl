@@ -15,7 +15,7 @@
   <!--
       Füge für alle `$$w` im Bereich `760-787` das Präfix "(AT-OBV)" ein, wenn der Subfeldinhalt
       mit "AC" beginnt.
-      @fields 760 762 765 767 770 772 773 774 775 776 777 780 785 786 787
+      @marc:fields 760 762 765 767 770 772 773 774 775 776 777 780 785 786 787
   -->
   <xsl:template match="datafield[@tag ge '760' and @tag le '787']/subfield[@code='w']">
     <xsl:choose>
@@ -34,6 +34,30 @@
   -->
   <xsl:template match="datafield[@tag='773']/@ind1|datafield[@tag='773']/@ind2">
     <xsl:attribute name="{name()}">{if (name() = 'ind1') then '0' else '8'}</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Bearbeite `773` bei Aufsätzen, d. h. mit `$$iEnthalten in`.
+
+      Falls kein `$$d` vorhanden ist, ergänze eines mit den Daten aus `264#1`, sofern ein solches
+      vorhanden ist und der Datensatz nicht aus dem NAK stammt.
+  -->
+  <xsl:template match="datafield[@tag='773'][subfield[@code='i'][.='Enthalten in']]">
+    <xsl:param name="meta" tunnel="yes" as="map(*)" />
+    <datafield tag="773" ind1="0" ind2="8">
+      <xsl:apply-templates />
+      <xsl:if test="not(subfield[@code='d'])
+                    and $meta('flags') = 'article'
+                    and not($meta('flags') = 'NAK')
+                    and ../datafield[@tag='264'][@ind1=' '][@ind2='1']">
+        <xsl:variable name="df264" select="../datafield[@tag='264'][@ind1=' '][@ind2='1'][1]" />
+        <subfield code="d">{
+          string-join($df264/subfield[@code='a'], '; ') ||
+          (if ($df264/subfield[@code='b']) then ': ' || $df264/subfield[@code='b'] else "") ||
+          (if ($df264/subfield[@code='c']) then ', ' || $df264/subfield[@code='c'] else "")
+        }</subfield>
+      </xsl:if>
+    </datafield>
   </xsl:template>
 
   <!--
