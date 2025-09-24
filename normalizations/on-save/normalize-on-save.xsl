@@ -23,6 +23,7 @@
   <xsl:include href="src/geografika.xsl" />
   <xsl:include href="src/sort.xsl" />
   <xsl:include href="../utils/utils.xsl" />
+  <xsl:include href="../../mrclib-xslt/xslt/mrclib.xsl" />
 
   <!--
       Dieses Template ist der Einsprungspunkt für die Normalisierung.

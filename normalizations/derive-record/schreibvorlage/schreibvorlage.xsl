@@ -8,7 +8,7 @@
     <!--~doc:global
         @title Schreibvorlage P2P
     -->
-  <xsl:include href="../../../mrclib-xslt/mrclib.xsl" />
+  <xsl:include href="../../../mrclib-xslt/xslt/mrclib.xsl" />
 
   <xsl:mode on-no-match="shallow-copy" />
 

@@ -22,7 +22,7 @@
   <xsl:mode name="sort" on-no-match="shallow-copy" />
 
   <xsl:template match="datafield[@tag='773']" mode="sort">
-    <xsl:call-template name="utils:sortSubfields">
+    <xsl:call-template name="mrclib:sortSubfields">
       <xsl:with-param name="sortSpec" select="'itdgkwxz'" />
     </xsl:call-template>
   </xsl:template>

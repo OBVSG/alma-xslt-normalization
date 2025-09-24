@@ -10,59 +10,6 @@
       Diverse Hilfsfunktionen, die in verschiedenen Normalisierungen gebraucht werden.
   -->
 
-  <!--
-      Template, das die Subfelder eines Feldes gemäß der als Parameter übergebenen Reihenfolge
-      sortiert. Es gibt das Feld mit sortierten Subfieldern zurück (nicht nur die Subfelder).
-
-      Die Sortierreihenfolge wird dem Parameter `sortSpec` als String von Subfeldcodes übergeben.
-      Die Subfelder werden dann in der Reihenfolge, in der die Codes in dem String vorkommen,
-      sortiert. Subfelder, die in dem String nicht vorkommen werden am Ende in alphabetischer
-      Reihenfolge sortiert. Mehrere Subfelder mit dem gleichen Code behalten ihre relative
-      Reihenfolge bei.
-
-      ## Beispiel
-
-      ```xml
-      <datafield tag="999" ind1=" " ind2=" ">
-        <subfield code="0">SF0</subfield>
-        <subfield code="a">SFa</subfield>
-        <subfield code="b">SFb</subfield>
-        <subfield code="c">SFc1</subfield>
-        <subfield code="c">SFc2</subfield>
-      </datafield>
-      ```
-
-      Wird bei bei Aufruf mit `<xsl:param name='sortSpec' select="'c0'" />` zu
-
-      ```xml
-      <datafield tag="999" ind1=" " ind2=" ">
-        <subfield code="c">SFc1</subfield>
-        <subfield code="c">SFc2</subfield>
-        <subfield code="0">SF0</subfield>
-        <subfield code="a">SFa</subfield>
-        <subfield code="b">SFb</subfield>
-      </datafield>
-      ```
-
-      @context marc:datafield
-  -->
-  <xsl:template name="utils:sortSubfields">
-    <xsl:param name="sortSpec" as="xs:string" required="yes" />
-    <xsl:variable name="datafield" select="." />
-    <xsl:variable name="subfSequence"
-                  select="for $code in string-to-codepoints($sortSpec)
-                          return codepoints-to-string($code)" />
-    <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
-      <xsl:for-each select="$subfSequence">
-        <xsl:variable name="code" select="." />
-        <xsl:sequence select="$datafield/subfield[@code=$code]" />
-      </xsl:for-each>
-      <xsl:perform-sort select="$datafield/subfield[not(@code=$subfSequence)]">
-        <xsl:sort select="@code" />
-      </xsl:perform-sort>
-    </datafield>
-  </xsl:template>
-
 
   <!--
       Sammle Metadaten zum Datensatz.
