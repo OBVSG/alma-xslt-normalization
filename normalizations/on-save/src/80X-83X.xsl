@@ -12,6 +12,7 @@
 
   <!--
       Ergänze ISIL-Präfix "(AT-OBV)", wenn der Subfeldwert mit "AC" beginnt
+      @_marcFields 830
   -->
   <xsl:template match="datafield[@tag='830']/subfield[@code='w']">
     <xsl:choose>
@@ -23,6 +24,5 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
-
 
 </xsl:stylesheet>

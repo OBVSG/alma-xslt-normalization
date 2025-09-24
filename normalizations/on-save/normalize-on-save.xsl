@@ -16,6 +16,10 @@
       @title normalize-on-save.xsl
   -->
 
+  <!--
+      Default mode für normalize on save. Alles, wofür kein explizites Templates vorhanden ist,
+      wird 1:1 in die Ausgabe geschrieben.
+  -->
   <xsl:mode on-no-match="shallow-copy" />
 
   <xsl:include href="src/760-787.xsl" />

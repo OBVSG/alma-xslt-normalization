@@ -10,6 +10,7 @@
 
   <!--
       Wenn es noch kein Feld `255` gibt, erstelle eines, mit den Koordinaten aus `034 $$d $$e $$f $$g`.
+      @_marcFields 034 255
   -->
   <xsl:template match="datafield[@tag='034'][not(../datafield[@tag='255'])]">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
@@ -27,6 +28,8 @@
       Template für MARC `255`.
 
       - Wenn es ein Feld `034` mit validen Koordinaten gibt, aktualisiere `$$c`.
+
+      @_marcFields 255
   -->
   <xsl:template match="datafield[@tag='255']">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">

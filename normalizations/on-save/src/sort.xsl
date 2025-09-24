@@ -21,6 +21,10 @@
   -->
   <xsl:mode name="sort" on-no-match="shallow-copy" />
 
+  <!--
+      Sortiere die Subfelder von `773`.
+      @_marcFields 773
+  -->
   <xsl:template match="datafield[@tag='773']" mode="sort">
     <xsl:call-template name="mrclib:sortSubfields">
       <xsl:with-param name="sortSpec" select="'itdgkwxz'" />
