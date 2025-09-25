@@ -24,7 +24,7 @@
                    main="normalizations/derive-record/aufsatz-p/aufsatz-p.xsl"
                    testMain="normalizations/derive-record/aufsatz-p/tests/aufsatz-p.xspec" />
     <transformation name="Import Library of Congress"
-                   distName="OBV_EXR_LoC"
+                   distName="OBV_EXTR_LoC"
                    main="normalizations/external-resources/libraryOfCongress/loc.xsl"
                    testMain="normalizations/external-resources/libraryOfCongress/loc.xspec" />
   </transformations>
