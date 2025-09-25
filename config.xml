@@ -5,13 +5,16 @@
     <distDir>dist</distDir>
     <docDir>docs</docDir>
     <readme href="README.md" />
+    <contributors>
+      <contributor email="stefan.schuh@obvsg.at">Stefan Schuh</contributor>
+    </contributors>
   </projectInfo>
 
   <transformations>
     <transformation name="Normalize on Save"
                    distName="OBV_normalize-on-save"
                    main="normalizations/on-save/normalize-on-save.xsl"
-                   testMain="normalizations/on-save/tests/00_normalize-on-save-main.xspec" />
+                   testMain="normalizations/on-save/tests/normalize-on-save.xspec" />
     <transformation name="Schreibvorlage"
                    distName="OBV_schreibvorlage"
                    main="normalizations/derive-record/schreibvorlage/schreibvorlage.xsl"
@@ -21,7 +24,7 @@
                    main="normalizations/derive-record/aufsatz-p/aufsatz-p.xsl"
                    testMain="normalizations/derive-record/aufsatz-p/tests/aufsatz-p.xspec" />
     <transformation name="Import Library of Congress"
-                   distName="OBV_EXR_LoC"
+                   distName="OBV_EXTR_LoC"
                    main="normalizations/external-resources/libraryOfCongress/loc.xsl"
                    testMain="normalizations/external-resources/libraryOfCongress/loc.xspec" />
   </transformations>

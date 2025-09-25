@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:doc="https://share.obvsg.at/xml/xsl/doc" expand-text="yes" version="3.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" expand-text="yes" version="3.0">
 
-  <doc:doc scope="global">
-    <doc:title>Normalize on Save</doc:title>
-    <doc:includeMd href="normalize-on-save.md" />
-  </doc:doc>
-  <doc:doc scope="stylesheet">
-    <doc:title>normalize-on-save.xsl</doc:title>
-    <doc:desc>Dies ist das Haupt-Stylesheet für `OBV_normalize-on-save`.
+  <!--~doc:global
+      @title Normalize on Save
+      @includeMd normalize-on-save.md
+  -->
 
-Hier wird der Datensatz gematcht und die grundsätzliche Logik abgearbeitet. Danach werden die Felder sortiert in einem `record`-Element ausgegeben. Alles darüber hinaus wird in den inkludierten Dateien deklariert.
+  <!--~doc:stylesheet
+      Dies ist das Haupt-Stylesheet für `OBV_normalize-on-save`.
 
-Alles, wofür kein Template vorhanden ist, wird 1:1 in die Ausgabe kopiert.
-    </doc:desc>
-  </doc:doc>
+      Hier wird der Datensatz gematcht und die grundsätzliche Logik abgearbeitet. Danach werden die Felder sortiert in einem `record`-Element ausgegeben. Alles darüber hinaus wird in den inkludierten Dateien deklariert.
 
+      Alles, wofür kein Template vorhanden ist, wird 1:1 in die Ausgabe kopiert.
+
+      @title normalize-on-save.xsl
+  -->
+
+  <!--
+      Default mode für normalize on save. Alles, wofür kein explizites Templates vorhanden ist,
+      wird 1:1 in die Ausgabe geschrieben.
+  -->
   <xsl:mode on-no-match="shallow-copy" />
 
+  <xsl:include href="src/760-787.xsl" />
+  <xsl:include href="src/80X-83X.xsl" />
   <xsl:include href="src/geografika.xsl" />
+  <xsl:include href="src/sort.xsl" />
+  <xsl:include href="../utils/utils.xsl" />
+  <xsl:include href="../../mrclib-xslt/xslt/mrclib.xsl" />
 
   <!--
       Dieses Template ist der Einsprungspunkt für die Normalisierung.
@@ -27,14 +37,18 @@ Alles, wofür kein Template vorhanden ist, wird 1:1 in die Ausgabe kopiert.
       resultierenden Datensatz geschrieben werden können.
   -->
   <xsl:template match="record">
+  <xsl:variable name="meta" select="utils:collect-metadata(.)" />
     <xsl:variable name="transformedFields" as="item()*">
-      <xsl:apply-templates />
+      <xsl:apply-templates>
+        <xsl:with-param name="meta" select="$meta" tunnel="yes" />
+      </xsl:apply-templates>
     </xsl:variable>
     <record>
-      <xsl:perform-sort select="$transformedFields">
+      <xsl:apply-templates select="$transformedFields" mode="sort">
         <xsl:sort select="@tag" />
-      </xsl:perform-sort>
+      </xsl:apply-templates>
     </record>
   </xsl:template>
+
 
 </xsl:stylesheet>

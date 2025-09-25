@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:doc="https://share.obvsg.at/xml/xls/doc" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" expand-text="yes" version="3.0">
-  <doc:doc scope="stylesheet">
-    <doc:desc>Diese Normalisierung sorgt dafür, dass Datensätze, die von der Library of Congress importiert werden, an den Verbundstandard angepasst werden.
-    </doc:desc>
-  </doc:doc>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" expand-text="yes" version="3.0">
+
   <xsl:mode on-no-match="shallow-copy" />
+  <!--~doc:stylesheet
+      Diese Normalisierung sorgt dafür, dass Datensätze, die von der Library of Congress importiert werden, an den Verbundstandard angepasst werden.
+  -->
 
   <xs:include href="../../../mrclib-xslt/mrclib.xsl" />
 
@@ -46,6 +46,7 @@
   <!--
       Entferne Subfelder `$$0`, `$$1` und `$$4`, wenn sie die Zeichenkette `id.loc.gov` oder `https://isni.org` enthalten, egal in welchem Feld.
   -->
-  <xsl:template match="subfield[@code=('0', '1', '4')][contains(., 'id.loc.gov') or starts-with(., 'https://isni.org')]" />
+  <xsl:template match="subfield[@code=('0', '1', '4')]
+                               [starts-with(., 'http')]" />
 
  </xsl:stylesheet>

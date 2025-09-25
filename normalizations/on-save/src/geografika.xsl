@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:doc="https://share.obvsg.at/xml/xsl/doc" xmlns:xs="http://www.w3.org/2001/XMLSchema" expand-text="yes" version="3.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:xs="http://www.w3.org/2001/XMLSchema" expand-text="yes" version="3.0">
 
-  <doc:doc scope="stylesheet">
-    <doc:title>geografika.xsl</doc:title>
-    <doc:desc>Hier finden sich Templates und Funktionen, die sich speziell auf geografische Ressourcen beziehen.
+  <!--~doc:stylesheet
+      Hier finden sich Templates und Funktionen, die sich speziell auf geografische Ressourcen beziehen.
 
-Das sind z. B.:
-- Das Erstellen einer `255` aus der `034`
-    </doc:desc>
-  </doc:doc>
+      Das sind z. B.:
+      - Das Erstellen einer `255` aus der `034`
+  -->
 
   <!--
       Wenn es noch kein Feld `255` gibt, erstelle eines, mit den Koordinaten aus `034 $$d $$e $$f $$g`.
+      @_marcFields 034 255
   -->
   <xsl:template match="datafield[@tag='034'][not(../datafield[@tag='255'])]">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
@@ -29,6 +28,8 @@ Das sind z. B.:
       Template für MARC `255`.
 
       - Wenn es ein Feld `034` mit validen Koordinaten gibt, aktualisiere `$$c`.
+
+      @_marcFields 255
   -->
   <xsl:template match="datafield[@tag='255']">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
@@ -66,13 +67,22 @@ Das sind z. B.:
 
   <!--
       Bringe die Koordinaten aus `034 $$d $$e $$f $$g` in eine menschenlesbare Form.
+
+      Das heißt
+      ```
+      034 ## $$d E0044125 $$e E0102931 $$f N0474830 $$g N0455314 $$2 bound
+
+      wird zu
+
+      255 ## $$c E 04°41"25'-E 10°29"31'/N 47°48"30'-N 45°53"14'
+      ```
   -->
   <xsl:function name="utils:formatCoordinatesFrom034" as="xs:string">
-    <xsl:param name="df035" as="element(datafield)" />
-    <xsl:variable name="westernmostLong" select="utils:mapCoordinates($df035/subfield[@code='d'])" />
-    <xsl:variable name="easternmostLong" select="utils:mapCoordinates($df035/subfield[@code='e'])" />
-    <xsl:variable name="northernmostLat" select="utils:mapCoordinates($df035/subfield[@code='f'])" />
-    <xsl:variable name="southernmostLat" select="utils:mapCoordinates($df035/subfield[@code='g'])" />
+    <xsl:param name="df034" as="element(datafield)" />
+    <xsl:variable name="westernmostLong" select="utils:mapCoordinates($df034/subfield[@code='d'])" />
+    <xsl:variable name="easternmostLong" select="utils:mapCoordinates($df034/subfield[@code='e'])" />
+    <xsl:variable name="northernmostLat" select="utils:mapCoordinates($df034/subfield[@code='f'])" />
+    <xsl:variable name="southernmostLat" select="utils:mapCoordinates($df034/subfield[@code='g'])" />
     <xsl:variable name="formattedCoordinates">{
       $westernmostLong('dir') || " " || $westernmostLong('deg') || $westernmostLong('min') || $westernmostLong('sec') || "-" ||
       $easternmostLong('dir') || " " || $easternmostLong('deg') || $easternmostLong('min') || $easternmostLong('sec') || "/" ||

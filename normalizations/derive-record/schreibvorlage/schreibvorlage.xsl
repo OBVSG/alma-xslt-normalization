@@ -2,15 +2,13 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:utils="https://share.obvsg.at/xml/xsl/utils"
                 xmlns:mrclib="https://share.obvsg.at/xml/xsl/mrclib"
-                xmlns:doc="https://share.obvsg.at/xml/xsl/doc"
                 expand-text="yes" version="3.0"
                 exclude-result-prefixes="mrclib utils xs">
 
-  <doc:doc scope="global">
-    <doc:title>Schreibvorlage P2P</doc:title>
-  </doc:doc>
-
-  <xsl:include href="../../../mrclib-xslt/mrclib.xsl" />
+    <!--~doc:global
+        @title Schreibvorlage P2P
+    -->
+  <xsl:include href="../../../mrclib-xslt/xslt/mrclib.xsl" />
 
   <xsl:mode on-no-match="shallow-copy" />
 
