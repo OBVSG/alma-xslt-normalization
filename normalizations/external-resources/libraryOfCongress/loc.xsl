@@ -47,8 +47,6 @@
       Entferne Subfelder `$$0`, `$$1` und `$$4`, wenn sie die Zeichenkette `id.loc.gov` oder `https://isni.org` enthalten, egal in welchem Feld.
   -->
   <xsl:template match="subfield[@code=('0', '1', '4')]
-                               [contains(., 'id.loc.gov')
-                               or starts-with(., 'https://isni.org')
-                               or starts-with(., 'http://id.worldcat.org/fast')]" />
+                               [starts-with(., 'http')]" />
 
  </xsl:stylesheet>
