@@ -3,6 +3,7 @@
 
   <!--~doc:global
       Ableiten von Aufsätzen von einem Druckwerk
+      @includeMd aufsatz-p.md
       @title Aufsatz ableiten - Print
   -->
 
