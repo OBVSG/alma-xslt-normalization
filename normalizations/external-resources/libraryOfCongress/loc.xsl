@@ -2,8 +2,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" expand-text="yes" version="3.0">
 
   <xsl:mode on-no-match="shallow-copy" />
-  <!--~doc:stylesheet
+  <!--~doc:global
       Diese Normalisierung sorgt dafür, dass Datensätze, die von der Library of Congress importiert werden, an den Verbundstandard angepasst werden.
+      @title External resource: Library of Congress
+  -->
+  <!--~doc:stylesheet
+      @title loc.xsl
   -->
 
   <xs:include href="../../../mrclib-xslt/mrclib.xsl" />
@@ -27,6 +31,7 @@
 
   <!--
       Lösche 800, 810, 811, 830 und erzeuge je eine 830#0 mit leeren Subfeldern w and v.
+      @_marcFields 800 810 811 830
   -->
   <xsl:template match="datafield[@tag=('800', '810', '811', '830')]">
     <datafield tag="830" ind1=" " ind2="0">
@@ -37,14 +42,18 @@
 
   <!--
        Entferne Felder bedingungslos. Für die Liste, siehe `match`.
+       @_marcFields 263 334 353 758 884
   -->
   <xsl:template match="datafield[@tag=('263', '334', '353', '758', '884')]" />
 
-  <!-- Entferne 035 $$9 -->
+  <!--
+      Entferne 035 $$9
+      @_marcFields 035
+  -->
   <xsl:template match="datafield[@tag='035']/subfield[@code='9']" />
 
   <!--
-      Entferne Subfelder `$$0`, `$$1` und `$$4`, wenn sie die Zeichenkette `id.loc.gov` oder `https://isni.org` enthalten, egal in welchem Feld.
+      Entferne Subfelder `$$0`, `$$1` und `$$4`, die mit "http" beginnen, egal in welchem Feld.
   -->
   <xsl:template match="subfield[@code=('0', '1', '4')]
                                [starts-with(., 'http')]" />

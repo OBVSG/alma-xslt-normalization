@@ -3,6 +3,7 @@
 
   <!--~doc:global
       Ableiten von Aufsätzen von einem Druckwerk
+      @includeMd aufsatz-p.md
       @title Aufsatz ableiten - Print
   -->
 
@@ -10,6 +11,11 @@
       @title aufsatz-p.xsl
   -->
 
+  <!--
+      Template für den ganzen Record.
+
+      Hier ist die hauptsächliche Logik abgebildet. Es werden leere Felder eingefügt, vorhandene Felder kopiert etc.
+  -->
   <xsl:template match="record">
     <record>
       <leader>{"#####naa#a22######c#4500" => replace("#", " ")}</leader>
@@ -53,6 +59,10 @@
     </record>
   </xsl:template>
 
+  <!--
+      Wenn der Datensatz von einer Zeitschrift abgeleitet wird, erstelle eine `264` aus der ersten `264` des Quellsatzes.
+      @_marcFields 264
+  -->
   <xsl:template match="datafield[@tag='264'][@ind1='3'][@ind2='1'][1]" mode="serial">
     <datafield tag="264" ind1=" " ind2="1">
       <xsl:sequence select="subfield[@code='a']" />
@@ -61,6 +71,10 @@
     </datafield>
   </xsl:template>
 
+  <!--
+      Erstelle eine MARC `008`.
+      @_marcFields 008
+  -->
   <xsl:template name="handle008">
     <xsl:variable name="isMono" select="substring(leader, 8, 1) eq 'm'" />
     <xsl:variable name="year"
