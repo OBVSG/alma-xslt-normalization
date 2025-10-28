@@ -8,8 +8,8 @@
       - in `$$w` das Präfix "(AT-OBV)" ergänzen, wenn der Feldinhalt mit "AC" beginnt.
 
       Hier wird z. B. folgendendes gemacht:
-      - die Indikatoren bedingungslos auf `08` gesetzt
-      - `$$a` bedingungslos gelöscht
+      - die Indikatoren von `773` bedingungslos auf `08` gesetzt
+      - `773 $$a` bedingungslos gelöscht
   -->
 
   <!--
@@ -70,7 +70,7 @@
   <!--
       773 löschen, wenn sie nur `$$iSonderdruck aus` aber kein `$$t` hat.
 
-      Ersetzt die drools-Regel [KATA-028-rm733](https://gitlab.obvsg.at/AlmaConfig/droolsConfig/-/blob/master/rules/normalizationRules/KATA/src/KATA-028-rm773.src).
+      Ersetzt die drools-Regel [KATA-028-rm773](https://gitlab.obvsg.at/AlmaConfig/droolsConfig/-/blob/master/rules/normalizationRules/KATA/src/KATA-028-rm773.src).
       @_marcFields 773
   -->
   <xsl:template match="datafield[@tag='773'][subfield[@code='i'][.='Sonderdruck aus']][not(subfield[@code='t']/text())]" />
