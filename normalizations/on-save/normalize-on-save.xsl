@@ -22,12 +22,13 @@
   -->
   <xsl:mode on-no-match="shallow-copy" />
 
+  <xsl:include href="src/25X-28X.xsl" />
   <xsl:include href="src/760-787.xsl" />
   <xsl:include href="src/80X-83X.xsl" />
   <xsl:include href="src/geografika.xsl" />
   <xsl:include href="src/sort.xsl" />
   <xsl:include href="../utils/utils.xsl" />
-  <xsl:include href="http://share-test.obvsg.at/xsldist/mrclib/mrclib-no-ns.xsl" />
+  <xsl:include href="../../mrclib-xslt/xslt/mrclib.xsl" />
 
   <!--
       Dieses Template ist der Einsprungspunkt für die Normalisierung.

@@ -13,7 +13,7 @@
       @title loc.xsl
   -->
 
-  <xsl:include href="http://share-test.obvsg.at/xsldist/mrclib/mrclib-no-ns.xsl" />
+  <xsl:include href="../../../mrclib-xslt/xslt/mrclib.xsl" />
 
   <!--
       Template für den Datensatz als ganzes.
