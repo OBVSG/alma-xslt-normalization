@@ -15,8 +15,12 @@ Folgende Felder werden unverändert übernommen: `007`, `041`, `044`, `264` (bei
 ### Felder, die neu generiert werden
 - `leader` in der Form der Verbund-Vorlage für Aufsätze
 - `008` in der Form der Verbund-Vorlage für Aufsätze, wenn möglich mit dem Erscheinungsjahr in pos. 07-10 und dem Sprachcode in pos. 35-37
+- `1001#` mit leeren `$$a` und `$$4`
 - `24500` mit leeren `$$a`, `$$b` und `$$c`. Der erste Indikator wird beim Speichern gegebenenfalls angepasst.
+- `655#7` mit leerem `$$a`
+- `7001#` mit leeren `$$a` und `$$4`
 - `77608`: siehe unten
+- `9701#` mit leerem `$c`
 
 ### 77308
 Das Feld `77308` wird in der folgenden Form generiert. Werte in geschwungenen Klammern ("{}") dienen der Erläuterung und sind nicht Teil des Outputs.

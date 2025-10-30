@@ -22,6 +22,10 @@
       <xsl:sequence select="controlfield[@tag='007']" />
       <xsl:call-template name="handle008" />
       <xsl:sequence select="datafield[@tag=('041', '044')]" />
+      <datafield tag="100" ind1="1" ind2=" ">
+        <subfield code="a"></subfield>
+        <subfield code="4"></subfield>
+      </datafield>
       <datafield tag="245" ind1="0" ind2="0">
         <subfield code="a" />
         <subfield code="b" />
@@ -30,7 +34,8 @@
 
       <xsl:choose>
         <xsl:when test="substring(leader, 8, 1) eq 's'">
-          <xsl:apply-templates select="datafield[@tag='264'][@ind1='3'][@ind2='1'][1]"
+          <xsl:apply-templates
+            select="datafield[@tag='264'][@ind1='3'][@ind2='1'][1]"
             mode="serial" />
         </xsl:when>
         <xsl:otherwise>
@@ -38,23 +43,16 @@
         </xsl:otherwise>
       </xsl:choose>
       <xsl:sequence select="datafield[@tag=('336', '337', '338', '490')]" />
-      <datafield tag="773" ind1="0" ind2="8">
-        <subfield code="i">Enthalten in</subfield>
-        <subfield code="t">{
-          datafield[@tag="245"]/subfield[@code="a"] ||
-          (if (exists(datafield[@tag="245"]/subfield[@code="c"])) then
-            " / " || datafield[@tag="245"]/subfield[@code="c"]
-          else
-            "")
-        }</subfield>
-        <subfield code="d"></subfield>
-        <subfield code="g"></subfield>
-        <subfield code="k"></subfield>
-        <subfield code="w">{
-          datafield[@tag="035"]/subfield[@code="a"][starts-with(., "(AT-OBV)")]
-        }</subfield>
-        <subfield code="x"></subfield>
-        <subfield code="z"></subfield>
+      <datafield tag="655" ind1=" " ind2="7">
+        <subfield code="a"></subfield>
+      </datafield>
+      <datafield tag="700" ind1="1" ind2=" ">
+        <subfield code="a"></subfield>
+        <subfield code="4"></subfield>
+      </datafield>
+      <xsl:call-template name="create773" />
+      <datafield tag="970" ind1="1" ind2=" ">
+        <subfield code="c"></subfield>
       </datafield>
     </record>
   </xsl:template>
@@ -94,5 +92,26 @@
       "#c")
       => replace("#", " ")
     }</controlfield>
+  </xsl:template>
+
+  <xsl:template name="create773">
+    <datafield tag="773" ind1="0" ind2="8">
+        <subfield code="i">Enthalten in</subfield>
+        <subfield code="t">{
+          datafield[@tag="245"]/subfield[@code="a"] ||
+          (if (exists(datafield[@tag="245"]/subfield[@code="c"])) then
+            " / " || datafield[@tag="245"]/subfield[@code="c"]
+          else
+            "")
+        }</subfield>
+        <subfield code="d"></subfield>
+        <subfield code="g"></subfield>
+        <subfield code="k"></subfield>
+        <subfield code="w">{
+          datafield[@tag="035"]/subfield[@code="a"][starts-with(., "(AT-OBV)")]
+        }</subfield>
+        <subfield code="x"></subfield>
+        <subfield code="z"></subfield>
+      </datafield>
   </xsl:template>
 </xsl:stylesheet>

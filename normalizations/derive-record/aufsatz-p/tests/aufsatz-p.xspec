@@ -158,7 +158,7 @@
         </datafield>
       </record>
     </x:context>
-    <x:expect label="">
+    <x:expect label="Aufsatz richtig abgeleitet">
       <record>
         <leader>     naa a22      c 4500</leader>
         <controlfield tag="007">tu</controlfield>
@@ -171,10 +171,14 @@
         <datafield ind1=" " ind2=" " tag="044">
           <subfield code="c">XA-AT</subfield>
         </datafield>
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="4"></subfield>
+        </datafield>
         <datafield ind1="0" ind2="0" tag="245">
-          <subfield code="a"/>
-          <subfield code="b"/>
-          <subfield code="c"/>
+          <subfield code="a" />
+          <subfield code="b" />
+          <subfield code="c" />
         </datafield>
         <datafield ind1=" " ind2="1" tag="264">
           <subfield code="a">Wien</subfield>
@@ -197,15 +201,25 @@
           <subfield code="a">Corpus vasorum antiquorum Österreich. Beiheft</subfield>
           <subfield code="v">3</subfield>
         </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+          <subfield code="a"></subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="4"></subfield>
+        </datafield>
         <datafield tag="773" ind1="0" ind2="8">
           <subfield code="i">Enthalten in</subfield>
           <subfield code="t">Griechische Vasen als Medium für Kommunikation / herausgegeben von Claudia Lang-Auinger und Elisabeth Trinkl</subfield>
-          <subfield code="d"/>
-          <subfield code="g"/>
-          <subfield code="k"/>
+          <subfield code="d" />
+          <subfield code="g" />
+          <subfield code="k" />
           <subfield code="w">(AT-OBV)AC16239609</subfield>
-          <subfield code="x"/>
-          <subfield code="z"/>
+          <subfield code="x" />
+          <subfield code="z" />
+        </datafield>
+        <datafield tag="970" ind1="1" ind2=" ">
+          <subfield code="c"></subfield>
         </datafield>
       </record>
     </x:expect>
