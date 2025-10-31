@@ -7,9 +7,22 @@
                 expand-text="yes"
                 version="3.0">
 
-  <xsl:mode on-no-match="shallow-copy" />
-  <xsl:output indent="yes" />
+  <!--~doc:stylesheet
+      Normalisierungen für den Bereich MARC 25X-28X.
+      @title 25X-28X.xsl
+  -->
 
+  <!--
+      Mache aus einer `264` mit mehreren `$$b` je eine `264` pro `$$b`.
+
+      Für jedes `$$b` erzeuge eine `264` mit alles Subfeldern vor dem ersten `$$a`, allen Subfeldern
+      nach dem letzen `$$b`, und den `$$a`, die direkt vor dem jeweiligen `$$b` kommen.
+
+      Wenn es `$$6` oder `$$8` gibt, wird das Feld derzeit noch ignoriert. Das liegt daran, dass
+      hier auch die korrespondierenden Felder `880` bearbeitet werden müssen. Das ist sehr komplex
+      und daher noch nicht implementiert.
+      @_marcFields 264
+  -->
   <xsl:template match="datafield[@tag='264'][count(subfield[@code='b']) gt 1][not(subfield[@code=('6', '8')])]">
     <xsl:variable name="df264" select="." />
     <xsl:variable name="sfsBeforeAb" select="subfield[not(@code=('a', 'b'))][following-sibling::subfield[@code=('a', 'b')]]" />
