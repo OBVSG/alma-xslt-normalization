@@ -7,11 +7,19 @@
 
     <!--~doc:global
         @title Schreibvorlage P2P
+        @includeMd schreibvorlage.md
+    -->
+    <!--~doc:stylesheet
+        Das Hauptstylesheet dieser Transformation.
+        @title schreibvorlage.xsl
     -->
   <xsl:include href="../../../mrclib-xslt/xslt/mrclib.xsl" />
 
   <xsl:mode on-no-match="shallow-copy" />
 
+  <!--
+      Der Einstiegspunkt in diese Transformation. Hier werden leere Felder eingefügt und der output nach tags sortiert.
+  -->
   <xsl:template match="record">
     <xsl:variable name="fields" as="item()*">
       <xsl:apply-templates />
@@ -83,19 +91,28 @@
   </xsl:template>
 
 
+  <!-- Lösche kontrollfelder `001` und `009` -->
   <xsl:template match="controlfield[@tag=('001', '009')]" />
 
+  <!-- Lösche Felder `015`, `016`, `020`, `024`, `035`, `040`, `250`, `300`, `776`, `856`, `912`, `972`, `974` -->
   <xsl:template match="datafield[@tag=('015', '016', '020', '024', '035', '040',
                                        '250', '300', '776', '856', '912',
                                        '972', '974')]" />
 
+  <!-- Ersetze `008/00-14` durch Standardwerte -->
   <xsl:template match="controlfield[@tag='008']">
     <controlfield tag="008">{
-      mrclib:replace-substring(., 1, 15, "######|????####")
+      mrclib:replace-control-substring(., 0, 14, "######|????####")
       => replace("#", " ")
     }</controlfield>
   </xsl:template>
 
+  <!--
+      Bearbeite `264`:
+      - Belasse die Indikatoren
+      - Kopiere `$$a`, `$$b` und `$$3` in die Ausgabe
+      - Füge ein leeres `$$c` hinzu
+  -->
   <xsl:template match="datafield[@tag='264']">
     <datafield tag="264" ind1="{@ind1}" ind2="{@ind2}">
       <xsl:apply-templates select="subfield[@code=('a', 'b', '3')]" />
