@@ -6,7 +6,7 @@
                 exclude-result-prefixes="mrclib utils xs">
 
     <!--~doc:global
-        @title Schreibvorlage P2P
+        @title Schreibvorlage
         @includeMd schreibvorlage.md
     -->
     <!--~doc:stylesheet
