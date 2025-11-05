@@ -170,6 +170,36 @@
             </datafield>
           </x:expect>
         </x:scenario>
+        <x:scenario label="alle Bedingungen erfüllt, kein 264 SFa">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="b">Ammerhuber</subfield>
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="$$d ergänzt" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="d">Ammerhuber, 2024</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
         <x:scenario label="alle Bedingungen erfüllt, kein 264 SFb">
           <x:context>
             <record>
@@ -194,6 +224,35 @@
               <subfield code="i">Enthalten in</subfield>
               <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
               <subfield code="d">Mainz ; Stuttgart, 2024</subfield>
+              <subfield code="g">Seite 49-64</subfield>
+              <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+              <subfield code="w">(AT-OBV)AC14555063</subfield>
+              <subfield code="z">3980266567</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="alle Bedingungen erfüllt, kein 264 SFa, kein SFb">
+          <x:context>
+            <record>
+              <leader>01203naa a2200349 c 4500</leader>
+              <datafield tag="264" ind1=" " ind2="1">
+                <subfield code="c">2024</subfield>
+              </datafield>
+              <datafield tag="773" ind1="0" ind2="8">
+                <subfield code="i">Enthalten in</subfield>
+                <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+                <subfield code="g">Seite 49-64</subfield>
+                <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
+                <subfield code="w">(AT-OBV)AC14555063</subfield>
+                <subfield code="z">3980266567</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="$$d ergänzt" test="record/datafield[@tag='773']">
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Kammermusik in &quot;gemischten&quot; Besetzungen ; herausgegeben von Kristina Pfarr und Karl Böhmer unter Mitwirkung des Jubilars</subfield>
+              <subfield code="d">2024</subfield>
               <subfield code="g">Seite 49-64</subfield>
               <subfield code="k">Schloß Engers Colloquia zur Kammermusik</subfield>
               <subfield code="w">(AT-OBV)AC14555063</subfield>

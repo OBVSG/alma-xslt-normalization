@@ -54,8 +54,10 @@
         <xsl:variable name="df264" select="../datafield[@tag='264'][@ind1=' '][@ind2='1'][1]" />
         <subfield code="d">{
           string-join($df264/subfield[@code='a'], ' ; ') ||
-          (if ($df264/subfield[@code='b']) then ' : ' || $df264/subfield[@code='b'] else "") ||
-          (if ($df264/subfield[@code='c']) then ', ' || $df264/subfield[@code='c'] else "")
+          (if ($df264/subfield[@code='a'] and $df264/subfield[@code='b']) then ' : ' else '') ||
+          (if ($df264/subfield[@code='b']) then $df264/subfield[@code='b'] else '') ||
+          (if ($df264/subfield[@code='a'] or $df264/subfield[@code='b']) then ', ' else '') ||
+          (if ($df264/subfield[@code='c']) then $df264/subfield[@code='c'] else '')
         }</subfield>
       </xsl:if>
     </datafield>
