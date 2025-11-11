@@ -1,0 +1,32 @@
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../../normalize-on-save.xsl">
+
+   <x:scenario label="01X-09X">
+      <x:scenario label="020">
+         <x:scenario label="020 SFa mit Bindestrichen">
+            <x:context>
+               <datafield tag="020" ind1=" " ind2=" ">
+                  <subfield code="a">978-92-95055-17-9</subfield>
+               </datafield>
+            </x:context>
+            <x:expect label="Bindestriche entfernt">
+               <datafield tag="020" ind1=" " ind2=" ">
+                  <subfield code="a">9789295055179</subfield>
+               </datafield>
+            </x:expect>
+         </x:scenario>
+         <x:scenario label="020 SFa ohne Bindestriche">
+            <x:context>
+               <datafield tag="020" ind1=" " ind2=" ">
+                  <subfield code="a">9789295055179</subfield>
+               </datafield>
+            </x:context>
+            <x:expect label="unverändert">
+               <datafield tag="020" ind1=" " ind2=" ">
+                  <subfield code="a">9789295055179</subfield>
+               </datafield>
+            </x:expect>
+         </x:scenario>
+      </x:scenario>
+   </x:scenario>
+</x:description>

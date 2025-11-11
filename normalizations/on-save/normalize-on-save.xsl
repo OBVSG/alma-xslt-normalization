@@ -22,6 +22,7 @@
   -->
   <xsl:mode on-no-match="shallow-copy" />
 
+  <xsl:include href="src/01X-09X.xsl" />
   <xsl:include href="src/25X-28X.xsl" />
   <xsl:include href="src/760-787.xsl" />
   <xsl:include href="src/80X-83X.xsl" />

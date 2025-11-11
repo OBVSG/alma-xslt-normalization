@@ -87,6 +87,41 @@
       </x:scenario>
     </x:scenario>
 
+    <x:scenario label="765-787 SFz: Bindestriche aus ISBN entfernen">
+      <x:scenario label="776 SFz mit Bindestrichen">
+        <x:context>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="z">978-3-481-04403-9</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Bindestriche entfernt">
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="z">9783481044039</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="776 SFz ohne Bindestriche">
+        <x:context>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="z">9783481044039</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="z">9783481044039</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+
     <x:scenario label="773">
       <x:scenario label="Indikatoren fix auf '08' setzen">
         <x:context>

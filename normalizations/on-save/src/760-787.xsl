@@ -29,6 +29,13 @@
   </xsl:template>
 
   <!--
+      Entferne Bindestriche aus der ISBN von 765-787 SFz.
+      @_marcFields 760 762 765 767 770 772 773 774 775 776 777 780 785 786 787
+  -->
+  <xsl:template match="datafield[@tag ge '765' and @tag le '787']/subfield[@code='z']">
+    <subfield code="z">{replace(., "-", "")}</subfield>
+  </xsl:template>
+  <!--
       Die Indikatoren von `773` sind im OBV immer `08` also werden sie hier einfach bedingungslos gesetzt.
       @_marcFields 773
   -->
