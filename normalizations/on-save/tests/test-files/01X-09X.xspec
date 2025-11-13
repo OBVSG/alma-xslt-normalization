@@ -1,32 +1,99 @@
-<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
-               stylesheet="../../normalize-on-save.xsl">
-
-   <x:scenario label="01X-09X">
-      <x:scenario label="020">
-         <x:scenario label="020 SFa mit Bindestrichen">
-            <x:context>
-               <datafield tag="020" ind1=" " ind2=" ">
-                  <subfield code="a">978-92-95055-17-9</subfield>
-               </datafield>
-            </x:context>
-            <x:expect label="Bindestriche entfernt">
-               <datafield tag="020" ind1=" " ind2=" ">
-                  <subfield code="a">9789295055179</subfield>
-               </datafield>
-            </x:expect>
-         </x:scenario>
-         <x:scenario label="020 SFa ohne Bindestriche">
-            <x:context>
-               <datafield tag="020" ind1=" " ind2=" ">
-                  <subfield code="a">9789295055179</subfield>
-               </datafield>
-            </x:context>
-            <x:expect label="unverändert">
-               <datafield tag="020" ind1=" " ind2=" ">
-                  <subfield code="a">9789295055179</subfield>
-               </datafield>
-            </x:expect>
-         </x:scenario>
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../../normalize-on-save.xsl">
+  <x:scenario label="01X-09X">
+    <x:scenario label="020">
+      <x:scenario label="020 SFa mit Bindestrichen">
+        <x:context>
+          <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="a">978-92-95055-17-9</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Bindestriche entfernt">
+          <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="a">9789295055179</subfield>
+          </datafield>
+        </x:expect>
       </x:scenario>
-   </x:scenario>
+      <x:scenario label="020 SFa ohne Bindestriche">
+        <x:context>
+          <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="a">9789295055179</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="unverändert">
+          <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="a">9789295055179</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="028">
+      <x:scenario label="028 mit 'Bestellnummer: ' in SFa, 'Bestellnummer in SFq'">
+        <x:context>
+          <datafield tag="028" ind1="4" ind2="2">
+            <subfield code="a">Bestellnummer: 7176796</subfield>
+            <subfield code="q">Bestellnummer</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="String entfernt">
+          <datafield tag="028" ind1="4" ind2="2">
+            <subfield code="a">7176796</subfield>
+            <subfield code="q">Bestellnummer</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="028 mit 'Bestellnummer: ' in SFa, kein SFq">
+        <x:context>
+          <datafield tag="028" ind1="4" ind2="2">
+            <subfield code="a">Bestellnummer: 7176796</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="String entfernt, SFq ergänzt">
+          <datafield tag="028" ind1="4" ind2="2">
+            <subfield code="a">7176796</subfield>
+            <subfield code="q">Bestellnummer</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="028 mit 'Best.-Nr.' in SFa, kein SFq">
+        <x:context>
+          <datafield tag="028" ind1="4" ind2="2">
+            <subfield code="a">Best.-Nr. 7176796</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="String entfernt, SFq ergänzt">
+          <datafield tag="028" ind1="4" ind2="2">
+            <subfield code="a">7176796</subfield>
+            <subfield code="q">Bestellnummer</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="028 bereits korrekt">
+        <x:context>
+          <datafield tag="028" ind1="4" ind2="2">
+            <subfield code="a">7176796</subfield>
+            <subfield code="q">Bestellnummer</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="028" ind1="4" ind2="2">
+            <subfield code="a">7176796</subfield>
+            <subfield code="q">Bestellnummer</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="028 ind2 nicht '2'">
+        <x:context>
+          <datafield tag="028" ind1="3" ind2="9">
+            <subfield code="a">Dummy</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="ind2 auf '2' gesetzt">
+          <datafield tag="028" ind1="3" ind2="2">
+            <subfield code="a">Dummy</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
 </x:description>

@@ -16,4 +16,21 @@
     <subfield code="a">{replace(., "-", "")}</subfield>
   </xsl:template>
 
+  <!--
+      Entferne "Bestellnummer" bzw. "Best.-Nr." aus `028$$a` und füge ein entsprechendes `$$bBestellnummer` hinzu,
+      sofern noch nicht vorhanden.
+      @_marcFields 028
+  -->
+  <xsl:template match="datafield[@tag='028']/subfield[@code='a'][starts-with(., 'Bestellnummer') or starts-with(., 'Best.-Nr.')]">
+    <subfield code="a">{replace(., "^(Bestellnummer|Best\.-Nr\.):? *", "")}</subfield>
+    <xsl:if test="not(../subfield[@code='q'])">
+      <subfield code="q">Bestellnummer</subfield>
+    </xsl:if>
+  </xsl:template>
+
+  <!-- Setze zweiten Indikator von `028` immer auf `2`. -->
+  <xsl:template match="datafield[@tag='028']/@ind2">
+    <xsl:attribute name="ind2">2</xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>
