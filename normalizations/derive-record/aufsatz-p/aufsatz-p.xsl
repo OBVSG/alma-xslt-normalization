@@ -42,7 +42,7 @@
           <xsl:sequence select="datafield[@tag='264']" />
         </xsl:otherwise>
       </xsl:choose>
-      <xsl:sequence select="datafield[@tag=('336', '337', '338', '490')]" />
+      <xsl:sequence select="datafield[@tag=('336', '337', '338')]" />
       <datafield tag="655" ind1=" " ind2="7">
         <subfield code="a"></subfield>
       </datafield>
@@ -106,7 +106,12 @@
         }</subfield>
         <subfield code="d"></subfield>
         <subfield code="g"></subfield>
-        <subfield code="k"></subfield>
+        <xsl:for-each select="datafield[@tag='490']">
+          <subfield code="k">{
+            subfield[@code='a']
+            || (if (subfield[@code='v']) then ' ; ' || subfield[@code='v'] else '')
+          }</subfield>
+        </xsl:for-each>
         <subfield code="w">{
           datafield[@tag="035"]/subfield[@code="a"][starts-with(., "(AT-OBV)")]
         }</subfield>
@@ -114,4 +119,5 @@
         <subfield code="z"></subfield>
       </datafield>
   </xsl:template>
+
 </xsl:stylesheet>

@@ -94,6 +94,9 @@
           <subfield code="a">Corpus vasorum antiquorum Österreich. Beiheft</subfield>
           <subfield code="v">3</subfield>
         </datafield>
+        <datafield tag="490" ind1="0" ind2=" ">
+          <subfield code="a">Weitere, ungzählte Reihe</subfield>
+        </datafield>
         <datafield ind1=" " ind2=" " tag="500">
           <subfield code="a">Enthält Literaturangaben</subfield>
         </datafield>
@@ -197,10 +200,6 @@
         <datafield ind1=" " ind2=" " tag="338">
           <subfield code="b">nc</subfield>
         </datafield>
-        <datafield ind1="1" ind2=" " tag="490">
-          <subfield code="a">Corpus vasorum antiquorum Österreich. Beiheft</subfield>
-          <subfield code="v">3</subfield>
-        </datafield>
         <datafield tag="655" ind1=" " ind2="7">
           <subfield code="a"></subfield>
         </datafield>
@@ -213,7 +212,8 @@
           <subfield code="t">Griechische Vasen als Medium für Kommunikation / herausgegeben von Claudia Lang-Auinger und Elisabeth Trinkl</subfield>
           <subfield code="d" />
           <subfield code="g" />
-          <subfield code="k" />
+          <subfield code="k">Corpus vasorum antiquorum Österreich. Beiheft ; 3</subfield>
+          <subfield code="k">Weitere, ungezählte Reihe</subfield>
           <subfield code="w">(AT-OBV)AC16239609</subfield>
           <subfield code="x" />
           <subfield code="z" />
@@ -344,6 +344,5 @@
             </datafield>
          </x:expect>
       </x:scenario>
-
    </x:scenario>
 </x:description>
