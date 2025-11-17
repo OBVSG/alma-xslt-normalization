@@ -8,7 +8,7 @@ Dieses Dokument ist *keine Spezifikation*, es dient der Übersicht über die Tra
 ## Beschreibung der Transformation
 Alle Felder, die hier nicht behandelt werden, werden **gelöscht**.
 ### Felder, die unverändert übernommen werden
-Folgende Felder werden unverändert übernommen: `007`, `041`, `044`, `264` (bei Monografien), `336`, `337`, `338`, `490`.
+Folgende Felder werden unverändert übernommen: `007`, `041`, `044`, `264` (bei Monografien), `336`, `337`, `338`.
 ### Felder, die angepasst werden
 - Bei fortlaufenden Ressourcen wird die erste `26431` als `264#1` übernommen. `$$c` wird geleert.
 
@@ -29,7 +29,7 @@ Das Feld `77308` wird in der folgenden Form generiert. Werte in geschwungenen Kl
 77308 $$iEnthalten in
       $$t{Titelangaben aus 245XX$$a, $$b und $$c mit ISBD-Interpunktion}
       $$d{Inhalt wird, wenn möglich, beim Speichern aus 264 generiert}
-      $$k{leer}
+      $$k{(490XX$$a [" ; " 490##$$v]) für jede vorhandene 490}
       $$w(AT-OBV){AC-Nummer des Datensatzes, von dem abgeleitet wurde}
       $$x{leer}
       $$z{leer}
