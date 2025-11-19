@@ -13,7 +13,7 @@
         Das Hauptstylesheet dieser Transformation.
         @title schreibvorlage.xsl
     -->
-  <xsl:include href="../../../mrclib-xslt/xslt/mrclib.xsl" />
+  <xsl:include href="../../../../mrclib-xslt/xslt/mrclib.xsl" />
 
   <xsl:mode on-no-match="shallow-copy" />
 

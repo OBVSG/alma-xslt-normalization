@@ -17,8 +17,12 @@
                    testMain="normalizations/on-save/tests/normalize-on-save.xspec" />
     <transformation name="Schreibvorlage"
                    distName="OBV_schreibvorlage"
-                   main="normalizations/derive-record/schreibvorlage/schreibvorlage.xsl"
-                   testMain="normalizations/derive-record/schreibvorlage/schreibvorlage.xspec" />
+                   main="normalizations/derive-record/schreibvorlage/schreibvorlage/schreibvorlage.xsl"
+                   testMain="normalizations/derive-record/schreibvorlage/schreibvorlage/schreibvorlage.xspec" />
+    <transformation name="Schreibvorlage E2P"
+                   distName="OBV_schreibvorlage_e2p"
+                   main="normalizations/derive-record/schreibvorlage/schreibvorlage-e2p/schreibvorlage-e2p.xsl"
+                   testMain="normalizations/derive-record/schreibvorlage/schreibvorlage-e2p/schreibvorlage-e2p.xspec" />
     <transformation name="Aufsatz ableiten - print"
                    distName="OBV_aufsatz-ableiten-p"
                    main="normalizations/derive-record/aufsatz-p/aufsatz-p.xsl"
