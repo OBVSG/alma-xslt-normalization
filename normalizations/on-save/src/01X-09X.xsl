@@ -33,4 +33,11 @@
     <xsl:attribute name="ind2">2</xsl:attribute>
   </xsl:template>
 
+  <!--
+      Stelle `scc` und `scr` in `041` (beliebiges Subfeld) auf `qsh` um.
+  -->
+  <xsl:template match="datafield[@tag='041']/subfield[.=('scc', 'scr')]/text()">
+    <xsl:text>qsh</xsl:text>
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -95,5 +95,23 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="041">
+      <x:scenario label="041 scr">
+        <x:context>
+          <datafield tag="041" ind1=" " ind2=" ">
+            <subfield code="a">scc</subfield>
+            <subfield code="a">ger</subfield>
+            <subfield code="d">scr</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="auf 'qsh' geändert">
+          <datafield tag="041" ind1=" " ind2=" ">
+            <subfield code="a">qsh</subfield>
+            <subfield code="a">ger</subfield>
+            <subfield code="d">qsh</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>
