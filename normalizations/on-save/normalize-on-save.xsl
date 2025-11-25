@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:mrclib="https://share.obvsg.at/xml/xsl/mrclib" xmlns:doc="https://share.obvsg.at/xml/xsl/doc"  expand-text="yes" version="3.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:mrclib="https://share.obvsg.at/xml/xsl/mrclib" exclude-result-prefixes="xs utils mrclib" expand-text="yes" version="3.0">
 
   <!--~doc:global
       @title Normalize on Save
@@ -22,11 +22,15 @@
   -->
   <xsl:mode on-no-match="shallow-copy" />
 
+  <xsl:include href="src/leader.xsl" />
   <xsl:include href="src/01X-09X.xsl" />
+  <xsl:include href="src/1XX.xsl" />
   <xsl:include href="src/25X-28X.xsl" />
+  <xsl:include href="src/70X-75X.xsl" />
   <xsl:include href="src/760-787.xsl" />
   <xsl:include href="src/80X-83X.xsl" />
   <xsl:include href="src/geografika.xsl" />
+  <xsl:include href="src/ids.xsl" />
   <xsl:include href="src/sort.xsl" />
   <xsl:include href="../utils/utils.xsl" />
   <xsl:include href="../../mrclib-xslt/xslt/mrclib.xsl" />

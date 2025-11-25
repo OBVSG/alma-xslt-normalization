@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="leader">
+    <x:scenario label="pos18">
+      <x:context>
+        <leader>01414nam a2200421 x 4500</leader>
+      </x:context>
+      <x:expect label="pos18=c">
+        <leader>01414nam a2200421 c 4500</leader>
+      </x:expect>
+    </x:scenario>
+
+    <x:scenario label="pos19">
+      <x:scenario label="Stücktitel, verknüpft">
+        <x:context>
+          <record>
+            <leader>01414nam a2200421 cx4500</leader>
+            <datafield tag="830" ind1=" " ind2="0">
+              <subfield code="w">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="LDR/19=b" test="record/leader">
+          <leader>01414nam a2200421 cb4500</leader>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Stücktitel, unverknüpft">
+        <x:context>
+          <record>
+            <leader>01414nam a2200421 cx4500</leader>
+            <datafield tag="490" ind1="0" ind2=" ">
+              <subfield code="a">Generische Taschenbücher</subfield>
+              <subfield code="v">1</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="unverändert" test="record/leader">
+          <leader>01414nam a2200421 cx4500</leader>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="TAT, verknüpft">
+        <x:context>
+          <record>
+            <leader>01414nam a2200421 cx4500</leader>
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="w">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="LDR/19=c" test="record/leader">
+          <leader>01414nam a2200421 cc4500</leader>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="MtM mit Gesamttitel">
+        <x:context>
+          <record>
+            <leader>01414nam a2200421 ca4500</leader>
+            <datafield tag="830" ind1=" " ind2="0">
+              <subfield code="w">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="bleibt unverändert" test="record/leader">
+          <leader>01414nam a2200421 ca4500</leader>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Sonderdruck">
+        <x:context>
+          <record>
+            <leader>01414nam a2200421 cc4500</leader>
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Sonderdruck aus</subfield>
+              <subfield code="t">Neue Forschungen zur Geschichte der Pfarre
+                Tulln-St. Stephan</subfield>
+              <subfield code="k">Beiträge zur Kirchengeschichte
+                Niederösterreichs ; 17</subfield>
+              <subfield code="k">Geschichtliche Beilagen zum St. Pöltner
+                Diözesanblatt ; 34</subfield>
+              <subfield code="w">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="LDR/19=#" test="record/leader">
+          <leader>01414nam a2200421 c 4500</leader>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="LDR/06!=m (fR etc.)'">
+        <x:context>
+          <record>
+            <leader>01414nas a2200421 cx4500</leader>
+            <datafield tag="830" ind1=" " ind2="0">
+              <subfield code="w">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="LDR/19=#" test="record/leader">
+          <leader>01414nas a2200421 c 4500</leader>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Aufsatz">
+        <x:context>
+          <record>
+            <leader>01414naa a2200421 cx4500</leader>
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Enthalten in</subfield>
+              <subfield code="t">Musikphilologie / herausgegeben von Bernhard R. Appel und Reinmar Emans</subfield>
+              <subfield code="d">Laaber : Laaber, 2017</subfield>
+              <subfield code="g">Seite 13-21</subfield>
+              <subfield code="k">Kompendien Musik ; Band 3</subfield>
+              <subfield code="w">(AT-OBV)AC08074101</subfield>
+              <subfield code="z">9783890077239</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="LDR/19=#" test="record/leader">
+          <leader>01414naa a2200421 c 4500</leader>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+</x:description>
