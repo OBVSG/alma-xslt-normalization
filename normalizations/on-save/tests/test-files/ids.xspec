@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario>
+    <x:scenario label="orcid in SF9">
+      <x:context>
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Wurst, Hans</subfield>
+          <subfield code="9">(orcid)1234-1234-1234-1234</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="nach SF1, als URL">
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Wurst, Hans</subfield>
+          <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="orcid in SF1 vorhanden">
+      <x:context>
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Wurst, Hans</subfield>
+          <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="keine Änderung">
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Wurst, Hans</subfield>
+          <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="orcid in SF1 und SF9">
+      <x:context>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Sakti, Sakriani</subfield>
+          <subfield code="1">https://orcid.org/0000-0001-5509-8963</subfield>
+          <subfield code="4">edt</subfield>
+          <subfield code="9">(orcid)0000-0001-5509-8963</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="nur SF1 bleibt">
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Sakti, Sakriani</subfield>
+          <subfield code="1">https://orcid.org/0000-0001-5509-8963</subfield>
+          <subfield code="4">edt</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="orcid in SF0, SF2orcid">
+      <x:context>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Cagáňová, Dagmar</subfield>
+          <subfield code="0">0000-0002-6834-6126</subfield>
+          <subfield code="2">orcid</subfield>
+          <subfield code="4">edt</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="orcid in richtiger Form in SF1, SF2 entfernt">
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Cagáňová, Dagmar</subfield>
+          <subfield code="1">https://orcid.org/0000-0002-6834-6126</subfield>
+          <subfield code="4">edt</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="orcid und GND-ID in SF0">
+      <x:context>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Maier, Waltraud</subfield>
+          <subfield code="0">(DE-588)123456-X</subfield>
+          <subfield code="0">1234-1234-1234-1234</subfield>
+          <subfield code="2">orcid</subfield>
+          <subfield code="4">edt</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="">
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Maier, Waltraud</subfield>
+          <subfield code="0">(DE-588)123456-X</subfield>
+          <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+          <subfield code="4">edt</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="keine ORCID">
+      <x:context>
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Hödlmoser, Alois</subfield>
+          <subfield code="0">(DE-588)123456-7</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="">
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Hödlmoser, Alois</subfield>
+          <subfield code="0">(DE-588)123456-7</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
+  </x:scenario>
+</x:description>

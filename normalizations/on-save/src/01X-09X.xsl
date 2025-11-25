@@ -6,7 +6,9 @@
                 expand-text="yes"
                 version="3.0">
 
-  <xsl:mode on-no-match="shallow-copy" />
+  <!--~doc:stylesheet
+    Normalisierungen für die Felder `01X-09X`.
+  -->
 
   <!--
       Entferne die Striche aus der ISBN in `020##$$a`

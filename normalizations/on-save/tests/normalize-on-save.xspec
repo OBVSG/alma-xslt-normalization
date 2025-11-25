@@ -7,5 +7,6 @@
   <x:import href="test-files/760-787.xspec" />
   <x:import href="test-files/80X-83X.xspec" />
   <x:import href="test-files/geografika.xspec" />
+  <x:import href="test-files/ids.xspec" />
 
 </x:description>
