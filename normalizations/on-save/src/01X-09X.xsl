@@ -37,9 +37,15 @@
 
   <!--
       Stelle `scc` und `scr` in `041` (beliebiges Subfeld) auf `qsh` um.
+
+      Wenn beide Codes in Subfeldern mit gleichen Subfeldcodes vorkommen, übernimm nur einen.
   -->
-  <xsl:template match="datafield[@tag='041']/subfield[.=('scc', 'scr')]/text()">
-    <xsl:text>qsh</xsl:text>
+  <xsl:template match="datafield[@tag='041']/subfield[.=('scc', 'scr')]">
+    <xsl:variable name="sfCode" select="@code" />
+    <!-- Wenn beide codes in Subfeldern mit gleichen Codes vorhanden sind, übernimm nur einen. -->
+    <xsl:if test="not((preceding-sibling::subfield[@code=$sfCode]|following-sibling::subfield[@code=$sfCode])[.=('scr')])">
+      <subfield code="{$sfCode}">qsh</subfield>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
