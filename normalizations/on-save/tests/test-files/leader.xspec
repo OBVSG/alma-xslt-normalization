@@ -118,6 +118,25 @@
           <leader>01414naa a2200421 c 4500</leader>
         </x:expect>
       </x:scenario>
+      <x:scenario label="Sonderdruck in Reihe">
+        <x:context>
+          <record>
+            <leader>00754nam a2200229 cx4500</leader>
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Sonderdruck aus</subfield>
+              <subfield code="t">Zeitschrift für Astrophysik</subfield>
+              <subfield code="g">51.1961</subfield>
+            </datafield>
+            <datafield tag="830" ind1=" " ind2="0">
+              <subfield code="w">(AT-OBV)AC06732359</subfield>
+              <subfield code="v">9</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="LDR/19=b" test="record/leader">
+          <leader>00754nam a2200229 cb4500</leader>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
   </x:scenario>
 </x:description>
