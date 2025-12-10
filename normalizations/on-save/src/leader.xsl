@@ -20,12 +20,10 @@
     ## Position 19
     - `LDR/07!=m` => `LDR/19=#`
     - `LDR/19=a` => bleibt immer stehen
-    - `LDR/07=m` UND `830` => `LDR/19=b`
+    - `773XX$$w` aber kein `773XX$$i` vorhanden => `LDR/19=c`
+    - `830` => `LDR/19=b`
     - `773XX$$i` => `LDR/19=#`
-    - `LDR/07=m` und `773 $$w` vorhanden => `LDR/19=c`
     - Sonst: `LDR/19` bleibt unverändert.
-
-    `LDR/19` muss bei `LDR/07=m` unverändert bleiben bei MtMs mit Gesamttitel!
   -->
   <xsl:template match="leader">
     <xsl:variable name="pos7in" select="substring(., 8, 1)" />
@@ -34,9 +32,10 @@
       <xsl:choose>
         <xsl:when test="$pos7in ne 'm'">{' '}</xsl:when>
         <xsl:when test="$pos19in eq 'a'">{$pos19in}</xsl:when>
+        <xsl:when test="../datafield[@tag='773'][subfield[@code='w']]
+                        and not(../datafield[@tag='773'][subfield[@code='i']])">c</xsl:when>
         <xsl:when test="../datafield[@tag='830']">b</xsl:when>
         <xsl:when test="../datafield[@tag='773'][subfield[@code='i']]">{' '}</xsl:when>
-        <xsl:when test="../datafield[@tag='773'][subfield[@code='w']]">c</xsl:when>
         <xsl:otherwise>{$pos19in}</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
