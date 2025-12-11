@@ -96,7 +96,7 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="041">
-      <x:scenario label="041 scr">
+      <x:scenario label="041 scr und scc, verschiedene Subfelder">
         <x:context>
           <datafield tag="041" ind1=" " ind2=" ">
             <subfield code="a">scc</subfield>
@@ -113,5 +113,25 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="041 scr und scc, beide in Subfeldern mit gleichem Code">
+        <x:context>
+          <datafield tag="041" ind1=" " ind2=" ">
+            <subfield code="a">scc</subfield>
+            <subfield code="a">ger</subfield>
+            <subfield code="a">scr</subfield>
+            <subfield code="b">scc</subfield>
+            <subfield code="d">scr</subfield>
+            <subfield code="d">scc</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="auf 'qsh' geändert, nur ein Subfeld bleibt">
+          <datafield tag="041" ind1=" " ind2=" ">
+            <subfield code="a">ger</subfield>
+            <subfield code="a">qsh</subfield>
+            <subfield code="b">qsh</subfield>
+            <subfield code="d">qsh</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
   </x:scenario>
 </x:description>
