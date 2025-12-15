@@ -53,6 +53,14 @@
           <leader>01414nam a2200421 cc4500</leader>
         </x:expect>
       </x:scenario>
+      <x:scenario label="nak-Bestand">
+        <x:context>
+          <leader>02818npc a2200625 ca4500</leader>
+        </x:context>
+        <x:expect label="pos. 19 bleibt a">
+          <leader>02818npc a2200625 ca4500</leader>
+        </x:expect>
+      </x:scenario>
       <x:scenario label="TAT in Reihe (830), verknüpft">
         <x:context>
           <record>

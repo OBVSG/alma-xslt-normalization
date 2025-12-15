@@ -18,7 +18,7 @@
     - `LDR/19` wird je nach Sachverhalt gesetzt (s. U.)
 
     ## Position 19
-    - `LDR/07!=m` => `LDR/19=#`
+    - `LDR/07!=c|d|m oder c oder d` => `LDR/19=#`
     - `LDR/19=a` => bleibt immer stehen
     - `773XX$$w` aber kein `773XX$$i` vorhanden => `LDR/19=c`
     - `830` => `LDR/19=b`
@@ -30,7 +30,7 @@
     <xsl:variable name="pos19in" select="substring(., 20, 1)" />
     <xsl:variable name="pos19">
       <xsl:choose>
-        <xsl:when test="$pos7in ne 'm'">{' '}</xsl:when>
+        <xsl:when test="not($pos7in = ('c', 'd', 'm'))">{' '}</xsl:when>
         <xsl:when test="$pos19in eq 'a'">{$pos19in}</xsl:when>
         <xsl:when test="../datafield[@tag='773'][subfield[@code='w']]
                         and not(../datafield[@tag='773'][subfield[@code='i']])">c</xsl:when>
