@@ -10,14 +10,19 @@
 
   <!--
       Wenn es noch kein Feld `255` gibt, erstelle eines, mit den Koordinaten aus `034 $$d $$e $$f $$g`.
+
+      Wenn das Feld nur `$$2bound` (also den Wert aus dem Template) enthält und sonst nichts, lösche es.
       @_marcFields 034 255
   -->
-  <xsl:template match="datafield[@tag='034'][not(../datafield[@tag='255'])]">
-    <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
-      <xsl:apply-templates />
-    </datafield>
+  <xsl:template match="datafield[@tag='034']">
+    <!-- Bearbeite nur Felder 034, die wirklich Daten enthalten. -->
+    <xsl:if test="not(subfield[@code='2'] and count(subfield) eq 1)">
+      <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
+        <xsl:apply-templates />
+      </datafield>
+    </xsl:if>
 
-    <xsl:if test="utils:df034isValid(.)">
+    <xsl:if test="not(../datafield[@tag='255']) and utils:df034isValid(.)">
       <datafield tag="255" ind1=" " ind2=" ">
         <subfield code="c">{utils:formatCoordinatesFrom034(.)}</subfield>
       </datafield>
