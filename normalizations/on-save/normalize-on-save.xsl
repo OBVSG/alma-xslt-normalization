@@ -23,6 +23,7 @@
   <xsl:mode on-no-match="shallow-copy" />
 
   <xsl:include href="src/leader.xsl" />
+  <xsl:include href="src/001-009.xsl" />
   <xsl:include href="src/01X-09X.xsl" />
   <xsl:include href="src/1XX.xsl" />
   <xsl:include href="src/25X-28X.xsl" />

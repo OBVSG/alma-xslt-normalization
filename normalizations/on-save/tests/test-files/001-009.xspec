@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="001-009">
+    <x:scenario label="007 bei Musik">
+      <x:scenario label="LDR/06=c, beginnt nicht mit q">
+        <x:context>
+          <record>
+            <leader>     ncm a22      c 4500</leader>
+            <controlfield tag="007">txxxx</controlfield>
+          </record>
+        </x:context>
+        <x:expect label="007 qu">
+          <record>
+            <leader>     ncm a22      c 4500</leader>
+            <controlfield tag="007">qu</controlfield>
+          </record>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="LDR/06=d, beginnt nicht mit q">
+        <x:context>
+          <record>
+            <leader>     ndm a22      c 4500</leader>
+            <controlfield tag="007">txxxx</controlfield>
+          </record>
+        </x:context>
+        <x:expect label="007 qu">
+          <record>
+            <leader>     ndm a22      c 4500</leader>
+            <controlfield tag="007">qu</controlfield>
+          </record>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="007 music, beginnt mit q">
+        <x:context>
+          <record>
+            <leader>     ncm a22      c 4500</leader>
+            <controlfield tag="007">qu</controlfield>
+          </record>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <record>
+            <leader>     ncm a22      c 4500</leader>
+            <controlfield tag="007">qu</controlfield>
+          </record>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="LDR/06=a (also keine Musikalie)">
+        <x:context>
+          <record>
+            <leader>     nam a22      c 4500</leader>
+            <controlfield tag="007">nichtvalide007</controlfield>
+          </record>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <record>
+            <leader>     nam a22      c 4500</leader>
+            <controlfield tag="007">nichtvalide007</controlfield>
+          </record>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+
+</x:description>

@@ -2,6 +2,7 @@
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" stylesheet="../normalize-on-save.xsl">
 
   <x:import href="test-files/leader.xspec" />
+  <x:import href="test-files/001-009.xspec" />
   <x:import href="test-files/01X-09X.xspec" />
   <x:import href="test-files/25X-28X.xspec" />
   <x:import href="test-files/760-787.xspec" />
