@@ -30,7 +30,10 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- Setze zweiten Indikator von `028` immer auf `2`. -->
+  <!--
+      Setze zweiten Indikator von `028` immer auf `2`.
+      @_marcFields 028
+  -->
   <xsl:template match="datafield[@tag='028']/@ind2">
     <xsl:attribute name="ind2">2</xsl:attribute>
   </xsl:template>
@@ -39,6 +42,7 @@
       Stelle `scc` und `scr` in `041` (beliebiges Subfeld) auf `qsh` um.
 
       Wenn beide Codes in Subfeldern mit gleichen Subfeldcodes vorkommen, übernimm nur einen.
+      @_marcFields 041
   -->
   <xsl:template match="datafield[@tag='041']/subfield[.=('scc', 'scr')]">
     <xsl:variable name="sfCode" select="@code" />

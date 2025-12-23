@@ -7,7 +7,14 @@
                 expand-text="yes"
                 version="3.0">
 
-  <!-- Stelle `007` bei Musikalien auf `qu` -->
+  <!--~doc:stylesheet
+    Normalisierungen für die Felder `001-009`.
+  -->
+
+  <!--
+      Stelle `007` bei Musikalien auf `qu`
+      @_marcFields 007
+  -->
   <xsl:template match="controlfield[@tag='007'][substring(../leader, 7, 1) = ('c', 'd')]">
     <controlfield tag="007">qu</controlfield>
   </xsl:template>
