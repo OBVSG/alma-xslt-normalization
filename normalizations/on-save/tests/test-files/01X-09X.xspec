@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../../normalize-on-save.xsl">
   <x:scenario label="01X-09X">
+    <x:scenario>
+      <x:scenario label="016 mit nur Vorlagewert">
+        <x:context>
+          <datafield tag="016" ind1=" " ind2=" ">
+            <subfield code="a"></subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="gelöscht" />
+      </x:scenario>
+      <x:scenario label="016 aus 035 generieren">
+        <x:scenario label="035 mit DE-600 und ZDB-ID keine 016">
+          <x:context>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="016 erstellt">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">123-X</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="035 mit DE-600, 016 vorhanden">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">000-0</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="016 geändert">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">123-X</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+
+      </x:scenario>
+    </x:scenario>
+
     <x:scenario label="020">
       <x:scenario label="020 SFa mit Bindestrichen">
         <x:context>

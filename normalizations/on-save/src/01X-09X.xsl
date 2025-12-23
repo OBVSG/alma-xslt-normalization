@@ -11,6 +11,12 @@
   -->
 
   <!--
+      Entferne `016`, wenn es nur Text aus der Vorlage enthält.
+      @_marcFields 016
+  -->
+  <xsl:template match="datafield[@tag='016'][subfield[@code='2']/text()][not(subfield[@code='a']/text())]" />
+
+  <!--
       Entferne die Striche aus der ISBN in `020##$$a`
       @_marcFields 020
   -->

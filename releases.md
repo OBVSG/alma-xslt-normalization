@@ -24,8 +24,8 @@ Die Normalisierungen in Alma sollen im Laufe des Jahres 2026 sukzessive in der S
 
 # Releases
 ## PSB 19.01.2026 (geplant)
-
 - `016` und `035` bei ZDB-Records synchronisieren. Issue #23
+
 ## PROD initialer Stand 23.12.2025
 ### Schreibvorlage
 Vollständig implementiert: [Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_schreibvorlage/index.html)
