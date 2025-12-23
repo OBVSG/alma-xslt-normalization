@@ -7,7 +7,7 @@
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
   - [PSB 19.01.2026 (geplant)](#psb-19012026-geplant)
-  - [PROD initialer Stand 15.12.2025](#prod-initialer-stand-15122025)
+  - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
     - [Schreibvorlage](#schreibvorlage)
     - [Aufsatz ableiten - print](#aufsatz-ableiten---print)
     - [Externe Ressourcen Library of Congress](#externe-ressourcen-library-of-congress)
@@ -24,10 +24,9 @@ Die Normalisierungen in Alma sollen im Laufe des Jahres 2026 sukzessive in der S
 
 # Releases
 ## PSB 19.01.2026 (geplant)
-- `007/01` bei Musik auf `q` setzen (KATA-082-fix007\_music). Commit 348cbd4 
-- `034` löschen, wenn sie nur Werte aus der Vorlage und sonst nichts enthält. Issue #22, Commit 15c5e67
-- `016`: löschen, wenn nur Werte auf der Vorlage; aus `035` generieren.
-## PROD initialer Stand 15.12.2025
+
+- `016` und `035` bei ZDB-Records synchronisieren. Issue #23
+## PROD initialer Stand 23.12.2025
 ### Schreibvorlage
 Vollständig implementiert: [Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_schreibvorlage/index.html)
 
@@ -39,8 +38,10 @@ Entfernen diverser Felder beim Import: [Dokumentation](https://share.obvsg.at/xs
 
 ### Normalize on Save
 - [LDR/18 und LDR/19](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
+- `007/01` bei Musik auf `q` setzen (KATA-082-fix007\_music). Commit 348cbd4, [Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;controlfield[@tag='007'][substring(../leader,%207,%201)%20=%20('c',%20'd')];nil)
 - [Bindestriche aus ISBN entfernen](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='020']/subfield[@code='a'];nil)
 - [028$$aBestellnummer ...](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='028']/subfield[@code='a'][starts-with(.,%20'Bestellnummer')%20or%20starts-with(.,%20'Best.-Nr.')];nil) und [Indikator 2](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='028']/@ind2;nil)
+- `034` löschen, wenn sie nur Werte aus der Vorlage und sonst nichts enthält. Issue #22, Commit 15c5e67, [Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='034'];nil)
 - [041: Sprachcodes "scc" und "scr" auf "qsh" ändern](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='041']/subfield[.=('scc',%20'scr')];nil)
 - ORCID-Handling in [100, SF0](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='100'][subfield[@code='2'][.='orcid']]/subfield[@code='0'];nil), [100, SF9](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='100']/subfield[@code='9'][starts-with(.,%20'(orcid)')];nil), [700, SF0](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='700'][subfield[@code='2'][.='orcid']]/subfield[@code='0'];nil) und [700, SF9](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='700']/subfield[@code='9'][starts-with(.,%20'(orcid)')];nil)
 - Aus einer `264` mit mehreren Verlagen mehrere Felder `264` erstellen: [Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='264'][count(subfield[@code='b'])%20gt%201][not(subfield[@code=('6',%20'8')])];nil)
