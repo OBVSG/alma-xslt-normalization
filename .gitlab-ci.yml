@@ -14,7 +14,7 @@ compile:
   script:
     - mkdir dist
     - mkdir temp
-    - mkdir -p test/xspec
+    - mkdir -p temp/test/xspec
     - saxon -xsl:xslt-bundler/xslt-bundler.xsl -it:main configFile=../config.xml
     - bash temp/testrunner.sh
   artifacts:
@@ -25,7 +25,7 @@ compile:
       - dist/*
       - test/*
     reports:
-      junit: test/xspec/*junit.xml
+      junit: dist/test/xspec/*junit.xml
 
 docs:
   stage: docs
