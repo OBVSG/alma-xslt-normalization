@@ -62,6 +62,16 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="008">
+      <x:scenario label="008/39 fix auf 'c' setzen">
+        <x:context>
+          <controlfield tag="008">      |????    |||           ||| |     u</controlfield>
+        </x:context>
+        <x:expect label="008/39 auf 'c' gesetzt">
+        <controlfield tag="008">      |????    |||           ||| |     c</controlfield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 
 </x:description>

@@ -18,4 +18,19 @@
   <xsl:template match="controlfield[@tag='007'][substring(../leader, 7, 1) = ('c', 'd')]">
     <controlfield tag="007">qu</controlfield>
   </xsl:template>
+
+  <!--
+      Bearbeite Feld `008`.
+
+      Hier passiert folgendes:
+      - [ ] Wenn `008/35-37` keinen Sprachcode enthält, füge den aus `041##$$a` ein, falls vorhanden.
+      - [ ] setze `008/15-17` auf `|||`, wenn es einen Ländercode in `044##$$c` gibt.
+      - [X] setze `008/39` (cataloging source) auf `c` für "cooperative cataloging"
+      - [ ] setze `008/19` auf `|`, wenn es sich um eine fortlaufende Ressource handelt
+  -->
+  <xsl:template match="controlfield[@tag='008']">
+    <controlfield tag="008">{
+      mrclib:replace-control-substring(., 39, 39, "c")
+    }</controlfield>
+  </xsl:template>
 </xsl:stylesheet>
