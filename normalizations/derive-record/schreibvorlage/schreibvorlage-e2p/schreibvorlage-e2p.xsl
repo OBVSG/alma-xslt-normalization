@@ -18,6 +18,9 @@
   <xsl:include href="../../../../mrclib-xslt/xslt/mrclib.xsl" />
   <xsl:mode on-no-match="shallow-copy" />
 
+  <!--
+      Einstiegspunkt für die Transformation. Hier passiert alles, was nicht in anderen Templates abgehandelt wird. D. h. einfügen von leeren Feldern etc.
+  -->
   <xsl:template match="record">
     <xsl:variable name="fields" as="item()*">
       <xsl:apply-templates />

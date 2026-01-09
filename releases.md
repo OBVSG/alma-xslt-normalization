@@ -8,6 +8,7 @@
 - [Releases](#releases)
   - [Standard-Sandbox 19.01.2026 (geplant)](#standard-sandbox-19012026-geplant)
     - [Normalize on Save](#normalize-on-save)
+    - [Datensatz ableiten](#datensatz-ableiten)
   - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
     - [Schreibvorlage](#schreibvorlage)
     - [Aufsatz ableiten - print](#aufsatz-ableiten---print)
@@ -38,6 +39,9 @@ Geplante Änderungen. Links zur Dokumentation sind noch nicht öffentlich erreic
   - [X] `008/39` (cataloging source) fix auf `c` für "cooperative cataloging" setzen.
 - [X] `016` und `035` bei ZDB-Records synchronisieren. Issue #23; Commit 4c9b204a; Dokumentation [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil), [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bsubfield%5B@code='2'%5D%5B.='DE-600'%5D%5D%5Bsubfield%5B@code='a'%5D/text()%5D;nil) und [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code='a'%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil)
 - [ ] `024` entfernen, wenn nur Werte aus der Vorlage und sonst nichts vorhanden ist. Issue #24
+
+### Datensatz ableiten
+- [X] Schreibvorlage E2P. Issue #18; Commit 2e13ee0; [Dokumentation](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_schreibvorlage_e2p/index.html)
 
 ## PROD initialer Stand 23.12.2025
 
