@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="schreibvorlage-e2p.xsl">
+
+  <x:scenario label="020">
+    <x:context>
+      <datafield tag="020" ind1=" " ind2=" ">
+        <subfield code="a">9781234567890</subfield>
+        <subfield code="q">Test</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="77608 erstellt">
+      <datafield tag="776" ind1="0" ind2="8">
+        <subfield code="i">Erscheint auch als</subfield>
+        <subfield code="n">Online-Ausgabe</subfield>
+        <subfield code="z">9781234567890</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="300">
+    <x:context>
+      <datafield tag="300" ind1=" " ind2=" ">
+        <subfield code="a">1 Online-Ressource (234 Seiten)</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="">
+      <datafield tag="300" ind1=" " ind2=" ">
+        <subfield code="a">234 Seiten</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+
+  <x:scenario label="Print-ISBN nach 020 übertragen">
+    <x:scenario label="mehrere Subfelder z">
+      <x:context>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Steintafel-Ausgabe</subfield>
+          <subfield code="z">9781234567890</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Druck-Ausgabe</subfield>
+          <subfield code="z">9781138211865</subfield>
+          <subfield code="z">9781138211889</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Druck-Ausgabe</subfield>
+          <subfield code="9">Ich habe kein Subfeld z</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="je eine 020 pro SFz">
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Steintafel-Ausgabe</subfield>
+          <subfield code="z">9781234567890</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a">9781138211865</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a">9781138211889</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+  </x:scenario>
+
+  <x:scenario label="ganzer Datensatz">
+    <x:context>
+      <record>
+         <leader>01298nam a2200397 cb4500</leader>
+         <controlfield tag="001">99144801310603331</controlfield>
+         <controlfield tag="005">20181023091115.0</controlfield>
+         <controlfield tag="007">cr#|||||||||||</controlfield>
+         <controlfield tag="008">181015|2016    xx      om |  ||| | ger u</controlfield>
+         <controlfield tag="009">AC15179755</controlfield>
+         <datafield ind1=" " ind2=" " tag="020">
+            <subfield code="a">9783737005180</subfield>
+            <subfield code="c">V&amp;R eLibrary</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="020">
+            <subfield code="a">9783847105183</subfield>
+            <subfield code="c">print</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="020">
+            <subfield code="a">9783847005186</subfield>
+            <subfield code="c">E-Book</subfield>
+         </datafield>
+         <datafield ind1="7" ind2=" " tag="024">
+            <subfield code="a">10.14220/9783737005180</subfield>
+            <subfield code="2">doi</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(DE-599)OBVAC15179755</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(AT-OBV)AC15179755</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="040">
+            <subfield code="a">AT-UBI</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBS</subfield>
+            <subfield code="e">rda</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="041">
+            <subfield code="a">ger</subfield>
+         </datafield>
+         <datafield ind1="1" ind2=" " tag="100">
+            <subfield code="a">Kubitza, Nicole</subfield>
+            <subfield code="0">(DE-588)1095908375</subfield>
+            <subfield code="4">aut</subfield>
+         </datafield>
+         <datafield ind1="0" ind2="0" tag="245">
+            <subfield code="a">Pretty in space</subfield>
+            <subfield code="b">die Frauendarstellung in Star Trek und anderen US-amerikanischen Dramaserien der 1960er Jahre</subfield>
+            <subfield code="c">Nicole Kubitza</subfield>
+         </datafield>
+         <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="a">Göttingen</subfield>
+            <subfield code="b">V&amp;R unipress</subfield>
+            <subfield code="c">[2016]</subfield>
+         </datafield>
+         <datafield ind1=" " ind2="4" tag="264">
+            <subfield code="a">© 2016</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="300">
+            <subfield code="a">1 Online-Ressource (373 Seiten)</subfield>
+            <subfield code="b">Illustrationen</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="336">
+            <subfield code="b">txt</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="337">
+            <subfield code="b">c</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="338">
+            <subfield code="b">cr</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="347">
+            <subfield code="a">Textdatei</subfield>
+            <subfield code="b">PDF</subfield>
+         </datafield>
+         <datafield ind1="0" ind2=" " tag="490">
+            <subfield code="a">V&amp;R Academic</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Literaturverzeichnis auf Seite 365-373</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="502">
+            <subfield code="b">Dissertation</subfield>
+            <subfield code="c">Universität Hamburg</subfield>
+            <subfield code="d">2014</subfield>
+         </datafield>
+         <datafield ind1=" " ind2="7" tag="655">
+            <subfield code="a">Hochschulschrift</subfield>
+            <subfield code="0">(DE-588)4113937-9</subfield>
+            <subfield code="2">gnd-content</subfield>
+         </datafield>
+         <datafield ind1="4" ind2="0" tag="856">
+            <subfield code="u">https://doi.org/10.14220/9783737005180</subfield>
+            <subfield code="x">Resolving-System</subfield>
+            <subfield code="3">Volltext</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="912">
+            <subfield code="a">ZDB-117-VRE</subfield>
+         </datafield>
+         <datafield ind1=" " ind2=" " tag="912">
+            <subfield code="a">ZDB-117-MFN</subfield>
+         </datafield>
+         <datafield ind1="1" ind2=" " tag="970">
+            <subfield code="c">54</subfield>
+         </datafield>
+         <datafield ind1="4" ind2=" " tag="970">
+            <subfield code="b">DE-604</subfield>
+         </datafield>
+      </record>
+   </x:context>
+   <x:expect label="richtig angepasst">
+      <record>
+        <leader>01298nam a2200397 cb4500</leader>
+        <controlfield tag="005">20181023091115.0</controlfield>
+        <controlfield tag="007">tu</controlfield>
+         <controlfield tag="008">181015|2016    xx       m |  ||| | ger u</controlfield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="q"></subfield>
+          <subfield code="c"></subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="040">
+          <subfield code="e">rda</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="041">
+          <subfield code="a">ger</subfield>
+        </datafield>
+        <datafield tag="044" ind1=" " ind2=" ">
+          <subfield code="c"></subfield>
+          <subfield code="c"></subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="100">
+          <subfield code="a">Kubitza, Nicole</subfield>
+          <subfield code="0">(DE-588)1095908375</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+        <datafield ind1="0" ind2="0" tag="245">
+          <subfield code="a">Pretty in space</subfield>
+          <subfield code="b">die Frauendarstellung in Star Trek und anderen US-amerikanischen Dramaserien der 1960er Jahre</subfield>
+          <subfield code="c">Nicole Kubitza</subfield>
+        </datafield>
+        <datafield ind1=" " ind2="1" tag="264">
+          <subfield code="a">Göttingen</subfield>
+          <subfield code="b">V&amp;R unipress</subfield>
+          <subfield code="c">[2016]</subfield>
+        </datafield>
+        <datafield ind1=" " ind2="4" tag="264">
+          <subfield code="a">© 2016</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="300">
+          <subfield code="a">373 Seiten</subfield>
+          <subfield code="b">Illustrationen</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="336">
+          <subfield code="b">txt</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="337">
+          <subfield code="b">n</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="338">
+          <subfield code="b">nc</subfield>
+        </datafield>
+        <datafield ind1="0" ind2=" " tag="490">
+          <subfield code="a">V&amp;R Academic</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="500">
+          <subfield code="a">Literaturverzeichnis auf Seite 365-373</subfield>
+        </datafield>
+        <datafield ind1=" " ind2=" " tag="502">
+          <subfield code="b">Dissertation</subfield>
+          <subfield code="c">Universität Hamburg</subfield>
+          <subfield code="d">2014</subfield>
+        </datafield>
+        <datafield ind1=" " ind2="7" tag="655">
+          <subfield code="a">Hochschulschrift</subfield>
+          <subfield code="0">(DE-588)4113937-9</subfield>
+          <subfield code="2">gnd-content</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Online-Ausgabe</subfield>
+          <subfield code="z">9783737005180</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Online-Ausgabe</subfield>
+          <subfield code="z">9783847105183</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Online-Ausgabe</subfield>
+          <subfield code="z">9783847005186</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="970">
+          <subfield code="c">54</subfield>
+        </datafield>
+        <datafield ind1="4" ind2=" " tag="970">
+          <subfield code="b">DE-604</subfield>
+        </datafield>
+      </record>
+    </x:expect>
+  </x:scenario>
+
+</x:description>
