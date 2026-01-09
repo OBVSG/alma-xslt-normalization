@@ -45,6 +45,7 @@
       <xsl:if test="$record/datafield[@tag='970'][@ind1='2'][@ind2=' '][subfield[@code='d'][.='NAK']]">NAK</xsl:if>
       <xsl:if test="$record/datafield[@tag='591']/subfield[@code='a'][.='B']">B</xsl:if>
       <xsl:if test="$record/datafield[@tag='035'][subfield[@code='a'][matches(., '^\(DE-600\)[0-9]+')]]">ZDB</xsl:if>
+      <xsl:if test="substring($record/leader, 8, 1) eq 's' and not($record/datafield[@tag='035'][subfield[@code='a'][matches(., '^\(DE-600\)[0-9]+')]])">fR</xsl:if>
     </xsl:sequence>
 
   </xsl:function>

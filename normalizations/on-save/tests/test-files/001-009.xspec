@@ -63,12 +63,43 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="008">
+      <x:scenario label="008/19 auf bei fortlaufenden Ressourcen auf '|' setzen">
+        <x:scenario label="LDR/07=s">
+          <x:context>
+            <record>
+              <leader>#####nas#a22######c#4500</leader>
+                                      0....5....10...15...20...25...30...35...
+              <controlfield tag="008">######c????9999|||###p####|#######1####c</controlfield>
+            </record>
+          </x:context>
+          <x:expect label="008/19=|" test="record/controlfield[@tag='008']">
+              <controlfield tag="008">######c????9999|||#|#p####|#######1####c</controlfield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="Monografie">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
+            </record>
+          </x:context>
+          <x:expect label="keine Änderung" test="record/controlfield[@tag='008']">
+            <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
       <x:scenario label="008/39 fix auf 'c' setzen">
         <x:context>
-          <controlfield tag="008">      |????    |||           ||| |     u</controlfield>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="008">      |????    |||           ||| |     u</controlfield>
+          </record>
         </x:context>
         <x:expect label="008/39 auf 'c' gesetzt">
-        <controlfield tag="008">      |????    |||           ||| |     c</controlfield>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="008">      |????    |||           ||| |     c</controlfield>
+          </record>
         </x:expect>
       </x:scenario>
     </x:scenario>
