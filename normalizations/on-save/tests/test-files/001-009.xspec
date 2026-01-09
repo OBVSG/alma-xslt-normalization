@@ -119,6 +119,64 @@
           </x:expect>
         </x:scenario>
       </x:scenario>
+      <x:scenario label="008/35-37 - Sprachcodes">
+        <x:scenario label="kein Sprachcode in 008/35-37, 041 vorhanden">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
+              <datafield tag="041" ind1=" " ind2=" ">
+                <subfield code="a">ger</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="Sprachcode übertragen" test="record/controlfield[@tag='008']">
+            <controlfield tag="008">######|????####|||###########|||#|#ger#c</controlfield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="kein Sprachcode in 008/35-37, 041 $$a vorhanden, aber funky">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
+              <datafield tag="041" ind1=" " ind2=" ">
+                <subfield code="a">deutsch</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="keine Änderung" test="record/controlfield[@tag='008']">
+            <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="Sprachcode in 008/35-37, 041 $$a vorhanden">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <controlfield tag="008">######|????####|||###########|||#|#eng#c</controlfield>
+              <datafield tag="041" ind1=" " ind2=" ">
+                <subfield code="a">ger</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="keine Änderung" test="record/controlfield[@tag='008']">
+            <controlfield tag="008">######|????####|||###########|||#|#eng#c</controlfield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="Sprachcode in 008/35-37=mul, 041 $$a vorhanden">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <controlfield tag="008">######|????####|||###########|||#|#mul#c</controlfield>
+              <datafield tag="041" ind1=" " ind2=" ">
+                <subfield code="a">ger</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="Sprachcode aus 041 $$a übernommen" test="record/controlfield[@tag='008']">
+            <controlfield tag="008">######|????####|||###########|||#|#ger#c</controlfield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
       <x:scenario label="008/39 fix auf 'c' setzen">
         <x:context>
           <record>
