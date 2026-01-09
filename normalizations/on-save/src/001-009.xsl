@@ -30,10 +30,13 @@
   -->
   <xsl:template match="controlfield[@tag='008']">
     <xsl:param name="meta" tunnel="yes" />
+    <xsl:variable name="pos15_17"
+                  select="if (../datafield[@tag='044'][subfield[@code='c']]) then '|||' else substring(., 16, 3)" />
     <xsl:variable name="pos19"
                   select="if ($meta('flags') = ('fR', 'ZDB')) then '|' else substring(., 20, 1)" />
     <controlfield tag="008">{
       mrclib:replace-control-substring(., 39, 39, "c")
+      => mrclib:replace-control-substring(15, 17, $pos15_17)
       => mrclib:replace-control-substring(19, 19, $pos19)
     }</controlfield>
   </xsl:template>

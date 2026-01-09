@@ -63,6 +63,37 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="008">
+      <x:scenario label="008/15-17">
+        <x:scenario label="044$$c vorhanden">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+                                      0....5....10...15...20...25...30...35...
+              <controlfield tag="008">      |????    au            ||| |     c</controlfield>
+              <datafield tag="044" ind1=" " ind2=" ">
+                <subfield code="c">XA-AT</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="008/15-17 auf '|||' gesetzt"
+                    test="record/controlfield[@tag='008']">
+            <controlfield tag="008">      |????    |||           ||| |     c</controlfield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="kein 044$$c vorhanden">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+                                      0....5....10...15...20...25...30...35...
+              <controlfield tag="008">      |????    au            ||| |     c</controlfield>
+            </record>
+          </x:context>
+          <x:expect label="unverändert"
+                    test="record/controlfield[@tag='008']">
+            <controlfield tag="008">      |????    au            ||| |     c</controlfield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
       <x:scenario label="008/19 auf bei fortlaufenden Ressourcen auf '|' setzen">
         <x:scenario label="LDR/07=s">
           <x:context>
@@ -72,7 +103,7 @@
               <controlfield tag="008">######c????9999|||###p####|#######1####c</controlfield>
             </record>
           </x:context>
-          <x:expect label="008/19=|" test="record/controlfield[@tag='008']">
+          <x:expect label="" test="record/controlfield[@tag='008']">
               <controlfield tag="008">######c????9999|||#|#p####|#######1####c</controlfield>
           </x:expect>
         </x:scenario>
