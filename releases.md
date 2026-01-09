@@ -1,12 +1,12 @@
-# Drools2XSLT
+# Drools2XSLT - Releases
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Drools2XSLT](#drools2xslt)
+- [Drools2XSLT - Releases](#drools2xslt---releases)
   - [Allgemeines ](#allgemeines)
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
-  - [PSB 19.01.2026 (geplant)](#psb-19012026-geplant)
+  - [Standard-Sandbox 19.01.2026 (geplant)](#standard-sandbox-19012026-geplant)
   - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
     - [Schreibvorlage](#schreibvorlage)
     - [Aufsatz ableiten - print](#aufsatz-ableiten---print)
@@ -15,18 +15,23 @@
 
 <!-- markdown-toc end -->
 ## Allgemeines 
-Die Normalisierungen in Alma sollen im Laufe des Jahres 2026 sukzessive in der Sprache XSLT neu implementiert werden. XSLT ist wesentlich mächtiger als Drools und ermöglicht auch automatisierte Tests und [automatisiert erstellte Dokumentation](https://share.obvsg.at/xsldocsxslt-normalization/index.html).
+Die Normalisierungen in Alma sollen im Laufe des Jahres 2026 sukzessive in der Sprache XSLT neu implementiert werden. XSLT ist wesentlich mächtiger als Drools und ermöglicht auch automatisierte Tests und [automatisiert erstellte Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/index.html).
+
+Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auch Fehlerbehebungen etc. werden möglichst gleich in XSLT implementiert. Bei dringenden Fehlerbehebungen ist es möglich, dass diese den Release-Zyklus umgehen und direkt ins Produktionssystem eingespielt werden.
 
 ## Workflow und Zeitplan
-- Der tagesaktuelle Entwicklungsstand befindet sich in der [Standard-Sandbox](https://sandbox-eu.alma.exlibrisgroup.com/mng/login?institute=43ACC_NETWORK) 
-- Am vorletzten Montag des Monats gibt es ein Update in der [Premium-Sandbox](https://obv-at-obvsg-psb.alma.exlibrisgroup.com/mng/login). Das sind die Änderungen, die zwei Wochen später ins Produktionssystem übernommen werden sollen. Erster geplanter Termin: 19.01.2026
-- Am ersten Montag des Monats werden die Änderungen ins [Produktionssystem](https://obv-at-obvsg-psb.alma.exlibrisgroup.com/mng/login) übernommen.
+- Der tagesaktuelle Entwicklungsstand befindet sich in der [Premium-Sandbox](https://obv-at-obvsg-psb.alma.exlibrisgroup.com/mng/login)
+- Am vorletzten Montag des Monats gibt es ein Update in der [Standard-Sandbox](https://sandbox-eu.alma.exlibrisgroup.com/mng/login?institute=43ACC_NETWORK). Das sind die Änderungen, die zwei Wochen später ins Produktionssystem übernommen werden sollen. Erster geplanter Termin: 19.01.2026
+- Am ersten Montag des Monats werden die Änderungen ins [Produktionssystem](https://obv-at-obvsg-psb.alma.exlibrisgroup.com/mng/login) übernommen. Erster geplanter Termin: 02.02.2026
 
 # Releases
-## PSB 19.01.2026 (geplant)
-- `016` und `035` bei ZDB-Records synchronisieren. Issue #23
+
+## Standard-Sandbox 19.01.2026 (geplant)
+- `016` und `035` bei ZDB-Records synchronisieren. Issue #23; Commit 4c9b204a; Dokumentation [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil), [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bsubfield%5B@code='2'%5D%5B.='DE-600'%5D%5D%5Bsubfield%5B@code='a'%5D/text()%5D;nil) und [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code='a'%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil)
+- `024` entfernen, wenn nur Werte aus der Vorlage und sonst nichts vorhanden ist. Issue #24
 
 ## PROD initialer Stand 23.12.2025
+
 ### Schreibvorlage
 Vollständig implementiert: [Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_schreibvorlage/index.html)
 
