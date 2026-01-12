@@ -27,6 +27,26 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="024">
+      <x:scenario label="Bindestriche in ISMN">
+        <x:context>
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="a">979-0-2600-0043-8</subfield>
+          </datafield>
+          <datafield tag="024" ind1="8" ind2=" ">
+            <subfield code="a">979-0-2600-0043-8</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Bindestriche entfernt">
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="a">9790260000438</subfield>
+          </datafield>
+          <datafield tag="024" ind1="8" ind2=" ">
+            <subfield code="a">979-0-2600-0043-8</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="028">
       <x:scenario label="028 mit 'Bestellnummer: ' in SFa, 'Bestellnummer in SFq'">
         <x:context>

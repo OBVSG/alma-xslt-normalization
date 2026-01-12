@@ -48,6 +48,13 @@
   </xsl:template>
 
   <!--
+      Entferne Bindestriche aus der ISMN in `0242#`.
+  -->
+  <xsl:template match="datafield[@tag='024'][@ind1='2']/subfield[@code='a']">
+    <subfield code="a">{replace(., "-", "")}</subfield>
+  </xsl:template>
+
+  <!--
       Entferne "Bestellnummer" bzw. "Best.-Nr." aus `028$$a` und füge ein entsprechendes `$$bBestellnummer` hinzu,
       sofern noch nicht vorhanden.
       @_marcFields 028
