@@ -38,7 +38,12 @@ Geplante Änderungen. Links zur Dokumentation sind noch nicht öffentlich erreic
   - [X] `008/19` bei fortlaufenden Ressourcen auf `|` setzen.
   - [X] `008/39` (cataloging source) fix auf `c` für "cooperative cataloging" setzen.
 - [X] `016` und `035` bei ZDB-Records synchronisieren. Issue #23; Commit 4c9b204a; Dokumentation [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil), [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bsubfield%5B@code='2'%5D%5B.='DE-600'%5D%5D%5Bsubfield%5B@code='a'%5D/text()%5D;nil) und [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code='a'%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil)
-- [ ] `024` entfernen, wenn nur Werte aus der Vorlage und sonst nichts vorhanden ist. Issue #24
+- [X] `024` entfernen, wenn nur Werte aus der Vorlage und sonst nichts vorhanden ist. Issue #24; Dokumentation [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='024'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil)
+- [X] Bindestriche aus ISMN in `0242X$$a` entfernen. Commit 834c187; [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='024'%5D%5B@ind1='2'%5D/subfield%5B@code='a'%5D;nil)
+- [X] Diverse Normalisierungen in `035`. Issue #27
+  - [X] EKI erzeugen. Commit 2f85cc9
+  - [X] `035##$$a(AT-OBV)` als erstes sortieren. Commit 7be669f
+  - [X] `$$Z` in `$$a` ändern. Template-Text entfernen, der via Schreibhilfe in `$$Z` eingefügt, aber nicht verändert wurde. Commit 0c4bd73; Dokumentation [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D/subfield%5B@code='Z'%5D;nil)
 
 ### Datensatz ableiten
 - [X] Schreibvorlage E2P. Issue #18; Commit 2e13ee0; [Dokumentation](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_schreibvorlage_e2p/index.html)
