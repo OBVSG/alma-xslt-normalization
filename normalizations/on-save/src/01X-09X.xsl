@@ -48,7 +48,14 @@
   </xsl:template>
 
   <!--
+      Entferne `024` ohne sinnvollen Inhalt
+      @_marcFields 024
+  -->
+  <xsl:template match="datafield[@tag='024'][not(subfield[@code=('a', 'z')]/text())]" />
+
+  <!--
       Entferne Bindestriche aus der ISMN in `0242#`.
+      @_marcFields 024
   -->
   <xsl:template match="datafield[@tag='024'][@ind1='2']/subfield[@code='a']">
     <subfield code="a">{replace(., "-", "")}</subfield>

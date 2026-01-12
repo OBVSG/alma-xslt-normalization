@@ -28,6 +28,29 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="024">
+      <x:scenario label="024 entfernen, wenn es kein SFa oder SFz gibt">
+        <x:context>
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="a">9790260000438</subfield>
+          </datafield>
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="z">9990000000999</subfield>
+          </datafield>
+          <datafield tag="024" ind1="8" ind2=" ">
+            <subfield code="a"></subfield>
+            <subfield code="2">doi</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Felde entfernt">
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="a">9790260000438</subfield>
+          </datafield>
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="z">9990000000999</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
       <x:scenario label="Bindestriche in ISMN">
         <x:context>
           <datafield tag="024" ind1="2" ind2=" ">
