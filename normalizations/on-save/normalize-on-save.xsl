@@ -49,6 +49,7 @@
       <xsl:apply-templates>
         <xsl:with-param name="meta" select="$meta" tunnel="yes" />
       </xsl:apply-templates>
+      <xsl:call-template name="createEki" />
     </xsl:variable>
     <record>
       <xsl:apply-templates select="$transformedFields" mode="sort">

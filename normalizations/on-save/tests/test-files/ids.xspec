@@ -72,10 +72,18 @@
             </datafield>
           </x:expect>
         </x:scenario>
-        <x:scenario label="035 SFq mit 'ZDB-NEU-JJJJ-MM-TT'">
+        <x:scenario label="035 SFZ mit 'ZDB-NEU-JJJJ-MM-TT'">
           <x:context>
             <datafield tag="035" ind1=" " ind2=" ">
               <subfield code="Z">ZDB-NEU-JJJJ-MM-TT</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="gelöscht, keine 016 generiert" />
+        </x:scenario>
+        <x:scenario label="035 SFZ mit '(DE-600)'">
+          <x:context>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="Z">(DE-600)</subfield>
             </datafield>
           </x:context>
           <x:expect label="gelöscht, keine 016 generiert" />
@@ -165,6 +173,40 @@
             </datafield>
           </x:expect>
         </x:scenario>
+      </x:scenario>
+    </x:scenario>
+
+    <x:scenario label="EKI erzeugen">
+      <x:scenario label="keine EKI vorhanden">
+        <x:context>
+          <record>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="035">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:call template="createEki" />
+        <x:expect label="EKI ergänzt">
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="EKI vorhanden">
+        <x:context>
+          <record>
+            <controlfield tag="009">AC13107579</controlfield>
+            <datafield tag="035">
+              <subfield code="a">(AT-OBV)AC13107579</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-599)DNB1076133436</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:call template="createEki" />
+        <x:expect label="keine EKI generiert" />
       </x:scenario>
     </x:scenario>
 
