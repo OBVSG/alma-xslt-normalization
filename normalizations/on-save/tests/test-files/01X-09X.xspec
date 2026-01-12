@@ -140,7 +140,6 @@
       </x:expect>
     </x:scenario>
 
-
     <x:scenario label="041">
       <x:scenario label="041 scr und scc, verschiedene Subfelder">
         <x:context>
