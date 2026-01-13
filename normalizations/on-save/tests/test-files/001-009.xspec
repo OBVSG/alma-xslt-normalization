@@ -169,11 +169,54 @@
               <controlfield tag="008">######|????####|||###########|||#|#mul#c</controlfield>
               <datafield tag="041" ind1=" " ind2=" ">
                 <subfield code="a">ger</subfield>
+                <subfield code="a">qsh</subfield>
               </datafield>
             </record>
           </x:context>
           <x:expect label="Sprachcode aus 041 $$a übernommen" test="record/controlfield[@tag='008']">
             <controlfield tag="008">######|????####|||###########|||#|#ger#c</controlfield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="kein Sprachcode in 008/35-37, lokaler Sprachcode in 041">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
+              <datafield tag="041" ind1=" " ind2=" ">
+                <subfield code="a">qsh</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="kein Sprachcode übertragen" test="record/controlfield[@tag='008']">
+            <controlfield tag="008">######|????####|||###########|||#|#|||#c</controlfield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="Sprachcode in 008/35-37, lokaler Sprachcode in 041">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <controlfield tag="008">######|????####|||###########|||#|#ger#c</controlfield>
+              <datafield tag="041" ind1=" " ind2=" ">
+                <subfield code="a">qtz</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="008/35-37=|||" test="record/controlfield[@tag='008']">
+            <controlfield tag="008">######|????####|||###########|||#|#|||#c</controlfield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="kein Sprachcode in 008/35-37, 'que' (gültiger Code mit `q`) in 041">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <controlfield tag="008">######|????####|||###########|||#|#|||#c</controlfield>
+              <datafield tag="041" ind1=" " ind2=" ">
+                <subfield code="a">que</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="008/35-37=|||" test="record/controlfield[@tag='008']">
+            <controlfield tag="008">######|????####|||###########|||#|#que#c</controlfield>
           </x:expect>
         </x:scenario>
       </x:scenario>

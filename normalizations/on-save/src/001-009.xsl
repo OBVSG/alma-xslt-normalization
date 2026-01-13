@@ -23,22 +23,32 @@
       Bearbeite Feld `008`.
 
       Hier passiert folgendes:
-      - [ ] Wenn `008/35-37` keinen Sprachcode enthält, füge den aus `041##$$a` ein, falls vorhanden.
       - [X] setze `008/15-17` auf `|||`, wenn es einen Ländercode in `044##$$c` gibt.
+      - [X] Wenn `008/35-37` keinen Sprachcode enthält, füge den aus `041##$$a` ein, falls vorhanden.
+      - [X] Wenn der Sprachcode in `041` aus dem lokalen Bereich `qaa-qtz` ist, setze `008/35-37=|||`
       - [X] setze `008/39` (cataloging source) auf `c` für "cooperative cataloging"
       - [X] setze `008/19` auf `|`, wenn es sich um eine fortlaufende Ressource handelt
+
+      **Anm.:** Mit "Sprachcode aus 041" und ähnlichen Formulierungen ist immer der Inhalt des ersten Subfelds a des ersten
+      Feldes 041 gemeint.
+      @_marcFields 008
   -->
   <xsl:template match="controlfield[@tag='008']">
     <xsl:param name="meta" tunnel="yes" />
+    <xsl:variable name="firstLang041" select="../datafield[@tag='041'][1]/subfield[@code='a'][1]" />
     <xsl:variable name="pos15_17"
                   select="if (../datafield[@tag='044'][subfield[@code='c']]) then '|||' else substring(., 16, 3)" />
     <xsl:variable name="pos19"
                   select="if ($meta('flags') = ('fR', 'ZDB')) then '|' else substring(., 20, 1)" />
-    <xsl:variable name="pos35_37"
-                  select="if (substring(., 36, 3) = ('   ', '|||', '###', 'mul')
-                              and ../datafield[@tag='041'][1]/subfield[@code='a'][1][matches(., '[a-z]{3}')])
-                          then ../datafield[@tag='041'][1]/subfield[@code='a'][1]
-                          else substring(., 36, 3)" />
+    <xsl:variable name="pos35_37">
+      <xsl:choose>
+        <xsl:when test="$firstLang041 ge 'qaa' and $firstLang041 le 'qtz'">|||</xsl:when>
+        <xsl:when test="substring(., 36, 3) = ('   ', '|||', '###', 'mul') and matches($firstLang041, '^[a-z]{3}$')">{
+          $firstLang041
+        }</xsl:when>
+        <xsl:otherwise>{substring(., 36, 3)}</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     <controlfield tag="008">{
       mrclib:replace-control-substring(., 15, 17, $pos15_17)
       => mrclib:replace-control-substring(19, 19, $pos19)
