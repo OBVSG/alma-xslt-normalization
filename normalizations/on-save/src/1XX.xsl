@@ -31,12 +31,12 @@
   <xsl:template match="datafield[@tag='100']/subfield[@code='2'][.='orcid']" />
 
   <!--
-    Wenn es eine ORCID in `100XX$$9(orcid)` gibt, übertrage diese in URL-Form nach `$$1`.
+    Wenn es eine ORCID in `100XX$$9(orcid)` oder `$$0(orcid)` gibt, übertrage diese in URL-Form nach `$$1`.
 
     @intComment Tests in `ids.xspec`.
     @_marcFields 100
   -->
-  <xsl:template match="datafield[@tag='100']/subfield[@code='9'][starts-with(., '(orcid)')]">
+  <xsl:template match="datafield[@tag='100']/subfield[@code=('9', '0')][starts-with(., '(orcid)')]">
     <xsl:call-template name="handleOrcidSubfield" />
   </xsl:template>
 
