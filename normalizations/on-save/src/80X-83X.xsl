@@ -25,4 +25,13 @@
     </xsl:choose>
   </xsl:template>
 
+  <!--
+      Ändere `830#0$$a` auf `$$w`, wenn es eine AC-Nummer enthält und noch kein
+      `$$w` vorhanden ist. Ergänze das ISIL-Präfix `(AT-OBV)`, wenn notwendig.
+      @_marcFields 830
+  -->
+  <xsl:template match="datafield[@tag='830']/subfield[@code='a'][matches(., '(\(AT-OBV\))?AC')]">
+    <subfield code="w">{if (starts-with(., 'AC')) then "(AT-OBV)" else ""}{.}</subfield>
+  </xsl:template>
+
 </xsl:stylesheet>
