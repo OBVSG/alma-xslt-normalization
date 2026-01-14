@@ -136,4 +136,10 @@
     </xsl:if>
   </xsl:template>
 
+  <!--
+      Entferne `084` ohne Inhalt in `$$a`.
+      @_marcFields 084
+  -->
+  <xsl:template match="datafield[@tag='084'][not(subfield[@code='a']/text())]" />
+
 </xsl:stylesheet>

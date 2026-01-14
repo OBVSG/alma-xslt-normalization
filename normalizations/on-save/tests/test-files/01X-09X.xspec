@@ -200,8 +200,7 @@
           </datafield>
         </x:expect>
       </x:scenario>
-    </x:scenario>
-    <x:scenario label="041 scr und scc, beide in Subfeldern mit gleichem Code">
+      <x:scenario label="041 scr und scc, beide in Subfeldern mit gleichem Code">
         <x:context>
           <datafield tag="041" ind1=" " ind2=" ">
             <subfield code="a">scc</subfield>
@@ -221,5 +220,25 @@
           </datafield>
         </x:expect>
       </x:scenario>
+    </x:scenario>
+    <x:scenario label="084 nur mit Template-Inhalt entfernen">
+      <x:context>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="q">AT-OeVKNAH</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">2.2.1</subfield>
+          <subfield code="q">AT-OeVKNAH</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="entfernt, befüllte 084 bleibt">
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">2.2.1</subfield>
+          <subfield code="q">AT-OeVKNAH</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
   </x:scenario>
 </x:description>
