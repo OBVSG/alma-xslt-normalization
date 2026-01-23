@@ -54,5 +54,31 @@
         <x:expect label="flags calculated" select="()" />
       </x:scenario>
     </x:scenario>
+
+    <x:scenario label="ISIL">
+      <x:scenario label="'MOD'-Field in record">
+        <x:call function="utils:collect-metadata">
+          <x:param name="record">
+            <record>
+              <datafield tag="MOD">
+                <subfield code="I">AT-UBG</subfield>
+              </datafield>
+            </record>
+          </x:param>
+        </x:call>
+        <x:expect label="isil in map" test=".('isil') eq 'AT-UBG'" />
+      </x:scenario>
+      <x:scenario label="no 'MOD'-Field in record">
+        <x:call function="utils:collect-metadata">
+          <x:param name="record">
+            <record>
+              <!-- Nothing here -->
+            </record>
+          </x:param>
+        </x:call>
+        <x:expect label="isil in map" test="not(.('isil'))" />
+      </x:scenario>
+    </x:scenario>
+
   </x:scenario>
 </x:description>

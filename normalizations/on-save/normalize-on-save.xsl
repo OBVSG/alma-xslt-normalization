@@ -30,6 +30,7 @@
   <xsl:include href="src/70X-75X.xsl" />
   <xsl:include href="src/760-787.xsl" />
   <xsl:include href="src/80X-83X.xsl" />
+  <xsl:include href="src/alpha.xsl" />
   <xsl:include href="src/geografika.xsl" />
   <xsl:include href="src/ids.xsl" />
   <xsl:include href="src/sort.xsl" />

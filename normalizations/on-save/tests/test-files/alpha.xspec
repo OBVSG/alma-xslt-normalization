@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../../normalize-on-save.xsl">
+  <x:scenario label="alphanumerische tags">
+    <x:scenario label="ISIL in 'MOD'">
+      <x:context>
+        <datafield tag="MOD" ind1=" " ind2=" ">
+          <subfield code="I">AT-UBG</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="gelöscht" />
+    </x:scenario>
+  </x:scenario>
+</x:description>

@@ -14,15 +14,18 @@
   <!--
       Sammle Metadaten zum Datensatz.
 
-      Das wäre z. B. ob es sich um einen Aufsatz handelt, etc.
-
       Diese Metadaten werden in einer Map gesammelt, die dann als Tunnel-Parameter zur Verwendung
       durch beliebige Templates weitergereicht werden.
+
+      Die Einträge in der Map sind:
+      - `flags`: `article`, `NAK`, etc. Siehe die Funktion [caclulate-flags](#func;utils:calculate-flags)
+      - `isil`: der ISIL der bearbeitenden Institution
   -->
   <xsl:function name="utils:collect-metadata" as="map(*)">
     <xsl:param name="record" as="element(record)" />
     <xsl:map>
       <xsl:map-entry key="'flags'" select="utils:calculate-flags($record)" />
+      <xsl:map-entry key="'isil'" select="$record/datafield[@tag='MOD']/subfield[@code='I']/text()" />
     </xsl:map>
   </xsl:function>
 
