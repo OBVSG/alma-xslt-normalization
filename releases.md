@@ -6,14 +6,16 @@
   - [Allgemeines ](#allgemeines)
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
-  - [Standard-Sandbox 19.01.2026](#standard-sandbox-19012026)
+  - [Standard-Sandbox 16.02.2026 (geplant)](#standard-sandbox-16022026-geplant)
     - [Normalize on Save](#normalize-on-save)
+  - [Standard-Sandbox 19.01.2026](#standard-sandbox-19012026)
+    - [Normalize on Save](#normalize-on-save-1)
     - [Datensatz ableiten](#datensatz-ableiten)
   - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
     - [Schreibvorlage](#schreibvorlage)
     - [Aufsatz ableiten - print](#aufsatz-ableiten---print)
     - [Externe Ressourcen Library of Congress](#externe-ressourcen-library-of-congress)
-    - [Normalize on Save](#normalize-on-save-1)
+    - [Normalize on Save](#normalize-on-save-2)
 
 <!-- markdown-toc end -->
 ## Allgemeines 
@@ -27,6 +29,11 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 - Am ersten Montag des Monats werden die Änderungen ins [Produktionssystem](https://obv-at-obvsg-psb.alma.exlibrisgroup.com/mng/login) übernommen. Erster geplanter Termin: 02.02.2026
 
 # Releases
+
+## Standard-Sandbox 16.02.2026 (geplant)
+
+### Normalize on Save
+- [ ] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
 
 ## Standard-Sandbox 19.01.2026
 Vollständige Doku hier: https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html

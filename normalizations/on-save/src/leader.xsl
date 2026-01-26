@@ -20,7 +20,7 @@
     ## Position 19
     - `LDR/07!=c|d|m` => `LDR/19=#`
     - `LDR/19=a` => bleibt immer stehen
-    - `773XX$$w` aber kein `773XX$$i` vorhanden => `LDR/19=c`
+    - `773XX` mit `$$w` aber OHNE `$$i` vorhanden => `LDR/19=c`
     - `830` => `LDR/19=b`
     - `773XX$$i` => `LDR/19=#`
     - Sonst: `LDR/19` bleibt unverändert.
