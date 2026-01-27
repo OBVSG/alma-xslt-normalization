@@ -33,7 +33,10 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 ## Standard-Sandbox 16.02.2026 (geplant)
 
 ### Normalize on Save
-- [ ] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
+- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
+- ISIL der bearbeitenden Institution
+  - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233; 
+  - [X] `040` bearbeiten. 
 
 ## Standard-Sandbox 19.01.2026
 Vollständige Doku hier: https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html

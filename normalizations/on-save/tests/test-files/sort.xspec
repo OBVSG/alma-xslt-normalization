@@ -22,23 +22,20 @@
           </datafield>
         </record>
       </x:context>
-      <x:expect label="035 mit (AT-OBV) an erster Stelle">
-        <record>
-          <leader>02818npc a2200625 ca4500</leader>
-          <controlfield tag="009">AC12345678</controlfield>
-          <datafield tag="035" ind1=" " ind2=" ">
-            <subfield code="a">(AT-OBV)AC12345678</subfield>
-          </datafield>
-          <datafield tag="035" ind1=" " ind2=" ">
-            <subfield code="a">(DE-599)OBVAC12345678</subfield>
-          </datafield>
-          <datafield tag="035" ind1=" " ind2=" ">
-            <subfield code="a">(AT-ABPU)ABPU123456</subfield>
-          </datafield>
-          <datafield tag="035" ind1=" " ind2=" ">
-            <subfield code="a">AC12345678</subfield>
-          </datafield>
-        </record>
+      <x:expect label="035 mit (AT-OBV) an erster Stelle"
+        test="/record/datafield[@tag='035']">
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(AT-OBV)AC12345678</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(DE-599)OBVAC12345678</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(AT-ABPU)ABPU123456</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">AC12345678</subfield>
+        </datafield>
       </x:expect>
     </x:scenario>
   </x:scenario>

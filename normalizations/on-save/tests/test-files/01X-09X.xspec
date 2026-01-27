@@ -183,6 +183,110 @@
       </x:expect>
     </x:scenario>
 
+    <x:scenario label="040">
+      <x:scenario label="040 vorhanden (also matching template)">
+        <x:context>
+          <record>
+            <datafield tag="040" ind1=" " ind2=" ">
+              <subfield code="a">AT-UBG</subfield>
+              <subfield code="b">ger</subfield>
+              <subfield code="d">AT-UBL</subfield>
+              <subfield code="e">rakwb</subfield>
+            </datafield>
+            <datafield tag="040" ind1=" " ind2=" ">
+              <subfield code="b">ger</subfield>
+              <subfield code="d">AT-UBL</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 übernommen, SFd aktualisiert"
+          test="/record/datafield[@tag='040']">
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBW</subfield>
+            <subfield code="e">rakwb</subfield>
+          </datafield>
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBW</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBW</subfield>
+            <subfield code="e">rda</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="040 vorhanden (also matching template), aus OAI-Import">
+        <x:context>
+          <record>
+            <datafield tag="040" ind1=" " ind2=" ">
+              <subfield code="a">DE-600</subfield>
+              <subfield code="d">DE-101</subfield>
+              <subfield code="e">rakwb</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+            <datafield tag="SRC" ind1=" " ind2=" ">
+              <subfield code="S">oai</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 übernommen, SFd aktualisiert"
+          test="/record/datafield[@tag='040']">
+            <datafield tag="040" ind1=" " ind2=" ">
+              <subfield code="a">DE-600</subfield>
+              <subfield code="b">ger</subfield>
+              <subfield code="d">DE-101</subfield>
+              <subfield code="e">rakwb</subfield>
+            </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="keine 040 vorhanden, keine 336">
+        <x:context>
+          <record>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBG</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 erstellt, kein SFe"
+          test="/record/datafield[@tag='040']">
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBG</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="keine 040 vorhanden, 336 vorhanden">
+        <x:context>
+          <record>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 erstellt, SFerda"
+          test="/record/datafield[@tag='040']">
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBG</subfield>
+            <subfield code="e">rda</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+
     <x:scenario label="041">
       <x:scenario label="041 scr und scc, verschiedene Subfelder">
         <x:context>

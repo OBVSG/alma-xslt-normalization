@@ -51,6 +51,11 @@
         <xsl:with-param name="meta" select="$meta" tunnel="yes" />
       </xsl:apply-templates>
       <xsl:call-template name="createEki" />
+      <xsl:if test="not(datafield[@tag='040'])">
+        <xsl:call-template name="handle040">
+          <xsl:with-param name="meta" select="$meta" tunnel="yes" />
+        </xsl:call-template>
+      </xsl:if>
     </xsl:variable>
     <record>
       <xsl:apply-templates select="$transformedFields" mode="sort">

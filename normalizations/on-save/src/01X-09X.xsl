@@ -123,6 +123,43 @@
   </xsl:template>
 
   <!--
+      Bearbeite oder erstelle Feld `040`.
+
+      Der ISIL der bearbeitenden Institution wird im MARC-Feld `MOD` übergeben (das gelöscht wird, siehe [LINK]())
+      und über den `$meta`-Parameter im Key `'isil'` weitergereicht (siehe [LINK]()).
+
+      - Wenn nicht vorhanden oder leer, erstelle `$$a` mit dem ISIL der bearbeitenden Institution. (`KATA-036-add040a`)
+      - Wenn nicht vorhanden oder leer, erstelle `$$bger`. (`KATA-036-add040be`)
+      - Erstelle oder ersetze `$$d` mit dem ISIL der bearbeitenden Institution, bei OAI-Importen übernimm den Wert aus der Quelle. (`KATA-036-upd040d`)
+      - Wenn es kein `$$e` gibt und `336` vorhanden ist, erstelle ein `$$erda`. (`KATA-036-add040be`)
+
+      Dieses Template ist sowohl ein named template als auch ein matching template. Wenn es keine `040` im Datensatz gibt
+      wird es via `xsl:call-template` vom [record](#temp;record;nil) aus aufgerufen. Wenn eine `040` vorhanden ist, matcht
+      es. Das erklärt die etwas umständlichen variablen `$hass336` und `$df040in`.
+  -->
+  <xsl:template name="handle040" match="datafield[@tag='040']">
+    <xsl:param name="meta" tunnel="yes" />
+    <xsl:variable name="isil" select="if ($meta('isil')) then $meta('isil') else 'AT-OBV'" />
+    <xsl:variable name="has336" select="if (local-name() eq 'record')
+                                        then exists(datafield[@tag='336']/subfield[@code='b']/text())
+                                        else exists(../datafield[@tag='336']/subfield[@code='b']/text())" />
+    <xsl:variable name="df040in" select="if (local-name() eq 'record') then datafield[@tag='040'] else ." />
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">{if ($df040in/subfield[@code='a']/text()) then $df040in/subfield[@code='a'] else $isil}</subfield>
+      <subfield code="b">{if ($df040in/subfield[@code='b']/text()) then $df040in/subfield[@code='b'] else 'ger'}</subfield>
+      <subfield code="d">{if ($meta('source') eq 'oai') then $df040in/subfield[@code="d"] else $isil}</subfield>
+      <xsl:choose>
+        <xsl:when test="not($df040in/subfield[@code='e']/text()) and $has336">
+          <subfield code="e">rda</subfield>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:sequence select="$df040in/subfield[@code='e']" />
+        </xsl:otherwise>
+      </xsl:choose>
+    </datafield>
+  </xsl:template>
+
+  <!--
       Stelle `scc` und `scr` in `041` (beliebiges Subfeld) auf `qsh` um.
 
       Wenn beide Codes in Subfeldern mit gleichen Subfeldcodes vorkommen, übernimm nur einen.
