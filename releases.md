@@ -8,7 +8,7 @@
 - [Releases](#releases)
   - [Standard-Sandbox 16.02.2026 (geplant)](#standard-sandbox-16022026-geplant)
     - [Normalize on Save](#normalize-on-save)
-  - [Standard-Sandbox 19.01.2026](#standard-sandbox-19012026)
+  - [Produktion 19.01.2026](#produktion-19012026)
     - [Normalize on Save](#normalize-on-save-1)
     - [Datensatz ableiten](#datensatz-ableiten)
   - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
@@ -38,27 +38,28 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
   - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233; 
   - [X] `040` bearbeiten. 
 
-## Standard-Sandbox 19.01.2026
-Vollständige Doku hier: https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html
+## Produktion 19.01.2026
+Vollständige Doku hier: https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html
+
 ### Normalize on Save
-- [X] Feld `008`: [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;controlfield%5B@tag='008'%5D;nil)
+- [X] Feld `008`: [Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;controlfield%5B@tag='008'%5D;nil)
   - [X] Sprachcodes mit `041` angleichen. Issue #26; Commit e86c2a9
   - [X] `008/15-17` auf `|||` setzen, wenn es einen Ländercode in `044##$$c` gibt.
   - [X] `008/19` bei fortlaufenden Ressourcen auf `|` setzen.
   - [X] `008/39` (cataloging source) fix auf `c` für "cooperative cataloging" setzen.
-- [X] `016` und `035` bei ZDB-Records synchronisieren. Issue #23; Commit 4c9b204a; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil), [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bsubfield%5B@code='2'%5D%5B.='DE-600'%5D%5D%5Bsubfield%5B@code='a'%5D/text()%5D;nil) und [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code='a'%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil)
-- [X] `024` entfernen, wenn nur Werte aus der Vorlage und sonst nichts vorhanden ist. Issue #24; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='024'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil)
-- [X] Bindestriche aus ISMN in `0242X$$a` entfernen. Commit 834c187; [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='024'%5D%5B@ind1='2'%5D/subfield%5B@code='a'%5D;nil)
+- [X] `016` und `035` bei ZDB-Records synchronisieren. Issue #23; Commit 4c9b204a; Dokumentation [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil), [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='016'%5D%5Bsubfield%5B@code='2'%5D%5B.='DE-600'%5D%5D%5Bsubfield%5B@code='a'%5D/text()%5D;nil) und [hier](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code='a'%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil)
+- [X] `024` entfernen, wenn nur Werte aus der Vorlage und sonst nichts vorhanden ist. Issue #24; Dokumentation [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='024'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil)
+- [X] Bindestriche aus ISMN in `0242X$$a` entfernen. Commit 834c187; [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='024'%5D%5B@ind1='2'%5D/subfield%5B@code='a'%5D;nil)
 - [X] Diverse Normalisierungen in `035`. Issue #27
-  - [X] EKI erzeugen. Commit 2f85cc9; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;createEki)
+  - [X] EKI erzeugen. Commit 2f85cc9; Dokumentation [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;createEki)
   - [X] `035##$$a(AT-OBV)` als erstes sortieren. Commit 7be669f
-  - [X] `$$Z` in `$$a` ändern. Template-Text entfernen, der via Schreibhilfe in `$$Z` eingefügt, aber nicht verändert wurde. Commit 0c4bd73; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D/subfield%5B@code='Z'%5D;nil)
-- [X] `084` ohne Inhalt in `$$a` entfernen. Commit e2ab8c2; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='084'%5D%5Bnot(subfield%5B@code='a'%5D/text())%5D;nil)
-- [X] `830 $$a` auf `$$w`, wenn es eine AC-Nummer enthält. Issue #31; Commit 26679de; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='830'%5D/subfield%5B@code='a'%5D%5Bmatches(.,%20'(%5C(AT-OBV%5C))?AC')%5D;nil)
-- [X] `830` ohne `$$w` entfernen. Issue #30; Commit be5bc05; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='830'%5D%5Bnot(subfield%5B@code='w'%5D)%20and%20not(subfield%5B@code='a'%5D%5Bmatches(.,%20'(%5C(AT-OBV%5C))?AC')%5D)%5D;nil)
+  - [X] `$$Z` in `$$a` ändern. Template-Text entfernen, der via Schreibhilfe in `$$Z` eingefügt, aber nicht verändert wurde. Commit 0c4bd73; Dokumentation [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D/subfield%5B@code='Z'%5D;nil)
+- [X] `084` ohne Inhalt in `$$a` entfernen. Commit e2ab8c2; Dokumentation [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='084'%5D%5Bnot(subfield%5B@code='a'%5D/text())%5D;nil)
+- [X] `830 $$a` auf `$$w`, wenn es eine AC-Nummer enthält. Issue #31; Commit 26679de; Dokumentation [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='830'%5D/subfield%5B@code='a'%5D%5Bmatches(.,%20'(%5C(AT-OBV%5C))?AC')%5D;nil)
+- [X] `830` ohne `$$w` entfernen. Issue #30; Commit be5bc05; Dokumentation [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='830'%5D%5Bnot(subfield%5B@code='w'%5D)%20and%20not(subfield%5B@code='a'%5D%5Bmatches(.,%20'(%5C(AT-OBV%5C))?AC')%5D)%5D;nil)
 
 ### Datensatz ableiten
-- [X] Schreibvorlage E2P. Issue #18; Commit 2e13ee0; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_schreibvorlage_e2p/index.html)
+- [X] Schreibvorlage E2P. Issue #18; Commit 2e13ee0; [Dokumentation](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_schreibvorlage_e2p/index.html)
 
 ## PROD initialer Stand 23.12.2025
 
