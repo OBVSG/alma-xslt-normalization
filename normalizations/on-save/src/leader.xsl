@@ -18,7 +18,7 @@
     - `LDR/19` wird je nach Sachverhalt gesetzt (s. U.)
 
     ## Position 19
-    - `LDR/07!=c|d|m oder c oder d` => `LDR/19=#`
+    - `LDR/07!=c|d|m` => `LDR/19=#`
     - `LDR/19=a` => bleibt immer stehen
     - `773XX$$w` aber kein `773XX$$i` vorhanden => `LDR/19=c`
     - `830` => `LDR/19=b`

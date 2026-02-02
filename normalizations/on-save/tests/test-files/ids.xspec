@@ -3,104 +3,344 @@
                xmlns:marc="http://www.loc.gov/MARC21/slim"
                stylesheet="../../normalize-on-save.xsl">
 
-  <x:scenario>
-    <x:scenario label="orcid in SF9">
-      <x:context>
-        <datafield tag="100" ind1="1" ind2=" ">
-          <subfield code="a">Wurst, Hans</subfield>
-          <subfield code="9">(orcid)1234-1234-1234-1234</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="nach SF1, als URL">
-        <datafield tag="100" ind1="1" ind2=" ">
-          <subfield code="a">Wurst, Hans</subfield>
-          <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="orcid in SF1 vorhanden">
-      <x:context>
-        <datafield tag="100" ind1="1" ind2=" ">
-          <subfield code="a">Wurst, Hans</subfield>
-          <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="keine Änderung">
-        <datafield tag="100" ind1="1" ind2=" ">
-          <subfield code="a">Wurst, Hans</subfield>
-          <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="orcid in SF1 und SF9">
-      <x:context>
-        <datafield tag="700" ind1="1" ind2=" ">
-          <subfield code="a">Sakti, Sakriani</subfield>
-          <subfield code="1">https://orcid.org/0000-0001-5509-8963</subfield>
-          <subfield code="4">edt</subfield>
-          <subfield code="9">(orcid)0000-0001-5509-8963</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="nur SF1 bleibt">
-        <datafield tag="700" ind1="1" ind2=" ">
-          <subfield code="a">Sakti, Sakriani</subfield>
-          <subfield code="1">https://orcid.org/0000-0001-5509-8963</subfield>
-          <subfield code="4">edt</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="orcid in SF0, SF2orcid">
-      <x:context>
-        <datafield tag="700" ind1="1" ind2=" ">
-          <subfield code="a">Cagáňová, Dagmar</subfield>
-          <subfield code="0">0000-0002-6834-6126</subfield>
-          <subfield code="2">orcid</subfield>
-          <subfield code="4">edt</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="orcid in richtiger Form in SF1, SF2 entfernt">
-        <datafield tag="700" ind1="1" ind2=" ">
-          <subfield code="a">Cagáňová, Dagmar</subfield>
-          <subfield code="1">https://orcid.org/0000-0002-6834-6126</subfield>
-          <subfield code="4">edt</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="orcid und GND-ID in SF0">
-      <x:context>
-        <datafield tag="700" ind1="1" ind2=" ">
-          <subfield code="a">Maier, Waltraud</subfield>
-          <subfield code="0">(DE-588)123456-X</subfield>
-          <subfield code="0">1234-1234-1234-1234</subfield>
-          <subfield code="2">orcid</subfield>
-          <subfield code="4">edt</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="">
-        <datafield tag="700" ind1="1" ind2=" ">
-          <subfield code="a">Maier, Waltraud</subfield>
-          <subfield code="0">(DE-588)123456-X</subfield>
-          <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
-          <subfield code="4">edt</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="keine ORCID">
-      <x:context>
-        <datafield tag="100" ind1="1" ind2=" ">
-          <subfield code="a">Hödlmoser, Alois</subfield>
-          <subfield code="0">(DE-588)123456-7</subfield>
-          <subfield code="4">aut</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="">
-        <datafield tag="100" ind1="1" ind2=" ">
-          <subfield code="a">Hödlmoser, Alois</subfield>
-          <subfield code="0">(DE-588)123456-7</subfield>
-          <subfield code="4">aut</subfield>
-        </datafield>
-      </x:expect>
+  <x:scenario label="ids">
+    <x:scenario label="ZDB-ID-Dinge">
+      <x:scenario label="016 mit nur Vorlagewert">
+        <x:context>
+          <datafield tag="016" ind1=" " ind2=" ">
+            <subfield code="a"></subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+          <datafield tag="016" ind1=" " ind2=" ">
+            <subfield code="z">12345-6</subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="016 ohne sinnvollen Wert gelöscht">
+          <datafield tag="016" ind1=" " ind2=" ">
+            <subfield code="z">12345-6</subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="016 aus 035 generieren">
+        <x:scenario label="035 SFa mit DE-600 und ZDB-ID keine 016">
+          <x:context>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="016 erstellt">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">123-X</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="035 SFZ mit DE-600 und ZDB-ID keine 016">
+          <x:context>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="Z">(DE-600)123-X</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="SFZ wird zu SFa, 016 erstellt">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">123-X</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="035 SFZ mit 'ZDB-NEU-...' und ZDB-ID keine 016">
+          <x:context>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="Z">ZDB-NEU-2026-01-12</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="SFZ wird zu SFa mit Präfix, 016 erstellt">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)ZDB-NEU-2026-01-12</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">ZDB-NEU-2026-01-12</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="035 SFZ mit 'ZDB-NEU-JJJJ-MM-TT'">
+          <x:context>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="Z">ZDB-NEU-JJJJ-MM-TT</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="gelöscht, keine 016 generiert" />
+        </x:scenario>
+        <x:scenario label="035 SFZ mit '(DE-600)'">
+          <x:context>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="Z">(DE-600)</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="gelöscht, keine 016 generiert" />
+        </x:scenario>
+        <x:scenario label="016 nicht SF2 DE-600">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">Meine unbekannte ID</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345678</subfield>
+              <subfield code="2">fake-voc</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="keine Änderung">
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">Meine unbekannte ID</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345678</subfield>
+              <subfield code="2">fake-voc</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="035 mit DE-600, 016 vorhanden">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">000-0</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="016 geändert">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">123-X</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+      <x:scenario label="035 aus 016 generieren">
+        <x:scenario label="035 mit DE-600 vorhanden">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)12346</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="016 an 035 angepasst">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)12346</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12346</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="keine 035 mit DE-600 vorhanden">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="035 aus 016 erstellt">
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)12345</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
     </x:scenario>
 
+    <x:scenario label="EKI erzeugen">
+      <x:scenario label="keine EKI vorhanden">
+        <x:context>
+          <record>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="035">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:call template="createEki" />
+        <x:expect label="EKI ergänzt">
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="EKI vorhanden">
+        <x:context>
+          <record>
+            <controlfield tag="009">AC13107579</controlfield>
+            <datafield tag="035">
+              <subfield code="a">(AT-OBV)AC13107579</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-599)DNB1076133436</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:call template="createEki" />
+        <x:expect label="keine EKI generiert" />
+      </x:scenario>
+    </x:scenario>
+
+    <x:scenario label="ORCIDs">
+      <x:scenario label="orcid in SF9">
+        <x:context>
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Wurst, Hans</subfield>
+            <subfield code="9">(orcid)1234-1234-1234-1234</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="nach SF1, als URL">
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Wurst, Hans</subfield>
+            <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="orcid in SF0">
+        <x:context>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Wurst, Hans</subfield>
+            <subfield code="0">(orcid)1234-1234-1234-1234</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="nach SF1, als URL">
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Wurst, Hans</subfield>
+            <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="orcid in SF0, weitere Subfelder mit ORCIDs">
+        <x:context>
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Wetterich, Christof</subfield>
+            <subfield code="1">https://orcid.org/0000-0002-2563-9826</subfield>
+            <subfield code="0">(orcid)0000-0002-2563-9826</subfield>
+            <subfield code="0">(DE-588)1234567-8</subfield>
+            <subfield code="4">aut</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="">
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Wetterich, Christof</subfield>
+            <subfield code="1">https://orcid.org/0000-0002-2563-9826</subfield>
+            <subfield code="0">(DE-588)1234567-8</subfield>
+            <subfield code="4">aut</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="orcid in SF1 vorhanden">
+        <x:context>
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Wurst, Hans</subfield>
+            <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Wurst, Hans</subfield>
+            <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="orcid in SF1 und SF9">
+        <x:context>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Sakti, Sakriani</subfield>
+            <subfield code="1">https://orcid.org/0000-0001-5509-8963</subfield>
+            <subfield code="4">edt</subfield>
+            <subfield code="9">(orcid)0000-0001-5509-8963</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="nur SF1 bleibt">
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Sakti, Sakriani</subfield>
+            <subfield code="1">https://orcid.org/0000-0001-5509-8963</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="orcid in SF0, SF2orcid">
+        <x:context>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Cagáňová, Dagmar</subfield>
+            <subfield code="0">0000-0002-6834-6126</subfield>
+            <subfield code="2">orcid</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="orcid in richtiger Form in SF1, SF2 entfernt">
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Cagáňová, Dagmar</subfield>
+            <subfield code="1">https://orcid.org/0000-0002-6834-6126</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="orcid und GND-ID in SF0">
+        <x:context>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Maier, Waltraud</subfield>
+            <subfield code="0">(DE-588)123456-X</subfield>
+            <subfield code="0">1234-1234-1234-1234</subfield>
+            <subfield code="2">orcid</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="">
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Maier, Waltraud</subfield>
+            <subfield code="0">(DE-588)123456-X</subfield>
+            <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="keine ORCID">
+        <x:context>
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Hödlmoser, Alois</subfield>
+            <subfield code="0">(DE-588)123456-7</subfield>
+            <subfield code="4">aut</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="">
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Hödlmoser, Alois</subfield>
+            <subfield code="0">(DE-588)123456-7</subfield>
+            <subfield code="4">aut</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>
