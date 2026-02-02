@@ -49,13 +49,15 @@
       <xsl:apply-templates>
         <xsl:with-param name="meta" select="$meta" tunnel="yes" />
       </xsl:apply-templates>
+      <xsl:call-template name="createEki" />
     </xsl:variable>
     <record>
       <xsl:apply-templates select="$transformedFields" mode="sort">
         <xsl:sort select="@tag" />
+        <!-- Sortiere `035##$$a(AT-OBV)...` zuerst, die restlichen Felder `035` in Eingangsreihenfolge -->
+        <xsl:sort select="if (current()[@tag='035'][subfield[@code='a'][starts-with(., '(AT-OBV)')]]) then 0 else 1" />
       </xsl:apply-templates>
     </record>
   </xsl:template>
-
 
 </xsl:stylesheet>

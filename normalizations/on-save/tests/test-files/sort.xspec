@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="sorting">
+    <x:scenario label="035 mit (AT-OBV) als erstes sortieren">
+      <x:context>
+        <record>
+          <leader>02818npc a2200625 ca4500</leader>
+          <controlfield tag="009">AC12345678</controlfield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-ABPU)ABPU123456</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">AC12345678</subfield>
+          </datafield>
+        </record>
+      </x:context>
+      <x:expect label="035 mit (AT-OBV) an erster Stelle">
+        <record>
+          <leader>02818npc a2200625 ca4500</leader>
+          <controlfield tag="009">AC12345678</controlfield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-ABPU)ABPU123456</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">AC12345678</subfield>
+          </datafield>
+        </record>
+      </x:expect>
+    </x:scenario>
+  </x:scenario>
+
+</x:description>

@@ -34,5 +34,44 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="830 $$a mit AC-Nummer nach $$w">
+      <x:context>
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="a">AC12345678</subfield>
+          <subfield code="v">667</subfield>
+        </datafield>
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="a">(AT-OBV)AC12345678</subfield>
+          <subfield code="v">668</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="Nach $$w verschoben; ISIL ergänzt, fall notwendig">
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w">(AT-OBV)AC12345678</subfield>
+          <subfield code="v">667</subfield>
+        </datafield>
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w">(AT-OBV)AC12345678</subfield>
+          <subfield code="v">668</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="830 ohne $$w entfernen">
+      <x:context>
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="v">667</subfield>
+        </datafield>
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w">(AT-OBV)AC12345678</subfield>
+          <subfield code="v">668</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="830 ohne $$w entfernt">
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w">(AT-OBV)AC12345678</subfield>
+          <subfield code="v">668</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
   </x:scenario>
 </x:description>
