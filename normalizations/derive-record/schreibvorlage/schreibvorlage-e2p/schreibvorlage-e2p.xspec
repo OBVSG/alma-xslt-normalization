@@ -261,6 +261,11 @@
           <subfield code="n">Online-Ausgabe</subfield>
           <subfield code="z">9783847005186</subfield>
         </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Online-Ausgabe</subfield>
+          <subfield code="z"></subfield>
+        </datafield>
         <datafield ind1="1" ind2=" " tag="970">
           <subfield code="c">54</subfield>
         </datafield>

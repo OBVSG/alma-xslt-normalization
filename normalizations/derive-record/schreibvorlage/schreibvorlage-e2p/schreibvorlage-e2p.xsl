@@ -54,7 +54,13 @@
       <datafield tag="338" ind1=" " ind2=" ">
         <subfield code="b">nc</subfield>
       </datafield>
-      <xsl:if test="not(datafield[@tag='970'][@ind1='1'][@ind2=' '][subfield[@code='c']/text()])">
+      <datafield tag="776" ind1="0" ind2="8">
+        <subfield code="i">Erscheint auch als</subfield>
+        <subfield code="n">Online-Ausgabe</subfield>
+        <subfield code="z"></subfield>
+      </datafield>
+      <xsl:if
+        test="not(datafield[@tag='970'][@ind1='1'][@ind2=' '][subfield[@code='c']/text()])">
         <datafield tag="970" ind1="1" ind2=" ">
           <subfield code="c"></subfield>
         </datafield>
