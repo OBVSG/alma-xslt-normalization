@@ -45,7 +45,7 @@
       resultierenden Datensatz geschrieben werden können.
   -->
   <xsl:template match="record">
-  <xsl:variable name="meta" select="utils:collect-metadata(.)" />
+    <xsl:variable name="meta" select="utils:collect-metadata(.)" />
     <xsl:variable name="transformedFields" as="item()*">
       <xsl:apply-templates>
         <xsl:with-param name="meta" select="$meta" tunnel="yes" />
