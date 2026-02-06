@@ -179,4 +179,28 @@
   -->
   <xsl:template match="datafield[@tag='084'][not(subfield[@code='a']/text())]" />
 
+  <!--
+      Führe mehrere Felder `090` zusammen und dedupliziere Subfelder mit gleichem Inhalt.
+
+      Dieses Template matcht die erste `090` und holt sich die Daten aus weiteren `090`ern, so vorhanden. Weitere Felder `090` werden ignoriert, siehe [entsprechendes Template](#temp;datafield%5B@tag='090'%5D%5Bposition()%20ne%201%5D;nil)
+
+      Dieses Template betrifft den OAI-Import  und sollte vielleicht irgendwann einmal dorthin.
+      @references #temp;datafield[@tag='090'][position() ne 1];nil
+  -->
+  <xsl:template match="datafield[@tag='090'][1]">
+    <xsl:call-template name="utils:dedupSubfields">
+      <xsl:with-param name="datafieldParam" as="element(datafield)">
+        <datafield tag="090" ind1=" " ind2=" ">
+          <xsl:sequence select="subfield | following-sibling::datafield[@tag='090']/subfield" />
+        </datafield>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:template>
+  <!--
+      Ignoriere jedes Feld `090` nach dem ersten. Diese Felder werden vom Template für die erste `090` abgearbeitet.
+
+      @references temp;datafield[@tag='090'][1];nil
+  -->
+  <xsl:template match="datafield[@tag='090'][position() ne 1]" />
+
 </xsl:stylesheet>

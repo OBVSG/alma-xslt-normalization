@@ -343,6 +343,33 @@
         </datafield>
       </x:expect>
     </x:scenario>
+    <x:scenario label="090 (für OAI-Import)">
+      <x:scenario label="mehrere 090 mit teilweise gleichen Inhalten">
+        <x:context>
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">SFa-1</subfield>
+            <subfield code="a">SFa-2</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">SFa-2</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="d">SFd</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="in eine 090 zusammengeführt, Inhalte dedupliziert">
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">SFa-1</subfield>
+            <subfield code="a">SFa-2</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="d">SFd</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+    </x:scenario>
 
   </x:scenario>
 </x:description>
