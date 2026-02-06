@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="personInd1">
+    <x:scenario label="'Familie', 'Clan', 'Dynastie' oder 'Dynasty' in SFc">
+      <x:context select="datafield/@ind1">
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Maier</subfield>
+          <subfield code="c">Familie : 1701 -</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Maier</subfield>
+          <subfield code="c">Clan, Schuster</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Maier</subfield>
+          <subfield code="c">Dynastie</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Maier</subfield>
+          <subfield code="c">Dynasty</subfield>
+        </datafield>
+      </x:context>
+      <x:call template="personInd1" />
+      <x:expect label="ind1 = '3'" select="//@ind1">
+        <dummy ind1="3" />
+        <dummy ind1="3" />
+        <dummy ind1="3" />
+        <dummy ind1="3" />
+      </x:expect>
+      <!-- <x:expect label="ind1 auf 3 gesetzt" -->
+      <!--           select="('3', '3', '3', '3', '1')" /> -->
+    </x:scenario>
+    <x:scenario label="Beistrich in SFa">
+      <x:context select="datafield/@ind1">
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Kirk, James T.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="3" ind2=" ">
+          <subfield code="a">Picard, Jean-Luc</subfield>
+        </datafield>
+      </x:context>
+      <x:call template="personInd1" />
+      <x:expect label="ind1 = '1'" select="//@ind1">
+        <dummy ind1="1" />
+        <dummy ind1="1" />
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="Persönliche Namen / Vornamen">
+      <x:context select="datafield/@tag">
+        <datafield tag="700" ind1=" " ind2=" ">
+          <subfield code="a">Spock</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Seven of Nine</subfield>
+        </datafield>
+        <datafield tag="700" ind1="0" ind2=" ">
+          <subfield code="a">Q</subfield>
+          <subfield code="c">Entität, allmächtige</subfield>
+        </datafield>
+      </x:context>
+      <x:call template="personInd1" />
+      <x:expect label="ind1 = '0'" select="//@ind1">
+        <dummy ind1="0" />
+        <dummy ind1="0" />
+        <dummy ind1="0" />
+      </x:expect>
+    </x:scenario>
+
+
+  </x:scenario>
+
+</x:description>

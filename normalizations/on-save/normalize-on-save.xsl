@@ -33,6 +33,7 @@
   <xsl:include href="src/alpha.xsl" />
   <xsl:include href="src/geografika.xsl" />
   <xsl:include href="src/ids.xsl" />
+  <xsl:include href="src/perFamKor.xsl" />
   <xsl:include href="src/sort.xsl" />
   <xsl:include href="../utils/utils.xsl" />
   <xsl:include href="../../mrclib-xslt/xslt/mrclib.xsl" />

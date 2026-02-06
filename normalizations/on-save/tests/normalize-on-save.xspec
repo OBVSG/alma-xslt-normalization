@@ -10,6 +10,7 @@
   <x:import href="test-files/alpha.xspec" />
   <x:import href="test-files/geografika.xspec" />
   <x:import href="test-files/ids.xspec" />
+  <x:import href="test-files/perFamKor.xspec" />
   <x:import href="test-files/sort.xspec" />
 
 </x:description>
