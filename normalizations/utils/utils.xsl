@@ -25,8 +25,12 @@
     <xsl:param name="record" as="element(record)" />
     <xsl:map>
       <xsl:map-entry key="'flags'" select="utils:calculate-flags($record)" />
-      <xsl:map-entry key="'isil'" select="$record/datafield[@tag='MOD']/subfield[@code='I']/text()" />
-      <xsl:map-entry key="'source'" select="$record/datafield[@tag='SRC']/subfield[@code='S']/text()" />
+      <xsl:map-entry
+        key="'isil'"
+        select="$record/datafield[@tag='MOD']/subfield[@code='I']/text()" />
+      <xsl:map-entry
+        key="'source'"
+        select="$record/datafield[@tag='SRC']/subfield[@code='S']/text()" />
     </xsl:map>
   </xsl:function>
 
@@ -54,6 +58,65 @@
 
   </xsl:function>
 
+  <!--
+      Dedupliziere Subfelder mit gleichem Code und gleichem Wert.
 
+      D. h. aus
+
+      ```xml
+      <datafield tag="090" ind1=" " ind2=" ">
+        <subfield code="a">1</subfield>
+        <subfield code="a">1</subfield>
+        <subfield code="a">2</subfield>
+        <subfield code="b">1</subfield>
+        <subfield code="c">2</subfield>
+      </datafield>
+      ```
+
+      wird
+
+      ```xml
+      <datafield tag="090" ind1=" " ind2=" ">
+        <subfield code="a">1</subfield>
+        <subfield code="a">2</subfield>
+        <subfield code="b">1</subfield>
+        <subfield code="c">2</subfield>
+      </datafield>
+      ```
+
+      Das Template kann ohne Parameter im Kontext eines `datafield` aufgerufen werden. Wenn der Kontext kein Datafield ist, kann das zu deduplizierende Datafield als Parameter `datafieldParam` übergeben werden.
+
+      ## Definierte Fehler
+      Wenn weder der Parameter übergeben, noch das Template im Konext eines `datafield` aufgerufen wurde, wird eine Warnung ausgegeben und nichts in die Ausgabe geschrieben. Die Verarbeitung läuft aber weiter.
+
+      @param datafieldParam Das `datafield`, dessen Subfelder dedupliziert werden sollen.
+      @context datafield
+  -->
+  <xsl:template name="utils:dedupSubfields">
+    <xsl:param name="datafieldParam" />
+    <xsl:variable name="datafield"
+                  select="if ($datafieldParam) then $datafieldParam else
+                            if (local-name() = 'datafield') then . else ()" />
+
+    <xsl:choose>
+      <xsl:when test="$datafield">
+        <datafield tag="{$datafield/@tag}" ind1="{$datafield/@ind1}"
+          ind2="{$datafield/@ind2}">
+          <xsl:for-each select="$datafield/subfield">
+            <xsl:variable name="code" select="@code" />
+          <xsl:variable
+              name="value" select="text()" />
+          <xsl:if
+              test="not(preceding-sibling::subfield[@code=$code][.=$value])">
+              <xsl:sequence select="." />
+            </xsl:if>
+          </xsl:for-each>
+        </datafield>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message terminate="no">WARNING: utils:dedupSubfields called in inadequate context</xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>
