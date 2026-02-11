@@ -50,9 +50,17 @@
     @_marcFields 100 110 111 700 710 711
   -->
   <xsl:template name="addDefaultRelator">
+    <xsl:param name="meta" tunnel="yes" />
+    <xsl:variable name="ldr06" select="../leader/substring(., 7, 1)" />
     <xsl:choose>
       <xsl:when test="starts-with(@tag, '1') and not(subfield[@code='4']/text())">
-        <subfield code="4">aut</subfield>
+        <subfield code="4">
+          <xsl:choose>
+            <xsl:when test="$meta('ldr06') = ('a', 't')">aut</xsl:when>
+            <xsl:when test="$meta('ldr06') = ('c', 'd')">cmp</xsl:when>
+            <xsl:otherwise>cre</xsl:otherwise>
+          </xsl:choose>
+        </subfield>
       </xsl:when>
       <xsl:when test="starts-with(@tag, '7') and not(subfield[@code='t']/text()) and not(subfield[@code='4']/text())">
         <subfield code="4">ctb</subfield>

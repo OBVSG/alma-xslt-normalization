@@ -88,29 +88,49 @@
       <x:call template="addDefaultRelator" />
       <x:expect label="kein Output" />
     </x:scenario>
-    <x:scenario label="Feld 100, SF4 vorhanden aber leer">
+    <x:scenario label="Feld 100, SF4 vorhanden aber leer, LDR/06=a">
       <x:context>
         <datafield tag="100" ind1="1" ind2=" ">
           <subfield code="a">Muster, Max</subfield>
           <subfield code="4"></subfield>
         </datafield>
       </x:context>
-      <x:call template="addDefaultRelator" />
+      <x:call template="addDefaultRelator">
+        <x:param name="meta" tunnel="yes" select="map{'ldr06': 'a'}" />
+      </x:call>
       <x:expect label="SF4 aut">
         <subfield code="4">aut</subfield>
       </x:expect>
     </x:scenario>
-    <x:scenario label="Feld 110, kein SF4">
+    <x:scenario label="Feld 110, kein SF4, LDR/06=c">
       <x:context>
         <datafield tag="110" ind1="2" ind2=" ">
-          <subfield code="a">ACMA Corp.</subfield>
+          <subfield code="a">ACME Corp.</subfield>
         </datafield>
       </x:context>
-      <x:call template="addDefaultRelator" />
-      <x:expect label="SF4 aut">
-        <subfield code="4">aut</subfield>
+      <x:call template="addDefaultRelator">
+        <x:param name="meta" tunnel="yes" select="map{'ldr06': 'c'}" />
+      </x:call>
+      <x:expect label="SF4 cmp">
+        <subfield code="4">cmp</subfield>
       </x:expect>
     </x:scenario>
+    <x:scenario label="Feld 111, kein SF4, LDR/06=r">
+      <x:context>
+        <datafield tag="111" ind1="2" ind2=" ">
+          <subfield code="a">Ägidi-Kirtag</subfield>
+          <subfield code="b">St. Bartholomä</subfield>
+          <subfield code="d">2000</subfield>
+        </datafield>
+      </x:context>
+      <x:call template="addDefaultRelator">
+        <x:param name="meta" tunnel="yes" select="map{'ldr06': 'r'}" />
+      </x:call>
+      <x:expect label="SF4cre">
+        <subfield code="4">cre</subfield>
+      </x:expect>
+    </x:scenario>
+
     <x:scenario label="700 mit SFt">
       <x:context>
         <datafield tag="700" ind1="1" ind2="2">
