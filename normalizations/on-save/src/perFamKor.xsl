@@ -37,5 +37,27 @@
     </xsl:attribute>
   </xsl:template>
 
+  <!--
+    Setze Standard-Beziehungskennzeichen in `100`, `110`, `111` bzw. `700`, `710`, `711`  `$$4`, wenn nicht vorhanden.
+
+    - Wenn es in `1XX` kein `$$4` gibt füge ein SF4 hinzu:
+      - `$$4aut` bei Text (`LDR/06=a|t`)
+      - `$$4cmp` bei Musikdrucken (`LDR/06=c|d`)
+      - `$$4cre` für alle anderen Fälle
+    - Wenn es in `7XX` kein `$$4` und kein `$$t` gibt, füge ein `$$4ctb` hinzu
+
+    @context datafield[@tag=('100', '110', '111', '700', '710', '711')]
+    @_marcFields 100 110 111 700 710 711
+  -->
+  <xsl:template name="addDefaultRelator">
+    <xsl:choose>
+      <xsl:when test="starts-with(@tag, '1') and not(subfield[@code='4']/text())">
+        <subfield code="4">aut</subfield>
+      </xsl:when>
+      <xsl:when test="starts-with(@tag, '7') and not(subfield[@code='t']/text()) and not(subfield[@code='4']/text())">
+        <subfield code="4">ctb</subfield>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>

@@ -4,6 +4,7 @@
   <x:import href="test-files/leader.xspec" />
   <x:import href="test-files/001-009.xspec" />
   <x:import href="test-files/01X-09X.xspec" />
+  <x:import href="test-files/1XX.xspec" />
   <x:import href="test-files/25X-28X.xspec" />
   <x:import href="test-files/760-787.xspec" />
   <x:import href="test-files/80X-83X.xspec" />

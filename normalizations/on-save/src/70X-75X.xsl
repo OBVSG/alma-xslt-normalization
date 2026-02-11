@@ -12,6 +12,20 @@
   -->
 
   <!--
+    Bearbeite Feld `700`
+
+    Füge default BZK ein. Den Rest machen speziellere Templates
+    @_marcFields 700
+  -->
+  <xsl:template match="datafield[@tag='700']">
+    <xsl:copy>
+      <xsl:apply-templates select="node()|@*" />
+      <xsl:call-template name="addDefaultRelator" />
+    </xsl:copy>
+  </xsl:template>
+
+
+  <!--
     Wenn es eine ORCID in `700XX$$0` gibt, übertrage diese in URL-Form nach `$$1`.
 
     @intComment Tests in `ids.xspec`.
@@ -38,6 +52,32 @@
   -->
   <xsl:template match="datafield[@tag='700']/subfield[@code=('9', '0')][starts-with(., '(orcid)')]">
     <xsl:call-template name="handleOrcidSubfield" />
+  </xsl:template>
+
+  <!--
+    Bearbeite Feld `710`
+
+    Füge default BZK ein. Den Rest machen speziellere Templates
+    @_marcFields 710
+  -->
+  <xsl:template match="datafield[@tag='710']">
+    <xsl:copy>
+      <xsl:apply-templates select="node()|@*" />
+      <xsl:call-template name="addDefaultRelator" />
+    </xsl:copy>
+  </xsl:template>
+
+  <!--
+    Bearbeite Feld `711`
+
+    Füge default BZK ein. Den Rest machen speziellere Templates
+    @_marcFields 711
+  -->
+  <xsl:template match="datafield[@tag='711']">
+    <xsl:copy>
+      <xsl:apply-templates select="node()|@*" />
+      <xsl:call-template name="addDefaultRelator" />
+    </xsl:copy>
   </xsl:template>
 
 </xsl:stylesheet>
