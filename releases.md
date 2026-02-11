@@ -33,10 +33,16 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 ## Standard-Sandbox 16.02.2026 (geplant)
 
 ### Normalize on Save
-- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
+- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](http://share-test.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
 - ISIL der bearbeitenden Institution
   - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233; 
   - [X] `040` bearbeiten. 
+- [ ] `090` bearbeiten (betrifft OAI-Importe, sollte nicht bemerkbar sein)
+- [ ] `1XX` und `700-730` bearbeiten
+  - [X] `ind1` bei Personen setzen; Commit 1e8a2f4; [Dokumentation](http://share-test.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;personInd1;nil)
+  - [X] Default-Relator-Code setzet; Commit 3179ee2; [Dokumentation](http://share-test.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;addDefaultRelator;nil)
+  - [ ] Subfelder sortieren
+  - [ ] Felder ohne `$$a` entfernen (weil sie nur Daten aus dem Template enthalten)
 
 ## Produktion 19.01.2026
 Vollständige Doku hier: https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html

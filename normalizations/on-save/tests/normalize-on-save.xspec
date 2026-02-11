@@ -13,5 +13,6 @@
   <x:import href="test-files/ids.xspec" />
   <x:import href="test-files/perFamKor.xspec" />
   <x:import href="test-files/sort.xspec" />
+  <x:import href="../../utils/tests/utils.xspec" />
 
 </x:description>

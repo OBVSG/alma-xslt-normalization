@@ -76,7 +76,7 @@
             </record>
           </x:param>
         </x:call>
-        <x:expect label="isil in map" test="not(.('isil'))" />
+        <x:expect label="isil not in map" test="not(.('isil'))" />
       </x:scenario>
     </x:scenario>
 

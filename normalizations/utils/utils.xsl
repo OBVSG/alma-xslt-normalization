@@ -27,6 +27,7 @@
       <xsl:map-entry key="'flags'" select="utils:calculate-flags($record)" />
       <xsl:map-entry key="'isil'" select="$record/datafield[@tag='MOD']/subfield[@code='I']/text()" />
       <xsl:map-entry key="'source'" select="$record/datafield[@tag='SRC']/subfield[@code='S']/text()" />
+      <xsl:map-entry key="'ldr06'" select="$record/leader/substring(., 7, 1)" />
     </xsl:map>
   </xsl:function>
 
