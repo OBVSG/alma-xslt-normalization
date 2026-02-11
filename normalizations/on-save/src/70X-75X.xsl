@@ -24,6 +24,12 @@
     </xsl:copy>
   </xsl:template>
 
+  <!--
+    Setze `ind1` bei Personen in MARC `700`. Siehe Template `personInd1` für das genaue Verhalten.
+  -->
+  <xsl:template match="datafield[@tag='700']/@ind1">
+    <xsl:call-template name="personInd1" />
+  </xsl:template>
 
   <!--
     Wenn es eine ORCID in `700XX$$0` gibt, übertrage diese in URL-Form nach `$$1`.
