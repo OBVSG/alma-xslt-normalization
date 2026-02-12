@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="70X-750">
+    <x:scenario label="700">
+      <x:scenario label="700 mit falschem ind1 und ohne SF4">
+        <x:context>
+          <datafield tag="700" ind1="3" ind2=" ">
+            <subfield code="a">Corello, Ribald</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="ind1=1, SF4ctb ergänzt">
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Corello, Ribald</subfield>
+            <subfield code="4">ctb</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="700 mit SFt">
+        <x:context>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Taurus, Timmi</subfield>
+            <subfield code="t">Alles auf Schiene</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="kein SF4 ergänzt">
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Taurus, Timmi</subfield>
+            <subfield code="t">Alles auf Schiene</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="710">
+      <x:scenario label="710 ohne SF4">
+        <x:context>
+          <datafield tag="710" ind1="2" ind2=" ">
+            <subfield code="a">Solares Imperium</subfield>
+            <subfield code="b">Mutantenkorps</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="SF4ctb ergänzt">
+          <datafield tag="710" ind1="2" ind2=" ">
+            <subfield code="a">Solares Imperium</subfield>
+            <subfield code="b">Mutantenkorps</subfield>
+            <subfield code="4">ctb</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="711">
+      <x:scenario label="711 ohne SF4">
+        <x:context>
+          <datafield tag="711" ind1="2" ind2=" ">
+            <subfield code="a">Viehkirtag</subfield>
+            <subfield code="b">Fischbach</subfield>
+            <subfield code="d">2004</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="SF4ctb ergänzt">
+          <datafield tag="711" ind1="2" ind2=" ">
+            <subfield code="a">Viehkirtag</subfield>
+            <subfield code="b">Fischbach</subfield>
+            <subfield code="d">2004</subfield>
+            <subfield code="4">ctb</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+
+</x:description>
