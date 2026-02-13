@@ -7,6 +7,9 @@
                 expand-text="yes"
                 version="3.0">
 
+  <!--~doc:stylesheet
+    Normalizations for Fields with alphabetic codes.
+  -->
   <!--
       Lösche das Feld `MOD`. Es wird nur zur Übergabe des ISILs der bearbeitenden Institution gebraucht und soll nie in der Ausgabe aufscheinen.
   -->

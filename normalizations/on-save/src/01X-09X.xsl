@@ -136,6 +136,7 @@
       Dieses Template ist sowohl ein named template als auch ein matching template. Wenn es keine `040` im Datensatz gibt
       wird es via `xsl:call-template` vom [record](#temp;record;nil) aus aufgerufen. Wenn eine `040` vorhanden ist, matcht
       es. Das erklärt die etwas umständlichen variablen `$hass336` und `$df040in`.
+      @_marcFields 040
   -->
   <xsl:template name="handle040" match="datafield[@tag='040']">
     <xsl:param name="meta" tunnel="yes" />

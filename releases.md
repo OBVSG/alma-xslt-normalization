@@ -8,7 +8,7 @@
 - [Releases](#releases)
   - [Standard-Sandbox 16.02.2026 (geplant)](#standard-sandbox-16022026-geplant)
     - [Normalize on Save](#normalize-on-save)
-  - [Produktion 19.01.2026](#produktion-19012026)
+  - [Produktion 02.02.2026](#produktion-02022026)
     - [Normalize on Save](#normalize-on-save-1)
     - [Datensatz ableiten](#datensatz-ableiten)
   - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
@@ -33,12 +33,12 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 ## Standard-Sandbox 16.02.2026 (geplant)
 
 ### Normalize on Save
-- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](http://share-test.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
+- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
 - ISIL der bearbeitenden Institution
-  - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233; 
-  - [X] `040` bearbeiten. 
+  - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233; Dokumentation [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#func;utils:collect-metadata) und [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='MOD'];nil)
+  - [X] `040` bearbeiten. Commit 6caee5a; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;handle040)
 
-## Produktion 19.01.2026
+## Produktion 02.02.2026
 Vollständige Doku hier: https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html
 
 ### Normalize on Save
