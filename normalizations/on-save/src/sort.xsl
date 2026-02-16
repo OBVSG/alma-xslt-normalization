@@ -22,6 +22,26 @@
   <xsl:mode name="sort" on-no-match="shallow-copy" />
 
   <!--
+      Sortiere die Subfelder von 100, 110, 700, 710
+      @_marcFields 100 110 700 710
+  -->
+  <xsl:template match="datafield[@tag=('100', '110', '700', '710')]" mode="sort">
+    <xsl:call-template name="mrclib:sortSubfieldsToEnd">
+      <xsl:with-param name="sortSpec" select="('0', '1', '2', '4e', '6', '7', '8', '9')" />
+    </xsl:call-template>
+  </xsl:template>
+
+  <!--
+      Sortiere die Subfelder von 111, 711
+      @_marcFields 111, 711
+  -->
+  <xsl:template match="datafield[@tag=('111', '711')]" mode="sort">
+    <xsl:call-template name="mrclib:sortSubfieldsToEnd">
+      <xsl:with-param name="sortSpec" select="('0', '1', '2', '4j', '6', '7', '8', '9')" />
+    </xsl:call-template>
+  </xsl:template>
+
+  <!--
       Sortiere die Subfelder von `773`.
       @_marcFields 773
   -->
