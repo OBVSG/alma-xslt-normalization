@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="1XX">
+    <x:scenario label="Feld 100">
+      <x:scenario label="indikator 1 setzen bei 'Nachname, Vorname'">
+        <x:context>
+          <datafield tag="100" ind1="2" ind2=" ">
+            <subfield code="a">Tak, Hotrenor</subfield>
+            <subfield code="4">aut</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="ind1=1">
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Tak, Hotrenor</subfield>
+            <subfield code="4">aut</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+      <x:scenario label="defaultRelator">
+        <x:scenario label="100 ohne SF4">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="100" ind1="1" ind2=" ">
+                <subfield code="a">Saedelaere, Alaska</subfield>
+                <subfield code="d">3400-</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="SF4 aut hinzugefügt" test="/record/datafield[@tag='100']">
+            <datafield tag="100" ind1="1" ind2=" ">
+              <subfield code="a">Saedelaere, Alaska</subfield>
+              <subfield code="d">3400-</subfield>
+              <subfield code="4">aut</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="100 mit SF4">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="100" ind1="1" ind2=" ">
+                <subfield code="a">Saedelaere, Alaska</subfield>
+                <subfield code="d">3400-</subfield>
+                <subfield code="4">cmp</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="bleibt wie es ist" test="/record/datafield[@tag='100']">
+            <datafield tag="100" ind1="1" ind2=" ">
+              <subfield code="a">Saedelaere, Alaska</subfield>
+              <subfield code="d">3400-</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Feld 110">
+      <x:scenario label="defaultRelator">
+        <x:scenario label="110 ohne SF4">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="110" ind1="2" ind2=" ">
+                <subfield code="a">ACME Corp.</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="SF4 aut hinzugefügt" test="/record/datafield[@tag='110']">
+            <datafield tag="110" ind1="2" ind2=" ">
+              <subfield code="a">ACME Corp.</subfield>
+              <subfield code="4">aut</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="110 mit SF4">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="110" ind1="2" ind2=" ">
+                <subfield code="a">ACME Corp.</subfield>
+                <subfield code="4">cmp</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="bleibt wie es ist" test="/record/datafield[@tag='110']">
+            <datafield tag="110" ind1="2" ind2=" ">
+              <subfield code="a">ACME Corp.</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Feld 111">
+      <x:scenario label="defaultRelator">
+        <x:scenario label="111 ohne SF4">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="111" ind1="2" ind2=" ">
+                <subfield code="a">ACME Corp.</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="SF4 aut hinzugefügt" test="/record/datafield[@tag='111']">
+            <datafield tag="111" ind1="2" ind2=" ">
+              <subfield code="a">ACME Corp.</subfield>
+              <subfield code="4">aut</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="111 mit SF4">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="111" ind1="2" ind2=" ">
+                <subfield code="a">ACME Corp.</subfield>
+                <subfield code="4">cmp</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="bleibt wie es ist" test="/record/datafield[@tag='111']">
+            <datafield tag="111" ind1="2" ind2=" ">
+              <subfield code="a">ACME Corp.</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="gemeinsame Templates für 1XX">
+      <x:scenario label="1XX ohne SFa löschen">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <datafield tag="100" ind1="1" ind2=" ">
+              <subfield code="a"></subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="110" ind1="2" ind2=" ">
+              <subfield code="a"></subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="111" ind1="2" ind2=" ">
+              <subfield code="a"></subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="100" ind1="1" ind2=" ">
+              <subfield code="a">Muster, Max</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="110" ind1="2" ind2=" ">
+              <subfield code="a">Musterfabrik</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="111" ind1="2" ind2=" ">
+              <subfield code="a">Musterkonferenz</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="1XX ohne SFa gelöscht" test="/record/datafield[starts-with(@tag, '1')]">
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Muster, Max</subfield>
+            <subfield code="4">cmp</subfield>
+          </datafield>
+          <datafield tag="110" ind1="2" ind2=" ">
+            <subfield code="a">Musterfabrik</subfield>
+            <subfield code="4">cmp</subfield>
+          </datafield>
+          <datafield tag="111" ind1="2" ind2=" ">
+            <subfield code="a">Musterkonferenz</subfield>
+            <subfield code="4">cmp</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+    </x:scenario>
+  </x:scenario>
+</x:description>

@@ -25,12 +25,9 @@
     <xsl:param name="record" as="element(record)" />
     <xsl:map>
       <xsl:map-entry key="'flags'" select="utils:calculate-flags($record)" />
-      <xsl:map-entry
-        key="'isil'"
-        select="$record/datafield[@tag='MOD']/subfield[@code='I']/text()" />
-      <xsl:map-entry
-        key="'source'"
-        select="$record/datafield[@tag='SRC']/subfield[@code='S']/text()" />
+      <xsl:map-entry key="'isil'" select="$record/datafield[@tag='MOD']/subfield[@code='I']/text()" />
+      <xsl:map-entry key="'source'" select="$record/datafield[@tag='SRC']/subfield[@code='S']/text()" />
+      <xsl:map-entry key="'ldr06'" select="if ($record/leader) then $record/leader/substring(., 7, 1) else ()" />
     </xsl:map>
   </xsl:function>
 

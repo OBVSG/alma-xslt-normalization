@@ -12,6 +12,31 @@
   -->
 
   <!--
+    Bearbeite Feld `700`
+
+    - Wenn kein `$$a` mit Inhalt: löschen
+    - Sonst: Füge default BZK ein.
+
+    Den Rest machen speziellere Templates
+    @_marcFields 700
+  -->
+  <xsl:template match="datafield[@tag='700']">
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+    Setze `ind1` bei Personen in MARC `700`. Siehe Template `personInd1` für das genaue Verhalten.
+  -->
+  <xsl:template match="datafield[@tag='700']/@ind1">
+    <xsl:call-template name="personInd1" />
+  </xsl:template>
+
+  <!--
     Wenn es eine ORCID in `700XX$$0` gibt, übertrage diese in URL-Form nach `$$1`.
 
     @intComment Tests in `ids.xspec`.
@@ -38,6 +63,42 @@
   -->
   <xsl:template match="datafield[@tag='700']/subfield[@code=('9', '0')][starts-with(., '(orcid)')]">
     <xsl:call-template name="handleOrcidSubfield" />
+  </xsl:template>
+
+  <!--
+    Bearbeite Feld `710`
+
+    - Wenn kein `$$a` mit Inhalt: löschen
+    - Sonst: Füge default BZK ein.
+
+    Den Rest machen speziellere Templates
+    @_marcFields 710
+  -->
+  <xsl:template match="datafield[@tag='710']">
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+    Bearbeite Feld `711`
+
+    - Wenn kein `$$a` mit Inhalt: löschen
+    - Sonst: Füge default BZK ein.
+
+    Den Rest machen speziellere Templates
+    @_marcFields 711
+  -->
+  <xsl:template match="datafield[@tag='711']">
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
