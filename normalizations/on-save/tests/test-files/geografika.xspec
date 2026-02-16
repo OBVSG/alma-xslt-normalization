@@ -172,5 +172,16 @@
         </datafield>
       </x:expect>
     </x:scenario>
+    <x:scenario label="034 nur mit Template-Inhalt">
+      <x:context>
+        <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="b"></subfield>
+          <subfield code="2">bound</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="gelöscht" />
+    </x:scenario>
+
   </x:scenario>
 </x:description>

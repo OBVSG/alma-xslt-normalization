@@ -16,7 +16,7 @@
   -->
   <xsl:template match="datafield[@tag='034']">
     <!-- Bearbeite nur Felder 034, die wirklich Daten enthalten. -->
-    <xsl:if test="not(subfield[@code='2'] and count(subfield) eq 1)">
+    <xsl:if test="not(subfield[@code='2'] and count(subfield[text()]) eq 1)">
       <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
         <xsl:apply-templates />
       </datafield>
