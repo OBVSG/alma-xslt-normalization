@@ -6,7 +6,7 @@
   - [Allgemeines ](#allgemeines)
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
-  - [Standard-Sandbox 16.02.2026 (geplant)](#standard-sandbox-16022026-geplant)
+  - [Standard-Sandbox 16.02.2026](#standard-sandbox-16022026)
     - [Normalize on Save](#normalize-on-save)
   - [Produktion 02.02.2026](#produktion-02022026)
     - [Normalize on Save](#normalize-on-save-1)
@@ -30,13 +30,14 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 
 # Releases
 
-## Standard-Sandbox 16.02.2026 (geplant)
+## Standard-Sandbox 16.02.2026
 
 ### Normalize on Save
-- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
+- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
 - ISIL der bearbeitenden Institution
-  - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233; Dokumentation [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#func;utils:collect-metadata) und [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='MOD'];nil)
-  - [X] `040` bearbeiten. Commit 6caee5a; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;handle040)
+  - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233, a19176a; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#func;utils:collect-metadata) und [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='MOD'];nil)
+  - [X] `040` bearbeiten. Commit 6caee5a; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;handle040)
+  - [X] Handling von `090` bei OAI-Importen. Commit 799f46f; [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='090'%5D%5B1%5D;nil) und [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='090'%5D%5Bposition()%20ne%201%5D;nil)
 
 ## Produktion 02.02.2026
 Vollständige Doku hier: https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html
