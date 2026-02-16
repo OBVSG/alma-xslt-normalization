@@ -69,6 +69,7 @@ deploy_development:
 
   script:
     - rsync -r -p docs/* obvsoft@galileo:/work/obvsoft/evol/apps/work_area/ss/xsldocs/xslt-normalization
+    - rsync -r -p docs/* obvsoft@obelix:/var/www/vhosts/share.obvsg.at/htdocs/xsldocs/dev/xslt-normalization
   only:
     - development
 

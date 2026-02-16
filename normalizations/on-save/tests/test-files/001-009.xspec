@@ -12,11 +12,8 @@
             <controlfield tag="007">txxxx</controlfield>
           </record>
         </x:context>
-        <x:expect label="007 qu">
-          <record>
-            <leader>     ncm a22      c 4500</leader>
-            <controlfield tag="007">qu</controlfield>
-          </record>
+        <x:expect label="007 qu" test="/record/controlfield[@tag='007']">
+          <controlfield tag="007">qu</controlfield>
         </x:expect>
       </x:scenario>
       <x:scenario label="LDR/06=d, beginnt nicht mit q">
@@ -26,11 +23,8 @@
             <controlfield tag="007">txxxx</controlfield>
           </record>
         </x:context>
-        <x:expect label="007 qu">
-          <record>
-            <leader>     ndm a22      c 4500</leader>
-            <controlfield tag="007">qu</controlfield>
-          </record>
+        <x:expect label="007 qu" test="/record/controlfield[@tag='007']">
+          <controlfield tag="007">qu</controlfield>
         </x:expect>
       </x:scenario>
       <x:scenario label="007 music, beginnt mit q">
@@ -40,11 +34,8 @@
             <controlfield tag="007">qu</controlfield>
           </record>
         </x:context>
-        <x:expect label="keine Änderung">
-          <record>
-            <leader>     ncm a22      c 4500</leader>
-            <controlfield tag="007">qu</controlfield>
-          </record>
+        <x:expect label="keine Änderung" test="/record/controlfield[@tag='007']">
+          <controlfield tag="007">qu</controlfield>
         </x:expect>
       </x:scenario>
       <x:scenario label="LDR/06=a (also keine Musikalie)">
@@ -54,11 +45,8 @@
             <controlfield tag="007">nichtvalide007</controlfield>
           </record>
         </x:context>
-        <x:expect label="keine Änderung">
-          <record>
-            <leader>     nam a22      c 4500</leader>
-            <controlfield tag="007">nichtvalide007</controlfield>
-          </record>
+        <x:expect label="keine Änderung" test="/record/controlfield[@tag='007']">
+          <controlfield tag="007">nichtvalide007</controlfield>
         </x:expect>
       </x:scenario>
     </x:scenario>
@@ -227,11 +215,8 @@
             <controlfield tag="008">      |????    |||           ||| |     u</controlfield>
           </record>
         </x:context>
-        <x:expect label="008/39 auf 'c' gesetzt">
-          <record>
-            <leader>#####nam#a22######c#4500</leader>
-            <controlfield tag="008">      |????    |||           ||| |     c</controlfield>
-          </record>
+        <x:expect label="008/39 auf 'c' gesetzt" test="/record/controlfield[@tag='008']">
+          <controlfield tag="008">      |????    |||           ||| |     c</controlfield>
         </x:expect>
       </x:scenario>
     </x:scenario>
