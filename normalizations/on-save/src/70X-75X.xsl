@@ -14,14 +14,19 @@
   <!--
     Bearbeite Feld `700`
 
-    Füge default BZK ein. Den Rest machen speziellere Templates
+    - Wenn kein `$$a` mit Inhalt: löschen
+    - Sonst: Füge default BZK ein.
+
+    Den Rest machen speziellere Templates
     @_marcFields 700
   -->
   <xsl:template match="datafield[@tag='700']">
-    <xsl:copy>
-      <xsl:apply-templates select="node()|@*" />
-      <xsl:call-template name="addDefaultRelator" />
-    </xsl:copy>
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
   </xsl:template>
 
   <!--
@@ -63,27 +68,37 @@
   <!--
     Bearbeite Feld `710`
 
-    Füge default BZK ein. Den Rest machen speziellere Templates
+    - Wenn kein `$$a` mit Inhalt: löschen
+    - Sonst: Füge default BZK ein.
+
+    Den Rest machen speziellere Templates
     @_marcFields 710
   -->
   <xsl:template match="datafield[@tag='710']">
-    <xsl:copy>
-      <xsl:apply-templates select="node()|@*" />
-      <xsl:call-template name="addDefaultRelator" />
-    </xsl:copy>
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
   </xsl:template>
 
   <!--
     Bearbeite Feld `711`
 
-    Füge default BZK ein. Den Rest machen speziellere Templates
+    - Wenn kein `$$a` mit Inhalt: löschen
+    - Sonst: Füge default BZK ein.
+
+    Den Rest machen speziellere Templates
     @_marcFields 711
   -->
   <xsl:template match="datafield[@tag='711']">
-    <xsl:copy>
-      <xsl:apply-templates select="node()|@*" />
-      <xsl:call-template name="addDefaultRelator" />
-    </xsl:copy>
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>

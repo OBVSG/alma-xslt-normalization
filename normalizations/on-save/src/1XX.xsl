@@ -14,14 +14,17 @@
   <!--
     Bearbeite Feld `100`
 
-    Füge default BZK ein. Den Rest machen speziellere Templates
+    - Wenn es kein `$$a` mit Inhalt gibt, löschen.
+    - Sonst: Füge default BZK ein. Den Rest machen speziellere Templates
     @_marcFields 100
   -->
   <xsl:template match="datafield[@tag='100']">
-    <xsl:copy>
-      <xsl:apply-templates select="node()|@*" />
-      <xsl:call-template name="addDefaultRelator" />
-    </xsl:copy>
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
   </xsl:template>
 
   <!--
@@ -67,10 +70,12 @@
     @_marcFields 110
   -->
   <xsl:template match="datafield[@tag='110']">
-    <xsl:copy>
-      <xsl:apply-templates select="node()|@*" />
-      <xsl:call-template name="addDefaultRelator" />
-    </xsl:copy>
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
   </xsl:template>
 
   <!--
@@ -80,10 +85,12 @@
     @_marcFields 111
   -->
   <xsl:template match="datafield[@tag='111']">
-    <xsl:copy>
-      <xsl:apply-templates select="node()|@*" />
-      <xsl:call-template name="addDefaultRelator" />
-    </xsl:copy>
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
