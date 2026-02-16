@@ -144,19 +144,27 @@
     <xsl:variable name="has336" select="if (local-name() eq 'record')
                                         then exists(datafield[@tag='336']/subfield[@code='b']/text())
                                         else exists(../datafield[@tag='336']/subfield[@code='b']/text())" />
+    <xsl:variable name="isAutoKat" select="if (local-name() eq 'record')
+                                           then exists(datafield[@tag='970']/subfield[@code='a'][.='E-KAT - Automatisch erstelltes Katalogisat ohne intellektuelle Prüfung, Optimierung erwünscht'])
+                                           else exists(../datafield[@tag='970']/subfield[@code='a'][.='E-KAT - Automatisch erstelltes Katalogisat ohne intellektuelle Prüfung, Optimierung erwünscht'])" />
     <xsl:variable name="df040in" select="if (local-name() eq 'record') then datafield[@tag='040'] else ." />
     <datafield tag="040" ind1=" " ind2=" ">
       <subfield code="a">{if ($df040in/subfield[@code='a']/text()) then $df040in/subfield[@code='a'] else $isil}</subfield>
       <subfield code="b">{if ($df040in/subfield[@code='b']/text()) then $df040in/subfield[@code='b'] else 'ger'}</subfield>
+      <xsl:sequence select="$df040in/subfield[@code='c'][1]" />
       <subfield code="d">{if ($meta('source') eq 'oai') then $df040in/subfield[@code="d"] else $isil}</subfield>
       <xsl:choose>
-        <xsl:when test="not($df040in/subfield[@code='e']/text()) and $has336">
+        <xsl:when test="not($df040in/subfield[@code='e']/text())
+                        and (not($isAutoKat))
+                        and $has336">
           <subfield code="e">rda</subfield>
         </xsl:when>
         <xsl:otherwise>
           <xsl:sequence select="$df040in/subfield[@code='e']" />
         </xsl:otherwise>
       </xsl:choose>
+      <xsl:sequence select="$df040in/subfield[@code='6'][1]" />
+      <xsl:sequence select="$df040in/subfield[@code='8']" />
     </datafield>
   </xsl:template>
 

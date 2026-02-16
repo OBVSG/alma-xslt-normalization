@@ -285,6 +285,29 @@
           </datafield>
         </x:expect>
       </x:scenario>
+      <x:scenario label="keine 040 vorhanden, 336 vorhanden, automatisiert erstelltes Katalogisat">
+        <x:context>
+          <record>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+            <datafield tag="970" ind1=" " ind2=" ">
+              <subfield code="a">E-KAT - Automatisch erstelltes Katalogisat ohne intellektuelle Prüfung, Optimierung erwünscht</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 erstellt, SFerda"
+          test="/record/datafield[@tag='040']">
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBG</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
 
     <x:scenario label="041">
