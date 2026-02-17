@@ -101,4 +101,25 @@
     </xsl:if>
   </xsl:template>
 
+  <!--
+      Setze ind1 von `711` fix auf `2`
+      @_marcFields 711
+  -->
+  <xsl:template match="datafield[@tag='711']/@ind1">
+    <xsl:attribute name="ind1">2</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Bearbeite ind2 von `700`, `710`, `711`
+
+      - wenn es ein Subfeld 't' gibt, dann `ind2=2`
+      - sonst `ind2=#`
+      @_marcFields 711
+  -->
+  <xsl:template match="datafield[@tag=('700', '710', '711')]/@ind2">
+    <xsl:attribute name="ind2">{
+      if (../subfield[@code='t']) then '2' else ' '
+    }</xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>

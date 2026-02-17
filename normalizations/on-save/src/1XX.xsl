@@ -93,4 +93,20 @@
     </xsl:if>
   </xsl:template>
 
+  <!--
+    Setze den ersten Indikator von `111` auf `2`.
+    @_marcFields 111
+  -->
+  <xsl:template match="datafield[@tag='111']/@ind1">
+    <xsl:attribute name="ind1">2</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze den zweiten Indikator von `111` auf `#`
+      @_marcFields 111
+  -->
+  <xsl:template match="datafield[@tag='111']/@ind2">
+    <xsl:attribute name="ind2">{' '}</xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>

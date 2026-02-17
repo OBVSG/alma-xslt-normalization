@@ -20,13 +20,13 @@
       </x:scenario>
       <x:scenario label="700 mit SFt">
         <x:context>
-          <datafield tag="700" ind1="1" ind2=" ">
+          <datafield tag="700" ind1="1" ind2="2">
             <subfield code="a">Taurus, Timmi</subfield>
             <subfield code="t">Alles auf Schiene</subfield>
           </datafield>
         </x:context>
         <x:expect label="kein SF4 ergänzt">
-          <datafield tag="700" ind1="1" ind2=" ">
+          <datafield tag="700" ind1="1" ind2="2">
             <subfield code="a">Taurus, Timmi</subfield>
             <subfield code="t">Alles auf Schiene</subfield>
           </datafield>
@@ -68,7 +68,95 @@
           </datafield>
         </x:expect>
       </x:scenario>
+
+      <x:scenario label="711, Indikatoren">
+        <x:scenario label="kein subfeld t">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="711" ind1="X" ind2="X">
+                <subfield code="a">ACME Corp. yearly summit</subfield>
+                <subfield code="d">1967</subfield>
+                <subfield code="4">cmp</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="ind1=2, ind2=#" test="/record/datafield[@tag='711']">
+            <datafield tag="711" ind1="2" ind2=" ">
+              <subfield code="a">ACME Corp. yearly summit</subfield>
+                <subfield code="d">1967</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="subfeld t">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="711" ind1="X" ind2="X">
+                <subfield code="a">ACME Corp. yearly summit</subfield>
+                <subfield code="d">1967</subfield>
+                <subfield code="t">On vaults and gravity</subfield>
+                <subfield code="4">cmp</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="ind1=2, ind2=2" test="/record/datafield[@tag='711']">
+            <datafield tag="711" ind1="2" ind2="2">
+              <subfield code="a">ACME Corp. yearly summit</subfield>
+              <subfield code="d">1967</subfield>
+              <subfield code="t">On vaults and gravity</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
     </x:scenario>
+    <x:scenario label="7XX ohne SFa löschen">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <datafield tag="700" ind1="1" ind2=" ">
+              <subfield code="a"></subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="710" ind1="2" ind2=" ">
+              <subfield code="a"></subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="711" ind1="2" ind2=" ">
+              <subfield code="a"></subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="700" ind1="1" ind2=" ">
+              <subfield code="a">Muster, Max</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="710" ind1="2" ind2=" ">
+              <subfield code="a">Musterfabrik</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+            <datafield tag="711" ind1="2" ind2=" ">
+              <subfield code="a">Musterkonferenz</subfield>
+              <subfield code="4">cmp</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="7XX ohne SFa gelöscht" test="/record/datafield[starts-with(@tag, '7')]">
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Muster, Max</subfield>
+            <subfield code="4">cmp</subfield>
+          </datafield>
+          <datafield tag="710" ind1="2" ind2=" ">
+            <subfield code="a">Musterfabrik</subfield>
+            <subfield code="4">cmp</subfield>
+          </datafield>
+          <datafield tag="711" ind1="2" ind2=" ">
+            <subfield code="a">Musterkonferenz</subfield>
+            <subfield code="4">cmp</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
   </x:scenario>
 
 </x:description>

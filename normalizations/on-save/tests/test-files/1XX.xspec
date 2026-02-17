@@ -132,6 +132,23 @@
           </x:expect>
         </x:scenario>
       </x:scenario>
+      <x:scenario label="die Indikatoren von 111 fix auf '2#' setzen">
+        <x:context>
+          <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="111" ind1="X" ind2="X">
+                <subfield code="a">ACME Corp.</subfield>
+                <subfield code="4">cmp</subfield>
+              </datafield>
+            </record>
+        </x:context>
+        <x:expect label="ind1=2, ind2=#" test="/record/datafield[@tag='111']">
+          <datafield tag="111" ind1="2" ind2=" ">
+            <subfield code="a">ACME Corp.</subfield>
+            <subfield code="4">cmp</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="gemeinsame Templates für 1XX">
       <x:scenario label="1XX ohne SFa löschen">

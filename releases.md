@@ -32,11 +32,13 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 # Releases
 
 ## Standard-Sandbox 23.03.2026 (geplant)
-- [ ] `1XX` und `700-730` bearbeiten
-  - [X] `ind1` bei Personen setzen; Commit 1e8a2f4; [Dokumentation](http://share-test.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;personInd1;nil)
-  - [X] Default-Relator-Code setzet; Commit 3179ee2; [Dokumentation](http://share-test.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;addDefaultRelator;nil)
-  - [ ] Subfelder sortieren
-  - [ ] Felder ohne `$$a` entfernen (weil sie nur Daten aus dem Template enthalten)
+- [X] `1XX` und `700-730` bearbeiten
+  - [X] `ind1` bei Personen setzen; Commit 1e8a2f4; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;personInd1;nil)
+  - [X] Default-Relator-Code setzen; Commit 3179ee2; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;addDefaultRelator;nil)
+  - [X] Subfelder sortieren. Commit f9debb1; Dokumentation [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag=('100',%20'110',%20'700',%20'710')];sort) und [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag=('111',%20'711')];sort)
+  - [X] Felder ohne `$$a` entfernen (weil sie nur Daten aus dem Template enthalten). Commit 878669c; Dokumentation siehe Templates zu Feld `100`, `110`, `111`, `700`, `710`, `711`
+  - [X] Indikatoren von `X11` setzen: Commit e228e99; Dokumentation siehe die Templates zu `111` und `711` jeweils `@ind1` und `@ind2`.
+
 ## Standard-Sandbox 16.02.2026
 
 ### Normalize on Save
