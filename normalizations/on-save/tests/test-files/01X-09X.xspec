@@ -26,6 +26,18 @@
           </datafield>
         </x:expect>
       </x:scenario>
+      <x:scenario label="020 SFz mit Bindestrichen">
+        <x:context>
+          <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="z">978-92-95055-17-9</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Bindestriche entfernt">
+          <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="z">9789295055179</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="024">
       <x:scenario label="024 entfernen, wenn es kein SFa oder SFz gibt">

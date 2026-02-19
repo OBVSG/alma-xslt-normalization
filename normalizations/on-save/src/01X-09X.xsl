@@ -44,7 +44,7 @@
       @_marcFields 020
   -->
   <xsl:template match="datafield[@tag='020']/subfield[@code=('a', 'z')]">
-    <subfield code="a">{replace(., "-", "")}</subfield>
+    <subfield code="{@code}">{replace(., "-", "")}</subfield>
   </xsl:template>
 
   <!--
