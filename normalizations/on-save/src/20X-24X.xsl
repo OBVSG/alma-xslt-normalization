@@ -34,4 +34,16 @@
   <xsl:template match="datafield[@tag='240']/subfield[@code='F']/@code">
     <xsl:attribute name="code">a</xsl:attribute>
   </xsl:template>
+
+  <!--
+      Ergänze `242 $$yger`, falls nicht vorhanden
+  -->
+  <xsl:template match="datafield[@tag='242']">
+    <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
+      <xsl:apply-templates />
+      <xsl:if test="not(subfield[@code='y'])">
+        <subfield code="y">ger</subfield>
+      </xsl:if>
+    </datafield>
+  </xsl:template>
 </xsl:stylesheet>

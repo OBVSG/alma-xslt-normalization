@@ -29,6 +29,35 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="Feld 242">
+      <x:scenario label="242 ohne Subfeld y">
+        <x:context>
+          <datafield tag="242" ind1="0" ind2="0">
+            <subfield code="a">Reguläre Dirichlet-Voronoi-Zerlegungen der zweiten triklinen Gruppe</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="$$yger hinzugefügt">
+          <datafield tag="242" ind1="0" ind2="0">
+            <subfield code="a">Reguläre Dirichlet-Voronoi-Zerlegungen der zweiten triklinen Gruppe</subfield>
+            <subfield code="y">ger</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="242 mit Subfeld y">
+        <x:context>
+          <datafield tag="242" ind1="0" ind2="0">
+            <subfield code="a">Reguläre Dirichlet-Voronoi-Zerlegungen der zweiten triklinen Gruppe</subfield>
+            <subfield code="y">ger</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="242" ind1="0" ind2="0">
+            <subfield code="a">Reguläre Dirichlet-Voronoi-Zerlegungen der zweiten triklinen Gruppe</subfield>
+            <subfield code="y">ger</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 
 </x:description>
