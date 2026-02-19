@@ -39,7 +39,7 @@
     <xsl:variable name="pos15_17"
                   select="if (../datafield[@tag='044'][subfield[@code='c']]) then '|||' else substring(., 16, 3)" />
     <xsl:variable name="pos19"
-                  select="if ($meta('flags') = ('fR', 'ZDB')) then '|' else substring(., 20, 1)" />
+                  select="if ($meta('flags') = ('serial')) then '|' else substring(., 20, 1)" />
     <xsl:variable name="pos35_37">
       <xsl:choose>
         <xsl:when test="$firstLang041 ge 'qaa' and $firstLang041 le 'qtz'">|||</xsl:when>

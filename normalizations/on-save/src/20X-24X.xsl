@@ -22,7 +22,7 @@
 
   <!--
       Setze `240 ind2` auf `0`.
-      @_marcFileds 240
+      @_marcFields 240
   -->
   <xsl:template match="datafield[@tag='240']/@ind2">
     <xsl:attribute name="ind2">0</xsl:attribute>
@@ -30,6 +30,7 @@
 
   <!--
       Ändere `240 $$F` auf `$$a`.
+      @_marcFields 240
   -->
   <xsl:template match="datafield[@tag='240']/subfield[@code='F']/@code">
     <xsl:attribute name="code">a</xsl:attribute>
@@ -37,6 +38,7 @@
 
   <!--
       Ergänze `242 $$yger`, falls nicht vorhanden
+      @_marcFields 242
   -->
   <xsl:template match="datafield[@tag='242']">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
@@ -45,5 +47,48 @@
         <subfield code="y">ger</subfield>
       </xsl:if>
     </datafield>
+  </xsl:template>
+
+  <!--
+      Setze `245 ind1`:
+
+      - Wenn es `1XX $$a` im Datensatz gibt: `1`
+      - Sonst: `0`
+      @_marcFields 245
+  -->
+  <xsl:template match="datafield[@tag='245']/@ind1">
+    <xsl:variable name="recCreator" select="../../datafield[starts-with(@tag,'1')]/subfield[@code='a']/text()" />
+    <xsl:attribute name="ind1">{if ($recCreator) then '1' else '0'}</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze `245 ind2` fix auf `0`. Nichtsortierzeichen werden [hier](#temp;datafield%5B@tag='245'%5D%5B@ind2%20ne%20'0'%5D/subfield%5B@code='a'%5D%5Bnot(starts-with(.,%20'%3C'))%5D/text();nil) gesetzt.
+
+      @_marcFields 245
+  -->
+  <xsl:template match="datafield[@tag='245'][@ind2 ne '0']/@ind2">
+    <xsl:attribute name="ind2">0</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Bei fortlaufenden Ressourcen `245 $$n` löschen, wenn es nur `[...]` enthält.
+      @_marcFields 245
+  -->
+  <xsl:template match="datafield[@tag='245']/subfield[@code='n']">
+    <xsl:param name="meta" tunnel="yes" />
+    <xsl:choose>
+      <xsl:when test="$meta('flags') = ('serial')" />
+      <xsl:otherwise>
+        <xsl:sequence select="." />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <!--
+      Nichtsortierzeichen in `245 $$a` gemäß `ind2` setzen. `ind2` wird [hier](#temp;datafield%5B@tag='245'%5D%5B@ind2%20ne%20'0'%5D/@ind2;nil) auf `0` gesetzt.
+      @_marcFields 245
+  -->
+  <xsl:template match="datafield[@tag='245'][@ind2 ne '0']/subfield[@code='a'][not(starts-with(., '&lt;'))]/text()">
+    <xsl:text>{mrclib:nonFilingChars(., ../../@ind2)}</xsl:text>
   </xsl:template>
 </xsl:stylesheet>

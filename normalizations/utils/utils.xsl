@@ -46,11 +46,12 @@
     <xsl:param name="record" as="element(record)" />
     <xsl:sequence>
       <xsl:if test="substring($record/leader, 8, 1) eq 'a'">article</xsl:if>
+      <xsl:if test="substring($record/leader, 8, 1) eq 'i'">integrating</xsl:if>
+      <xsl:if test="substring($record/leader, 8, 1) eq 's'">serial</xsl:if>
       <xsl:if test="substring($record/controlfield[@tag='008'][1], 24, 1) eq 'o'">E</xsl:if>
       <xsl:if test="$record/datafield[@tag='970'][@ind1='2'][@ind2=' '][subfield[@code='d'][.='NAK']]">NAK</xsl:if>
       <xsl:if test="$record/datafield[@tag='591']/subfield[@code='a'][.='B']">B</xsl:if>
       <xsl:if test="$record/datafield[@tag='035'][subfield[@code='a'][matches(., '^\(DE-600\)[0-9]+')]]">ZDB</xsl:if>
-      <xsl:if test="substring($record/leader, 8, 1) eq 's' and not($record/datafield[@tag='035'][subfield[@code='a'][matches(., '^\(DE-600\)[0-9]+')]])">fR</xsl:if>
     </xsl:sequence>
 
   </xsl:function>

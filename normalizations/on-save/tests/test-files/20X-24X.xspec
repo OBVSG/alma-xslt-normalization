@@ -58,6 +58,146 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="Feld 245">
+      <x:scenario label="indikatoren">
+        <x:scenario label="1XX vorhanden">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="111" ind1="2" ind2=" ">
+                <subfield code="a">Wiedner Kongress</subfield>
+                <subfield code="0">(DE-588)12345678</subfield>
+              </datafield>
+              <datafield tag="245" ind1="X" ind2="0">
+                <subfield code="a">Wieden bleibt Wieden</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="ind1=1" test="record/datafield[@tag='245']">
+            <datafield tag="245" ind1="1" ind2="0">
+              <subfield code="a">Wieden bleibt Wieden</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="kein 1XX vorhanden">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="245" ind1="X" ind2="0">
+                <subfield code="a">Wieden bleibt Wieden</subfield>
+              </datafield>
+              <datafield tag="711" ind1="2" ind2=" ">
+                <subfield code="a">Wiedner Kongress</subfield>
+                <subfield code="0">(DE-588)12345678</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="ind1=0" test="record/datafield[@tag='245']">
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">Wieden bleibt Wieden</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="1XX vorhanden, aber $$a leer (aus Template)">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######c#4500</leader>
+              <datafield tag="100" ind1="1" ind2=" ">
+                <subfield code="a"></subfield>
+                <subfield code="4">aut</subfield>
+              </datafield>
+              <datafield tag="245" ind1="X" ind2="0">
+                <subfield code="a">Wieden bleibt Wieden</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="ind1=0" test="record/datafield[@tag='245']">
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">Wieden bleibt Wieden</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+      <x:scenario label="$$n[...] entfernen">
+        <x:scenario label="MtM">
+          <x:context>
+            <record>
+              <leader>#####nam#a22######ca4500</leader>
+              <datafield tag="245" ind1="0" ind2="0">
+                <subfield code="a">Mehrteilige Monografie</subfield>
+                <subfield code="n">[...]</subfield>
+                <subfield code="p">TUT</subfield>
+                <subfield code="c">Verfasser:in</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="keine Änderung" test="record/datafield[@tag='245']">
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">Mehrteilige Monografie</subfield>
+              <subfield code="n">[...]</subfield>
+              <subfield code="p">TUT</subfield>
+              <subfield code="c">Verfasser:in</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="Zeitschrift">
+          <x:context>
+            <record>
+              <leader>#####nas#a22######c#4500</leader>
+              <datafield tag="245" ind1="0" ind2="0">
+                <subfield code="a">Zeitschrift über Unterreihen</subfield>
+                <subfield code="n">[...]</subfield>
+                <subfield code="p">Thematische Unterreihe</subfield>
+              </datafield>
+            </record>
+          </x:context>
+          <x:expect label="keine Änderung" test="record/datafield[@tag='245']">
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">Zeitschrift über Unterreihen</subfield>
+              <subfield code="p">Thematische Unterreihe</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+      <x:scenario label="Nichtsortierzeichen">
+        <x:scenario label="ind2=4, keine NSZ vorhanden">
+          <x:context>
+            <datafield tag="245" ind1="0" ind2="4">
+              <subfield code="a">Das &quot;das&quot; ist der neutralste Artikel</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="NSZ eingefügt">
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">&lt;&lt;Das&gt;&gt; &quot;das&quot; ist der neutralste Artikel</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="ind2=4, NSZ bereits vorhanden">
+          <x:context>
+            <datafield tag="245" ind1="0" ind2="4">
+              <subfield code="a">Das &quot;das&quot; ist der neutralste Artikel</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="keine Änderung an den Nichtsortierzeichen">
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">&lt;&lt;Das&gt;&gt; &quot;das&quot; ist der neutralste Artikel</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="ind2=0, NSZ vorhanden">
+          <x:context>
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">&lt;&lt;Das&gt;&gt; &quot;das&quot; ist der neutralste Artikel</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="keine Änderung">
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">&lt;&lt;Das&gt;&gt; &quot;das&quot; ist der neutralste Artikel</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 
 </x:description>
