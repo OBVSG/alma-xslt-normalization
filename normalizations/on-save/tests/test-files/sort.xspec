@@ -65,7 +65,311 @@
           </datafield>
         </x:expect>
       </x:scenario>
+      <x:scenario label="sortiere Subfelder in 130">
+        <x:context mode="sort">
+          <datafield tag="130" ind1=" " ind2=" ">
+            <subfield code="o">arrangiert</subfield>
+            <subfield code="0">(DE-588)111111111</subfield>
+            <subfield code="a">Notenbuch seinem Sohne Wolfgang Amadeus zu dessen siebenten Namenstag geschenkt</subfield>
+            <subfield code="k">Auswahl</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="richtig sortiert">
+          <datafield tag="130" ind1=" " ind2=" ">
+            <subfield code="a">Notenbuch seinem Sohne Wolfgang Amadeus zu dessen siebenten Namenstag geschenkt</subfield>
+            <subfield code="0">(DE-588)111111111</subfield>
+            <subfield code="k">Auswahl</subfield>
+            <subfield code="o">arrangiert</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Sortierung in 2XX">
+      <x:scenario label="sortiere Subfelder in 240">
+        <x:context mode="sort">
+          <datafield tag="240" ind1="1" ind2="0">
+            <subfield code="a">Konzerte</subfield>
+            <subfield code="k">Auswahl</subfield>
+            <subfield code="m">Klavier</subfield>
+            <subfield code="0">(DE-588)300025637</subfield>
+            <subfield code="m">Orchester</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="richtig sortiert">
+          <datafield tag="240" ind1="1" ind2="0">
+            <subfield code="a">Konzerte</subfield>
+            <subfield code="m">Klavier</subfield>
+            <subfield code="m">Orchester</subfield>
+            <subfield code="0">(DE-588)300025637</subfield>
+            <subfield code="k">Auswahl</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Sortierung in 3XX">
+      <x:scenario label="sortiere Subfelder in 385">
+        <x:context mode="sort">
+          <datafield tag="385" ind1=" " ind2=" ">
+            <subfield code="0">(DE-588)4030550-8</subfield>
+            <subfield code="2">gnd</subfield>
+            <subfield code="a">Kind</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="385" ind1=" " ind2=" ">
+            <subfield code="a">Kind</subfield>
+            <subfield code="0">(DE-588)4030550-8</subfield>
+            <subfield code="2">gnd</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Sortierung 6XX">
+      <x:scenario label="sortiere Subfelder in 600">
+        <x:context mode="sort">
+          <datafield tag="600" ind1="1" ind2="7">
+            <subfield code="0">(DE-588)120309521</subfield>
+            <subfield code="a">Krautheimer, Richard</subfield>
+            <subfield code="2">gnd</subfield>
+            <subfield code="d">1897-1994</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="600" ind1="1" ind2="7">
+            <subfield code="a">Krautheimer, Richard</subfield>
+            <subfield code="d">1897-1994</subfield>
+            <subfield code="0">(DE-588)120309521</subfield>
+            <subfield code="2">gnd</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="sortiere Subfelder in 610">
+        <x:context mode="sort">
+          <datafield tag="610" ind1="2" ind2="7">
+            <subfield code="2">gnd</subfield>
+            <subfield code="0">(DE-588)4040280-0</subfield>
+            <subfield code="a">Mormonen</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="610" ind1="2" ind2="7">
+            <subfield code="a">Mormonen</subfield>
+            <subfield code="0">(DE-588)4040280-0</subfield>
+            <subfield code="2">gnd</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="sortiere Subfelder in 611">
+        <x:context mode="sort">
+          <datafield tag="611" ind1=" " ind2=" ">
+            <subfield code="0">(OCoLC)fst01157294</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="a">Trojan War</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="611" ind1=" " ind2=" ">
+            <subfield code="a">Trojan War</subfield>
+            <subfield code="0">(OCoLC)fst01157294</subfield>
+            <subfield code="2">fast</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="sortiere Subfelder in 630">
+        <x:context mode="sort">
+          <datafield tag="630" ind1=" " ind2=" ">
+            <subfield code="a">Bibel</subfield>
+            <subfield code="0">(DE-588)4028647-2</subfield>
+            <subfield code="2">gnd</subfield>
+            <subfield code="p">Joel</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="630" ind1=" " ind2=" ">
+            <subfield code="a">Bibel</subfield>
+            <subfield code="p">Joel</subfield>
+            <subfield code="0">(DE-588)4028647-2</subfield>
+            <subfield code="2">gnd</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="sortiere Subfelder in 650">
+        <x:context mode="sort">
+          <datafield tag="650" ind1=" " ind2="7">
+            <subfield code="2">vlk</subfield>
+            <subfield code="a">Kamele</subfield>
+            <subfield code="0">(AT-VLB)LA01057245</subfield>
+            <subfield code="y">+BIZ 932.3/</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="650" ind1=" " ind2="7">
+            <subfield code="a">Kamele</subfield>
+            <subfield code="y">+BIZ 932.3/</subfield>
+            <subfield code="0">(AT-VLB)LA01057245</subfield>
+            <subfield code="2">vlk</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="sortiere Subfelder in 651">
+        <x:context mode="sort">
+          <datafield tag="651" ind1=" " ind2="7">
+            <subfield code="a">Luxemburg</subfield>
+            <subfield code="0">(DE-588)4036729-0</subfield>
+            <subfield code="2">gnd</subfield>
+            <subfield code="g">Stadt</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="651" ind1=" " ind2="7">
+            <subfield code="a">Luxemburg</subfield>
+            <subfield code="g">Stadt</subfield>
+            <subfield code="0">(DE-588)4036729-0</subfield>
+            <subfield code="2">gnd</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="sortiere Subfelder in 655">
+        <x:context mode="sort">
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="x">Dorotheum</subfield>
+            <subfield code="y">09.04.2999</subfield>
+            <subfield code="9">Dummy</subfield>
+            <subfield code="z">Graz</subfield>
+            <subfield code="a">Auktionskatalog</subfield>
+            <subfield code="x">Christie, Manson &amp; Woods</subfield>
+            <subfield code="0">(DE-588)4143482-1</subfield>
+            <subfield code="2">gnd-content</subfield>
+            <subfield code="y">09.02.1966</subfield>
+            <subfield code="z">London</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Auktionskatalog</subfield>
+            <subfield code="0">(DE-588)4143482-1</subfield>
+            <subfield code="2">gnd-content</subfield>
+            <subfield code="x">Dorotheum</subfield>
+            <subfield code="y">09.04.2999</subfield>
+            <subfield code="z">Graz</subfield>
+            <subfield code="x">Christie, Manson &amp; Woods</subfield>
+            <subfield code="y">09.02.1966</subfield>
+            <subfield code="z">London</subfield>
+            <subfield code="9">Dummy</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="sortiere Subfelder in 689">
+        <x:context mode="sort">
+          <datafield tag="689" ind1="0" ind2="4">
+            <subfield code="0">(DE-588)4182966-9</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="a">Statuette</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="">
+          <datafield tag="689" ind1="0" ind2="4">
+            <subfield code="a">Statuette</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4182966-9</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Sortierung 7XX">
+     <x:scenario label="sortiere Subfelder in 700">
+       <x:context mode="sort">
+          <datafield tag="700" ind1="1" ind2="2">
+            <subfield code="a">Wagner, Richard</subfield>
+            <subfield code="0">(DE-588)1047743760</subfield>
+            <subfield code="d">1813-1883</subfield>
+            <subfield code="o">arrangiert</subfield>
+            <subfield code="t">Gedichte</subfield>
+            <subfield code="p">Schmerzen</subfield>
+          </datafield>
+       </x:context>
+       <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="700" ind1="1" ind2="2">
+            <subfield code="a">Wagner, Richard</subfield>
+            <subfield code="d">1813-1883</subfield>
+            <subfield code="t">Gedichte</subfield>
+            <subfield code="p">Schmerzen</subfield>
+            <subfield code="0">(DE-588)1047743760</subfield>
+            <subfield code="o">arrangiert</subfield>
+          </datafield>
+       </x:expect>
+     </x:scenario>
+     <x:scenario label="sortiere Subfelder in 710">
+       <x:context mode="sort">
+          <datafield tag="710" ind1="2" ind2=" ">
+            <subfield code="0">(DE-588)1001473-1</subfield>
+            <subfield code="4">ctb</subfield>
+            <subfield code="a">Kungliga vitterhets historie och antikvitets akademien</subfield>
+          </datafield>
+       </x:context>
+       <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="710" ind1="2" ind2=" ">
+            <subfield code="a">Kungliga vitterhets historie och antikvitets akademien</subfield>
+            <subfield code="0">(DE-588)1001473-1</subfield>
+            <subfield code="4">ctb</subfield>
+          </datafield>
+       </x:expect>
+     </x:scenario>
+     <x:scenario label="sortiere Subfelder in 711">
+       <x:context mode="sort">
+          <datafield tag="711" ind1="2" ind2=" ">
+            <subfield code="a">Länderübergreifende Ausstellung über 1200 Jahre Geschichte und Kultur des Weserraumes</subfield>
+            <subfield code="0">(DE-588)10006821-2</subfield>
+            <subfield code="d">2000</subfield>
+            <subfield code="4">ctb</subfield>
+            <subfield code="c">Hameln u.a.</subfield>
+          </datafield>
+       </x:context>
+       <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="711" ind1="2" ind2=" ">
+            <subfield code="a">Länderübergreifende Ausstellung über 1200 Jahre Geschichte und Kultur des Weserraumes</subfield>
+            <subfield code="d">2000</subfield>
+            <subfield code="c">Hameln u.a.</subfield>
+            <subfield code="0">(DE-588)10006821-2</subfield>
+            <subfield code="4">ctb</subfield>
+          </datafield>
+       </x:expect>
+     </x:scenario>
+     <x:scenario label="sortiere Subfelder in 730">
+       <x:context mode="sort">
+          <datafield tag="730" ind1="0" ind2="2">
+            <subfield code="o">arrangiert</subfield>
+            <subfield code="0">(DE-588)300010400</subfield>
+            <subfield code="a">Pedal-Exercitium</subfield>
+          </datafield>
+       </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="730" ind1="0" ind2="2">
+            <subfield code="a">Pedal-Exercitium</subfield>
+            <subfield code="0">(DE-588)300010400</subfield>
+            <subfield code="o">arrangiert</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="sortiere Subfelder in 751">
+        <x:context mode="sort">
+          <datafield tag="751" ind1=" " ind2=" ">
+            <subfield code="4">pup</subfield>
+            <subfield code="0">(DE-588)4066009-6</subfield>
+            <subfield code="a">Wien</subfield>
+            <subfield code="2">gnd</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfelder richtig sortiert">
+          <datafield tag="751" ind1=" " ind2=" ">
+            <subfield code="a">Wien</subfield>
+            <subfield code="0">(DE-588)4066009-6</subfield>
+            <subfield code="2">gnd</subfield>
+            <subfield code="4">pup</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
     </x:scenario>
   </x:scenario>
-
 </x:description>
