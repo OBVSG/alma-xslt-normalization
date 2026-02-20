@@ -91,4 +91,36 @@
   <xsl:template match="datafield[@tag='245'][@ind2 ne '0']/subfield[@code='a'][not(starts-with(., '&lt;'))]/text()">
     <xsl:text>{mrclib:nonFilingChars(., ../../@ind2)}</xsl:text>
   </xsl:template>
+
+  <!--
+      Setze Indikatoren für `246`
+      - `24630 => 24610`
+      - `24631 => 24611`
+      - `24633 => 2463#`
+  -->
+  <xsl:template match="datafield[@tag='246']">
+    <xsl:copy>
+      <xsl:attribute name="tag" select="@tag" />
+      <xsl:choose>
+        <xsl:when test="@ind1 eq '3' and @ind2 eq '0'">
+          <xsl:attribute name="ind1">1</xsl:attribute>
+          <xsl:attribute name="ind2">0</xsl:attribute>
+        </xsl:when>
+        <xsl:when test="@ind1 eq '3' and @ind2 eq '1'">
+          <xsl:attribute name="ind1">1</xsl:attribute>
+          <xsl:attribute name="ind2">1</xsl:attribute>
+        </xsl:when>
+        <xsl:when test="@ind1 eq '3' and @ind2 eq '3'">
+          <xsl:attribute name="ind1">3</xsl:attribute>
+          <xsl:attribute name="ind2">{' '}</xsl:attribute>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="ind1" select="@ind1" />
+          <xsl:attribute name="ind2" select="@ind2" />
+        </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates />
+    </xsl:copy>
+
+  </xsl:template>
 </xsl:stylesheet>

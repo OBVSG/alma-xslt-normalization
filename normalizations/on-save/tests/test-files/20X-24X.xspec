@@ -198,6 +198,65 @@
         </x:scenario>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="Feld 246">
+      <x:scenario label="24630">
+        <x:context>
+          <datafield tag="246" ind1="3" ind2="0">
+            <subfield code="a">Scholia in Iuvenalem recentiora</subfield>
+            <subfield code="b">secundum recensiones φ et χ</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="zu 24610 geändert">
+          <datafield tag="246" ind1="1" ind2="0">
+            <subfield code="a">Scholia in Iuvenalem recentiora</subfield>
+            <subfield code="b">secundum recensiones φ et χ</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="24631">
+        <x:context>
+          <datafield tag="246" ind1="3" ind2="1">
+            <subfield code="a">Scholia in Iuvenalem recentiora</subfield>
+            <subfield code="b">secundum recensiones φ et χ</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="zu 24610 geändert">
+          <datafield tag="246" ind1="1" ind2="1">
+            <subfield code="a">Scholia in Iuvenalem recentiora</subfield>
+            <subfield code="b">secundum recensiones φ et χ</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="2463#">
+        <x:context>
+          <datafield tag="246" ind1="3" ind2="3">
+            <subfield code="a">Scholia in Iuvenalem recentiora</subfield>
+            <subfield code="b">secundum recensiones φ et χ</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="zu 24610 geändert">
+          <datafield tag="246" ind1="3" ind2=" ">
+            <subfield code="a">Scholia in Iuvenalem recentiora</subfield>
+            <subfield code="b">secundum recensiones φ et χ</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="2461#">
+        <x:context>
+          <datafield tag="246" ind1="1" ind2=" ">
+            <subfield code="i">Rückentitel</subfield>
+            <subfield code="a">Tagungsband</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Äenderung">
+          <datafield tag="246" ind1="1" ind2=" ">
+            <subfield code="i">Rückentitel</subfield>
+            <subfield code="a">Tagungsband</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+    </x:scenario>
   </x:scenario>
 
 </x:description>
