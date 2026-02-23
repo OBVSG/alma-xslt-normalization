@@ -1,219 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:marc="http://www.loc.gov/MARC21/slim" stylesheet="../../normalize-on-save.xsl">
-  <x:scenario label="Mehrfache Vorkommen von SFb">
-    <x:scenario label="Sufbelder aababbc">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa1.1</subfield>
-          <subfield code="a">SFa1.2</subfield>
-          <subfield code="b">SFb1.1</subfield>
-          <subfield code="a">SFa2.1</subfield>
-          <subfield code="b">SFb2.1</subfield>
-          <subfield code="b">SFb2.2</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="three fields 264">
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa1.1</subfield>
-          <subfield code="a">SFa1.2</subfield>
-          <subfield code="b">SFb1.1</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa2.1</subfield>
-          <subfield code="b">SFb2.1</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa2.1</subfield>
-          <subfield code="b">SFb2.2</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-      </x:expect>
+  <x:scenario label="Feld 264">
+    <x:scenario label="264 entfernen, wenn es nur ein SFc mit '©' gibt">
+      <x:scenario label="264 mit $$c">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="4">
+            <subfield code="c">© </subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="4">
+            <subfield code="c">© 2025</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="entfernt">
+          <datafield tag="264" ind1=" " ind2="4">
+            <subfield code="c">© 2025</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
-    <x:scenario label="wiederholtes SFb, nur ein SFa">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">Heidelberg</subfield>
-          <subfield code="b">Physica-Verlag HD</subfield>
-          <subfield code="b">Imprint: Physica</subfield>
-          <subfield code="c">1983</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="je eine 264 pro SFb">
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">Heidelberg</subfield>
-          <subfield code="b">Physica-Verlag HD</subfield>
-          <subfield code="c">1983</subfield>
-        </datafield>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">Heidelberg</subfield>
-          <subfield code="b">Imprint: Physica</subfield>
-          <subfield code="c">1983</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="kein SFa">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="b">Springer</subfield>
-          <subfield code="b">Läufer</subfield>
-          <subfield code="c">2025</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="je ein Feld 264 pro SFb">
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="b">Springer</subfield>
-          <subfield code="c">2025</subfield>
-        </datafield>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="b">Läufer</subfield>
-          <subfield code="c">2025</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="SF3 am Anfang">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="3">
-          <subfield code="3">SF3</subfield>
-          <subfield code="a">SFa1.1</subfield>
-          <subfield code="a">SFa1.2</subfield>
-          <subfield code="b">SFb1.1</subfield>
-          <subfield code="a">SFa2.1</subfield>
-          <subfield code="b">SFb2.1</subfield>
-          <subfield code="b">SFb2.2</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="SF3 wird mitgenommen">
-        <datafield tag="264" ind1=" " ind2="3">
-          <subfield code="3">SF3</subfield>
-          <subfield code="a">SFa1.1</subfield>
-          <subfield code="a">SFa1.2</subfield>
-          <subfield code="b">SFb1.1</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-        <datafield tag="264" ind1=" " ind2="3">
-          <subfield code="3">SF3</subfield>
-          <subfield code="a">SFa2.1</subfield>
-          <subfield code="b">SFb2.1</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-        <datafield tag="264" ind1=" " ind2="3">
-          <subfield code="3">SF3</subfield>
-          <subfield code="a">SFa2.1</subfield>
-          <subfield code="b">SFb2.2</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="SFb am Anfang (babc)">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="b">Pichler</subfield>
-          <subfield code="a">Leipzig</subfield>
-          <subfield code="b">in Commission bey August Liebeskind</subfield>
-          <subfield code="c">1823</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="jeweils eine 264 pro SFb">
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="b">Pichler</subfield>
-          <subfield code="c">1823</subfield>
-        </datafield>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">Leipzig</subfield>
-          <subfield code="b">in Commission bey August Liebeskind</subfield>
-          <subfield code="c">1823</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="kein SFa, zwei SFb, kein SFc">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="2">
-          <subfield code="b">Artaria</subfield>
-          <subfield code="b">Bärenreiter</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="je eine 264 pro SFb">
-        <datafield tag="264" ind1=" " ind2="2">
-          <subfield code="b">Artaria</subfield>
-        </datafield>
-        <datafield tag="264" ind1=" " ind2="2">
-          <subfield code="b">Bärenreiter</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="kein SFb">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="keine Änderung">
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="nur ein SFb">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa</subfield>
-          <subfield code="b">SFb</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="keine Änderung">
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa</subfield>
-          <subfield code="b">SFb</subfield>
-          <subfield code="c">SFc</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="SF6 vorhanden">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa</subfield>
-          <subfield code="b">SFb</subfield>
-          <subfield code="b">SFb2</subfield>
-          <subfield code="c">SFc</subfield>
-          <subfield code="6">SF6</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="keine Änderung">
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa</subfield>
-          <subfield code="b">SFb</subfield>
-          <subfield code="b">SFb2</subfield>
-          <subfield code="c">SFc</subfield>
-          <subfield code="6">SF6</subfield>
-        </datafield>
-      </x:expect>
-    </x:scenario>
-    <x:scenario label="SF8 vorhanden">
-      <x:context>
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa</subfield>
-          <subfield code="b">SFb</subfield>
-          <subfield code="b">SFb2</subfield>
-          <subfield code="c">SFc</subfield>
-          <subfield code="8">SF8</subfield>
-        </datafield>
-      </x:context>
-      <x:expect label="keine Änderung">
-        <datafield tag="264" ind1=" " ind2="1">
-          <subfield code="a">SFa</subfield>
-          <subfield code="b">SFb</subfield>
-          <subfield code="b">SFb2</subfield>
-          <subfield code="c">SFc</subfield>
-          <subfield code="8">SF8</subfield>
-        </datafield>
-      </x:expect>
+
+    <x:scenario label="Mehrfache Vorkommen von SFb">
+      <x:scenario label="Sufbelder aababbc">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa1.1</subfield>
+            <subfield code="a">SFa1.2</subfield>
+            <subfield code="b">SFb1.1</subfield>
+            <subfield code="a">SFa2.1</subfield>
+            <subfield code="b">SFb2.1</subfield>
+            <subfield code="b">SFb2.2</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="three fields 264">
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa1.1</subfield>
+            <subfield code="a">SFa1.2</subfield>
+            <subfield code="b">SFb1.1</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa2.1</subfield>
+            <subfield code="b">SFb2.1</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa2.1</subfield>
+            <subfield code="b">SFb2.2</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="wiederholtes SFb, nur ein SFa">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">Heidelberg</subfield>
+            <subfield code="b">Physica-Verlag HD</subfield>
+            <subfield code="b">Imprint: Physica</subfield>
+            <subfield code="c">1983</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="je eine 264 pro SFb">
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">Heidelberg</subfield>
+            <subfield code="b">Physica-Verlag HD</subfield>
+            <subfield code="c">1983</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">Heidelberg</subfield>
+            <subfield code="b">Imprint: Physica</subfield>
+            <subfield code="c">1983</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="kein SFa">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="b">Springer</subfield>
+            <subfield code="b">Läufer</subfield>
+            <subfield code="c">2025</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="je ein Feld 264 pro SFb">
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="b">Springer</subfield>
+            <subfield code="c">2025</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="b">Läufer</subfield>
+            <subfield code="c">2025</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="SF3 am Anfang">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="3">
+            <subfield code="3">SF3</subfield>
+            <subfield code="a">SFa1.1</subfield>
+            <subfield code="a">SFa1.2</subfield>
+            <subfield code="b">SFb1.1</subfield>
+            <subfield code="a">SFa2.1</subfield>
+            <subfield code="b">SFb2.1</subfield>
+            <subfield code="b">SFb2.2</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="SF3 wird mitgenommen">
+          <datafield tag="264" ind1=" " ind2="3">
+            <subfield code="3">SF3</subfield>
+            <subfield code="a">SFa1.1</subfield>
+            <subfield code="a">SFa1.2</subfield>
+            <subfield code="b">SFb1.1</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="3">
+            <subfield code="3">SF3</subfield>
+            <subfield code="a">SFa2.1</subfield>
+            <subfield code="b">SFb2.1</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="3">
+            <subfield code="3">SF3</subfield>
+            <subfield code="a">SFa2.1</subfield>
+            <subfield code="b">SFb2.2</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="SFb am Anfang (babc)">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="b">Pichler</subfield>
+            <subfield code="a">Leipzig</subfield>
+            <subfield code="b">in Commission bey August Liebeskind</subfield>
+            <subfield code="c">1823</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="jeweils eine 264 pro SFb">
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="b">Pichler</subfield>
+            <subfield code="c">1823</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">Leipzig</subfield>
+            <subfield code="b">in Commission bey August Liebeskind</subfield>
+            <subfield code="c">1823</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="kein SFa, zwei SFb, kein SFc">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="2">
+            <subfield code="b">Artaria</subfield>
+            <subfield code="b">Bärenreiter</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="je eine 264 pro SFb">
+          <datafield tag="264" ind1=" " ind2="2">
+            <subfield code="b">Artaria</subfield>
+          </datafield>
+          <datafield tag="264" ind1=" " ind2="2">
+            <subfield code="b">Bärenreiter</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="kein SFb">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="nur ein SFb">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="SF6 vorhanden">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="b">SFb2</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="6">SF6</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="b">SFb2</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="6">SF6</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="SF8 vorhanden">
+        <x:context>
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="b">SFb2</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="8">SF8</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">SFa</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="b">SFb2</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="8">SF8</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
   </x:scenario>
 </x:description>

@@ -51,6 +51,10 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:for-each-group>
-</xsl:template>
+  </xsl:template>
 
-</xsl:stylesheet>
+  <!--
+      Entferne `264`, wenn es nur ein Subfeld c mit dem Copyright-Zeichen (ohne Jahr) gibt.
+      @_marcFields 264
+  -->
+  <xsl:template match="datafield[@tag='264'][@ind1=' '][@ind2='4'][subfield[@code='c'][normalize-space(.) eq '©']]" />
