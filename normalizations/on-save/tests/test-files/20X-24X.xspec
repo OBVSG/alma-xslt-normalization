@@ -255,7 +255,29 @@
           </datafield>
         </x:expect>
       </x:scenario>
-
+    </x:scenario>
+    <x:scenario label="Feld 247">
+      <x:scenario label="247 ohne Wert in SFa">
+        <x:context>
+          <datafield tag="247" ind1="0" ind2="0">
+            <subfield code="a">Ach, früher</subfield>
+            <subfield code="g">Earliest Title</subfield>
+          </datafield>
+          <datafield tag="247" ind1="0" ind2="0">
+            <subfield code="a"></subfield>
+            <subfield code="g">Earliest Title</subfield>
+          </datafield>
+          <datafield tag="247" ind1="0" ind2="0">
+            <subfield code="g">Earliest Title</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="alle ohne Wert in SFa gelöscht">
+          <datafield tag="247" ind1="0" ind2="0">
+            <subfield code="a">Ach, früher</subfield>
+            <subfield code="g">Earliest Title</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
   </x:scenario>
 

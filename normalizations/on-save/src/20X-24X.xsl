@@ -97,6 +97,7 @@
       - `24630 => 24610`
       - `24631 => 24611`
       - `24633 => 2463#`
+      @_marcFields 246
   -->
   <xsl:template match="datafield[@tag='246']">
     <xsl:copy>
@@ -121,6 +122,11 @@
       </xsl:choose>
       <xsl:apply-templates />
     </xsl:copy>
-
   </xsl:template>
+
+  <!--
+      Entferne `247`, wenn in `$$a` nichts steht.
+      @_marcFields 247
+  -->
+  <xsl:template match="datafield[@tag='247'][not(subfield[@code='a']/text())]" />
 </xsl:stylesheet>
