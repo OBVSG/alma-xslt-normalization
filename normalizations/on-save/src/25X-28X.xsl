@@ -58,3 +58,4 @@
       @_marcFields 264
   -->
   <xsl:template match="datafield[@tag='264'][@ind1=' '][@ind2='4'][subfield[@code='c'][normalize-space(.) eq '©']]" />
+</xsl:stylesheet>
