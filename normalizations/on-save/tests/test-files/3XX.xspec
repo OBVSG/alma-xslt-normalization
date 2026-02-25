@@ -71,5 +71,25 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="Feld 347">
+      <x:scenario label="entferne SFe, wenn es nur 'Region ...' enthält">
+        <x:context>
+          <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="e">Region 4</subfield>
+          </datafield>
+          <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="e">Region ...</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfeld entfernt">
+          <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="e">Region 4</subfield>
+          </datafield>
+          <datafield tag="347" ind1=" " ind2=" ">
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+    </x:scenario>
   </x:scenario>
 </x:description>

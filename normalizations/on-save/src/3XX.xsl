@@ -47,5 +47,12 @@
     </xsl:if>
   </xsl:template>
 
+  <!--
+      Entferne `$$e` von `347`, wenn es "Region ..." lautet.
+
+      Das kann zu einem leeren `datafield` führen. Dieses wird in `sort.xsl` entfernt.
+      @_marcFields 347
+  -->
+  <xsl:template match="datafield[@tag='347']/subfield[@code='e'][.='Region ...']" />
 
 </xsl:stylesheet>
