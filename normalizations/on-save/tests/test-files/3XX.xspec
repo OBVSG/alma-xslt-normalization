@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:marc="http://www.loc.gov/MARC21/slim" stylesheet="../../normalize-on-save.xsl">
+  <x:scenario label="3XX">
+    <x:scenario label="300">
+      <x:scenario label="indikatoren von 300 auf ## setzen">
+        <x:context>
+          <datafield tag="300" ind1="9" ind2="9">
+            <subfield code="a">300 Seiten</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="indikatoren auf ## gesetzt">
+          <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">300 Seiten</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+</x:description>
