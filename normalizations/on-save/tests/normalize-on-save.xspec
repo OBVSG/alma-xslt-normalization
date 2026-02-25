@@ -8,6 +8,7 @@
   <x:import href="test-files/20X-24X.xspec" />
   <x:import href="test-files/25X-28X.xspec" />
   <x:import href="test-files/3XX.xspec" />
+  <x:import href="test-files/6XX.xspec" />
   <x:import href="test-files/760-787.xspec" />
   <x:import href="test-files/80X-83X.xspec" />
   <x:import href="test-files/alpha.xspec" />

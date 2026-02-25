@@ -89,7 +89,24 @@
           </datafield>
         </x:expect>
       </x:scenario>
-
+    </x:scenario>
+    <x:scenario label="Feld 348">
+      <x:scenario label="348 SFN">
+        <x:context>
+          <datafield tag="348" ind1=" " ind2=" ">
+            <subfield code="N">Klavierauszug</subfield>
+            <subfield code="0">(DE-588)4164058-5</subfield>
+            <subfield code="2">gnd-music</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="In SFa umgewandelt">
+          <datafield tag="348" ind1=" " ind2=" ">
+            <subfield code="a">Klavierauszug</subfield>
+            <subfield code="0">(DE-588)4164058-5</subfield>
+            <subfield code="2">gnd-music</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
   </x:scenario>
 </x:description>

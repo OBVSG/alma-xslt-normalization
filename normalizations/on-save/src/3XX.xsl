@@ -55,4 +55,14 @@
   -->
   <xsl:template match="datafield[@tag='347']/subfield[@code='e'][.='Region ...']" />
 
+  <!--
+      Ändere `348##$$N` in `$$a`.
+
+      Für den NAK ist in `$$N` ein CV hinterlegt, im Endefekt soll der Term dann aber in `$$a`.
+      @_marcFields 348
+  -->
+  <xsl:template match="datafield[@tag='348']/subfield[@code='N']/@code">
+    <xsl:attribute name="code">a</xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>
