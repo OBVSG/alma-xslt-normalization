@@ -28,4 +28,24 @@
   <xsl:template match="datafield[@tag='300']/@ind2">
     <xsl:attribute name="ind2">{' '}</xsl:attribute>
   </xsl:template>
+
+  <!--
+      Generiere eine `337` aus der `338` wenn noch keine vorhanden ist.
+      @_marcFileds 337 338
+  -->
+  <xsl:template match="datafield[@tag='338'][subfield[@code='b']/text()]">
+    <xsl:variable name="mediaType" select="substring(subfield[@code='b'][1], 1, 1)" />
+    <!--  Copy the field to the output -->
+    <xsl:copy>
+      <xsl:apply-templates select="node() | @*" />
+    </xsl:copy>
+
+    <xsl:if test="not(../datafield[@tag='337'][subfield[@code='b'][.=$mediaType]])">
+      <datafield tag="337" ind1=" " ind2=" ">
+        <subfield code="b">{$mediaType}</subfield>
+      </datafield>
+    </xsl:if>
+  </xsl:template>
+
+
 </xsl:stylesheet>

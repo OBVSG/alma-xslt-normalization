@@ -15,5 +15,61 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="IMD-Typen">
+      <x:scenario label="337 mit gleichem Wert vorhanden">
+        <x:context>
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="b">n</subfield>
+          </datafield>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="b">nc</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="b">n</subfield>
+          </datafield>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="b">nc</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="keine 337 vorhanden">
+        <x:context>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="b">nc</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="337 hinzugefügt">
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="b">nc</subfield>
+          </datafield>
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="b">n</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="337 mit anderem code vorhanden">
+        <x:context>
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="b">s</subfield>
+          </datafield>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="b">nc</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="337 hinzugefügt, vorhandene belassen">
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="b">s</subfield>
+          </datafield>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="b">nc</subfield>
+          </datafield>
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="b">n</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>
