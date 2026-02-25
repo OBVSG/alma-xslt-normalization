@@ -41,17 +41,4 @@
     </xsl:choose>
   </xsl:template>
 
-  <!--
-      Generiere die EKI (Erstkatalogisierende Institution) in der Form `035##$$a(DE-599)OBV...` aus `009`, wenn nicht vorhanden
-
-      @context marc:record
-      @_marcFields 035
-  -->
-  <xsl:template name="createEki">
-    <xsl:if test="controlfield[@tag='009'] and not(datafield[@tag='035'][subfield[@code='a'][starts-with(., '(DE-599)')]])">
-      <datafield tag="035" ind1=" " ind2=" ">
-        <subfield code="a">(DE-599)OBV{controlfield[@tag='009']}</subfield>
-      </datafield>
-    </xsl:if>
-  </xsl:template>
 </xsl:stylesheet>

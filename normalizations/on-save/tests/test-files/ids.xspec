@@ -160,7 +160,7 @@
               <subfield code="a">(AT-OBV)AC12345678</subfield>
             </datafield>
           </x:context>
-          <x:expect label="035 aus 016 erstellt">
+          <x:expect label="035 aus 016 erstellt (035 mit AC-Nummer wird gelöscht und an anderer Stelle generiert)">
             <datafield tag="016" ind1=" " ind2=" ">
               <subfield code="a">12345</subfield>
               <subfield code="2">DE-600</subfield>
@@ -168,15 +168,12 @@
             <datafield tag="035" ind1=" " ind2=" ">
               <subfield code="a">(DE-600)12345</subfield>
             </datafield>
-            <datafield tag="035" ind1=" " ind2=" ">
-              <subfield code="a">(AT-OBV)AC12345678</subfield>
-            </datafield>
           </x:expect>
         </x:scenario>
       </x:scenario>
     </x:scenario>
 
-    <x:scenario label="EKI erzeugen">
+    <x:scenario label="EKI erzeugen" pending="to be removed">
       <x:scenario label="keine EKI vorhanden">
         <x:context>
           <record>
