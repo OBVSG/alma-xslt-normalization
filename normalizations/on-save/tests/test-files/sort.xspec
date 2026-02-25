@@ -369,7 +369,34 @@
           </datafield>
         </x:expect>
       </x:scenario>
+    </x:scenario>
+  </x:scenario>
 
+  <x:scenario label="cleanup">
+    <x:scenario label="leere Subfelder">
+      <x:context mode="sort">
+        <datafield tag="999" ind1=" " ind2=" ">
+          <subfield code="a">SFa mit Inhalt</subfield>
+          <subfield code="b"></subfield>
+          <subfield code="c">SFcmit Inhalt</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="Subfelder gelöscht">
+        <datafield tag="999" ind1=" " ind2=" ">
+          <subfield code="a">SFa mit Inhalt</subfield>
+          <subfield code="c">SFcmit Inhalt</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="leere Felder">
+      <x:context mode="sort">
+        <datafield tag="999" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="b"></subfield>
+          <subfield code="c"></subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="Felder gelöscht" />
     </x:scenario>
   </x:scenario>
 </x:description>

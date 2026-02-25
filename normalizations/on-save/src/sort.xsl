@@ -155,6 +155,14 @@
     </xsl:call-template>
   </xsl:template>
 
+  <!--
+      Entferne leere Subfelder.
+  -->
+  <xsl:template match="datafield/subfield[not(text())]" mode="sort" />
 
+  <!--
+      Entferne leere Felder.
+  -->
+  <xsl:template match="datafield[not(subfield/text())]" mode="sort" />
 
 </xsl:stylesheet>
