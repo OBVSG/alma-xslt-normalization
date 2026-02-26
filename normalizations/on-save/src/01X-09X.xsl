@@ -82,6 +82,15 @@
   </xsl:template>
 
   <!--
+      Lösche `035` mit AC-Nummer.
+
+      Dieses Felde wird vom [Template für 009](#temp;controlfield[@tag='009'];nil) frisch erzeugt.
+
+      @_marcFields 035
+  -->
+  <xsl:template match="datafield[@tag='035'][subfield[@code='a'][starts-with(., '(AT-OBV)')]]" />
+
+  <!--
       Synchronisiere `035` mit `016` bei ZDB-Datensätzen.
 
       Die Synchronisierung von `035` und `016` teilt sich auf mehrere Templates auf. Dieses hier
@@ -125,8 +134,8 @@
   <!--
       Bearbeite oder erstelle Feld `040`.
 
-      Der ISIL der bearbeitenden Institution wird im MARC-Feld `MOD` übergeben (das gelöscht wird, siehe [LINK]())
-      und über den `$meta`-Parameter im Key `'isil'` weitergereicht (siehe [LINK]()).
+      Der ISIL der bearbeitenden Institution wird im MARC-Feld `MOD` übergeben (das gelöscht wird, siehe [entsprechendes Template](#temp;datafield[@tag='MOD'];nil))
+      und über den `$meta`-Parameter im Key `'isil'` weitergereicht (siehe die Funktion [utils:collect-metadata](#func;utils:collect-metadata)).
 
       - Wenn nicht vorhanden oder leer, erstelle `$$a` mit dem ISIL der bearbeitenden Institution. (`KATA-036-add040a`)
       - Wenn nicht vorhanden oder leer, erstelle `$$bger`. (`KATA-036-add040be`)

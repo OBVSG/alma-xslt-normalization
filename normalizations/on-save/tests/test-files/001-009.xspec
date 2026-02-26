@@ -258,7 +258,7 @@
             </datafield>
           </record>
         </x:context>
-        <x:expect label="keine Änderung" test="/record/datafield[@tag='035']">
+        <x:expect label="EKI erstellt" test="/record/datafield[@tag='035']">
           <datafield tag="035" ind1=" " ind2=" ">
             <subfield code="a">(AT-OBV)AC12345678</subfield>
           </datafield>
@@ -330,12 +330,12 @@
             </datafield>
           </record>
         </x:context>
-        <x:expect label="Änderungen übernommen" test="/record/datafield[@tag='035']">
+        <x:expect label="035 mit '(AT-OBV)' aktualisiert, EKI bleibt" test="/record/datafield[@tag='035']">
           <datafield tag="035" ind1=" " ind2=" ">
             <subfield code="a">(AT-OBV)AC99999999</subfield>
           </datafield>
           <datafield tag="035" ind1=" " ind2=" ">
-            <subfield code="a">(DE-599)OBVAC99999999</subfield>
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
           </datafield>
           <datafield tag="035" ind1=" " ind2=" ">
             <subfield code="a">(DE-101)123456785</subfield>

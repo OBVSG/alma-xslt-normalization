@@ -64,7 +64,7 @@
       - `035##$$a(AT-OBV)AC...` erzeugen
       - bei Bedarf die EKI (`035##$$a(DE-599)OBVAC...`) erzeugen. Bedarf heißt, dass es keine nicht-OBV-EKI gibt.
 
-      Die AC-Nummer und die OBV-EKI die vorhanden sind, werden in [einem anderen Template]() gelöscht.
+      Die AC-Nummer und die OBV-EKI die vorhanden sind, werden in [einem anderen Template](#temp;datafield[@tag='035'][subfield[@code='a'][starts-with(., '(AT-OBV)')]];nil) gelöscht.
 
       @_marcFields 009 035
   -->
@@ -79,22 +79,11 @@
     </datafield>
 
     <!-- EKI erzeugen -->
-    <xsl:if test="not(../datafield[@tag='035'][subfield[@code='a'][starts-with(., '(DE-599)')]]) or ../datafield[@tag='035'][subfield[@code='a'][starts-with(., '(DE-599)OBV')]]">
+    <xsl:if test="not(../datafield[@tag='035'][subfield[@code='a'][starts-with(., '(DE-599)')]])">
       <datafield tag="035" ind1=" " ind2=" ">
         <subfield code="a">(DE-599)OBV{.}</subfield>
       </datafield>
     </xsl:if>
-  </xsl:template>
-
-  <!--
-      Lösche `035` mit AC-Nummer und EKI falls diese mit "(DE-599)OBV" beginnt.
-
-      Diese Felder werden vom [Template für 009]() frisch erzeugt.
-
-      @_marcFields 035
-  -->
-  <xsl:template match="datafield[@tag='035'][subfield[@code='a'][starts-with(., '(AT-OBV)') or starts-with(., '(DE-599)OBV')]]">
-
   </xsl:template>
 
 </xsl:stylesheet>

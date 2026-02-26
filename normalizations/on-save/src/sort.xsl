@@ -22,6 +22,8 @@
       mode der während der abschließenden Sortierung der Felder nach tags eingesetzt wird.
 
       Wenn es in diesem Mode kein Template vorhanden ist, wird das Feld 1:1 in den Output kopiert.
+
+      Über die Sortierung hinaus werden hier leere Felder und leere Subfelder gelöscht.
   -->
   <xsl:mode name="sort" on-no-match="shallow-copy" />
 
