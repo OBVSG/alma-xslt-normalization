@@ -48,6 +48,14 @@
   </xsl:template>
 
   <!--
+      Ergänze `\x` in `336`, `337` oder `338` `$$b`, wenn nicht vorhanden.
+      @_marcFields 336 337 338
+  -->
+  <xsl:template match="datafield[@tag=('336', '337', '338')]/subfield[@code='8']">
+    <subfield code="8">{.}{if (ends-with(., "\x")) then '' else '\x'}</subfield>
+  </xsl:template>
+
+  <!--
       Entferne `$$e` von `347`, wenn es "Region ..." lautet.
 
       Das kann zu einem leeren `datafield` führen. Dieses wird in `sort.xsl` entfernt.
