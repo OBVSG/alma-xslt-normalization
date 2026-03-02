@@ -50,6 +50,7 @@
 
   <!--
       Ändere `500 $$D` in `$$a`.
+      @_marcFields 500
   -->
   <xsl:template match="datafield[@tag='500']/subfield[@code='D']/@code">
     <xsl:attribute name="code">a</xsl:attribute>
@@ -57,6 +58,15 @@
 
   <!--
       Entferne `500`, wenn es nur die Vortexte "Zusatzmaterial:" oder "Bildseitenverhältnis:" enthält.
+      @_marcFields 500
   -->
   <xsl:template match="datafield[@tag='500'][subfield[@code='a'][.=('Zusatzmaterial:', 'Bildseitenverhältnis:')]]" />
+
+  <!--
+      Entferne `538`, wenn kein `$$a` vorhanden ist. Das passiert nicht
+      zwangsläufig in beim Aufräumen, weil ein `$$i` aus einem Template
+      vorhanden sein könnte.
+      @_marcFields 538
+  -->
+  <xsl:template match="datafield[@tag='538'][not(subfield[@code='a']/text())]" />
 </xsl:stylesheet>

@@ -116,5 +116,23 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="Feld 538 ohne SFa">
+      <x:context>
+        <datafield tag="538" ind1=" " ind2=" ">
+          <subfield code="i">Geräte- oder Systemanforderungen</subfield>
+          <subfield code="a">Windows Vista</subfield>
+        </datafield>
+        <datafield tag="538" ind1=" " ind2=" ">
+          <subfield code="i">Geräte- oder Systemanforderungen</subfield>
+          <subfield code="a"></subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="gelöscht">
+        <datafield tag="538" ind1=" " ind2=" ">
+          <subfield code="i">Geräte- oder Systemanforderungen</subfield>
+          <subfield code="a">Windows Vista</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
   </x:scenario>
 </x:description>
