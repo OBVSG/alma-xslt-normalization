@@ -69,4 +69,9 @@
       @_marcFields 538
   -->
   <xsl:template match="datafield[@tag='538'][not(subfield[@code='a']/text())]" />
+
+  <!--
+      Entferne `546`, wenn `$$a` nur Vortexte enthält.
+  -->
+  <xsl:template match="datafield[@tag='546'][matches(subfield[@code='a'], '^(Sprachfassungen|Untertitel): ?$')]" />
 </xsl:stylesheet>

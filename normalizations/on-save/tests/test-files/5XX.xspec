@@ -134,5 +134,30 @@
         </datafield>
       </x:expect>
     </x:scenario>
+    <x:scenario label="Feld 546">
+      <x:context>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Sprachfassungen: deutsch, englisch</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Untertitel: klingonisch</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Sprachfassungen:</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Untertitel: </subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="546 nur mit Vortexten entfernt">
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Sprachfassungen: deutsch, englisch</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Untertitel: klingonisch</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
   </x:scenario>
 </x:description>
