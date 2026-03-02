@@ -110,6 +110,30 @@
           <leader>01414nam a2200421 c 4500</leader>
         </x:expect>
       </x:scenario>
+      <x:scenario label="Sonderdruck TAT">
+        <x:context>
+          <record>
+            <leader>01414nam a2200421 c 4500</leader>
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="i">Sonderdruck aus</subfield>
+              <subfield code="t">Neue Forschungen zur Geschichte der Pfarre
+                Tulln-St. Stephan</subfield>
+              <subfield code="k">Beiträge zur Kirchengeschichte
+                Niederösterreichs ; 17</subfield>
+              <subfield code="k">Geschichtliche Beilagen zum St. Pöltner
+                Diözesanblatt ; 34</subfield>
+              <subfield code="w">(AT-OBV)AC12345678</subfield>
+            </datafield>
+            <datafield tag="773" ind1="0" ind2="8">
+              <subfield code="w">(AT-OBV)AC12345678</subfield>
+              <subfield code="v">7</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="LDR/19=c" test="record/leader">
+          <leader>01414nam a2200421 cc4500</leader>
+        </x:expect>
+      </x:scenario>
       <x:scenario label="LDR/06!=m (fR etc.)'">
         <x:context>
           <record>

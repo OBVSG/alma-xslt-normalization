@@ -54,5 +54,81 @@
         <x:expect label="flags calculated" select="()" />
       </x:scenario>
     </x:scenario>
+
+    <x:scenario label="ISIL">
+      <x:scenario label="'MOD'-Field in record">
+        <x:call function="utils:collect-metadata">
+          <x:param name="record">
+            <record>
+              <datafield tag="MOD">
+                <subfield code="I">AT-UBG</subfield>
+              </datafield>
+            </record>
+          </x:param>
+        </x:call>
+        <x:expect label="isil in map" test=".('isil') eq 'AT-UBG'" />
+      </x:scenario>
+      <x:scenario label="no 'MOD'-Field in record">
+        <x:call function="utils:collect-metadata">
+          <x:param name="record">
+            <record>
+              <!-- Nothing here -->
+            </record>
+          </x:param>
+        </x:call>
+        <x:expect label="isil in map" test="not(.('isil'))" />
+      </x:scenario>
+    </x:scenario>
+
+    <x:scenario label="utils:dedupSubfields">
+      <x:scenario label="keine doppelten Subfelder, aufruf ohne Parameter">
+        <x:context>
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">1</subfield>
+            <subfield code="a">2</subfield>
+            <subfield code="b">1</subfield>
+            <subfield code="c">2</subfield>
+          </datafield>
+        </x:context>
+        <x:call template="utils:dedupSubfields" />
+        <x:expect label="keine Änderung">
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">1</subfield>
+            <subfield code="a">2</subfield>
+            <subfield code="b">1</subfield>
+            <subfield code="c">2</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="doppelte Subfelder, aufruf über parameter">
+        <x:call template="utils:dedupSubfields">
+          <x:param name="datafieldParam">
+            <datafield tag="090" ind1=" " ind2=" ">
+              <subfield code="a">1</subfield>
+              <subfield code="a">1</subfield>
+              <subfield code="a">2</subfield>
+              <subfield code="b">1</subfield>
+              <subfield code="c">2</subfield>
+              <subfield code="c">2</subfield>
+            </datafield>
+          </x:param>
+        </x:call>
+        <x:expect label="subfelder dedupliziert">
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">1</subfield>
+            <subfield code="a">2</subfield>
+            <subfield code="b">1</subfield>
+            <subfield code="c">2</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Aufruf aus falschem Kontext">
+      <x:context>
+        <controlfield tag="007">tu</controlfield>
+      </x:context>
+      <x:call template="utils:dedupSubfields" />
+      <x:expect label="keine Ausgabe" />
+    </x:scenario>
   </x:scenario>
 </x:description>

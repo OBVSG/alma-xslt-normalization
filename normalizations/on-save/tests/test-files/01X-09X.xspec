@@ -1,6 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../../normalize-on-save.xsl">
   <x:scenario label="01X-09X">
+    <x:scenario label="ZDB-ID-Dinge">
+      <x:scenario label="016 mit nur Vorlagewert">
+        <x:context>
+          <datafield tag="016" ind1=" " ind2=" ">
+            <subfield code="a"></subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+          <datafield tag="016" ind1=" " ind2=" ">
+            <subfield code="z">12345-6</subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="016 ohne sinnvollen Wert gelöscht">
+          <datafield tag="016" ind1=" " ind2=" ">
+            <subfield code="z">12345-6</subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="016 aus 035 generieren">
+        <x:scenario label="035 mit DE-600 und ZDB-ID keine 016">
+          <x:context>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="016 erstellt">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">123-X</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="016 nicht SF2 DE-600">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">Meine unbekannte ID</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345678</subfield>
+              <subfield code="2">fake-voc</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="keine Änderung">
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">Meine unbekannte ID</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345678</subfield>
+              <subfield code="2">fake-voc</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="035 mit DE-600, 016 vorhanden">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">000-0</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="016 geändert">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123-X</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">123-X</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+      <x:scenario label="035 aus 016 generieren">
+        <x:scenario label="035 mit DE-600 vorhanden">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)12346</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="016 an 035 angepasst">
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)12346</subfield>
+            </datafield>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12346</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="keine 035 mit DE-600 vorhanden">
+          <x:context>
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="035 aus 016 erstellt">
+            <datafield tag="016" ind1=" " ind2=" ">
+              <subfield code="a">12345</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)12345</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+    </x:scenario>
+
     <x:scenario label="020">
       <x:scenario label="020 SFa mit Bindestrichen">
         <x:context>
@@ -23,6 +147,61 @@
         <x:expect label="unverändert">
           <datafield tag="020" ind1=" " ind2=" ">
             <subfield code="a">9789295055179</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="020 SFz mit Bindestrichen">
+        <x:context>
+          <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="z">978-92-95055-17-9</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Bindestriche entfernt">
+          <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="z">9789295055179</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="024">
+      <x:scenario label="024 entfernen, wenn es kein SFa oder SFz gibt">
+        <x:context>
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="a">9790260000438</subfield>
+          </datafield>
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="z">9990000000999</subfield>
+          </datafield>
+          <datafield tag="024" ind1="8" ind2=" ">
+            <subfield code="a"></subfield>
+            <subfield code="2">doi</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Felde entfernt">
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="a">9790260000438</subfield>
+          </datafield>
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="z">9990000000999</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+      <x:scenario label="Bindestriche in ISMN">
+        <x:context>
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="a">979-0-2600-0043-8</subfield>
+          </datafield>
+          <datafield tag="024" ind1="8" ind2=" ">
+            <subfield code="a">979-0-2600-0043-8</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Bindestriche entfernt">
+          <datafield tag="024" ind1="2" ind2=" ">
+            <subfield code="a">9790260000438</subfield>
+          </datafield>
+          <datafield tag="024" ind1="8" ind2=" ">
+            <subfield code="a">979-0-2600-0043-8</subfield>
           </datafield>
         </x:expect>
       </x:scenario>
@@ -183,6 +362,133 @@
       </x:expect>
     </x:scenario>
 
+    <x:scenario label="040">
+      <x:scenario label="040 vorhanden (also matching template)">
+        <x:context>
+          <record>
+            <datafield tag="040" ind1=" " ind2=" ">
+              <subfield code="a">AT-UBG</subfield>
+              <subfield code="b">ger</subfield>
+              <subfield code="d">AT-UBL</subfield>
+              <subfield code="e">rakwb</subfield>
+            </datafield>
+            <datafield tag="040" ind1=" " ind2=" ">
+              <subfield code="b">ger</subfield>
+              <subfield code="d">AT-UBL</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 übernommen, SFd aktualisiert"
+          test="/record/datafield[@tag='040']">
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBW</subfield>
+            <subfield code="e">rakwb</subfield>
+          </datafield>
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBW</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBW</subfield>
+            <subfield code="e">rda</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="040 vorhanden (also matching template), aus OAI-Import">
+        <x:context>
+          <record>
+            <datafield tag="040" ind1=" " ind2=" ">
+              <subfield code="a">DE-600</subfield>
+              <subfield code="d">DE-101</subfield>
+              <subfield code="e">rakwb</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+            <datafield tag="SRC" ind1=" " ind2=" ">
+              <subfield code="S">oai</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 übernommen, SFd aktualisiert"
+          test="/record/datafield[@tag='040']">
+            <datafield tag="040" ind1=" " ind2=" ">
+              <subfield code="a">DE-600</subfield>
+              <subfield code="b">ger</subfield>
+              <subfield code="d">DE-101</subfield>
+              <subfield code="e">rakwb</subfield>
+            </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="keine 040 vorhanden, keine 336">
+        <x:context>
+          <record>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBG</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 erstellt, kein SFe"
+          test="/record/datafield[@tag='040']">
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBG</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="keine 040 vorhanden, 336 vorhanden">
+        <x:context>
+          <record>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 erstellt, SFerda"
+          test="/record/datafield[@tag='040']">
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBG</subfield>
+            <subfield code="e">rda</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="keine 040 vorhanden, 336 vorhanden, automatisiert erstelltes Katalogisat">
+        <x:context>
+          <record>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+            <datafield tag="970" ind1=" " ind2=" ">
+              <subfield code="a">E-KAT - Automatisch erstelltes Katalogisat ohne intellektuelle Prüfung, Optimierung erwünscht</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="040 erstellt, SFerda"
+          test="/record/datafield[@tag='040']">
+          <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="d">AT-UBG</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+
     <x:scenario label="041">
       <x:scenario label="041 scr und scc, verschiedene Subfelder">
         <x:context>
@@ -238,6 +544,33 @@
           <subfield code="q">AT-OeVKNAH</subfield>
         </datafield>
       </x:expect>
+    </x:scenario>
+    <x:scenario label="090 (für OAI-Import)">
+      <x:scenario label="mehrere 090 mit teilweise gleichen Inhalten">
+        <x:context>
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">SFa-1</subfield>
+            <subfield code="a">SFa-2</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="c">SFc</subfield>
+          </datafield>
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">SFa-2</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="d">SFd</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="in eine 090 zusammengeführt, Inhalte dedupliziert">
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="a">SFa-1</subfield>
+            <subfield code="a">SFa-2</subfield>
+            <subfield code="b">SFb</subfield>
+            <subfield code="c">SFc</subfield>
+            <subfield code="d">SFd</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
     </x:scenario>
 
   </x:scenario>

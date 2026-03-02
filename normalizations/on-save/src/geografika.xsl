@@ -16,7 +16,7 @@
   -->
   <xsl:template match="datafield[@tag='034']">
     <!-- Bearbeite nur Felder 034, die wirklich Daten enthalten. -->
-    <xsl:if test="not(subfield[@code='2'] and count(subfield) eq 1)">
+    <xsl:if test="not(subfield[@code='2'] and count(subfield[text()]) eq 1)">
       <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
         <xsl:apply-templates />
       </datafield>
@@ -30,13 +30,17 @@
   </xsl:template>
 
   <!--
-      Template für MARC `255`.
+      Template für MARC `255`, wenn es genau eine `255` und genau eine `034` gibt.
+
+      Wenn es mehr als ein `034` oder mehr als ein `255` gibt, matcht dieses Template nicht
+      und die `255` wird per Default 1:1 in die Ausgabe kopiert. Diese Einschränkung ist notwendig,
+      weil bei mehreren Feldern keine Zuordnung möglich ist.
 
       - Wenn es ein Feld `034` mit validen Koordinaten gibt, aktualisiere `$$c`.
 
       @_marcFields 255
   -->
-  <xsl:template match="datafield[@tag='255']">
+  <xsl:template match="datafield[@tag='255'][count(../datafield[@tag='255']) eq 1 and count(../datafield[@tag='034']) eq 1]">
     <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
       <xsl:apply-templates select="subfield[@code=('a', 'b')]" />
       <xsl:choose>

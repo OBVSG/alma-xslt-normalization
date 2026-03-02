@@ -30,6 +30,8 @@
   <xsl:include href="src/70X-75X.xsl" />
   <xsl:include href="src/760-787.xsl" />
   <xsl:include href="src/80X-83X.xsl" />
+  <xsl:include href="src/970-974.xsl" />
+  <xsl:include href="src/alpha.xsl" />
   <xsl:include href="src/geografika.xsl" />
   <xsl:include href="src/ids.xsl" />
   <xsl:include href="src/sort.xsl" />
@@ -44,12 +46,17 @@
       resultierenden Datensatz geschrieben werden können.
   -->
   <xsl:template match="record">
-  <xsl:variable name="meta" select="utils:collect-metadata(.)" />
+    <xsl:variable name="meta" select="utils:collect-metadata(.)" />
     <xsl:variable name="transformedFields" as="item()*">
       <xsl:apply-templates>
         <xsl:with-param name="meta" select="$meta" tunnel="yes" />
       </xsl:apply-templates>
       <xsl:call-template name="createEki" />
+      <xsl:if test="not(datafield[@tag='040'])">
+        <xsl:call-template name="handle040">
+          <xsl:with-param name="meta" select="$meta" tunnel="yes" />
+        </xsl:call-template>
+      </xsl:if>
     </xsl:variable>
     <record>
       <xsl:apply-templates select="$transformedFields" mode="sort">

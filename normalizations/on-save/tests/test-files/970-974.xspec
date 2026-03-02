@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="970-974">
+    <x:scenario label="9700# bei barrierefrei aufbereiteten Ressourcen">
+      <x:scenario label="9700#$$abarrierefrei aufbereitet, kein $$i">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <datafield tag="970" ind1="0" ind2=" ">
+              <subfield code="a">barrierefrei aufbereitet</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="SFi hinzugefügt" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">barrierefrei aufbereitet</subfield>
+            <subfield code="i">AT-UBW</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="9700#$$Abarrierefrei aufbereitet, $$i leer">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <datafield tag="970" ind1="0" ind2=" ">
+              <subfield code="A">barrierefrei aufbereitet</subfield>
+              <subfield code="i"></subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="SFi hinzugefügt" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">barrierefrei aufbereitet</subfield>
+            <subfield code="i">AT-UBW</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="bereits vollständig befüllt">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <datafield tag="970" ind1="0" ind2=" ">
+              <subfield code="a">barrierefrei aufbereitet</subfield>
+              <subfield code="i">AT-UBW</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="keine Änderung" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">barrierefrei aufbereitet</subfield>
+            <subfield code="i">AT-UBW</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="bereits vollständig befülltes Feld vorhanden, zweites ohne SFi hinzugefügt">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <datafield tag="970" ind1="0" ind2=" ">
+              <subfield code="a">barrierefrei aufbereitet</subfield>
+              <subfield code="i">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="970" ind1="0" ind2=" ">
+              <subfield code="A">barrierefrei aufbereitet</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="vollständiges Feld unverändert, SFi beim zweiten Feld hinzugefügt" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">barrierefrei aufbereitet</subfield>
+            <subfield code="i">AT-UBG</subfield>
+          </datafield>
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">barrierefrei aufbereitet</subfield>
+            <subfield code="i">AT-UBW</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+</x:description>

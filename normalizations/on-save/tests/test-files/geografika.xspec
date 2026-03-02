@@ -172,5 +172,47 @@
         </datafield>
       </x:expect>
     </x:scenario>
+    <x:scenario label="034 nur mit Template-Inhalt">
+      <x:context>
+        <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="b"></subfield>
+          <subfield code="2">bound</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="gelöscht" />
+    </x:scenario>
+    <x:scenario label="more than one 255">
+      <x:context>
+        <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="d">E0044125</subfield>
+          <subfield code="e">E0102931</subfield>
+          <subfield code="f">N0474830</subfield>
+          <subfield code="g">N0455314</subfield>
+          <subfield code="2">bound</subfield>
+        </datafield>
+        <datafield tag="255" ind1=" " ind2=" ">
+          <subfield code="c">E 09°99'99"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        </datafield>
+        <datafield tag="255" ind1=" " ind2=" ">
+          <subfield code="c">E 08°88'88"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="keine Änderungen">
+        <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="d">E0044125</subfield>
+          <subfield code="e">E0102931</subfield>
+          <subfield code="f">N0474830</subfield>
+          <subfield code="g">N0455314</subfield>
+          <subfield code="2">bound</subfield>
+        </datafield>
+        <datafield tag="255" ind1=" " ind2=" ">
+          <subfield code="c">E 09°99'99"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        </datafield>
+        <datafield tag="255" ind1=" " ind2=" ">
+          <subfield code="c">E 08°88'88"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
   </x:scenario>
 </x:description>
