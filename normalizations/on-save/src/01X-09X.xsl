@@ -25,7 +25,7 @@
       - Wenn es **keine** `035##$$a(DE-600)...` oder `035##$$aZDB-NEU-...` gibt, kopiere die gegenständliche `016` in die Ausgabe und erstelle eine korrespondierende `035##$$a(DE-600)...` mit dem Wert aus `$$a`.
 
       Die Prüfung auf `[subfield[@code='a']/text()]` im `match` ist notwendig, damit es nicht mit [dem Template](#temp;datafield%5B@tag='016'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil) kollidiert, das `016`er ohne sinnvollen Inhalt löscht.
-      @group zdbIds
+      @_group zdbIds
       @_marcFields 016
   -->
   <xsl:template match="datafield[@tag='016'][subfield[@code='2'][.='DE-600']][subfield[@code='a']/text()]">
@@ -104,7 +104,7 @@
       - Wenn keine passende `035` vorhanden ist, erstelle eine aus einer etwaigen `016`. Siehe: [dasselbe Template](#temp;datafield%5B@tag='016'%5D%5Bsubfield%5B@code='2'%5D%5B.='DE-600'%5D%5D%5Bsubfield%5B@code='a'%5D/text()%5D;nil)
       - Wenn es ein `$$Z` gibt, wandle dieses in `$$a` um. Siehe: [Template zu `035##$$Z`](#temp;datafield%5B@tag='035'%5D/subfield%5B@code='Z'%5D;nil)
 
-      @group zdbIds
+      @_group zdbIds
       @_marcFields 016 035
   -->
   <xsl:template match="datafield[@tag='035'][subfield[@code=('a', 'Z')][starts-with(., '(DE-600)') or starts-with(upper-case(.), 'ZDB-NEU')]]">
@@ -124,7 +124,7 @@
       Ändere 035 SFZ in SFa und ergänze ISIL, wenn notwendig.
 
       Dieses Template wird von [diesem Template](#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code=('a',%20'Z')%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil) via `xsl:apply-templates` aufgerufen. Die Prüfung, ob hier ein sinnvoller Inhalt vorhanden ist, passiert dort.
-      @group zdbIds
+      @_group zdbIds
       @_marcFields 035
   -->
   <xsl:template match="datafield[@tag='035']/subfield[@code='Z']">

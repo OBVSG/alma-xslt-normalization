@@ -236,4 +236,13 @@
       </x:scenario>
     </x:scenario>
   </x:scenario>
+  <x:scenario label="290">
+    <x:context>
+      <datafield tag="290" ind1=" " ind2=" ">
+        <subfield code="a">I'M DOOOMED! DOOOOOOOMED!</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="gelöscht" />
+  </x:scenario>
+
 </x:description>

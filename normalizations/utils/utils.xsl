@@ -117,4 +117,13 @@
     </xsl:choose>
   </xsl:template>
 
+  <!--
+      Make a shallow copy of the context node.
+  -->
+  <xsl:template name="shallow-copy">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()" />
+   </xsl:copy>
+  </xsl:template>
+
 </xsl:stylesheet>
