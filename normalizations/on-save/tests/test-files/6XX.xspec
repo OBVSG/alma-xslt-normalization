@@ -20,6 +20,51 @@
           </datafield>
         </x:expect>
       </x:scenario>
+      <x:scenario label="indikator 2">
+        <x:context>
+          <datafield tag="655" ind1=" " ind2=" ">
+            <subfield code="a">Chorbuch</subfield>
+            <subfield code="0">(DE-588)4147892-7</subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+          <datafield tag="655" ind1=" " ind2="4">
+            <subfield code="a">Science Fiction</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="ind2=7, wenn SF2 vorhanden">
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Chorbuch</subfield>
+            <subfield code="0">(DE-588)4147892-7</subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+          <datafield tag="655" ind1=" " ind2="4">
+            <subfield code="a">Science Fiction</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Subfeld N">
+        <x:context>
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="N">NAK-Begriff</subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="in SFa geändert">
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">NAK-Begriff</subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="655 ohne SFa">
+        <x:context>
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a"></subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="entfernt" />
+      </x:scenario>
     </x:scenario>
   </x:scenario>
 </x:description>
