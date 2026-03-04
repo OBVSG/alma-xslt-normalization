@@ -84,4 +84,34 @@
   -->
   <xsl:template match="datafield[@tag='773'][subfield[@code='i'][.='Sonderdruck aus']][not(subfield[@code='t']/text())]" />
 
+  <!--
+      Setze `780 ind1` fix auf "0".
+      @_marcFields 780
+  -->
+  <xsl:template match="datafield[@tag='780']/@ind1">
+    <xsl:attribute name="ind1">0</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze `780 ind2` je nach Inhalt von `$$i`
+      @_marcFields 780
+  -->
+  <xsl:template match="datafield[@tag='780']/@ind2">
+    <xsl:variable name="relation" select="../subfield[@code='i']" />
+
+    <xsl:attribute name="ind2">
+      <xsl:choose>
+        <xsl:when test="$relation = ('Fortsetzung von', 'Prequel', 'Sequel zu', 'Vorangegangen ist')">0</xsl:when>
+        <xsl:when test="$relation = 'Teilweise Fortsetzung von'">1</xsl:when>
+        <xsl:when test="$relation = 'Ersatz von'">2</xsl:when>
+        <xsl:when test="$relation = 'Teilweise Ersatz von'">3</xsl:when>
+        <xsl:when test="$relation = 'Vereinigung von'">4</xsl:when>
+        <xsl:when test="$relation = 'Darin aufgegangen'">5</xsl:when>
+        <xsl:when test="$relation = 'Teilweise darin aufgegangen'">6</xsl:when>
+        <xsl:when test="$relation = 'Abgespalten von'">7</xsl:when>
+        <xsl:otherwise>{.}</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>
