@@ -7,9 +7,9 @@
                 version="3.0">
 
   <!--~doc:stylesheet
-      In diesem Stylesheet wird der mode `sort` definiert und templates in diesem mode.
+      In diesem Stylesheet wird der mode `sort` definiert und templates in diesem mode. Neben Sortierungen werden hier auch noch [leere Subfelder](#temp;datafield/subfield[not(text())];sort) und [leere Felder](#temp;datafield[not(subfield/text())];sort) (bzw. [689X# ohne zugehörige Schlagwortfolge](#temp;datafield[@tag='689'];sort)) gelöscht.
 
-      Diese dienen dazu, während der abschließenden Sortierung nach tags auch noch innerhalb der Felder die Subfelder zu sortieren. Das dazu verwendete template `utils:sortSubfields` ist in `utils.xsl` deklariert. `utils.xsl` wird hier nicht via `xsl:include` eingebunden, weil das schon in `normalize-on-save.xsl` passiert.
+      Diese dienen dazu, während der abschließenden Sortierung nach tags auch noch innerhalb der Felder die Subfelder zu sortieren. Das dazu verwendete template `utils:sortSubfields` ist in [utils.xsl](#stylesheet;../utils/utils.xsl) deklariert. `utils.xsl` wird hier nicht via `xsl:include` eingebunden, weil das schon in `normalize-on-save.xsl` passiert.
 
       ## Allgemeines zur Sortierung von Subfeldern
       - Subfeld `$$6` wird NICHT zu den anderen numerischen Subfeldern nach hinten sortiert, weil es beim automatischen einfügen im MDE vorne hingestellt wird und die Bearbeiter:innen das so gewohnt sind.
@@ -97,14 +97,26 @@
     </xsl:call-template>
   </xsl:template>
 
-  <!--
-      Sortiere die Subfelder von 689
-      @_marcFields 689
+ <!--
+     Sortiere die Subfelder von `689`.
+
+     ### Institutionskennungen in 689 ind2=#
+     Entferne `689X#`, wenn es keine weiteren `689` mit `ind1=X` gibt.
+
+     In den Schablonen sind oft mehrere Folgen vorhanden, jeweils mit der
+     `689X#$$5ISIL`. Wenn aber eine Folge nicht ausgefüllt wirt, sollten diese
+     natürlich gelöscht werden.
+     @_marcField 689
   -->
   <xsl:template match="datafield[@tag='689']" mode="sort">
-    <xsl:call-template name="mrclib:sortSubfieldsToEnd">
-      <xsl:with-param name="sortSpec" select="('D', '0', '1', '2', '9')" />
-    </xsl:call-template>
+    <xsl:variable name="ind1" select="@ind1" />
+    <xsl:variable name="hasTermSequence"
+                  select="(preceding-sibling::datafield[@tag='689']|following-sibling::datafield[@tag='689'])[@ind1 = $ind1][subfield[@code='a']/text()]" />
+    <xsl:if test="not(@ind2 eq ' ') or $hasTermSequence">
+      <xsl:call-template name="mrclib:sortSubfieldsToEnd">
+        <xsl:with-param name="sortSpec" select="('D', '0', '1', '2', '9')" />
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
 
   <!--

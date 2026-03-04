@@ -26,7 +26,8 @@
       Entferne `655` ohne `$$a` oder `$$N`. `$$N` enthält CV für den NAK, wird dann [hier](#temp;datafield%5B@tag='655'%5D/subfield%5B@code='N'%5D/@code;nil) in `$$a` umgewandelt.
       @_marcFields 655
   -->
-  <xsl:template match="datafield[@tag='655'][not(subfield[@code=('a', 'N')]/text())]" />
+  <xsl:template
+    match="datafield[@tag='655'][not(subfield[@code=('a', 'N')]/text())]" />
 
   <!--
       Ändere `655 $$N` auf `$$a`.
@@ -46,6 +47,33 @@
     <xsl:attribute name="ind2">7</xsl:attribute>
   </xsl:template>
 
+  <!--
+      Füge bei `689X#` am Anfang ein `$$5AT-OBV` hinzu, wenn es nur `$$5` im Feld gibt.
+      @_marcFields 689
+  -->
+  <xsl:template
+    match="datafield[@tag='689'][@ind2=' '][subfield[@code='5']][not(subfield[not(@code='5')])]">
+    <datafield tag="689" ind1="{@ind1}" ind2="{@ind2}">
+      <subfield code="5">AT-OBV</subfield>
+      <xsl:apply-templates select="subfield[not(.='AT-OBV')]" />
+    </datafield>
+  </xsl:template>
 
+  <!--
+      Lösche `$$5` aus `689`, wenn es ein `$$a` gibt. Wenn ein Deskriptor (`$$a`) vorhanden ist,
+      dann hat `$$5` dort nichts verloren.
+      @_marcFields 689
+  -->
+  <xsl:template match="datafield[@tag='689'][subfield[@code='a']]/subfield[@code='5']" />
 
-</xsl:stylesheet>
+  <!--
+      Ändere `689XX$$Z` auf `$$a`.
+
+      In `$$Z` gibt es eine CV-Liste. Dadurch eingefügte Terme sollen beim Speichern dann in `$$a` stehen.
+      @_marcFields 689
+  -->
+  <xsl:template match="datafield[@tag='689']/subfield[@code='Z']/@code">
+    <xsl:attribute name="code">a</xsl:attribute>
+  </xsl:template>
+
+ </xsl:stylesheet>

@@ -23,7 +23,7 @@
       @_marcFields 500 290
   -->
   <xsl:template match="datafield[@tag='500']">
-    <xsl:call-template name="shallow-copy" />
+    <xsl:call-template name="utils:shallow-copy" />
     <xsl:choose>
       <xsl:when test="subfield[@code='a'][1][starts-with(., 'Incipit: ')]">
         <datafield tag="290" ind1=" " ind2=" ">

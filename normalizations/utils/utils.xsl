@@ -118,11 +118,11 @@
   </xsl:template>
 
   <!--
-      Make a shallow copy of the context node.
+      Make a shallow copy of the context node in the current mode.
   -->
-  <xsl:template name="shallow-copy">
+  <xsl:template name="utils:shallow-copy">
     <xsl:copy>
-      <xsl:apply-templates select="@*|node()" />
+      <xsl:apply-templates select="@*|node()" mode="#current" />
    </xsl:copy>
   </xsl:template>
 
