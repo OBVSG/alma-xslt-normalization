@@ -618,5 +618,109 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="785">
+      <x:scenario label="Indikatoren in 785">
+        <x:context>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Fortgesetzt durch</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Prequel zu</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Sequel</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Gefolgt von</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Teilweise fortgesetzt durch</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Ersetzt durch</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Teilweise ersetzt durch</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Aufgegangen in</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Teilweise aufgegangen in</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Gesplittet in</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="X" ind2="X">
+            <subfield code="i">Vereinigt, um ... zu bilden</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="X">
+            <subfield code="i">Beliebige Relation</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="">
+          <datafield tag="785" ind1="0" ind2="0">
+            <subfield code="i">Fortgesetzt durch</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="0">
+            <subfield code="i">Prequel zu</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="0">
+            <subfield code="i">Sequel</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="0">
+            <subfield code="i">Gefolgt von</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="1">
+            <subfield code="i">Teilweise fortgesetzt durch</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="2">
+            <subfield code="i">Ersetzt durch</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="3">
+            <subfield code="i">Teilweise ersetzt durch</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="4">
+            <subfield code="i">Aufgegangen in</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="5">
+            <subfield code="i">Teilweise aufgegangen in</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="6">
+            <subfield code="i">Gesplittet in</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="7">
+            <subfield code="i">Vereinigt, um ... zu bilden</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+          <datafield tag="785" ind1="0" ind2="X">
+            <subfield code="i">Beliebige Relation</subfield>
+            <subfield code="t">Beliebiger Titel</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>

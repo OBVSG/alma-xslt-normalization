@@ -114,4 +114,36 @@
     </xsl:attribute>
   </xsl:template>
 
+  <!--
+      Setze `785 ind1` fix auf "0".
+      @_marcFields 785
+  -->
+  <xsl:template match="datafield[@tag='785']/@ind1">
+    <xsl:attribute name="ind1">0</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze `785 ind2` je nach Inhalt von `$$i`
+      @_marcFields 785
+  -->
+  <xsl:template match="datafield[@tag='785']/@ind2">
+    <xsl:variable name="relation" select="../subfield[@code='i']" />
+    <xsl:attribute name="ind2">
+      <xsl:choose>
+        <xsl:when test="$relation ='Fortgesetzt durch'">0</xsl:when>
+        <xsl:when test="$relation ='Prequel zu'">0</xsl:when>
+        <xsl:when test="$relation ='Sequel'">0</xsl:when>
+        <xsl:when test="$relation ='Gefolgt von'">0</xsl:when>
+        <xsl:when test="$relation ='Teilweise fortgesetzt durch'">1</xsl:when>
+        <xsl:when test="$relation ='Ersetzt durch'">2</xsl:when>
+        <xsl:when test="$relation ='Teilweise ersetzt durch'">3</xsl:when>
+        <xsl:when test="$relation ='Aufgegangen in'">4</xsl:when>
+        <xsl:when test="$relation ='Teilweise aufgegangen in'">5</xsl:when>
+        <xsl:when test="$relation ='Gesplittet in'">6</xsl:when>
+        <xsl:when test="$relation ='Vereinigt, um ... zu bilden'">7</xsl:when>
+        <xsl:otherwise>{.}</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>
