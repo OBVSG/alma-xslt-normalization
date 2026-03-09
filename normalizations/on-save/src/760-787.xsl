@@ -85,6 +85,26 @@
   <xsl:template match="datafield[@tag='773'][subfield[@code='i'][.='Sonderdruck aus']][not(subfield[@code='t']/text())]" />
 
   <!--
+      Lösche `776`, wenn es nur Template-Text enthält, es also kein Subfeld mit einem der Codes `owxz` gibt.
+      @_marcFields 776
+  -->
+  <xsl:template match="datafield[@tag='776'][not(subfield[@code=('o', 'w', 'x', 'z')]/text())]" />
+
+  <!--
+      Lösche `77608$$nOnline-Ausgabe`, wenn es kein `$$iErscheint auch als` gibt.
+
+      Die Vorlagen für mono, tut und tat enthalten vorbefüllte Subfelder in
+      77608, bei expand from template in bereits existierende Felder gemerged werden
+      (Namentlich solche mit SFi Elektronische Reproduktion, die kein SFn haben).
+
+      Das eingefügte SFn mit "Online-Ausgabe" soll dementsprechend entfernt werden,
+      wenn es kein passendes SFi gibt.
+      @_marcFields 776
+  -->
+  <xsl:template match="datafield[@tag='776'][not(subfield[@code='i'][.='Erscheint auch als'])]/subfield[@code='n'][.='Online-Ausgabe']" />
+
+
+  <!--
       Setze `780 ind1` fix auf "0".
       @_marcFields 780
   -->

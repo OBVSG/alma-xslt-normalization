@@ -508,6 +508,88 @@
         </x:scenario>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="Feld 776">
+      <x:scenario label="Feld 776 nur mit Template-Text">
+        <x:context>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="z"></subfield>
+          </datafield>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="o">urn:nbn:at:at-ubtuw:1-57478</subfield>
+            <subfield code="o">20.500.12708/8861</subfield>
+          </datafield>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="t">New York international law review</subfield>
+            <subfield code="d">Albany, NY : NYSBA, 1987-</subfield>
+            <subfield code="h">Online-Ressource</subfield>
+            <subfield code="x">1933-849X</subfield>
+          </datafield>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="t">New York international law review</subfield>
+            <subfield code="d">Albany, NY : NYSBA, 1987-</subfield>
+            <subfield code="h">Online-Ressource</subfield>
+            <subfield code="x">1933-849X</subfield>
+          </datafield>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="z">9783515118972</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="gelöscht">
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="o">urn:nbn:at:at-ubtuw:1-57478</subfield>
+            <subfield code="o">20.500.12708/8861</subfield>
+          </datafield>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="t">New York international law review</subfield>
+            <subfield code="d">Albany, NY : NYSBA, 1987-</subfield>
+            <subfield code="h">Online-Ressource</subfield>
+            <subfield code="x">1933-849X</subfield>
+          </datafield>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="t">New York international law review</subfield>
+            <subfield code="d">Albany, NY : NYSBA, 1987-</subfield>
+            <subfield code="h">Online-Ressource</subfield>
+            <subfield code="x">1933-849X</subfield>
+          </datafield>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Erscheint auch als</subfield>
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="z">9783515118972</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="776 mit SFnOnline-Ausgabe aber ohne SFiErscheint auch als">
+        <x:context>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i" />
+            <subfield code="n">Online-Ausgabe</subfield>
+            <subfield code="z">9789811037245</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="SFn gelöscht">
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i" />
+            <subfield code="z">9789811037245</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
     <x:scenario label="Feld 780">
       <x:scenario label="indikatoren in 780">
         <x:context>
