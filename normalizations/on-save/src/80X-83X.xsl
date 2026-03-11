@@ -46,4 +46,20 @@
   -->
   <xsl:template match="datafield[@tag='830'][not(subfield[@code='w']) and not(subfield[@code='a'][matches(., '(\(AT-OBV\))?AC')])]" />
 
+  <!--
+      Setze `830 ind1` bedingungslos auf "#" (blank).
+      @_marcFields 830
+  -->
+  <xsl:template match="datafield[@tag='830']/@ind1">
+    <xsl:attribute name="ind1">{' '}</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze `830 ind2` bedingungslos auf "0".
+      @_marcFields 830
+  -->
+  <xsl:template match="datafield[@tag='830']/@ind2">
+    <xsl:attribute name="ind2">0</xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>
