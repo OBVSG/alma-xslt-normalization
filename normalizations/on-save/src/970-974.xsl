@@ -13,6 +13,7 @@
 
   <!--
       Ändere `970 $$A` zu `$$a`. In `$$A` sind Schreibhilfen hinterlegt, die nach dem Speichern in `$$a` sein sollen.
+      @_marc@Fields 970
   -->
   <xsl:template match="datafield[@tag='970']/subfield[@code='A']/@code">
     <xsl:attribute name="code">a</xsl:attribute>
@@ -20,6 +21,7 @@
 
   <!--
       Ergänze den ISIL der bearbeitenden Institution in `9700#$$i`, wenn `$$abarrierefrei aufbereitet`, sofern nicht schon vorhanden.
+      @_marc@Fields 970
   -->
   <xsl:template match="datafield[@tag='970'][subfield[@code=('a', 'A')][.='barrierefrei aufbereitet']][not(subfield[@code='i']/text())]">
     <xsl:param name="meta" tunnel="yes" />
@@ -31,6 +33,16 @@
 
   <!--
       Lösche `9700#$$i`, wenn es keinen text enthält und `$$abarrerefrei aufbereitet`.
+      @_marc@Fields 970
   -->
   <xsl:template match="datafield[@tag='970'][subfield[@code=('a', 'A')][.='barrierefrei aufbereitet']]/subfield[@code='i'][not(text())]" />
+
+  <!--
+      Setze die Indikatoren von `970` auf `0#`, wenn `$$a` oder `$$A` den String
+      "Dublette zu" enthalten.
+      @_marc@Fields 970
+  -->
+  <xsl:template match="datafield[@tag='970'][subfield[@code=('a', 'A')][contains(., 'Dublette zu')]]/(@ind1|@ind2)">
+    <xsl:attribute name="{name()}">{if (name() eq 'ind1') then '0' else ' '}</xsl:attribute>
+  </xsl:template>
 </xsl:stylesheet>

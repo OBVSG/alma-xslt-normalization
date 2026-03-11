@@ -92,5 +92,24 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="Indikatoren bei 'Dublette zu' setzen">
+      <x:context>
+        <datafield tag="970" ind1=" " ind2=" ">
+          <subfield code="A">Dublette zu AC12345678</subfield>
+        </datafield>
+        <datafield tag="970" ind1=" " ind2=" ">
+          <subfield code="a">Dies scheint eine Dublette zu einem anderen Buch zu sein</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="Indikatoren auf '0#' gesetzt">
+        <datafield tag="970" ind1="0" ind2=" ">
+          <subfield code="a">Dublette zu AC12345678</subfield>
+        </datafield>
+        <datafield tag="970" ind1="0" ind2=" ">
+          <subfield code="a">Dies scheint eine Dublette zu einem anderen Buch zu sein</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
   </x:scenario>
 </x:description>
