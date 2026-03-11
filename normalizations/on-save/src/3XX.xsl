@@ -73,4 +73,20 @@
     <xsl:attribute name="code">a</xsl:attribute>
   </xsl:template>
 
+  <!--
+      Setze `362 ind1` fix auf "0".
+      @_marcFields 362
+  -->
+  <xsl:template match="datafield[@tag='362']/@ind1">
+    <xsl:attribute name="ind1">0</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze `362 ind2` fix auf "#".
+      @_marcFields 362
+  -->
+  <xsl:template match="datafield[@tag='362']/@ind2">
+    <xsl:attribute name="ind2">{' '}</xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -154,5 +154,17 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="Indikatoren von 362">
+      <x:context>
+        <datafield tag="362" ind1="X" ind2="X">
+          <subfield code="a">Nachgewiesen 3.1982 -</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="fix auf '0#' gesetzt">
+        <datafield tag="362" ind1="0" ind2=" ">
+          <subfield code="a">Nachgewiesen 3.1982 -</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
   </x:scenario>
 </x:description>
