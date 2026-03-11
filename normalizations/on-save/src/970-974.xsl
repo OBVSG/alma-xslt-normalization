@@ -45,4 +45,14 @@
   <xsl:template match="datafield[@tag='970'][subfield[@code=('a', 'A')][contains(., 'Dublette zu')]]/(@ind1|@ind2)">
     <xsl:attribute name="{name()}">{if (name() eq 'ind1') then '0' else ' '}</xsl:attribute>
   </xsl:template>
+
+  <!--
+      Ergänze den ISIL bei LKR/ITM-Markierungen.
+      @_marcFields 970
+  -->
+  <xsl:template match="datafield[@tag='970'][@ind1='7']/subfield[@code=('a', 'A')][matches(., '^(lkr/itm|lkr|itm)$', 'i')]">
+    <xsl:param name="meta" tunnel="yes" />
+    <subfield code="a">LKR/ITM-{$meta('isil') => replace('^AT-', '')}</subfield>
+  </xsl:template>
+
 </xsl:stylesheet>

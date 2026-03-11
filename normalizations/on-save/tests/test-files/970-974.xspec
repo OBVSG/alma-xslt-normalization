@@ -110,6 +110,59 @@
         </datafield>
       </x:expect>
     </x:scenario>
-
+    <x:scenario label="LKR-Markierung in 9707#">
+      <x:context>
+        <record>
+          <leader>#####nam#a22######c#4500</leader>
+          <datafield tag="970" ind1="7" ind2=" ">
+            <subfield code="a">LKR/ITM-UBG</subfield>
+          </datafield>
+          <datafield tag="970" ind1="7" ind2=" ">
+            <subfield code="a">LKR/ITM</subfield>
+          </datafield>
+          <datafield tag="970" ind1="7" ind2=" ">
+            <subfield code="a">LKR</subfield>
+          </datafield>
+          <datafield tag="970" ind1="7" ind2=" ">
+            <subfield code="a">ITM</subfield>
+          </datafield>
+          <datafield tag="970" ind1="7" ind2=" ">
+            <subfield code="a">lkr/itm</subfield>
+          </datafield>
+          <datafield tag="970" ind1="7" ind2=" ">
+            <subfield code="a">lkr</subfield>
+          </datafield>
+          <datafield tag="970" ind1="7" ind2=" ">
+            <subfield code="a">itm</subfield>
+          </datafield>
+          <datafield tag="MOD" ind1=" " ind2=" ">
+            <subfield code="I">AT-OBV</subfield>
+          </datafield>
+        </record>
+      </x:context>
+      <x:expect label="ISIL-hinzugefügt" test="/record/datafield[@tag='970']">
+        <datafield tag="970" ind1="7" ind2=" ">
+          <subfield code="a">LKR/ITM-UBG</subfield>
+        </datafield>
+        <datafield tag="970" ind1="7" ind2=" ">
+          <subfield code="a">LKR/ITM-OBV</subfield>
+        </datafield>
+        <datafield tag="970" ind1="7" ind2=" ">
+          <subfield code="a">LKR/ITM-OBV</subfield>
+        </datafield>
+        <datafield tag="970" ind1="7" ind2=" ">
+          <subfield code="a">LKR/ITM-OBV</subfield>
+        </datafield>
+        <datafield tag="970" ind1="7" ind2=" ">
+          <subfield code="a">LKR/ITM-OBV</subfield>
+        </datafield>
+        <datafield tag="970" ind1="7" ind2=" ">
+          <subfield code="a">LKR/ITM-OBV</subfield>
+        </datafield>
+        <datafield tag="970" ind1="7" ind2=" ">
+          <subfield code="a">LKR/ITM-OBV</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
   </x:scenario>
 </x:description>
