@@ -11,6 +11,7 @@
   <x:import href="test-files/6XX.xspec" />
   <x:import href="test-files/760-787.xspec" />
   <x:import href="test-files/80X-83X.xspec" />
+  <x:import href="test-files/841-88X.xspec" />
   <x:import href="test-files/alpha.xspec" />
   <x:import href="test-files/geografika.xspec" />
   <x:import href="test-files/ids.xspec" />
