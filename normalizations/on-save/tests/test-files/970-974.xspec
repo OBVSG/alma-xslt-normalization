@@ -17,10 +17,11 @@
             </datafield>
           </record>
         </x:context>
-        <x:expect label="SFi hinzugefügt" test="/record/datafield[@tag='970']">
+        <x:expect label="SFi und SFu hinzugefügt" test="/record/datafield[@tag='970']">
           <datafield tag="970" ind1="0" ind2=" ">
             <subfield code="a">barrierefrei aufbereitet</subfield>
             <subfield code="i">AT-UBW</subfield>
+            <subfield code="u">https://bibliothek.univie.ac.at/literaturservice.html</subfield>
           </datafield>
         </x:expect>
       </x:scenario>
@@ -37,10 +38,11 @@
             </datafield>
           </record>
         </x:context>
-        <x:expect label="SFi hinzugefügt" test="/record/datafield[@tag='970']">
+        <x:expect label="SFi SFu hinzugefügt" test="/record/datafield[@tag='970']">
           <datafield tag="970" ind1="0" ind2=" ">
             <subfield code="a">barrierefrei aufbereitet</subfield>
             <subfield code="i">AT-UBW</subfield>
+            <subfield code="u">https://bibliothek.univie.ac.at/literaturservice.html</subfield>
           </datafield>
         </x:expect>
       </x:scenario>
@@ -80,7 +82,7 @@
             </datafield>
           </record>
         </x:context>
-        <x:expect label="vollständiges Feld unverändert, SFi beim zweiten Feld hinzugefügt" test="/record/datafield[@tag='970']">
+        <x:expect label="vollständiges Feld unverändert, SFi und SFu beim zweiten Feld hinzugefügt" test="/record/datafield[@tag='970']">
           <datafield tag="970" ind1="0" ind2=" ">
             <subfield code="a">barrierefrei aufbereitet</subfield>
             <subfield code="i">AT-UBG</subfield>
@@ -88,6 +90,7 @@
           <datafield tag="970" ind1="0" ind2=" ">
             <subfield code="a">barrierefrei aufbereitet</subfield>
             <subfield code="i">AT-UBW</subfield>
+            <subfield code="u">https://bibliothek.univie.ac.at/literaturservice.html</subfield>
           </datafield>
         </x:expect>
       </x:scenario>

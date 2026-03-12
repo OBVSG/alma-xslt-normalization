@@ -21,13 +21,23 @@
 
   <!--
       Ergänze den ISIL der bearbeitenden Institution in `9700#$$i`, wenn `$$abarrierefrei aufbereitet`, sofern nicht schon vorhanden.
+
+      Wenn von der Institution eingemeldet, wird auch ein `$$u` mit einem URL für weiter Informationen eingefügt.
       @_marcFields 970
   -->
   <xsl:template match="datafield[@tag='970'][subfield[@code=('a', 'A')][.='barrierefrei aufbereitet']][not(subfield[@code='i']/text())]">
     <xsl:param name="meta" tunnel="yes" />
+    <xsl:variable name="instUrls" as="map(xs:string, xs:string)">
+      <xsl:map>
+        <xsl:map-entry key="'AT-UBW'" select="'https://bibliothek.univie.ac.at/literaturservice.html'" />
+      </xsl:map>
+    </xsl:variable>
     <datafield tag="970" ind1="0" ind2=" ">
       <xsl:apply-templates />
       <subfield code="i">{$meta('isil')}</subfield>
+      <xsl:if test="$instUrls($meta('isil'))">
+        <subfield code="u">{$instUrls($meta('isil'))}</subfield>
+      </xsl:if>
     </datafield>
   </xsl:template>
 
