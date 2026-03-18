@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
                xmlns:marc="http://www.loc.gov/MARC21/slim"
                stylesheet="../../normalize-on-save.xsl">
 
+  <x:param name="currentDateTime" select="dateTime(xs:date('2233-03-22'), xs:time('12:12:12'))" />
   <x:scenario label="970-974">
     <x:scenario label="9700# bei barrierefrei aufbereiteten Ressourcen">
       <x:scenario label="9700#$$abarrierefrei aufbereitet, kein $$i">
@@ -166,6 +168,57 @@
           <subfield code="a">LKR/ITM-OBV</subfield>
         </datafield>
       </x:expect>
+    </x:scenario>
+    <x:scenario label="KI-Assistent">
+      <x:scenario label="588, aber keine 9700#$$aAI-Assistant">
+        <x:context>
+          <record>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="588" ind1=" " ind2=" ">
+              <subfield code="a">Part of the metadata in this record was created with the help of AI Metadata Assistant</subfield>
+            </datafield>
+            <datafield tag="970" ind1="0" ind2=" ">
+              <subfield code="a">Digitaler Assistent</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-OBV</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="97008 mit allen nötigen Daten eingefügt" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">AI-Assistant</subfield>
+            <subfield code="x">enhanced</subfield>
+            <subfield code="y">2233-03-22T12:12:12</subfield>
+            <subfield code="i">AT-OBV</subfield>
+          </datafield>
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">Digitaler Assistent</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="9700#$$aAI-Assistant vorhanden, ISIL fehlt">
+        <x:context>
+          <record>
+            <datafield tag="970" ind1="0" ind2=" ">
+              <subfield code="a">AI-Assistant</subfield>
+              <subfield code="y">2233-03-22T12:12:12</subfield>
+              <subfield code="r">FE-OK</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-OBV</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="SFi mit ISIL eingefügt" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">AI-Assistant</subfield>
+            <subfield code="y">2233-03-22T12:12:12</subfield>
+            <subfield code="i">AT-OBV</subfield>
+            <subfield code="r">FE-OK | AT-OBV | 2233-03-22T12:12:12</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
   </x:scenario>
 </x:description>

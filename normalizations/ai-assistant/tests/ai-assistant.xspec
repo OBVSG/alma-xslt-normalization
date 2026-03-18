@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               stylesheet="../ai-assistant.xsl">
+
+  <x:param name="currentDateTime" select="dateTime(xs:date('2233-03-22'), xs:time('12:12:12'))" />
+  <x:scenario label="AI Assistant">
+    <x:scenario label="Markierung in 9700# einfügen">
+      <x:scenario label="neuer Datensatz">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <datafield tag="MOD">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="9700# hinzugefügt" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">AI-Assistant</subfield>
+            <subfield code="x">created</subfield>
+            <subfield code="y">2233-03-22T12:12:12</subfield>
+            <subfield code="i">AT-UBW</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Datensatz hat schon eine AC-nummer">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="MOD">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="9700# hinzugefügt" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">AI-Assistant</subfield>
+            <subfield code="x">enhanced</subfield>
+            <subfield code="y">2233-03-22T12:12:12</subfield>
+            <subfield code="i">AT-UBW</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="diverse Korrekturen">
+      <x:scenario label="relator terms gegen codes tauschen">
+        <x:context mode="aiAssistant">
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Kirk, James T.</subfield>
+            <subfield code="e">thesis advisor;</subfield>
+          </datafield>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Sulu, Hikaro.</subfield>
+            <subfield code="e">Helmsman,</subfield>
+          </datafield>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Cekov, Pavel</subfield>
+            <subfield code="e">editor.</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+          <datafield tag="711" ind1="2" ind2=" ">
+            <subfield code="a">Starfleet</subfield>
+            <subfield code="j">responsible party.</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="codes gegen terms getauscht, wenn möglich">
+          <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="a">Kirk, James T.</subfield>
+            <subfield code="4">ths</subfield>
+          </datafield>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Sulu, Hikaro</subfield>
+            <subfield code="e">Helmsman</subfield>
+          </datafield>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Cekov, Pavel</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+          <datafield tag="711" ind1="2" ind2=" ">
+            <subfield code="a">Starfleet</subfield>
+            <subfield code="4">rpy</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="IMD mit diversen Subfeldern">
+      <x:context mode="aiAssistant">
+        <datafield tag="336" ind1=" " ind2=" ">
+          <subfield code="a">text</subfield>
+          <subfield code="b">txt</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/contentTypes/txt</subfield>
+          <subfield code="2">rdacontent</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+          <subfield code="a">audio</subfield>
+          <subfield code="b">s</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/mediaTypes/s</subfield>
+          <subfield code="2">rdamedia</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+          <subfield code="a">audio disc</subfield>
+          <subfield code="b">sd</subfield>
+          <subfield code="0">http://id.loc.gov/vocabulary/carriers/sd</subfield>
+          <subfield code="2">rdacarrier</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="nur SFb übernommen">
+        <datafield tag="336" ind1=" " ind2=" ">
+          <subfield code="b">txt</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+          <subfield code="b">s</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+          <subfield code="b">sd</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="IMD-Typen">
+      <x:scenario label="neuer Datensatz">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">n</subfield>
+            </datafield>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="IMD-Typen übernommen" test="/record/datafield[@tag=('336', '337', '338')]">
+          <datafield tag="336" ind1=" " ind2=" ">
+            <subfield code="b">txt</subfield>
+          </datafield>
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="b">n</subfield>
+          </datafield>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="b">nc</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="angereicherter Datensatz">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">n</subfield>
+            </datafield>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="IMD-Typen nicht übernommen" test="/record/datafield[@tag=('336', '337', '338')]" select="()" />
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+
+</x:description>

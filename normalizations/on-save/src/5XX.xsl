@@ -74,4 +74,15 @@
       Entferne `546`, wenn `$$a` nur Vortexte enthält.
   -->
   <xsl:template match="datafield[@tag='546'][matches(subfield[@code='a'], '^(Sprachfassungen|Untertitel): ?$')]" />
+
+  <!--
+      Markiere durch den KI-Assistenten angereicherte Aufnahmen.
+      @_marcFields
+  -->
+  <xsl:template match="datafield[@tag='588'][subfield[@code='a'][.='Part of the metadata in this record was created with the help of AI Metadata Assistant']]">
+    <xsl:call-template name="utils:shallow-copy" />
+    <xsl:if test="not(../datafield[@tag='970'][subfield[@code='a'][.='AI-Assistant']])">
+      <xsl:call-template name="flagAiAssistant" />
+    </xsl:if>
+  </xsl:template>
 </xsl:stylesheet>

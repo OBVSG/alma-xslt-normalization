@@ -170,6 +170,16 @@
   </xsl:template>
 
   <!--
+      Sortiere die Subfelder von `9700#$$aAI-Assistant ...` in der Reihenfolge `aiyr`
+  -->
+  <xsl:template match="datafield[@tag='970'][subfield[@code='a'][.='AI-Assistant']]" mode="sort">
+    <xsl:call-template name="mrclib:sortSubfields">
+      <xsl:with-param name="sortSpec" select="'axyir'" />
+    </xsl:call-template>
+  </xsl:template>
+
+
+  <!--
       Entferne leere Subfelder.
   -->
   <xsl:template match="datafield/subfield[not(text())]" mode="sort" />

@@ -65,4 +65,39 @@
     <subfield code="a">LKR/ITM-{$meta('isil') => replace('^AT-', '')}</subfield>
   </xsl:template>
 
+  <!--
+      Ergänze ISIL in AI-Markierung in `9700#`.
+
+      Zur Laufzeit des KI-Assistenten seht der ISIL nicht zur Verfügung, daher wird er beim Speichern eingefügt.
+      @_marcFields 970
+  -->
+  <xsl:template match="datafield[@tag='970'][@ind1='0'][@ind2=' '][subfield[@code='a'][.='AI-Assistant']][not(subfield[@code='i']/text())]">
+    <xsl:param name="meta" tunnel="yes" />
+    <datafield tag="970" ind1="0" ind2=" ">
+      <xsl:apply-templates />
+      <subfield code='i'>{$meta('isil')}</subfield>
+    </datafield>
+  </xsl:template>
+
+  <!--
+      Ergänze Kontrollmarkierungen in `9700#$$r`.
+
+      Wenn Datensätze, die mit dem KI-Metadaten-Assistenten erstellt oder erweitert wurden, kontrolliert wurden, wird ein `$$rFE OK` bzw. `$$rSE OK` eingefügt. Beim Speichern wird das noch um Zeitstempel und ISIL ergänzt.
+      @_marcFields 970
+  -->
+  <xsl:template match="datafield[@tag='970'][@ind1='0'][@ind2=' '][subfield[@code='a'][.='AI-Assistant']]/subfield[@code='r']">
+    <xsl:param name="meta" tunnel="yes" />
+    <xsl:choose>
+      <xsl:when test="matches(. , 'fe(-| )ok', 'i')">
+        <subfield code="r">FE-OK | {$meta('isil')} | {format-dateTime($currentDateTime, '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')}</subfield>
+      </xsl:when>
+      <xsl:when test="matches(. , 'se(-| )ok', 'i')">
+        <subfield code="r">SE-OK | {$meta('isil')} | {format-dateTime($currentDateTime, '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')}</subfield>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="utils:shallow-copy" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
