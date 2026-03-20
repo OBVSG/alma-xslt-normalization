@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="../../normalize-on-save.xsl">
+
+  <x:scenario label="5XX">
+    <x:scenario label="Feld 500">
+      <x:scenario label="beliebige 500">
+        <x:context>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Ich bin so generisch wie arttypisch</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="1:1">
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Ich bin so generisch wie arttypisch</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="SFD in SFa umwandeln">
+        <x:context>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="D">Schreibhilfe</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="SFD in SFa umgewandelt">
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Schreibhilfe</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="500 enthält nur Vortexte">
+      <x:context>
+        <datafield tag="500" ind1=" " ind2=" ">
+          <subfield code="a">Zusatzmaterial:</subfield>
+        </datafield>
+        <datafield tag="500" ind1=" " ind2=" ">
+          <subfield code="a">Bildseitenverhältnis:</subfield>
+        </datafield>
+        <datafield tag="500" ind1=" " ind2=" ">
+          <subfield code="a">Zusatzmaterial: Stressbälle</subfield>
+        </datafield>
+        <datafield tag="500" ind1=" " ind2=" ">
+          <subfield code="a">Bildseitenverhältnis: 16:9</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="Felder entfernt">
+        <datafield tag="500" ind1=" " ind2=" ">
+          <subfield code="a">Zusatzmaterial: Stressbälle</subfield>
+        </datafield>
+        <datafield tag="500" ind1=" " ind2=" ">
+          <subfield code="a">Bildseitenverhältnis: 16:9</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="Incipit etc. (NAK)">
+      <x:scenario label="Incipit">
+        <x:context>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Incipit: Demnach wir den würdigen</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="290 mit SFa erstellt">
+        <datafield tag="500" ind1=" " ind2=" ">
+          <subfield code="a">Incipit: Demnach wir den würdigen</subfield>
+        </datafield>
+          <datafield tag="290" ind1=" " ind2=" ">
+            <subfield code="a">Demnach wir den würdigen</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="bevorzugtes Incipit">
+        <x:context>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Bevorzugtes Incipit: Er glaubt natürlich</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="290 mit SFb erstellt">
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Bevorzugtes Incipit: Er glaubt natürlich</subfield>
+          </datafield>
+          <datafield tag="290" ind1=" " ind2=" ">
+            <subfield code="b">Er glaubt natürlich</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Ausreifung / Entstehungsstufe">
+        <x:context>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Ausreifung / Entstehungsstufe: Entwurf</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="290 mit SFc erstellt">
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Ausreifung / Entstehungsstufe: Entwurf</subfield>
+          </datafield>
+          <datafield tag="290" ind1=" " ind2=" ">
+            <subfield code="c">Entwurf</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Explicit">
+        <x:context>
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Explicit: wird zum gräßlichen Chaos</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="290 mit SFe erstellt">
+          <datafield tag="500" ind1=" " ind2=" ">
+            <subfield code="a">Explicit: wird zum gräßlichen Chaos</subfield>
+          </datafield>
+          <datafield tag="290" ind1=" " ind2=" ">
+            <subfield code="e">wird zum gräßlichen Chaos</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Feld 538 ohne SFa">
+      <x:context>
+        <datafield tag="538" ind1=" " ind2=" ">
+          <subfield code="i">Geräte- oder Systemanforderungen</subfield>
+          <subfield code="a">Windows Vista</subfield>
+        </datafield>
+        <datafield tag="538" ind1=" " ind2=" ">
+          <subfield code="i">Geräte- oder Systemanforderungen</subfield>
+          <subfield code="a"></subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="gelöscht">
+        <datafield tag="538" ind1=" " ind2=" ">
+          <subfield code="i">Geräte- oder Systemanforderungen</subfield>
+          <subfield code="a">Windows Vista</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="Feld 546">
+      <x:context>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Sprachfassungen: deutsch, englisch</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Untertitel: klingonisch</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Sprachfassungen:</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Untertitel: </subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="546 nur mit Vortexten entfernt">
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Sprachfassungen: deutsch, englisch</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+          <subfield code="a">Untertitel: klingonisch</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
+  </x:scenario>
+</x:description>

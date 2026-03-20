@@ -39,7 +39,7 @@
     <xsl:variable name="pos15_17"
                   select="if (../datafield[@tag='044'][subfield[@code='c']]) then '|||' else substring(., 16, 3)" />
     <xsl:variable name="pos19"
-                  select="if ($meta('flags') = ('fR', 'ZDB')) then '|' else substring(., 20, 1)" />
+                  select="if ($meta('flags') = ('serial')) then '|' else substring(., 20, 1)" />
     <xsl:variable name="pos35_37">
       <xsl:choose>
         <xsl:when test="$firstLang041 ge 'qaa' and $firstLang041 le 'qtz'">|||</xsl:when>
@@ -56,4 +56,34 @@
       => mrclib:replace-control-substring(39, 39, "c")
     }</controlfield>
   </xsl:template>
+
+  <!--
+      Template für `009`.
+
+      - `009` selbst 1:1 übernehmen
+      - `035##$$a(AT-OBV)AC...` erzeugen
+      - bei Bedarf die EKI (`035##$$a(DE-599)OBVAC...`) erzeugen. Bedarf heißt, dass es keine nicht-OBV-EKI gibt.
+
+      Die AC-Nummer und die OBV-EKI die vorhanden sind, werden in [einem anderen Template](#temp;datafield[@tag='035'][subfield[@code='a'][starts-with(., '(AT-OBV)')]];nil) gelöscht.
+
+      @_marcFields 009 035
+  -->
+  <xsl:template match="controlfield[@tag='009']">
+    <xsl:param name="meta" tunnel="yes" />
+    <!-- Das Feld 009 selbst 1:1 in die Ausgabe kopieren. -->
+    <xsl:sequence select="." />
+
+    <!-- 035 mit der AC-Nummer schreiben. -->
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(AT-OBV){.}</subfield>
+    </datafield>
+
+    <!-- EKI erzeugen -->
+    <xsl:if test="not(../datafield[@tag='035'][subfield[@code='a'][starts-with(., '(DE-599)')]])">
+      <datafield tag="035" ind1=" " ind2=" ">
+        <subfield code="a">(DE-599)OBV{.}</subfield>
+      </datafield>
+    </xsl:if>
+  </xsl:template>
+
 </xsl:stylesheet>

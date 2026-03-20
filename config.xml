@@ -31,5 +31,9 @@
                    distName="OBV_EXTR_LoC"
                    main="normalizations/external-resources/libraryOfCongress/loc.xsl"
                    testMain="normalizations/external-resources/libraryOfCongress/loc.xspec" />
+    <transformation name="AI-Assistant"
+                   distName="OBV_AI_assistant"
+                   main="normalizations/ai-assistant/ai-assistant.xsl"
+                   testMain="normalizations/ai-assistant/tests/ai-assistant.xspec" />
   </transformations>
 </config>

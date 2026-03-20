@@ -73,5 +73,20 @@
         </datafield>
       </x:expect>
     </x:scenario>
+    <x:scenario label="830 Indikatoren">
+      <x:context>
+        <datafield tag="830" ind1="X" ind2="X">
+          <subfield code="w">(AT-OBV)AC12345678</subfield>
+          <subfield code="v">1</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="fix auf '#0' gesetzt">
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w">(AT-OBV)AC12345678</subfield>
+          <subfield code="v">1</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
   </x:scenario>
 </x:description>

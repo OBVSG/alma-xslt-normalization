@@ -6,6 +6,7 @@
   - [Allgemeines ](#allgemeines)
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
+  - [Standard-Sandbox 23.03.2026 (geplant)](#standard-sandbox-23032026-geplant)
   - [Standard-Sandbox 16.02.2026](#standard-sandbox-16022026)
     - [Normalize on Save](#normalize-on-save)
   - [Produktion 02.02.2026](#produktion-02022026)
@@ -30,6 +31,14 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 
 # Releases
 
+## Standard-Sandbox 23.03.2026 (geplant)
+- [X] `1XX` und `700-730` bearbeiten
+  - [X] `ind1` bei Personen setzen; Commit 1e8a2f4; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;personInd1;nil)
+  - [X] Default-Relator-Code setzen; Commit 3179ee2; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;addDefaultRelator;nil)
+  - [X] Subfelder sortieren. Commit f9debb1; Dokumentation [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag=('100',%20'110',%20'700',%20'710')];sort) und [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag=('111',%20'711')];sort)
+  - [X] Felder ohne `$$a` entfernen (weil sie nur Daten aus dem Template enthalten). Commit 878669c; Dokumentation siehe Templates zu Feld `100`, `110`, `111`, `700`, `710`, `711`
+  - [X] Indikatoren von `X11` setzen: Commit e228e99; Dokumentation siehe die Templates zu `111` und `711` jeweils `@ind1` und `@ind2`.
+
 ## Standard-Sandbox 16.02.2026
 
 ### Normalize on Save
@@ -38,6 +47,7 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
   - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233, a19176a; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#func;utils:collect-metadata) und [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='MOD'];nil)
   - [X] `040` bearbeiten. Commit 6caee5a; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;handle040)
   - [X] Handling von `090` bei OAI-Importen. Commit 799f46f; [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='090'%5D%5B1%5D;nil) und [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='090'%5D%5Bposition()%20ne%201%5D;nil)
+
 
 ## Produktion 02.02.2026
 Vollständige Doku hier: https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html

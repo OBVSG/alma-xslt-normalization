@@ -12,6 +12,29 @@
   -->
 
   <!--
+    Bearbeite Feld `100`
+
+    - Wenn es kein `$$a` mit Inhalt gibt, löschen.
+    - Sonst: Füge default BZK ein. Den Rest machen speziellere Templates
+    @_marcFields 100
+  -->
+  <xsl:template match="datafield[@tag='100']">
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+    Setze `ind1` bei Personen. Siehe Template `personInd1` für das genaue Verhalten.
+  -->
+  <xsl:template match="datafield[@tag='100']/@ind1">
+    <xsl:call-template name="personInd1" />
+  </xsl:template>
+
+  <!--
     Wenn es eine ORCID in `100XX$$0` gibt, übertrage diese in URL-Form nach `$$1`.
 
     @intComment Tests in `ids.xspec`.
@@ -38,6 +61,52 @@
   -->
   <xsl:template match="datafield[@tag='100']/subfield[@code=('9', '0')][starts-with(., '(orcid)')]">
     <xsl:call-template name="handleOrcidSubfield" />
+  </xsl:template>
+
+  <!--
+    Bearbeite Feld `110`
+
+    Füge default BZK ein. Den Rest machen speziellere Templates
+    @_marcFields 110
+  -->
+  <xsl:template match="datafield[@tag='110']">
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+    Bearbeite Feld `111`
+
+    Füge default BZK ein. Den Rest machen speziellere Templates
+    @_marcFields 111
+  -->
+  <xsl:template match="datafield[@tag='111']">
+    <xsl:if test="subfield[@code='a']/text()">
+      <xsl:copy>
+        <xsl:apply-templates select="node()|@*" />
+        <xsl:call-template name="addDefaultRelator" />
+      </xsl:copy>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+    Setze den ersten Indikator von `111` auf `2`.
+    @_marcFields 111
+  -->
+  <xsl:template match="datafield[@tag='111']/@ind1">
+    <xsl:attribute name="ind1">2</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze den zweiten Indikator von `111` auf `#`
+      @_marcFields 111
+  -->
+  <xsl:template match="datafield[@tag='111']/@ind2">
+    <xsl:attribute name="ind2">{' '}</xsl:attribute>
   </xsl:template>
 
 </xsl:stylesheet>

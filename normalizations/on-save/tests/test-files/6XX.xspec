@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+  xmlns:marc="http://www.loc.gov/MARC21/slim"
+  stylesheet="../../normalize-on-save.xsl">
+  <x:scenario label="6XX">
+    <x:scenario label="Feld 655">
+      <x:scenario label="SF2gnd-music">
+        <x:context>
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Chorbuch</subfield>
+            <subfield code="0">(DE-588)4147892-7</subfield>
+            <subfield code="2">gnd-music</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="nach 348## verschoben">
+          <datafield tag="348" ind1=" " ind2=" ">
+            <subfield code="a">Chorbuch</subfield>
+            <subfield code="0">(DE-588)4147892-7</subfield>
+            <subfield code="2">gnd-music</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="indikator 2">
+        <x:context>
+          <datafield tag="655" ind1=" " ind2=" ">
+            <subfield code="a">Chorbuch</subfield>
+            <subfield code="0">(DE-588)4147892-7</subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+          <datafield tag="655" ind1=" " ind2="4">
+            <subfield code="a">Science Fiction</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="ind2=7, wenn SF2 vorhanden">
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Chorbuch</subfield>
+            <subfield code="0">(DE-588)4147892-7</subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+          <datafield tag="655" ind1=" " ind2="4">
+            <subfield code="a">Science Fiction</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Subfeld N">
+        <x:context>
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="N">NAK-Begriff</subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="in SFa geändert">
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">NAK-Begriff</subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="655 ohne SFa">
+        <x:context>
+          <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a"></subfield>
+            <subfield code="2">gnd-content</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="entfernt" />
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="689">
+      <x:scenario label="SF5">
+        <x:scenario label="AT-OBV vorhanden">
+          <x:context>
+            <datafield tag="689" ind1="1" ind2=" ">
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="keine Änderung">
+            <datafield tag="689" ind1="1" ind2=" ">
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="kein SF5 'AT-OBV'">
+          <x:context>
+            <datafield tag="689" ind1="2" ind2=" ">
+              <subfield code="5">AT-UBG</subfield>
+              <subfield code="5">UBGSTS</subfield>
+              <subfield code="5">automatisch erzeugt aus BVB</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="SF5 'AT-OBV' am Anfang hinzugefügt">
+            <datafield tag="689" ind1="2" ind2=" ">
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBG</subfield>
+              <subfield code="5">UBGSTS</subfield>
+              <subfield code="5">automatisch erzeugt aus BVB</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="AT-OBV nicht erstes Subfeld">
+          <x:context>
+            <datafield tag="689" ind1="7" ind2=" ">
+              <subfield code="5">AT-UBG</subfield>
+              <subfield code="5">AT-OBV</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="nach vorne sortiert">
+            <datafield tag="689" ind1="7" ind2=" ">
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="Deskriptor in SFa">
+          <x:context>
+            <datafield tag="689" ind1="5" ind2=" ">
+              <subfield code="a">Schlagwort</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="keine Änderung">
+            <datafield tag="689" ind1="5" ind2=" ">
+              <subfield code="a">Schlagwort</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="SFa und SF5 vorhanden">
+          <x:context>
+            <datafield tag="689" ind1="1" ind2=" ">
+              <subfield code="a">Nase</subfield>
+              <subfield code="D">s</subfield>
+              <subfield code="0">(DE-588)4171180-4</subfield>
+              <subfield code="5">AT-WWW</subfield>
+            </datafield>
+            <datafield tag="689" ind1="2" ind2=" ">
+              <subfield code="A">f</subfield>
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="SF5 gelöscht">
+            <datafield tag="689" ind1="1" ind2=" ">
+              <subfield code="a">Nase</subfield>
+              <subfield code="D">s</subfield>
+              <subfield code="0">(DE-588)4171180-4</subfield>
+            </datafield>
+            <datafield tag="689" ind1="2" ind2=" ">
+              <subfield code="A">f</subfield>
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="ind2=#, SF5 vorhanden, aber keine weiter 689 mit identem ind1">
+          <x:context mode="sort">
+            <datafield tag="689" ind1="0" ind2="0">
+              <subfield code="a">Schlagwort</subfield>
+            </datafield>
+            <datafield tag="689" ind1="0" ind2=" ">
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="689" ind1="1" ind2=" ">
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="689" ind1="1" ind2="0">
+              <subfield code="a">Deskriptor</subfield>
+            </datafield>
+            <datafield tag="689" ind1="2" ind2=" ">
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="Felder ohne dazugehörige Folge gelöscht">
+            <datafield tag="689" ind1="0" ind2="0">
+              <subfield code="a">Schlagwort</subfield>
+            </datafield>
+            <datafield tag="689" ind1="0" ind2=" ">
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="689" ind1="1" ind2=" ">
+              <subfield code="5">AT-UBG</subfield>
+            </datafield>
+            <datafield tag="689" ind1="1" ind2="0">
+              <subfield code="a">Deskriptor</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+      <x:scenario label="689 SFZ">
+        <x:context>
+          <datafield tag="689" ind1="0" ind2="0">
+            <subfield code="Z">Geistesgeschichte</subfield>
+            <subfield code="A">z</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="in SFa geändert">
+          <datafield tag="689" ind1="0" ind2="0">
+            <subfield code="a">Geistesgeschichte</subfield>
+            <subfield code="A">z</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+</x:description>

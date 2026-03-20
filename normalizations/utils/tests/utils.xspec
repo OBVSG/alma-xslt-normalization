@@ -21,7 +21,7 @@
             </record>
           </x:param>
         </x:call>
-        <x:expect label="flags calculated" select="('article', 'E', 'NAK', 'B', 'ZDB')" />
+        <x:expect label="flags calculated" select="('article', 'E', 'NAK', 'B', 'new', 'ZDB')" />
       </x:scenario>
       <x:scenario label="record with no flags">
         <x:call function="utils:calculate-flags">
@@ -33,6 +33,9 @@
               <controlfield tag="008">181015|2016####xx#######m#|##|||#|#ger#u</controlfield>
               <controlfield tag="009">AC13107579</controlfield>
               <controlfield tag="001">990129047990203331</controlfield>
+              <datafield tag="035" ind1=" " ind2=" ">
+                <subfield code="a">(AT-OBV)AC12345678</subfield>
+              </datafield>
               <datafield tag="100" ind1="1" ind2=" ">
                 <subfield code="a">Kubitza, Nicole</subfield>
                 <subfield code="0">(DE-588)1095908375</subfield>
@@ -40,7 +43,8 @@
               </datafield>
               <datafield tag="245" ind1="1" ind2="0">
                 <subfield code="a">Pretty in space</subfield>
-                <subfield code="b">die Frauendarstellung in Star Trek und anderen US-amerikanischen Dramaserien der 1960er Jahre</subfield>
+                <subfield code="b">die Frauendarstellung in Star Trek und
+                  anderen US-amerikanischen Dramaserien der 1960er Jahre</subfield>
                 <subfield code="c">Nicole Kubitza</subfield>
               </datafield>
               <datafield tag="264" ind1=" " ind2="1">
@@ -76,7 +80,7 @@
             </record>
           </x:param>
         </x:call>
-        <x:expect label="isil in map" test="not(.('isil'))" />
+        <x:expect label="isil not in map" test="not(.('isil'))" />
       </x:scenario>
     </x:scenario>
 

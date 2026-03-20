@@ -25,7 +25,7 @@
       - Wenn es **keine** `035##$$a(DE-600)...` oder `035##$$aZDB-NEU-...` gibt, kopiere die gegenständliche `016` in die Ausgabe und erstelle eine korrespondierende `035##$$a(DE-600)...` mit dem Wert aus `$$a`.
 
       Die Prüfung auf `[subfield[@code='a']/text()]` im `match` ist notwendig, damit es nicht mit [dem Template](#temp;datafield%5B@tag='016'%5D%5Bnot(subfield%5B@code=('a',%20'z')%5D/text())%5D;nil) kollidiert, das `016`er ohne sinnvollen Inhalt löscht.
-      @group zdbIds
+      @_group zdbIds
       @_marcFields 016
   -->
   <xsl:template match="datafield[@tag='016'][subfield[@code='2'][.='DE-600']][subfield[@code='a']/text()]">
@@ -82,6 +82,15 @@
   </xsl:template>
 
   <!--
+      Lösche `035` mit AC-Nummer.
+
+      Dieses Felde wird vom [Template für 009](#temp;controlfield[@tag='009'];nil) frisch erzeugt.
+
+      @_marcFields 035
+  -->
+  <xsl:template match="datafield[@tag='035'][subfield[@code='a'][starts-with(., '(AT-OBV)')]]" />
+
+  <!--
       Synchronisiere `035` mit `016` bei ZDB-Datensätzen.
 
       Die Synchronisierung von `035` und `016` teilt sich auf mehrere Templates auf. Dieses hier
@@ -95,7 +104,7 @@
       - Wenn keine passende `035` vorhanden ist, erstelle eine aus einer etwaigen `016`. Siehe: [dasselbe Template](#temp;datafield%5B@tag='016'%5D%5Bsubfield%5B@code='2'%5D%5B.='DE-600'%5D%5D%5Bsubfield%5B@code='a'%5D/text()%5D;nil)
       - Wenn es ein `$$Z` gibt, wandle dieses in `$$a` um. Siehe: [Template zu `035##$$Z`](#temp;datafield%5B@tag='035'%5D/subfield%5B@code='Z'%5D;nil)
 
-      @group zdbIds
+      @_group zdbIds
       @_marcFields 016 035
   -->
   <xsl:template match="datafield[@tag='035'][subfield[@code=('a', 'Z')][starts-with(., '(DE-600)') or starts-with(upper-case(.), 'ZDB-NEU')]]">
@@ -115,7 +124,7 @@
       Ändere 035 SFZ in SFa und ergänze ISIL, wenn notwendig.
 
       Dieses Template wird von [diesem Template](#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code=('a',%20'Z')%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil) via `xsl:apply-templates` aufgerufen. Die Prüfung, ob hier ein sinnvoller Inhalt vorhanden ist, passiert dort.
-      @group zdbIds
+      @_group zdbIds
       @_marcFields 035
   -->
   <xsl:template match="datafield[@tag='035']/subfield[@code='Z']">
@@ -125,8 +134,8 @@
   <!--
       Bearbeite oder erstelle Feld `040`.
 
-      Der ISIL der bearbeitenden Institution wird im MARC-Feld `MOD` übergeben (das gelöscht wird, siehe [LINK]())
-      und über den `$meta`-Parameter im Key `'isil'` weitergereicht (siehe [LINK]()).
+      Der ISIL der bearbeitenden Institution wird im MARC-Feld `MOD` übergeben (das gelöscht wird, siehe [entsprechendes Template](#temp;datafield[@tag='MOD'];nil))
+      und über den `$meta`-Parameter im Key `'isil'` weitergereicht (siehe die Funktion [utils:collect-metadata](#func;utils:collect-metadata)).
 
       - Wenn nicht vorhanden oder leer, erstelle `$$a` mit dem ISIL der bearbeitenden Institution. (`KATA-036-add040a`)
       - Wenn nicht vorhanden oder leer, erstelle `$$bger`. (`KATA-036-add040be`)
@@ -193,17 +202,28 @@
 
       Dieses Template matcht die erste `090` und holt sich die Daten aus weiteren `090`ern, so vorhanden. Weitere Felder `090` werden ignoriert, siehe [entsprechendes Template](#temp;datafield%5B@tag='090'%5D%5Bposition()%20ne%201%5D;nil)
 
+      Wenn es sich um NAK-Bestand handelt (es also ein `$$v1` gibt) und es noch kein `9702#` gibt, erstelle eines. Wenn schon eines da ist, wird das im [Template für 9702#](#temp;datafield%5B@tag='970'%5D%5B@ind1='2'%5D%5B@ind2='%20'%5D;nil) behandelt.
+
       Dieses Template betrifft den OAI-Import  und sollte vielleicht irgendwann einmal dorthin.
       @references #temp;datafield[@tag='090'][position() ne 1];nil
+      @_marcFields 090 970
   -->
   <xsl:template match="datafield[@tag='090'][1]">
+    <xsl:variable name="subfields"
+                  select="subfield | following-sibling::datafield[@tag='090']/subfield" />
     <xsl:call-template name="utils:dedupSubfields">
       <xsl:with-param name="datafieldParam" as="element(datafield)">
         <datafield tag="090" ind1=" " ind2=" ">
-          <xsl:sequence select="subfield | following-sibling::datafield[@tag='090']/subfield" />
+          <xsl:sequence select="$subfields" />
         </datafield>
       </xsl:with-param>
     </xsl:call-template>
+    <!-- Wenn es sich um NAK-Bestand handelt und es noch kein `9702#` gibt, erstelle eines. -->
+    <xsl:if test="$subfields[@code='v'][.='1'] and not(../datafield[@tag='970'][@ind1='2'][@ind2=' '])">
+      <datafield tag="970" ind1="2" ind2=" ">
+        <subfield code="v">NAK-Bestand</subfield>
+      </datafield>
+    </xsl:if>
   </xsl:template>
   <!--
       Ignoriere jedes Feld `090` nach dem ersten. Diese Felder werden vom Template für die erste `090` abgearbeitet.
