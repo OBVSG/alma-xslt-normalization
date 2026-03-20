@@ -122,4 +122,14 @@
     }</xsl:attribute>
   </xsl:template>
 
+  <!--
+      Setze Indikatoren von `730` fix auf `02`.
+      @_marcFileds 730
+  -->
+  <xsl:template match="datafield[@tag='730']">
+    <datafield tag="730" ind1="0" ind2="2">
+      <xsl:apply-templates />
+    </datafield>
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -201,7 +201,21 @@
             <subfield code="4">cmp</subfield>
           </datafield>
         </x:expect>
+    </x:scenario>
+    <x:scenario label="Feld 730">
+      <x:scenario label="indikatoren von 730">
+        <x:context>
+          <datafield tag="730" ind1=" " ind2=" ">
+            <subfield code="a">Dummy</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="fix auf '02' gesetzt">
+          <datafield tag="730" ind1="0" ind2="2">
+            <subfield code="a">Dummy</subfield>
+          </datafield>
+        </x:expect>
       </x:scenario>
+    </x:scenario>
   </x:scenario>
 
 </x:description>
