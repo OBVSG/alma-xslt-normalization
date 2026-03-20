@@ -32,6 +32,28 @@
           </datafield>
         </x:expect>
       </x:scenario>
+      <x:scenario label="700 ind2">
+        <x:context>
+          <datafield tag="700" ind1="1" ind2="X">
+            <subfield code="a">Taurus, Timmi</subfield>
+            <subfield code="t">Alles auf Schiene</subfield>
+          </datafield>
+          <datafield tag="700" ind1="1" ind2="X">
+            <subfield code="a">Taurus, Timmi</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="richtig gesetzt">
+          <datafield tag="700" ind1="1" ind2="2">
+            <subfield code="a">Taurus, Timmi</subfield>
+            <subfield code="t">Alles auf Schiene</subfield>
+          </datafield>
+          <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Taurus, Timmi</subfield>
+            <subfield code="4">edt</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="710">
       <x:scenario label="710 ohne SF4">
@@ -49,6 +71,29 @@
           </datafield>
         </x:expect>
       </x:scenario>
+      <x:scenario label="710 ind2">
+        <x:context>
+          <datafield tag="710" ind1="2" ind2="X">
+            <subfield code="a">Liga Freier Terraner</subfield>
+            <subfield code="t">Verordnung über den Howalgoniumgehalt in Hyperantrieben</subfield>
+          </datafield>
+          <datafield tag="710" ind1="2" ind2="X">
+            <subfield code="a">Liga Freier Terraner</subfield>
+            <subfield code="4">ctb</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="richtig gesetzt">
+          <datafield tag="710" ind1="2" ind2="2">
+            <subfield code="a">Liga Freier Terraner</subfield>
+            <subfield code="t">Verordnung über den Howalgoniumgehalt in Hyperantrieben</subfield>
+          </datafield>
+          <datafield tag="710" ind1="2" ind2=" ">
+            <subfield code="a">Liga Freier Terraner</subfield>
+            <subfield code="4">ctb</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
     </x:scenario>
     <x:scenario label="711">
       <x:scenario label="711 ohne SF4">
