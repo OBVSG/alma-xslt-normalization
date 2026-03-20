@@ -202,17 +202,28 @@
 
       Dieses Template matcht die erste `090` und holt sich die Daten aus weiteren `090`ern, so vorhanden. Weitere Felder `090` werden ignoriert, siehe [entsprechendes Template](#temp;datafield%5B@tag='090'%5D%5Bposition()%20ne%201%5D;nil)
 
+      Wenn es sich um NAK-Bestand handelt (es also ein `$$v1` gibt) und es noch kein `9702#` gibt, erstelle eines. Wenn schon eines da ist, wird das im [Template für 9702#](#temp;datafield%5B@tag='970'%5D%5B@ind1='2'%5D%5B@ind2='%20'%5D;nil) behandelt.
+
       Dieses Template betrifft den OAI-Import  und sollte vielleicht irgendwann einmal dorthin.
       @references #temp;datafield[@tag='090'][position() ne 1];nil
+      @_marcFields 090 970
   -->
   <xsl:template match="datafield[@tag='090'][1]">
+    <xsl:variable name="subfields"
+                  select="subfield | following-sibling::datafield[@tag='090']/subfield" />
     <xsl:call-template name="utils:dedupSubfields">
       <xsl:with-param name="datafieldParam" as="element(datafield)">
         <datafield tag="090" ind1=" " ind2=" ">
-          <xsl:sequence select="subfield | following-sibling::datafield[@tag='090']/subfield" />
+          <xsl:sequence select="$subfields" />
         </datafield>
       </xsl:with-param>
     </xsl:call-template>
+    <!-- Wenn es sich um NAK-Bestand handelt und es noch kein `9702#` gibt, erstelle eines. -->
+    <xsl:if test="$subfields[@code='v'][.='1'] and not(../datafield[@tag='970'][@ind1='2'][@ind2=' '])">
+      <datafield tag="970" ind1="2" ind2=" ">
+        <subfield code="v">NAK-Bestand</subfield>
+      </datafield>
+    </xsl:if>
   </xsl:template>
   <!--
       Ignoriere jedes Feld `090` nach dem ersten. Diese Felder werden vom Template für die erste `090` abgearbeitet.

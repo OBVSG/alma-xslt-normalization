@@ -94,7 +94,8 @@
   </xsl:template>
 
   <!--
-      Tausche MARC-Relator Terms gegen relator codes. Basis für die Zuordnung ist die
+      Tausche MARC-Relator Terms gegen relator codes. Basis für die Zuordnung ist die offizielle
+      [Liste der Library of Congress](https://www.loc.gov/marc/relators/index.html).
 
       - Wenn zum Term in `$$e` oder `$$j` (bei `X11`) einen Code gibt, erzeuge ein `$$4` mit dem Code.
       - Wenn bereits ein passender Code vorhanden ist, behalte diesen.
@@ -124,6 +125,10 @@
 
   <!--
       Wenn es beim Anreichern bereits IMD-Typen gibt, verwirf die vom KI-Assistenten.
+
+      Notiz an mich: das läuft vor Normalize on Save. Daher bleiben die vorhandenen Felder unangetastet.
+      Sollte sich das Verhalten beim Anreichern ändern (also Zugriff auf den ganzen Datensätz vorhanden sein),
+      wird diese Regel problematisch.
       @_marcFields 336 337 338
   -->
   <xsl:template match="datafield[@tag=('336', '337', '338')][../controlfield[@tag='009']]" mode="aiAssistant" />

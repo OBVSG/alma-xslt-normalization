@@ -169,6 +169,29 @@
         </datafield>
       </x:expect>
     </x:scenario>
+    <x:scenario label="Markierung NAK-Bestand">
+      <x:scenario label="kein SFv">
+        <x:context>
+          <record>
+            <datafield tag="090" ind1=" " ind2=" ">
+              <subfield code="v">1</subfield>
+            </datafield>
+            <datafield tag="970" ind1="2" ind2=" ">
+              <subfield code="a">AT-OeNB</subfield>
+              <subfield code="d">NAK</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="SFv hinzugefügt" test="/record/datafield[@tag='970']">
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="a">AT-OeNB</subfield>
+            <subfield code="d">NAK</subfield>
+            <subfield code="v">NAK-Bestand</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+
     <x:scenario label="KI-Assistent">
       <x:scenario label="588, aber keine 9700#$$aAI-Assistant">
         <x:context>

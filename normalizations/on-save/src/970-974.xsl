@@ -100,4 +100,19 @@
     </xsl:choose>
   </xsl:template>
 
+  <!--
+      Ergänze `$$vNAK-Bestand` in `9702#`, wenn `090##$$v1` vorhanden.
+
+      Wenn es noch kein Feld `9702#` gibt, wird dieses vom [Template für 090](#temp;datafield[@tag='090'][1];nil) erstellt.
+      @_marcFields 970
+  -->
+  <xsl:template match="datafield[@tag='970'][@ind1='2'][@ind2=' ']">
+    <datafield tag="970" ind1="2" ind2=" ">
+      <xsl:apply-templates />
+      <xsl:if test="not(subfield[@code='v'][.='NAK-Bestand']) and ../datafield[@tag='090'][subfield[@code='v'][.='1']]">
+        <subfield code='v'>NAK-Bestand</subfield>
+      </xsl:if>
+    </datafield>
+  </xsl:template>
+
 </xsl:stylesheet>

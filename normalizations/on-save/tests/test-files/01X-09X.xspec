@@ -403,8 +403,45 @@
           </datafield>
         </x:expect>
       </x:scenario>
+    </x:scenario>
+    <x:scenario label="090 mit SFv1">
+      <x:scenario label="keine 9702# vorhanden">
+        <x:context>
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="v">1</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="9702# $$vNAK-Bestand hinzugefügt">
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="v">1</subfield>
+          </datafield>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="v">NAK-Bestand</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="9702# vorhanden">
+        <x:context>
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="v">1</subfield>
+          </datafield>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="v">NAK-Bestand</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="090" ind1=" " ind2=" ">
+            <subfield code="v">1</subfield>
+          </datafield>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="v">NAK-Bestand</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
 
     </x:scenario>
+
+
 
   </x:scenario>
 </x:description>
