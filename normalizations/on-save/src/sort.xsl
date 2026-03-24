@@ -171,6 +171,7 @@
 
   <!--
       Sortiere die Subfelder von `9700#$$aAI-Assistant ...` in der Reihenfolge `aiyr`
+      @_marcFields 970
   -->
   <xsl:template match="datafield[@tag='970'][subfield[@code='a'][.='AI-Assistant']]" mode="sort">
     <xsl:call-template name="mrclib:sortSubfields">
@@ -178,6 +179,27 @@
     </xsl:call-template>
   </xsl:template>
 
+  <!--
+      Synchronisiere die Indikatoren von 880 mit ihrem assoziierten Feld. Wenn kein assoziiertes Feld gefunden wird,
+      behalte die Indikatoren bei.
+      @_marcFields 880
+  -->
+  <xsl:template match="datafield[@tag='880'][subfield[@code='6']]" mode="sort">
+    <xsl:param name="fields" tunnel="yes" select="()" />
+    <xsl:variable name="assocTag" select="substring(subfield[@code='6'], 1, 3)" />
+    <xsl:variable name="assocSeq" select="substring(subfield[@code='6'], 5, 2)" />
+    <xsl:variable name="assocField" select="$fields[@tag=$assocTag][subfield[@code='6'][.='880-' || $assocSeq]]" />
+    <xsl:choose>
+      <xsl:when test="count($assocField) eq 1">
+        <datafield tag="880" ind1="{$assocField/@ind1}" ind2="{$assocField/@ind2}">
+          <xsl:apply-templates />
+        </datafield>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="utils:shallow-copy" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
   <!--
       Entferne leere Subfelder.
