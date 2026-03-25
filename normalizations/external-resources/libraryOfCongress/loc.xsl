@@ -61,4 +61,12 @@
   <xsl:template match="subfield[@code=('0', '1', '4')]
                                [starts-with(., 'http')]" />
 
+  <!--
+      Entferne ISBN-Interpunktion aus allen Subfeldern.
+  -->
+  <xsl:template match="subfield/text()">
+    <xsl:text>{mrclib:remove-isbd(.)}</xsl:text>
+  </xsl:template>
+
+
  </xsl:stylesheet>

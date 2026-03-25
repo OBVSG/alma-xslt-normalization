@@ -41,7 +41,7 @@
         </datafield>
         <datafield tag="700" ind1="1" ind2=" ">
           <subfield code="a">Williams, Elizabeth M.</subfield>
-          <subfield code="q">(Elizabeth May),</subfield>
+          <subfield code="q">(Elizabeth May)</subfield>
           <subfield code="d">1971-</subfield>
           <subfield code="4">edt</subfield>
         </datafield>
@@ -52,7 +52,6 @@
         </datafield>
       </x:expect>
     </x:scenario>
-
     <x:scenario label="remove $$1 with isni">
       <x:context>
         <datafield tag="100" ind1="1" ind2=" ">
