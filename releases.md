@@ -6,17 +6,22 @@
   - [Allgemeines ](#allgemeines)
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
-  - [Standard-Sandbox 23.03.2026 (geplant)](#standard-sandbox-23032026-geplant)
-  - [Standard-Sandbox 16.02.2026](#standard-sandbox-16022026)
+  - [Standard Sandbox 23.03.2026](#standard-sandbox-23032026)
     - [Normalize on Save](#normalize-on-save)
-  - [Produktion 02.02.2026](#produktion-02022026)
+    - [Library of Congress](#library-of-congress)
+    - [KI-Assistent](#ki-assistent)
+    - [Allgemeines](#allgemeines)
+  - [Produktion 02.03.2026](#produktion-02032026)
     - [Normalize on Save](#normalize-on-save-1)
+    - [E2P](#e2p)
+  - [Produktion 02.02.2026](#produktion-02022026)
+    - [Normalize on Save](#normalize-on-save-2)
     - [Datensatz ableiten](#datensatz-ableiten)
   - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
     - [Schreibvorlage](#schreibvorlage)
     - [Aufsatz ableiten - print](#aufsatz-ableiten---print)
     - [Externe Ressourcen Library of Congress](#externe-ressourcen-library-of-congress)
-    - [Normalize on Save](#normalize-on-save-2)
+    - [Normalize on Save](#normalize-on-save-3)
 
 <!-- markdown-toc end -->
 ## Allgemeines 
@@ -31,23 +36,92 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 
 # Releases
 
-## Standard-Sandbox 23.03.2026 (geplant)
-- [X] `1XX` und `700-730` bearbeiten
-  - [X] `ind1` bei Personen setzen; Commit 1e8a2f4; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;personInd1;nil)
-  - [X] Default-Relator-Code setzen; Commit 3179ee2; [Dokumentation](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;addDefaultRelator;nil)
-  - [X] Subfelder sortieren. Commit f9debb1; Dokumentation [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag=('100',%20'110',%20'700',%20'710')];sort) und [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag=('111',%20'711')];sort)
-  - [X] Felder ohne `$$a` entfernen (weil sie nur Daten aus dem Template enthalten). Commit 878669c; Dokumentation siehe Templates zu Feld `100`, `110`, `111`, `700`, `710`, `711`
-  - [X] Indikatoren von `X11` setzen: Commit e228e99; Dokumentation siehe die Templates zu `111` und `711` jeweils `@ind1` und `@ind2`.
-
-## Standard-Sandbox 16.02.2026
+## Standard Sandbox 23.03.2026
 
 ### Normalize on Save
-- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
+- [x] `035` aus `009` generieren. Commit dc07c08,[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;controlfield%5B@tag='009'%5D;nil) 
+- [X] `1XX` und `700-730` bearbeiten
+  - [X] `ind1` bei Personen setzen; Commit 1e8a2f4; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;personInd1;nil)
+  - [X] Default-Relator-Code setzen; Commit 3179ee2; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;addDefaultRelator;nil)
+  - [X] Felder ohne `$$a` entfernen (weil sie nur Daten aus dem Template enthalten). Commit 878669c; Dokumentation siehe Templates zu Feld `100`, `110`, `111`, `700`, `710`, `711`
+  - [X] Indikator 1 von `X11` setzen: Commit 6d1ac56; Dokumentation siehe die Templates zu `111` und `711` jeweils `@ind1`
+  - [X] Indikator 2 von `700`, `710` und `711` auf `2` setzen, wenn es ein `$$a` gibt (es sich also um eine analytische Aufnahme handelt). Commit e228e99;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag=('700',%20'710',%20'711')%5D/@ind2;nil) 
+- [X] `240`
+  - [X] `$$F` in `$$a` umwandeln. Drools: `KATA-018-rn240Fa`;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='240'%5D/subfield%5B@code='F'%5D/@code;nil) 
+  - [X] Indikatoren fix auf `10` setzen. Drools: `KATA-077-ci240`; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='240'%5D/@ind1;nil) 
+  - [x] Subfelder sortieren. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='240'];sort)
+- [X] `245`. Commit d4f592a
+  - [X] Indikatoren setzen. [Dokumentation für ind1](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='245']/@ind1;nil) und [ind2](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='245'][@ind2%20ne%20'0']/@ind2;nil)
+  - [X] Subfelder `$$n[...]` bei fR entfernen. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='245']/subfield[@code='n'];nil)
+  - [X] Nichtsortierzeichen einfügen. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='245'][@ind2%20ne%20'0']/subfield[@code='a'][not(starts-with(.,%20'%3C'))]/text();nil)
+- [X] Indikatoren in `246` setzen. Commit 54858ad; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='246'];nil)
+- [X] `247` entfernen, wenn es keinen Text in `$$a` gibt. Commit 437fb14; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='247'][not(subfield[@code='a']/text())];nil)
+- [X] `264#4` entfernen, wenn nur `$$c©`. Commit e30a93a; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='264'][@ind1=' '][@ind2='4'][subfield[@code='c'][normalize-space(.) eq '©']];nil)
+- [X] Indikatoren von `300` fix auf `##` setzen. Commit e85b7aa; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='300']/@ind1;nil), 
+- [X] `337` aus `338` erzeugen. Commit fe44a83; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='338'][subfield[@code='b']/text()];nil)
+- [X] `348`/`655` für `gnd-music` bearbeiten. Commit 14ed0a0; Dokumentation für [348](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='348']/subfield[@code='N']/@code;nil) und [655](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='655'][subfield[@code='2'][.='gnd-music']];nil)
+- [X] `347 $$eRegion ...` entfernen. Commit 1453251; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='347'%5D/subfield%5B@code='e'%5D%5B.='Region%20...'%5D;nil)
+- [x] `362` Indikatoren fix auf `0#` setzen. Commit 66141d1; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='362']/@ind1;nil)
+- [x] `500`. Commit 0a276c3
+  - [x] `$$D` in `$$a` ändern. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='500']/subfield[@code='D']/@code;nil) 
+  - [x] Feld entfernen, wenn nur Template-Text. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='500'][subfield[@code='a'][.=('Zusatzmaterial:',%20'Bildseitenverh%C3%A4ltnis:')]];nil)
+  - [x] Inhalte für Implicit/Explicit/Entstehungsstufe mit `290` synchronisieren. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='500'];nil)
+- [x] `538` entfernen, wenn es kein `$$a` gibt. Commit 1857a7e; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='538'][not(subfield[@code='a']/text())];nil)
+- [x] `546` entfernen, wenn `$$a` nur Vortexte enthält. Commit 8ec42ff; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='546'%5D%5Bmatches(subfield%5B@code='a'%5D,%20'%5E(Sprachfassungen%7CUntertitel):%20?$')%5D;nil)
+- [x] `655`. Commit 89b29ea
+  - [x] entfernen, wenn kein `$$a`. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='655'%5D%5Bnot(subfield%5B@code=('a',%20'N')%5D/text())%5D;nil)
+  - [x] `$$N` auf `$$a` ändern. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='655'%5D/subfield%5B@code='N'%5D/@code;nil) 
+  - [x] `@ind2` auf "7" setzen, wenn es ein `$$2` gibt. [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='655'%5D%5Bsubfield%5B@code='2'%5D/text()%5D/@ind2;nil)
+- [x] `689`. Commit e5e2284
+  - [x] `$$5AT-OBV` hinzufügen, wo notwendig.[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='689'%5D%5B@ind2='%20'%5D%5Bsubfield%5B@code='5'%5D%5D%5Bnot(subfield%5Bnot(@code='5')%5D)%5D;nil)
+  - [x] `689X#` löschen, wenn es keine dazugehörige Folge gibt.[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='689'%5D;sort)
+  - [x] `$$Z` (wg. CV-Liste) in `$$a` ändern.[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='689'%5D/subfield%5B@code='Z'%5D/@code;nil)
+- [x] `776`: Löschen, wenn es nur Template-Text gibt. `$$n` löschen, wenn es kein passendes `$$i` gibt. Commit 454ce76;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='776'%5D%5Bnot(subfield%5B@code=('o',%20'w',%20'x',%20'z')%5D/text())%5D;nil) und[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='776'%5D%5Bnot(subfield%5B@code='i'%5D%5B.='Erscheint%20auch%20als'%5D)%5D/subfield%5B@code='n'%5D%5B.='Online-Ausgabe'%5D;nil)
+- [x] Indikatoren in `780` je nach `$$i` setzen. Commit 51d52d4;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='780'%5D/@ind1;nil) und[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='780'%5D/@ind2;nil)
+- [x] Indikatoren in `785` je nach `$$i` setzen. Commit ee40c17;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='785'%5D/@ind1;nil) und[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='785'%5D/@ind2;nil)
+- [x] `830`: Indikatoren fix auf `#0` setzen. Commit 37e2ed5;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='830'%5D/@ind1;nil)
+- [x] `856` ohne `$$u` löschen. Commit fdcdde0;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='856'%5D%5Bnot(subfield%5B@code='u'%5D)%5D;nil)
+- [x] `970`: Wenn "Dublette zu" in SFa oder SFA vorhanden ist, die Indikatoren auf `0#` setzen. Commit fdb6564;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='970'%5D%5Bsubfield%5B@code=('a',%20'A')%5D%5Bcontains(.,%20'Dublette%20zu')%5D%5D/(@ind1%7C@ind2);nil)
+- [x] `9707#`: ISIL zur LKR-Markierung hinzufügen. Commit 8aac715;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='970'%5D%5B@ind1='7'%5D/subfield%5B@code=('a',%20'A')%5D%5Bmatches(.,%20'%5E(lkr/itm%7Clkr%7Citm)$',%20'i')%5D;nil)
+- [x] `9702#$$vNAK-Bestand`, wenn `090##$$v1`. Commit f4d4bbc. [Dokumentation für Feld 090](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='090'][1];nil) und [Feld 970](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='970'][@ind1='2'][@ind2=' '];nil) 
+- [x] Von Institution eingemeldeten Link bei barrierefrei aufbereiteten Inhalten einfügen. Commit 7c50591;[Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='970'%5D%5Bsubfield%5B@code=('a',%20'A')%5D%5B.='barrierefrei%20aufbereitet'%5D%5D%5Bnot(subfield%5B@code='i'%5D/text())%5D;nil)
+- [X] Subfelder sortieren in `1XX`, `240`, `385`, `6XX`, `7XX` - jeweils in den Feldern, wo es eine GND-Verlinkung geben kann. [Dokumentation hier beim jeweiligen Feld](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#stylesheet;src/sort.xsl)
+- FIX: Bindestriche aus `020##$$z` entfernen. Commit 5c054b7; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='020']/subfield[@code=('a',%20'z')];nil)
+
+
+### Library of Congress
+
+- ISBD-Interpunktion entfernen. Commit ecf09b9; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;subfield/text();nil)
+
+### KI-Assistent
+
+Commit 0ae5b91, [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_AI_Assistant/index.html)
+
+- Datensätze in `9700#` markieren
+- relator terms in `$$e` in codes in `$$4` umwandeln
+- ISBD entfernen
+
+Dann in Normalize on Save
+
+- Markierung setzen, wenn der Datensatz angereichert wird
+- Redaktionelle Markierungen in `9700#$$aAI-Assistant$$r...` normalisieren und anreichern (ISIL und timestamp)
+
+### Allgemeines
+- [X] Leere Felder und Subfelder entfernen. Commit 8ba9199. [Dokumentation für leere Subfelder](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield/subfield%5Bnot(text())%5D;sort) und [leere Felder](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5Bnot(subfield/text())%5D;sort)
+
+## Produktion 02.03.2026
+
+### Normalize on Save
+- [X] `034` nur mit Template-Inhalt entfernen. Commit 69d71e36; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/#temp;datafield[@tag='034'];nil)
+- [X] `255` nur aus `034` generieren, wenn es von beiden nur eines gibt. Commit 0a22b49; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/#temp;datafield[@tag='034'];nil) und [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/#temp;datafield[@tag='255'][count(../datafield[@tag='255'])%20eq%201%20and%20count(../datafield[@tag='034'])%20eq%201];nil)
+- [X] FIX: `LDR/19`, TATs ziehen immer vor (auch bei Sonderdrucken etc.). Commit c799939;  [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;leader;nil)
 - ISIL der bearbeitenden Institution
   - [X] ISIL als Parameter übernehmen. Issue #32; Commit 401e233, a19176a; Dokumentation [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#func;utils:collect-metadata) und [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield[@tag='MOD'];nil)
   - [X] `040` bearbeiten. Commit 6caee5a; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;handle040)
   - [X] Handling von `090` bei OAI-Importen. Commit 799f46f; [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='090'%5D%5B1%5D;nil) und [hier](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='090'%5D%5Bposition()%20ne%201%5D;nil)
 
+### E2P
+- `506` und `540` entfernen
 
 ## Produktion 02.02.2026
 Vollständige Doku hier: https://share.obvsg.at/xsldocs/xslt-normalization/OBV_normalize-on-save/index.html
