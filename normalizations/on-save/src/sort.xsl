@@ -63,7 +63,7 @@
   -->
   <xsl:template match="datafield[@tag='240']" mode="sort">
     <xsl:call-template name="mrclib:sortSubfieldsToEnd">
-      <xsl:with-param name="sortSpec" select="('0', '1', '2', '7', '8', 'k', 'o', 'v', '9')" />
+      <xsl:with-param name="sortSpec" select="('l', '0', '1', '2', '7', '8', 'k', 'o', 'v', '9')" />
     </xsl:call-template>
   </xsl:template>
 
