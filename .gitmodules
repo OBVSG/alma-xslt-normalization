@@ -1,9 +1,3 @@
-[submodule "xslt-bundler"]
-	path = xslt-bundler
-	url = git@gitlab.obvsg.at:AlmaConfig/xslt-bundler.git
-[submodule "xslt-documentation-generator"]
-	path = xslt-documentation-generator
-	url = git@gitlab.obvsg.at:AlmaConfig/xslt-documentation-generator.git
 [submodule "mrclib-xslt"]
 	path = mrclib-xslt
 	url = git@gitlab.obvsg.at:ss/mrclib-xslt.git

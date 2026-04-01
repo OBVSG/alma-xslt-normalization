@@ -1,4 +1,4 @@
-image: registry.obvsg.at:443/misctools/xspec:main
+image: registry.obvsg.at:443/misctools/xslt-bundler:latest
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
@@ -15,7 +15,7 @@ compile:
     - mkdir dist
     - mkdir temp
     - mkdir -p temp/test/xspec
-    - saxon -xsl:xslt-bundler/xslt-bundler.xsl -it:main configFile=../config.xml
+    - xslbundler --config-file ./config.xml
     - bash temp/testrunner.sh
   artifacts:
     when: always
@@ -31,7 +31,7 @@ docs:
   stage: docs
   script:
     - mkdir docs
-    - saxon-xslt -xsl:xslt-documentation-generator/xslt/documentation-generator.xsl -it:main lang=de configFile=../../config.xml
+    - xdocgen --language de --config-file ./config.xml
   artifacts:
     paths:
       - docs
