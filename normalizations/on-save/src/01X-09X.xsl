@@ -178,6 +178,12 @@
   </xsl:template>
 
   <!--
+      Ignoriere alle Felder `040` nach dem ersten.
+      @_marcFields 040
+  -->
+  <xsl:template match="datafield[@tag='040'][preceding-sibling::datafield[@tag='040']]" />
+
+  <!--
       Stelle `scc` und `scr` in `041` (beliebiges Subfeld) auf `qsh` um.
 
       Wenn beide Codes in Subfeldern mit gleichen Subfeldcodes vorkommen, übernimm nur einen.
