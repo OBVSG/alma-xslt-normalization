@@ -73,7 +73,7 @@
       <x:scenario label="bevorzugtes Incipit">
         <x:context>
           <datafield tag="500" ind1=" " ind2=" ">
-            <subfield code="a">Bevorzugtes Incipit: Er glaubt natürlich</subfield>
+            <subfield code="D">Bevorzugtes Incipit: Er glaubt natürlich</subfield>
           </datafield>
         </x:context>
         <x:expect label="290 mit SFb erstellt">
