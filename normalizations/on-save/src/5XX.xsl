@@ -23,26 +23,28 @@
       @_marcFields 500 290
   -->
   <xsl:template match="datafield[@tag='500']">
+    <xsl:variable name="sfaD"
+                  select="subfield[@code=('a', 'D')][1]" />
     <xsl:call-template name="utils:shallow-copy" />
     <xsl:choose>
-      <xsl:when test="subfield[@code='a'][1][starts-with(., 'Incipit: ')]">
+      <xsl:when test="$sfaD[starts-with(., 'Incipit: ')]">
         <datafield tag="290" ind1=" " ind2=" ">
-          <subfield code="a">{substring(subfield[@code="a"], 10)}</subfield>
+          <subfield code="a">{substring($sfaD, 10)}</subfield>
         </datafield>
       </xsl:when>
-      <xsl:when test="subfield[@code='a'][1][starts-with(., 'Bevorzugtes Incipit: ')]">
+      <xsl:when test="$sfaD[starts-with(., 'Bevorzugtes Incipit: ')]">
         <datafield tag="290" ind1=" " ind2=" ">
-          <subfield code="b">{substring(subfield[@code="a"], 22)}</subfield>
+          <subfield code="b">{substring($sfaD, 22)}</subfield>
         </datafield>
       </xsl:when>
-      <xsl:when test="subfield[@code='a'][1][starts-with(., 'Ausreifung / Entstehungsstufe: ')]">
+      <xsl:when test="$sfaD[starts-with(., 'Ausreifung / Entstehungsstufe: ')]">
         <datafield tag="290" ind1=" " ind2=" ">
-          <subfield code="c">{substring(subfield[@code="a"], 32)}</subfield>
+          <subfield code="c">{substring($sfaD, 32)}</subfield>
         </datafield>
       </xsl:when>
-      <xsl:when test="subfield[@code='a'][1][starts-with(., 'Explicit: ')]">
+      <xsl:when test="$sfaD[starts-with(., 'Explicit: ')]">
         <datafield tag="290" ind1=" " ind2=" ">
-          <subfield code="e">{substring(subfield[@code="a"], 11)}</subfield>
+          <subfield code="e">{substring($sfaD, 11)}</subfield>
         </datafield>
       </xsl:when>
     </xsl:choose>
