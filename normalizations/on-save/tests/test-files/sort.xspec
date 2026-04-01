@@ -90,6 +90,7 @@
           <datafield tag="240" ind1="1" ind2="0">
             <subfield code="a">Konzerte</subfield>
             <subfield code="k">Auswahl</subfield>
+            <subfield code="l">engl.</subfield>
             <subfield code="m">Klavier</subfield>
             <subfield code="0">(DE-588)300025637</subfield>
             <subfield code="m">Orchester</subfield>
@@ -100,6 +101,7 @@
             <subfield code="a">Konzerte</subfield>
             <subfield code="m">Klavier</subfield>
             <subfield code="m">Orchester</subfield>
+            <subfield code="l">engl.</subfield>
             <subfield code="0">(DE-588)300025637</subfield>
             <subfield code="k">Auswahl</subfield>
           </datafield>
