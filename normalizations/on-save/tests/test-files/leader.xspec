@@ -36,8 +36,8 @@
             </datafield>
           </record>
         </x:context>
-        <x:expect label="unverändert" test="record/leader">
-          <leader>01414nam a2200421 cx4500</leader>
+        <x:expect label="LDR19=#" test="record/leader">
+          <leader>01414nam a2200421 c 4500</leader>
         </x:expect>
       </x:scenario>
       <x:scenario label="TAT, verknüpft">
