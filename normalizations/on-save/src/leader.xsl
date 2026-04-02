@@ -36,7 +36,7 @@
         <xsl:when test="../datafield[@tag='773'][subfield[@code='w']][not(subfield[@code='i'])]">c</xsl:when>
         <xsl:when test="../datafield[@tag='830']">b</xsl:when>
         <xsl:when test="../datafield[@tag='773'][subfield[@code='i']]">{' '}</xsl:when>
-        <xsl:when test="not(../datafield[@tag='830'][subfield[@code='w']/text()])" />
+        <xsl:when test="not(../datafield[@tag='830'][subfield[@code='w']/text()])">{' '}</xsl:when>
         <xsl:otherwise>{$pos19in}</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
