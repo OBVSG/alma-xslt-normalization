@@ -261,22 +261,52 @@
           </datafield>
         </x:expect>
       </x:scenario>
-      <x:scenario label="sortiere Subfelder in 689">
-        <x:context mode="sort">
-          <datafield tag="689" ind1="0" ind2="4">
-            <subfield code="0">(DE-588)4182966-9</subfield>
-            <subfield code="D">s</subfield>
-            <subfield code="a">Statuette</subfield>
-          </datafield>
+      <x:scenario label="689">
+        <x:scenario label="sortiere Subfelder in 689">
+          <x:context mode="sort">
+              <datafield tag="689" ind1="0" ind2="4">
+                <subfield code="0">(DE-588)4182966-9</subfield>
+                <subfield code="D">s</subfield>
+                <subfield code="a">Statuette</subfield>
+              </datafield>
+          </x:context>
+          <x:expect label="">
+            <datafield tag="689" ind1="0" ind2="4">
+              <subfield code="a">Statuette</subfield>
+              <subfield code="D">s</subfield>
+              <subfield code="0">(DE-588)4182966-9</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+      <x:scenario label="689 mit SF5 aufräumen">
+        <x:context>
+          <record>
+            <datafield tag="689" ind1="0" ind2="0">
+              <subfield code="a">Schlagwort</subfield>
+            </datafield>
+            <datafield tag="689" ind1="0" ind2=" ">
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBW</subfield>
+            </datafield>
+            <datafield tag="689" ind1="1" ind2=" ">
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBW</subfield>
+            </datafield>
+          </record>
         </x:context>
-        <x:expect label="">
-          <datafield tag="689" ind1="0" ind2="4">
-            <subfield code="a">Statuette</subfield>
-            <subfield code="D">s</subfield>
-            <subfield code="0">(DE-588)4182966-9</subfield>
-          </datafield>
+        <x:expect label="689X# entfernt, wenn keine dazugehörige Schlagwortfolge"
+                  test="/record/datafield[@tag='689']">
+            <datafield tag="689" ind1="0" ind2="0">
+              <subfield code="a">Schlagwort</subfield>
+            </datafield>
+            <datafield tag="689" ind1="0" ind2=" ">
+              <subfield code="5">AT-OBV</subfield>
+              <subfield code="5">AT-UBW</subfield>
+            </datafield>
         </x:expect>
       </x:scenario>
+
     </x:scenario>
     <x:scenario label="Sortierung 7XX">
      <x:scenario label="sortiere Subfelder in 700">

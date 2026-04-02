@@ -109,9 +109,10 @@
      @_marcField 689
   -->
   <xsl:template match="datafield[@tag='689']" mode="sort">
+    <xsl:param name="transformedFields" tunnel="yes" as="item()*" />
     <xsl:variable name="ind1" select="@ind1" />
     <xsl:variable name="hasTermSequence"
-                  select="(preceding-sibling::datafield[@tag='689']|following-sibling::datafield[@tag='689'])[@ind1 = $ind1][subfield[@code='a']/text()]" />
+                  select="$transformedFields/self::datafield[@tag='689'][@ind1=$ind1][not(@ind2=' ')][subfield[@code='a']/text()]" />
     <xsl:if test="not(@ind2 eq ' ') or $hasTermSequence">
       <xsl:call-template name="mrclib:sortSubfieldsToEnd">
         <xsl:with-param name="sortSpec" select="('D', '0', '1', '2', '9')" />
@@ -185,10 +186,10 @@
       @_marcFields 880
   -->
   <xsl:template match="datafield[@tag='880'][subfield[@code='6']]" mode="sort">
-    <xsl:param name="fields" tunnel="yes" select="()" />
+    <xsl:param name="transformedFields" tunnel="yes" select="()" />
     <xsl:variable name="assocTag" select="substring(subfield[@code='6'], 1, 3)" />
     <xsl:variable name="assocSeq" select="substring(subfield[@code='6'], 5, 2)" />
-    <xsl:variable name="assocField" select="$fields[@tag=$assocTag][subfield[@code='6'][.='880-' || $assocSeq]]" />
+    <xsl:variable name="assocField" select="$transformedFields/self::datafield[@tag=$assocTag][subfield[@code='6'][.='880-' || $assocSeq]]" />
     <xsl:choose>
       <xsl:when test="count($assocField) eq 1">
         <datafield tag="880" ind1="{$assocField/@ind1}" ind2="{$assocField/@ind2}">

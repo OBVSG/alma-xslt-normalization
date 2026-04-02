@@ -77,7 +77,7 @@
     </xsl:variable>
     <record>
       <xsl:apply-templates select="$transformedFields" mode="sort">
-        <xsl:with-param name="fields" select="$transformedFields" tunnel="yes" />
+        <xsl:with-param name="transformedFields" select="$transformedFields" as="item()*" tunnel="yes" />
         <xsl:sort select="@tag" />
         <!-- Sortiere `035##$$a(AT-OBV)...` zuerst, die restlichen Felder `035` in Eingangsreihenfolge -->
         <xsl:sort select="if (current()[@tag='035'][subfield[@code='a'][starts-with(., '(AT-OBV)')]]) then 0 else 1" />
