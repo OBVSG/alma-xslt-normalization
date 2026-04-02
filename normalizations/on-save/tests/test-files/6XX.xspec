@@ -153,31 +153,39 @@
           </x:expect>
         </x:scenario>
         <x:scenario label="ind2=#, SF5 vorhanden, aber keine weiter 689 mit identem ind1">
-          <x:context mode="sort">
-            <datafield tag="689" ind1="0" ind2="0">
-              <subfield code="a">Schlagwort</subfield>
-            </datafield>
-            <datafield tag="689" ind1="0" ind2=" ">
-              <subfield code="5">AT-UBG</subfield>
-            </datafield>
-            <datafield tag="689" ind1="1" ind2=" ">
-              <subfield code="5">AT-UBG</subfield>
-            </datafield>
-            <datafield tag="689" ind1="1" ind2="0">
-              <subfield code="a">Deskriptor</subfield>
-            </datafield>
-            <datafield tag="689" ind1="2" ind2=" ">
-              <subfield code="5">AT-UBG</subfield>
-            </datafield>
+          <x:context>
+            <record>
+              <datafield tag="689" ind1="0" ind2="0">
+                <subfield code="a">Schlagwort</subfield>
+              </datafield>
+              <datafield tag="689" ind1="0" ind2=" ">
+                <subfield code="5">AT-OBV</subfield>
+                <subfield code="5">AT-UBG</subfield>
+              </datafield>
+              <datafield tag="689" ind1="1" ind2=" ">
+                <subfield code="5">AT-OBV</subfield>
+                <subfield code="5">AT-UBG</subfield>
+              </datafield>
+              <datafield tag="689" ind1="1" ind2="0">
+                <subfield code="a">Deskriptor</subfield>
+              </datafield>
+              <datafield tag="689" ind1="2" ind2=" ">
+                <subfield code="5">AT-OBV</subfield>
+                <subfield code="5">AT-UBG</subfield>
+              </datafield>
+            </record>
           </x:context>
-          <x:expect label="Felder ohne dazugehörige Folge gelöscht">
+          <x:expect label="Felder ohne dazugehörige Folge gelöscht"
+                    test="/record/datafield[@tag='689']">
             <datafield tag="689" ind1="0" ind2="0">
               <subfield code="a">Schlagwort</subfield>
             </datafield>
             <datafield tag="689" ind1="0" ind2=" ">
+                <subfield code="5">AT-OBV</subfield>
               <subfield code="5">AT-UBG</subfield>
             </datafield>
             <datafield tag="689" ind1="1" ind2=" ">
+              <subfield code="5">AT-OBV</subfield>
               <subfield code="5">AT-UBG</subfield>
             </datafield>
             <datafield tag="689" ind1="1" ind2="0">
