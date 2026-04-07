@@ -84,4 +84,86 @@
   -->
   <xsl:template match="datafield[@tag='773'][subfield[@code='i'][.='Sonderdruck aus']][not(subfield[@code='t']/text())]" />
 
+  <!--
+      Lösche `776`, wenn es nur Template-Text enthält, es also kein Subfeld mit einem der Codes `owxz` gibt.
+      @_marcFields 776
+  -->
+  <xsl:template match="datafield[@tag='776'][not(subfield[@code=('o', 'w', 'x', 'z')]/text())]" />
+
+  <!--
+      Lösche `77608$$nOnline-Ausgabe`, wenn es kein `$$iErscheint auch als` gibt.
+
+      Die Vorlagen für mono, tut und tat enthalten vorbefüllte Subfelder in
+      77608, bei expand from template in bereits existierende Felder gemerged werden
+      (Namentlich solche mit SFi Elektronische Reproduktion, die kein SFn haben).
+
+      Das eingefügte SFn mit "Online-Ausgabe" soll dementsprechend entfernt werden,
+      wenn es kein passendes SFi gibt.
+      @_marcFields 776
+  -->
+  <xsl:template match="datafield[@tag='776'][not(subfield[@code='i'][.='Erscheint auch als'])]/subfield[@code='n'][.='Online-Ausgabe']" />
+
+
+  <!--
+      Setze `780 ind1` fix auf "0".
+      @_marcFields 780
+  -->
+  <xsl:template match="datafield[@tag='780']/@ind1">
+    <xsl:attribute name="ind1">0</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze `780 ind2` je nach Inhalt von `$$i`
+      @_marcFields 780
+  -->
+  <xsl:template match="datafield[@tag='780']/@ind2">
+    <xsl:variable name="relation" select="../subfield[@code='i']" />
+
+    <xsl:attribute name="ind2">
+      <xsl:choose>
+        <xsl:when test="$relation = ('Fortsetzung von', 'Prequel', 'Sequel zu', 'Vorangegangen ist')">0</xsl:when>
+        <xsl:when test="$relation = 'Teilweise Fortsetzung von'">1</xsl:when>
+        <xsl:when test="$relation = 'Ersatz von'">2</xsl:when>
+        <xsl:when test="$relation = 'Teilweise Ersatz von'">3</xsl:when>
+        <xsl:when test="$relation = 'Vereinigung von'">4</xsl:when>
+        <xsl:when test="$relation = 'Darin aufgegangen'">5</xsl:when>
+        <xsl:when test="$relation = 'Teilweise darin aufgegangen'">6</xsl:when>
+        <xsl:when test="$relation = 'Abgespalten von'">7</xsl:when>
+        <xsl:otherwise>{.}</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze `785 ind1` fix auf "0".
+      @_marcFields 785
+  -->
+  <xsl:template match="datafield[@tag='785']/@ind1">
+    <xsl:attribute name="ind1">0</xsl:attribute>
+  </xsl:template>
+
+  <!--
+      Setze `785 ind2` je nach Inhalt von `$$i`
+      @_marcFields 785
+  -->
+  <xsl:template match="datafield[@tag='785']/@ind2">
+    <xsl:variable name="relation" select="../subfield[@code='i']" />
+    <xsl:attribute name="ind2">
+      <xsl:choose>
+        <xsl:when test="$relation ='Fortgesetzt durch'">0</xsl:when>
+        <xsl:when test="$relation ='Prequel zu'">0</xsl:when>
+        <xsl:when test="$relation ='Sequel'">0</xsl:when>
+        <xsl:when test="$relation ='Gefolgt von'">0</xsl:when>
+        <xsl:when test="$relation ='Teilweise fortgesetzt durch'">1</xsl:when>
+        <xsl:when test="$relation ='Ersetzt durch'">2</xsl:when>
+        <xsl:when test="$relation ='Teilweise ersetzt durch'">3</xsl:when>
+        <xsl:when test="$relation ='Aufgegangen in'">4</xsl:when>
+        <xsl:when test="$relation ='Teilweise aufgegangen in'">5</xsl:when>
+        <xsl:when test="$relation ='Gesplittet in'">6</xsl:when>
+        <xsl:when test="$relation ='Vereinigt, um ... zu bilden'">7</xsl:when>
+        <xsl:otherwise>{.}</xsl:otherwise>
+      </xsl:choose>
+    </xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -220,176 +220,150 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
-    <x:scenario label="008">
-      <x:scenario label="008/15-17">
-        <x:scenario label="044$$c vorhanden">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-                                      0....5....10...15...20...25...30...35...
-              <controlfield tag="008">      |????    au            ||| |     c</controlfield>
-              <datafield tag="044" ind1=" " ind2=" ">
-                <subfield code="c">XA-AT</subfield>
-              </datafield>
-            </record>
-          </x:context>
-          <x:expect label="008/15-17 auf '|||' gesetzt"
-                    test="record/controlfield[@tag='008']">
-            <controlfield tag="008">      |????    |||           ||| |     c</controlfield>
-          </x:expect>
-        </x:scenario>
-        <x:scenario label="kein 044$$c vorhanden">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-                                      0....5....10...15...20...25...30...35...
-              <controlfield tag="008">      |????    au            ||| |     c</controlfield>
-            </record>
-          </x:context>
-          <x:expect label="unverändert"
-                    test="record/controlfield[@tag='008']">
-            <controlfield tag="008">      |????    au            ||| |     c</controlfield>
-          </x:expect>
-        </x:scenario>
-      </x:scenario>
-      <x:scenario label="008/19 auf bei fortlaufenden Ressourcen auf '|' setzen">
-        <x:scenario label="LDR/07=s">
-          <x:context>
-            <record>
-              <leader>#####nas#a22######c#4500</leader>
-                                      0....5....10...15...20...25...30...35...
-              <controlfield tag="008">######c????9999|||###p####|#######1####c</controlfield>
-            </record>
-          </x:context>
-          <x:expect label="" test="record/controlfield[@tag='008']">
-              <controlfield tag="008">######c????9999|||#|#p####|#######1####c</controlfield>
-          </x:expect>
-        </x:scenario>
-        <x:scenario label="Monografie">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-              <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
-            </record>
-          </x:context>
-          <x:expect label="keine Änderung" test="record/controlfield[@tag='008']">
-            <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
-          </x:expect>
-        </x:scenario>
-      </x:scenario>
-      <x:scenario label="008/35-37 - Sprachcodes">
-        <x:scenario label="kein Sprachcode in 008/35-37, 041 vorhanden">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-              <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
-              <datafield tag="041" ind1=" " ind2=" ">
-                <subfield code="a">ger</subfield>
-              </datafield>
-            </record>
-          </x:context>
-          <x:expect label="Sprachcode übertragen" test="record/controlfield[@tag='008']">
-            <controlfield tag="008">######|????####|||###########|||#|#ger#c</controlfield>
-          </x:expect>
-        </x:scenario>
-        <x:scenario label="kein Sprachcode in 008/35-37, 041 $$a vorhanden, aber funky">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-              <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
-              <datafield tag="041" ind1=" " ind2=" ">
-                <subfield code="a">deutsch</subfield>
-              </datafield>
-            </record>
-          </x:context>
-          <x:expect label="keine Änderung" test="record/controlfield[@tag='008']">
-            <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
-          </x:expect>
-        </x:scenario>
-        <x:scenario label="Sprachcode in 008/35-37, 041 $$a vorhanden">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-              <controlfield tag="008">######|????####|||###########|||#|#eng#c</controlfield>
-              <datafield tag="041" ind1=" " ind2=" ">
-                <subfield code="a">ger</subfield>
-              </datafield>
-            </record>
-          </x:context>
-          <x:expect label="keine Änderung" test="record/controlfield[@tag='008']">
-            <controlfield tag="008">######|????####|||###########|||#|#eng#c</controlfield>
-          </x:expect>
-        </x:scenario>
-        <x:scenario label="Sprachcode in 008/35-37=mul, 041 $$a vorhanden">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-              <controlfield tag="008">######|????####|||###########|||#|#mul#c</controlfield>
-              <datafield tag="041" ind1=" " ind2=" ">
-                <subfield code="a">ger</subfield>
-                <subfield code="a">qsh</subfield>
-              </datafield>
-            </record>
-          </x:context>
-          <x:expect label="Sprachcode aus 041 $$a übernommen" test="record/controlfield[@tag='008']">
-            <controlfield tag="008">######|????####|||###########|||#|#ger#c</controlfield>
-          </x:expect>
-        </x:scenario>
-        <x:scenario label="kein Sprachcode in 008/35-37, lokaler Sprachcode in 041">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-              <controlfield tag="008">######|????####|||###########|||#|#####c</controlfield>
-              <datafield tag="041" ind1=" " ind2=" ">
-                <subfield code="a">qsh</subfield>
-              </datafield>
-            </record>
-          </x:context>
-          <x:expect label="kein Sprachcode übertragen" test="record/controlfield[@tag='008']">
-            <controlfield tag="008">######|????####|||###########|||#|#|||#c</controlfield>
-          </x:expect>
-        </x:scenario>
-        <x:scenario label="Sprachcode in 008/35-37, lokaler Sprachcode in 041">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-              <controlfield tag="008">######|????####|||###########|||#|#ger#c</controlfield>
-              <datafield tag="041" ind1=" " ind2=" ">
-                <subfield code="a">qtz</subfield>
-              </datafield>
-            </record>
-          </x:context>
-          <x:expect label="008/35-37=|||" test="record/controlfield[@tag='008']">
-            <controlfield tag="008">######|????####|||###########|||#|#|||#c</controlfield>
-          </x:expect>
-        </x:scenario>
-        <x:scenario label="kein Sprachcode in 008/35-37, 'que' (gültiger Code mit `q`) in 041">
-          <x:context>
-            <record>
-              <leader>#####nam#a22######c#4500</leader>
-              <controlfield tag="008">######|????####|||###########|||#|#|||#c</controlfield>
-              <datafield tag="041" ind1=" " ind2=" ">
-                <subfield code="a">que</subfield>
-              </datafield>
-            </record>
-          </x:context>
-          <x:expect label="008/35-37=|||" test="record/controlfield[@tag='008']">
-            <controlfield tag="008">######|????####|||###########|||#|#que#c</controlfield>
-          </x:expect>
-        </x:scenario>
-      </x:scenario>
-      <x:scenario label="008/39 fix auf 'c' setzen">
+    <x:scenario label="Feld 009">
+      <x:scenario label="009">
         <x:context>
           <record>
             <leader>#####nam#a22######c#4500</leader>
-            <controlfield tag="008">      |????    |||           ||| |     u</controlfield>
+            <controlfield tag="009">AC123456789</controlfield>
           </record>
         </x:context>
-        <x:expect label="008/39 auf 'c' gesetzt" test="/record/controlfield[@tag='008']">
-            <controlfield tag="008">      |????    |||           ||| |     c</controlfield>
+        <x:expect label="wird unverändert übernommen" test="/record/controlfield[@tag='009']">
+          <controlfield tag="009">AC123456789</controlfield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="keine 035 vorhanden">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="009">AC12345678</controlfield>
+          </record>
+        </x:context>
+        <x:expect label="035 (AT-OBV) und EKI erstellt" test="/record/datafield[@tag='035']">
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="passende 035 vorhanden, keine EKI">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="EKI erstellt" test="/record/datafield[@tag='035']">
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="passende 035 vorhanden, EKI vorhanden">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-599)OBVAC12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="keine Änderung" test="/record/datafield[@tag='035']">
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Keine 035 (AT-OBV), aber EKI aus Fremddaten">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-101)12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-599)DNB12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="035 mit (AT-OBV) hinzugefügt, vorhandene bleiben" test="/record/datafield[@tag='035']">
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-101)12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)DNB12345678</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Änderung in 009, 035 vorhanden, EKI vorhanden">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="009">AC99999999</controlfield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-599)OBVAC12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-101)123456785</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="035 mit '(AT-OBV)' aktualisiert, EKI bleibt" test="/record/datafield[@tag='035']">
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC99999999</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-101)123456785</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Änderung in 009, 035 vorhanden, EKI aus Fremddaten vorhanden">
+        <x:context>
+          <record>
+            <leader>#####nam#a22######c#4500</leader>
+            <controlfield tag="009">AC99999999</controlfield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-599)DNB12345678</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="Änderungen in 035 (AT-OBV) übernommen, EKI unverändert" test="/record/datafield[@tag='035']">
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC99999999</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)DNB12345678</subfield>
+          </datafield>
         </x:expect>
       </x:scenario>
     </x:scenario>
   </x:scenario>
-
 </x:description>

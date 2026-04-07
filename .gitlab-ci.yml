@@ -1,4 +1,4 @@
-image: registry.obvsg.at:443/container/docker/saxon/xspec:debian-slim
+image: registry.obvsg.at:443/misctools/xspec:main
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive

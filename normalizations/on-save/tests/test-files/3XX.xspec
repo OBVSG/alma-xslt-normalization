@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:marc="http://www.loc.gov/MARC21/slim" stylesheet="../../normalize-on-save.xsl">
+  <x:scenario label="3XX">
+    <x:scenario label="300">
+      <x:scenario label="indikatoren von 300 auf ## setzen">
+        <x:context>
+          <datafield tag="300" ind1="9" ind2="9">
+            <subfield code="a">300 Seiten</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="indikatoren auf ## gesetzt">
+          <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">300 Seiten</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="IMD-Typen">
+      <x:scenario label="337 aus 338 erstellen">
+        <x:scenario label="337 mit gleichem Wert vorhanden">
+          <x:context>
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">n</subfield>
+            </datafield>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="keine Änderung">
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">n</subfield>
+            </datafield>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="keine 337 vorhanden">
+          <x:context>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="337 hinzugefügt">
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+            </datafield>
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">n</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="337 mit anderem code vorhanden">
+          <x:context>
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">s</subfield>
+            </datafield>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="337 hinzugefügt, vorhandene belassen">
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">s</subfield>
+            </datafield>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+            </datafield>
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">n</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="\x in $$8 ergänzen">
+          <x:context>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+              <subfield code="8">1</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+              <subfield code="8">1\x</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">n</subfield>
+              <subfield code="8">1</subfield>
+            </datafield>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+              <subfield code="8">1</subfield>
+            </datafield>
+          </x:context>
+          <x:expect label="\x ergänzt">
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+              <subfield code="8">1\x</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+              <subfield code="8">1\x</subfield>
+            </datafield>
+            <datafield tag="336" ind1=" " ind2=" ">
+              <subfield code="b">txt</subfield>
+            </datafield>
+            <datafield tag="337" ind1=" " ind2=" ">
+              <subfield code="b">n</subfield>
+              <subfield code="8">1\x</subfield>
+            </datafield>
+            <datafield tag="338" ind1=" " ind2=" ">
+              <subfield code="b">nc</subfield>
+              <subfield code="8">1\x</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Feld 347">
+      <x:scenario label="entferne SFe, wenn es nur 'Region ...' enthält">
+        <x:context>
+          <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="e">Region 4</subfield>
+          </datafield>
+          <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="e">Region ...</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfeld entfernt">
+          <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="e">Region 4</subfield>
+          </datafield>
+          <datafield tag="347" ind1=" " ind2=" ">
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Feld 348">
+      <x:scenario label="348 SFN">
+        <x:context>
+          <datafield tag="348" ind1=" " ind2=" ">
+            <subfield code="N">Klavierauszug</subfield>
+            <subfield code="0">(DE-588)4164058-5</subfield>
+            <subfield code="2">gnd-music</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="In SFa umgewandelt">
+          <datafield tag="348" ind1=" " ind2=" ">
+            <subfield code="a">Klavierauszug</subfield>
+            <subfield code="0">(DE-588)4164058-5</subfield>
+            <subfield code="2">gnd-music</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="Indikatoren von 362">
+      <x:context>
+        <datafield tag="362" ind1="X" ind2="X">
+          <subfield code="a">Nachgewiesen 3.1982 -</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="fix auf '0#' gesetzt">
+        <datafield tag="362" ind1="0" ind2=" ">
+          <subfield code="a">Nachgewiesen 3.1982 -</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+  </x:scenario>
+</x:description>

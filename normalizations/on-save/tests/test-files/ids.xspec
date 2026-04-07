@@ -160,7 +160,7 @@
               <subfield code="a">(AT-OBV)AC12345678</subfield>
             </datafield>
           </x:context>
-          <x:expect label="035 aus 016 erstellt">
+          <x:expect label="035 aus 016 erstellt (035 mit AC-Nummer wird gelöscht und an anderer Stelle generiert)">
             <datafield tag="016" ind1=" " ind2=" ">
               <subfield code="a">12345</subfield>
               <subfield code="2">DE-600</subfield>
@@ -168,60 +168,24 @@
             <datafield tag="035" ind1=" " ind2=" ">
               <subfield code="a">(DE-600)12345</subfield>
             </datafield>
-            <datafield tag="035" ind1=" " ind2=" ">
-              <subfield code="a">(AT-OBV)AC12345678</subfield>
-            </datafield>
           </x:expect>
         </x:scenario>
       </x:scenario>
     </x:scenario>
-
-    <x:scenario label="EKI erzeugen">
-      <x:scenario label="keine EKI vorhanden">
-        <x:context>
-          <record>
-            <controlfield tag="009">AC12345678</controlfield>
-            <datafield tag="035">
-              <subfield code="a">(AT-OBV)AC12345678</subfield>
-            </datafield>
-          </record>
-        </x:context>
-        <x:call template="createEki" />
-        <x:expect label="EKI ergänzt">
-          <datafield tag="035" ind1=" " ind2=" ">
-            <subfield code="a">(DE-599)OBVAC12345678</subfield>
-          </datafield>
-        </x:expect>
-      </x:scenario>
-      <x:scenario label="EKI vorhanden">
-        <x:context>
-          <record>
-            <controlfield tag="009">AC13107579</controlfield>
-            <datafield tag="035">
-              <subfield code="a">(AT-OBV)AC13107579</subfield>
-            </datafield>
-            <datafield tag="035" ind1=" " ind2=" ">
-              <subfield code="a">(DE-599)DNB1076133436</subfield>
-            </datafield>
-          </record>
-        </x:context>
-        <x:call template="createEki" />
-        <x:expect label="keine EKI generiert" />
-      </x:scenario>
-    </x:scenario>
-
     <x:scenario label="ORCIDs">
       <x:scenario label="orcid in SF9">
         <x:context>
           <datafield tag="100" ind1="1" ind2=" ">
             <subfield code="a">Wurst, Hans</subfield>
             <subfield code="9">(orcid)1234-1234-1234-1234</subfield>
+            <subfield code="4">aut</subfield>
           </datafield>
         </x:context>
         <x:expect label="nach SF1, als URL">
           <datafield tag="100" ind1="1" ind2=" ">
             <subfield code="a">Wurst, Hans</subfield>
             <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+            <subfield code="4">aut</subfield>
           </datafield>
         </x:expect>
       </x:scenario>
@@ -230,12 +194,14 @@
           <datafield tag="700" ind1="1" ind2=" ">
             <subfield code="a">Wurst, Hans</subfield>
             <subfield code="0">(orcid)1234-1234-1234-1234</subfield>
+            <subfield code="4">aut</subfield>
           </datafield>
         </x:context>
         <x:expect label="nach SF1, als URL">
           <datafield tag="700" ind1="1" ind2=" ">
             <subfield code="a">Wurst, Hans</subfield>
             <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+            <subfield code="4">aut</subfield>
           </datafield>
         </x:expect>
       </x:scenario>
@@ -263,12 +229,14 @@
           <datafield tag="100" ind1="1" ind2=" ">
             <subfield code="a">Wurst, Hans</subfield>
             <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+            <subfield code="4">aut</subfield>
           </datafield>
         </x:context>
         <x:expect label="keine Änderung">
           <datafield tag="100" ind1="1" ind2=" ">
             <subfield code="a">Wurst, Hans</subfield>
             <subfield code="1">https://orcid.org/1234-1234-1234-1234</subfield>
+            <subfield code="4">aut</subfield>
           </datafield>
         </x:expect>
       </x:scenario>
