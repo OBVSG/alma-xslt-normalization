@@ -74,7 +74,7 @@
       Bei fortlaufenden Ressourcen `245 $$n` löschen, wenn es nur `[...]` enthält.
       @_marcFields 245
   -->
-  <xsl:template match="datafield[@tag='245']/subfield[@code='n']">
+  <xsl:template match="datafield[@tag='245']/subfield[@code='n'][.='[...]']">
     <xsl:param name="meta" tunnel="yes" />
     <xsl:choose>
       <xsl:when test="$meta('flags') = ('serial')" />
