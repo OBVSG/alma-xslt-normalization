@@ -151,9 +151,28 @@
               </datafield>
             </record>
           </x:context>
+          <x:expect label="SFn wird entfernt" test="record/datafield[@tag='245']">
+            <datafield tag="245" ind1="0" ind2="0">
+              <subfield code="a">Zeitschrift über Unterreihen</subfield>
+              <subfield code="p">Thematische Unterreihe</subfield>
+            </datafield>
+          </x:expect>
+        </x:scenario>
+        <x:scenario label="Zeitschrift mit brauchbarem Eintrag">
+          <x:context>
+            <record>
+              <leader>#####nas#a22######c#4500</leader>
+              <datafield tag="245" ind1="0" ind2="0">
+                <subfield code="a">Zeitschrift über Unterreihen</subfield>
+                <subfield code="n">Reihe A</subfield>
+                <subfield code="p">Thematische Unterreihe</subfield>
+              </datafield>
+            </record>
+          </x:context>
           <x:expect label="keine Änderung" test="record/datafield[@tag='245']">
             <datafield tag="245" ind1="0" ind2="0">
               <subfield code="a">Zeitschrift über Unterreihen</subfield>
+                <subfield code="n">Reihe A</subfield>
               <subfield code="p">Thematische Unterreihe</subfield>
             </datafield>
           </x:expect>
