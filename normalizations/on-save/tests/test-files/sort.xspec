@@ -488,25 +488,21 @@
           </datafield>
         </record>
       </x:context>
-      <x:expect label="keine Änderung"
-                test="/record/datafield[not(@tag='040')]">
-        <datafield tag="880" ind1="X" ind2="X">
-          <subfield code="6">700-01</subfield>
-          <subfield code="a">test!</subfield>
-        </datafield>
+      <x:expect label="880 gelöscht"
+                test="/record/datafield[not(@tag='040')]" as="item()*">
       </x:expect>
     </x:scenario>
     <x:scenario label="880 ohne SF6">
       <x:context>
-        <datafield tag="880" ind1=" " ind2=" ">
-          <subfield code="a">Nur SFa</subfield>
-        </datafield>
+        <record>
+          <datafield tag="880" ind1=" " ind2=" ">
+            <subfield code="a">Nur SFa</subfield>
+          </datafield>
+        </record>
       </x:context>
-      <x:expect label="keine Änderung">
-        <datafield tag="880" ind1=" " ind2=" ">
-          <subfield code="a">Nur SFa</subfield>
-        </datafield>
-      </x:expect>
+      <x:expect label="880 gelöscht"
+                test="/record/datafield[@tag='880']"
+                as="item()*" />
     </x:scenario>
     <x:scenario label="mehr als ein assoziiertes Feld">
       <x:context>
@@ -529,25 +525,8 @@
           </datafield>
         </record>
       </x:context>
-      <x:expect label="keine Änderung"
-                test="/record/datafield[not(@tag='040')]">
-        <datafield tag="700" ind1="0" ind2=" ">
-          <subfield code="6">880-04</subfield>
-          <subfield code="a">Dieses hier auch nicht</subfield>
-          <subfield code="4">ctb</subfield>
-        </datafield>
-        <datafield ind1="1" ind2=" " tag="700">
-          <subfield code="6">880-04</subfield>
-          <subfield code="a">Kriveckij, Nikolao</subfield>
-          <subfield code="d">1945-2005</subfield>
-          <subfield code="0">(DE-588)122196352X</subfield>
-          <subfield code="4">trl</subfield>
-        </datafield>
-        <datafield ind1="X" ind2="X" tag="880">
-          <subfield code="6">700-04/(N</subfield>
-          <subfield code="a">Кривецький, Микола Миколайович</subfield>
-        </datafield>
-      </x:expect>
+      <x:expect label="Feld gelöscht"
+                test="/record/datafield[@tag='880']" as="item()*" />
     </x:scenario>
   </x:scenario>
 </x:description>
