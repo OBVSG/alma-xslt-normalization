@@ -87,4 +87,16 @@
       <xsl:call-template name="flagAiAssistant" />
     </xsl:if>
   </xsl:template>
+
+  <!--
+      Ergänze ISIL bei `591##$$aUnikaler Bestand - nicht verlinken!`.
+      @_marcFields 591
+  -->
+  <xsl:template match="datafield[@tag='591']/subfield[@code='a'][.='Unikaler Bestand - bitte nicht nutzen!']">
+    <xsl:param name="meta" tunnel="yes" />
+    <xsl:variable name="dateString"
+                  select="format-dateTime($currentDateTime, '[Y0001]-[M01]-[D01]')" />
+    <subfield code="a">{.} ({$meta('isil')}, {$dateString})</subfield>
+
+  </xsl:template>
 </xsl:stylesheet>

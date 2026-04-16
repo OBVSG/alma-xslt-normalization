@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
                xmlns:marc="http://www.loc.gov/MARC21/slim"
                stylesheet="../../normalize-on-save.xsl">
 
+  <x:param name="currentDateTime" select="dateTime(xs:date('2233-03-22'), xs:time('12:12:12'))" />
   <x:scenario label="5XX">
     <x:scenario label="Feld 500">
       <x:scenario label="beliebige 500">
@@ -157,6 +159,44 @@
           <subfield code="a">Untertitel: klingonisch</subfield>
         </datafield>
       </x:expect>
+    </x:scenario>
+    <x:scenario label="Feld 591">
+      <x:scenario label="Unikaler Bestand, kein ISIL">
+        <x:context>
+          <record>
+            <datafield tag="591" ind1=" " ind2=" ">
+              <subfield code="a">Unikaler Bestand - bitte nicht nutzen!</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="ISIL ergänzt"
+                  test="/record/datafield[@tag='591']">
+          <datafield tag="591" ind1=" " ind2=" ">
+            <subfield code="a">Unikaler Bestand - bitte nicht nutzen! (AT-UBW, 2233-03-22)</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Unikaler Bestand, ISIL bereits vorhanden">
+        <x:context>
+          <record>
+            <datafield tag="591" ind1=" " ind2=" ">
+              <subfield code="a">Unikaler Bestand - bitte nicht nutzen! (AT-UBG, 2233-03-22)</subfield>
+            </datafield>
+            <datafield tag="MOD" ind1=" " ind2=" ">
+              <subfield code="I">AT-UBW</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="keine Änderung"
+                  test="/record/datafield[@tag='591']">
+          <datafield tag="591" ind1=" " ind2=" ">
+            <subfield code="a">Unikaler Bestand - bitte nicht nutzen! (AT-UBG, 2233-03-22)</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
 
   </x:scenario>
