@@ -21,6 +21,7 @@
   <!--
       Bearbeite `016##$$2DE-600`, d. h. die `016` bei ZDB-Datensätzen.
 
+      - Wenn `$$a` mit 'ZDB-NEU' beinnt, lösche das Feld. Aus der korrespondierenden `035` wird ein Feld `9703#` gebildet.
       - Wenn es eine `035##$$a(DE-600)...` oder `035##$$aZDB-NEU-...` gibt, entferne sie. Sie wird anhand der `035` neu gebildet.
       - Wenn es **keine** `035##$$a(DE-600)...` oder `035##$$aZDB-NEU-...` gibt, kopiere die gegenständliche `016` in die Ausgabe und erstelle eine korrespondierende `035##$$a(DE-600)...` mit dem Wert aus `$$a`.
 
@@ -29,7 +30,7 @@
       @_marcFields 016
   -->
   <xsl:template match="datafield[@tag='016'][subfield[@code='2'][.='DE-600']][subfield[@code='a']/text()]">
-    <xsl:if test="not(../datafield[@tag='035'][subfield[@code='a'][starts-with(., '(DE-600)') or starts-with(upper-case(.), 'ZDB-NEU')]])">
+    <xsl:if test="not(subfield[@code='a'][starts-with(upper-case(.), 'ZDB-NEU')]) and not(../datafield[@tag='035'][subfield[@code='a'][starts-with(., '(DE-600)')]])">
       <!-- Das Feld selbst kopieren -->
       <xsl:sequence select="." />
       <!-- Die 035 erstellen -->
@@ -84,7 +85,7 @@
   <!--
       Lösche `035` mit AC-Nummer.
 
-      Dieses Felde wird vom [Template für 009](#temp;controlfield[@tag='009'];nil) frisch erzeugt.
+      Dieses Feld wird vom [Template für 009](#temp;controlfield[@tag='009'];nil) frisch erzeugt.
 
       @_marcFields 035
   -->
@@ -94,10 +95,11 @@
       Synchronisiere `035` mit `016` bei ZDB-Datensätzen.
 
       Die Synchronisierung von `035` und `016` teilt sich auf mehrere Templates auf. Dieses hier
-      tritt in Aktion, wenn `035##$$a` entweder mit "(DE-600)" oder "ZDB-NEU" (case insensitive)
+      tritt in Aktion, wenn `035##$$a` oder `$$Z` entweder mit "(DE-600)" oder "ZDB-NEU" (case insensitive)
       beginnt.
 
       Das heißt:
+      - Wenn `$$a` oder `$$Z` einen 'ZDB-NEU'-Eintrag enthält, verschiebe diesen nach `9703#`
       - Erstelle eine `016` mit der ZDB-Nummer mit dem Wert von `$$a` oder `$$Z` (ohne das Präfix "(DE-600)")
         in `$$a` und `$$2DE-600`
       - Lösche vorhandene `016`, wenn eine `035##$$a(DE-600)` bzw. mit "ZDB-NEU" vorhanden ist. Siehe [entsprechendes Template](#temp;datafield%5B@tag='016'%5D%5Bsubfield%5B@code='2'%5D%5B.='DE-600'%5D%5D%5Bsubfield%5B@code='a'%5D/text()%5D;nil)
@@ -108,27 +110,32 @@
       @_marcFields 016 035
   -->
   <xsl:template match="datafield[@tag='035'][subfield[@code=('a', 'Z')][starts-with(., '(DE-600)') or starts-with(upper-case(.), 'ZDB-NEU')]]">
-    <xsl:if test="not(subfield[@code=('a', 'Z')][.=('(DE-600)', 'ZDB-NEU-JJJJ-MM-TT')])">
-      <datafield tag="035" ind1=" " ind2=" ">
-        <xsl:apply-templates />
-      </datafield>
+    <xsl:choose>
+      <xsl:when test="subfield[@code=('a', 'Z')][matches(., '^(\(DE-600\))?ZDB-NEU')]">
+        <datafield tag="970" ind1="3" ind2=" ">
+          <subfield code="a">{subfield[@code=('a', 'Z')] => replace('^\(DE-600\)', '')}</subfield>
+        </datafield>
+      </xsl:when>
+      <xsl:when test="not(subfield[@code=('a', 'Z')][.=('(DE-600)', 'ZDB-NEU-JJJJ-MM-TT')])">
+        <xsl:call-template name="utils:shallow-copy" />
 
-      <datafield tag="016" ind1=" " ind2=" ">
-        <subfield code="a">{replace(., "^\(DE-600\)", "")}</subfield>
-        <subfield code="2">DE-600</subfield>
-      </datafield>
-    </xsl:if>
+        <datafield tag="016" ind1=" " ind2=" ">
+          <subfield code="a">{replace(., "^\(DE-600\)", "")}</subfield>
+          <subfield code="2">DE-600</subfield>
+        </datafield>
+      </xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <!--
-      Ändere 035 SFZ in SFa und ergänze ISIL, wenn notwendig.
+      Ändere 035 SFZ in SFa
 
       Dieses Template wird von [diesem Template](#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code=('a',%20'Z')%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil) via `xsl:apply-templates` aufgerufen. Die Prüfung, ob hier ein sinnvoller Inhalt vorhanden ist, passiert dort.
       @_group zdbIds
       @_marcFields 035
   -->
-  <xsl:template match="datafield[@tag='035']/subfield[@code='Z']">
-    <subfield code="a">{if (starts-with(., "(DE-600)")) then "" else "(DE-600)"}{.}</subfield>
+  <xsl:template match="datafield[@tag='035']/subfield[@code='Z'][matches(., '\(DE-600\)(ZDB-)?\d+-\d')]/@code">
+    <xsl:attribute name="code">a</xsl:attribute>
   </xsl:template>
 
   <!--
