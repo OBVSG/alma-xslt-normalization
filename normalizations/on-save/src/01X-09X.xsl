@@ -134,7 +134,7 @@
       @_group zdbIds
       @_marcFields 035
   -->
-  <xsl:template match="datafield[@tag='035']/subfield[@code='Z'][matches(., '\(DE-600\)(ZDB-)?\d+-\d')]/@code">
+  <xsl:template match="datafield[@tag='035']/subfield[@code='Z']/@code">
     <xsl:attribute name="code">a</xsl:attribute>
   </xsl:template>
 
