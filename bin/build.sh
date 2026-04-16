@@ -2,7 +2,7 @@
 
 rm -rf test/*
 # build distributable files and tests
-saxon-xslt -xsl:xslt-bundler/xslt-bundler.xsl -it:main configFile=../config.xml distComment="$(git log -n 1 --decorate=full)"
+xslbundler -c config.xml -n "$(git log -n 1 --decorate=full)"
 
 # run tests
 export TEST_DIR="dist/test/xspec"
