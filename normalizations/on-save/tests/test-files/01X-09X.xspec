@@ -120,8 +120,35 @@
           </x:expect>
         </x:scenario>
       </x:scenario>
+      <x:scenario label="ZDB-NEU mit Datum">
+        <x:context>
+          <datafield tag="016" ind1=" " ind2=" ">
+            <subfield code="a">ZDB-NEU-2233-03-22</subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-600)ZDB-NEU-2233-03-22</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="016 und 035 gelöscht, 9703# erstellt">
+          <datafield tag="970" ind1="3" ind2=" ">
+            <subfield code="a">ZDB-NEU-2233-03-22</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="ZDB-NEU ohne ISIL">
+        <x:context>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">ZDB-NEU-2233-03-22</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="035 gelöscht, 9703# erstellt">
+          <datafield tag="970" ind1="3" ind2=" ">
+            <subfield code="a">ZDB-NEU-2233-03-22</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
-
     <x:scenario label="020">
       <x:scenario label="020 SFa mit Bindestrichen">
         <x:context>
