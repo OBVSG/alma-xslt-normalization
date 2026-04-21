@@ -589,6 +589,20 @@
           </datafield>
         </x:expect>
       </x:scenario>
+      <x:scenario label="elektronische Reproduktion ohne Identifier">
+        <x:context>
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Elektronische Reproduktion</subfield>
+            <subfield code="d">Bregenz : Vorarlberger Landesbibliothek, {Jahr}</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="i">Elektronische Reproduktion</subfield>
+            <subfield code="d">Bregenz : Vorarlberger Landesbibliothek, {Jahr}</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
     <x:scenario label="Feld 780">
       <x:scenario label="indikatoren in 780">

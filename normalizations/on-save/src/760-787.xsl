@@ -85,10 +85,10 @@
   <xsl:template match="datafield[@tag='773'][subfield[@code='i'][.='Sonderdruck aus']][not(subfield[@code='t']/text())]" />
 
   <!--
-      Lösche `776`, wenn es nur Template-Text enthält, es also kein Subfeld mit einem der Codes `owxz` gibt.
+      Lösche `776`, wenn es nur Template-Text enthält, es also kein Subfeld mit tatsächlichen Informationen (`atbdhowxz`)
       @_marcFields 776
   -->
-  <xsl:template match="datafield[@tag='776'][not(subfield[@code=('o', 'w', 'x', 'z')]/text())]" />
+  <xsl:template match="datafield[@tag='776'][not(subfield[@code=('a', 't', 'b', 'd', 'h', 'o', 'w', 'x', 'z')]/text())]" />
 
   <!--
       Lösche `77608$$nOnline-Ausgabe`, wenn es kein `$$iErscheint auch als` gibt.
