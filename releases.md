@@ -10,6 +10,7 @@
     - [Normalize on Save](#normalize-on-save)
   - [Standard Sandbox 20.04.2026](#standard-sandbox-20042026)
     - [Normalize on Save](#normalize-on-save-1)
+    - [TAT ableiten](#tat-ableiten)
   - [Produktion 07.04.2026](#produktion-07042026)
     - [Normalize on Save](#normalize-on-save-2)
     - [Library of Congress](#library-of-congress)
@@ -48,11 +49,15 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 ## Standard Sandbox 20.04.2026
 
 ### Normalize on Save
+- [x] FIX: Löschen von `776` ohne sinnvollen Inhalt: Erweitere den Begriff "sinnvoll" um die Subfelder `atbdh`. Commit 4086da6; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='776'%5D%5Bnot(subfield%5B@code=('a',%20't',%20'b',%20'd',%20'h',%20'o',%20'w',%20'x',%20'z')%5D/text())%5D;nil)
 - [x] Nur die erste `040` berücksichtigen. Commit 5a8f786; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='040'%5D%5Bpreceding-sibling::datafield%5B@tag='040'%5D%5D;nil)
 - [x] `240 $$l` nach hinten sortieren. Commit ae34f66d; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='240'%5D;sort)
 - [x] `591##$$aUnikaler Bestand ...` um ISIL ergänzen. Commit ef1ce33; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='591'%5D/subfield%5B@code='a'%5D%5B.='Unikaler%20Bestand%20-%20bitte%20nicht%20nutzen!'%5D;nil)
 - [x] ZDB-Artefakte aus `035` entfernen. D. h. "ZDB-NEU" etc. kommt in `9703#`. Commit c2bcedd; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code=('a',%20'Z')%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil)
 - [x] `880` ohne assoziiertes Feld löschen. Commit 12c6ac6; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='880'%5D;sort)
+
+### TAT ableiten
+Ganze Normalisierung neu. Commit 642934b; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#file:///home/ss/projects/almaConfig/xsltNormalization/docs/OBV_tat_ableiten/index.html)
 
 ## Produktion 07.04.2026
 
