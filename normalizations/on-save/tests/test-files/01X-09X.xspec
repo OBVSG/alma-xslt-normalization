@@ -317,6 +317,7 @@
     <x:scenario label="034 nur mit Template-Inhalt">
       <x:context>
         <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
           <subfield code="2">bound</subfield>
         </datafield>
         <datafield tag="034" ind1="1" ind2=" ">
@@ -346,6 +347,7 @@
           <subfield code="e">E0121400</subfield>
           <subfield code="f">N0442700</subfield>
           <subfield code="g">N0442300</subfield>
+          <subfield code="3">n:2</subfield>
         </datafield>
         <datafield tag="034" ind1=" " ind2=" ">
           <subfield code="a">a</subfield>
@@ -355,6 +357,7 @@
           <subfield code="f">N0460030</subfield>
           <subfield code="g">N0454011</subfield>
           <subfield code="2">bound</subfield>
+          <subfield code="3">n:3</subfield>
         </datafield>
       </x:expect>
     </x:scenario>

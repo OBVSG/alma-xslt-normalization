@@ -19,12 +19,38 @@
     <xsl:if test="not(subfield[@code='2'] and count(subfield[text()]) eq 1)">
       <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
         <xsl:apply-templates />
+        <xsl:if test="not(subfield[@code='3']) and count(../datafield[@tag='034']) gt 1 and not(../datafield[ftag='255'])">
+          <subfield code="3">n:{position()}</subfield>
+        </xsl:if>
       </datafield>
     </xsl:if>
 
-    <xsl:if test="not(../datafield[@tag='255']) and utils:df034isValid(.)">
+    <xsl:call-template name="create255from034" />
+  </xsl:template>
+
+  <!--
+      Generiere `255` aus `034`.
+      - wenn `034$$b` vorhanden erzeuge `255$$a1:{034$$b mit ' ' als Tausender-Trennzeichen}`
+      - wenn möglich, erzeuge `255$$c` mit formatierten Koordinaten
+  -->
+  <xsl:template name="create255from034">
+    <xsl:variable name="scale" select="if (subfield[@code='b'][1][matches(., '^\d+$')]) then subfield[@code='b'][1] else ()" />
+    <xsl:if test="not(../datafield[@tag='255']) and ($scale or utils:df034isValid(.))">
       <datafield tag="255" ind1=" " ind2=" ">
-        <subfield code="c">{utils:formatCoordinatesFrom034(.)}</subfield>
+        <xsl:if test="$scale">
+          <subfield code="a">1:{format-integer(xs:integer($scale), "0 000")}</subfield>
+        </xsl:if>
+        <xsl:if test="utils:df034isValid(.)">
+          <subfield code="c">{utils:formatCoordinatesFrom034(.)}</subfield>
+        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="subfield[@code='3'][text()]">
+            <subfield code="3">{subfield[@code='3'][text()][1]}</subfield>
+          </xsl:when>
+          <xsl:when test="count(../datafield[@tag='034']) gt 1 and not(../datafield[@tag='255'])">
+            <subfield code="3">n:{position()}</subfield>
+          </xsl:when>
+        </xsl:choose>
       </datafield>
     </xsl:if>
   </xsl:template>
@@ -40,19 +66,40 @@
 
       @_marcFields 255
   -->
-  <xsl:template match="datafield[@tag='255'][count(../datafield[@tag='255']) eq 1 and count(../datafield[@tag='034']) eq 1]">
-    <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
-      <xsl:apply-templates select="subfield[@code=('a', 'b')]" />
+  <xsl:template match="datafield[@tag='255']">
+    <xsl:variable name="sf3" select="subfield[@code='3']" />
+    <xsl:variable name="assoc034" as="element(datafield)?">
       <xsl:choose>
-        <xsl:when test="../datafield[@tag='034'] and utils:df034isValid(../datafield[@tag='034'])">
-          <subfield code="c">{utils:formatCoordinatesFrom034(../datafield[@tag='034'])}</subfield>
+        <xsl:when test="count(../datafield[@tag='255']) eq 1 and count(../datafield[@tag='034']) eq 1">
+          <xsl:sequence select="../datafield[@tag='034']" />
         </xsl:when>
-        <xsl:otherwise>
-          <xsl:apply-templates select="subfield[@code='c']" />
-        </xsl:otherwise>
+        <xsl:when test="$sf3">
+          <xsl:sequence select="../datafield[@tag='034'][subfield[@code='3'][.=$sf3]]" />
+        </xsl:when>
       </xsl:choose>
-      <xsl:apply-templates select="subfield[not(@code=('a', 'b', 'c'))]" />
-    </datafield>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$assoc034">
+        <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
+          <xsl:if test="not(subfield[@code='a']) and $assoc034/subfield[@code='b']/text()">
+            <subfield code="a">1:{format-integer(xs:integer($assoc034/subfield[@code='b']), "0 000")}</subfield>
+          </xsl:if>
+          <xsl:apply-templates select="subfield[@code=('a', 'b')]" />
+          <xsl:choose>
+            <xsl:when test="utils:df034isValid($assoc034)">
+              <subfield code="c">{utils:formatCoordinatesFrom034($assoc034)}</subfield>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="subfield[@code='c']" />
+            </xsl:otherwise>
+          </xsl:choose>
+          <xsl:apply-templates select="subfield[not(@code=('a', 'b', 'c'))]" />
+        </datafield>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="utils:shallow-copy" />
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!--
