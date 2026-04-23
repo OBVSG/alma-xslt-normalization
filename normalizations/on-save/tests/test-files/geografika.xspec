@@ -11,7 +11,7 @@
       </x:context>
       <x:expect label="gelöscht" />
     </x:scenario>
-    <x:scenario label="034 valid no 255">
+    <x:scenario label="034, no SFa, valid; no 255">
       <x:context>
         <datafield tag="034" ind1=" " ind2=" ">
           <subfield code="d">E0044125</subfield>
@@ -34,21 +34,22 @@
         </datafield>
       </x:expect>
     </x:scenario>
-    <x:scenario label="034 valid, 255">
+    <x:scenario label="034, SFa, valid; no 255">
       <x:context>
         <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a">a</subfield>
+          <subfield code="b">50000</subfield>
           <subfield code="d">E0044125</subfield>
           <subfield code="e">E0102931</subfield>
           <subfield code="f">N0474830</subfield>
           <subfield code="g">N0455314</subfield>
           <subfield code="2">bound</subfield>
-        </datafield>
-        <datafield tag="255" ind1=" " ind2=" ">
-          <subfield code="c">E 09°99'99"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
         </datafield>
       </x:context>
       <x:expect label="255 created">
         <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a">a</subfield>
+          <subfield code="b">50000</subfield>
           <subfield code="d">E0044125</subfield>
           <subfield code="e">E0102931</subfield>
           <subfield code="f">N0474830</subfield>
@@ -56,6 +57,39 @@
           <subfield code="2">bound</subfield>
         </datafield>
         <datafield tag="255" ind1=" " ind2=" ">
+          <subfield code="a">1:50 000</subfield>
+          <subfield code="c">E 04°41'25"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+    <x:scenario label="034 valid, with SFa, 255">
+      <x:context>
+        <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a">a</subfield>
+          <subfield code="b">50000</subfield>
+          <subfield code="d">E0044125</subfield>
+          <subfield code="e">E0102931</subfield>
+          <subfield code="f">N0474830</subfield>
+          <subfield code="g">N0455314</subfield>
+          <subfield code="2">bound</subfield>
+        </datafield>
+        <datafield tag="255" ind1=" " ind2=" ">
+          <subfield code="a">1:20 000</subfield>
+          <subfield code="c">E 09°99'99"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="255 updated, SFa unchanged">
+        <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a">a</subfield>
+          <subfield code="b">50000</subfield>
+          <subfield code="d">E0044125</subfield>
+          <subfield code="e">E0102931</subfield>
+          <subfield code="f">N0474830</subfield>
+          <subfield code="g">N0455314</subfield>
+          <subfield code="2">bound</subfield>
+        </datafield>
+        <datafield tag="255" ind1=" " ind2=" ">
+          <subfield code="a">1:20 000</subfield>
           <subfield code="c">E 04°41'25"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
         </datafield>
       </x:expect>
@@ -70,7 +104,7 @@
           <subfield code="2">bound</subfield>
         </datafield>
         <datafield tag="255" ind1=" " ind2=" ">
-          <subfield code="a">Maßstab 1:50.000</subfield>
+          <subfield code="a">Maßstab 1:50 000</subfield>
           <subfield code="d">Subfield d</subfield>
         </datafield>
       </x:context>
@@ -83,7 +117,7 @@
           <subfield code="2">bound</subfield>
         </datafield>
         <datafield tag="255" ind1=" " ind2=" ">
-          <subfield code="a">Maßstab 1:50.000</subfield>
+          <subfield code="a">Maßstab 1:50 000</subfield>
           <subfield code="c">E 04°41'25"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
           <subfield code="d">Subfield d</subfield>
         </datafield>
@@ -100,7 +134,7 @@
           <subfield code="2">bound</subfield>
         </datafield>
         <datafield tag="255" ind1=" " ind2=" ">
-          <subfield code="a">Maßstab 1:50.000</subfield>
+          <subfield code="a">Maßstab 1:50 000</subfield>
           <subfield code="d">Subfield d</subfield>
         </datafield>
       </x:context>
@@ -114,7 +148,7 @@
           <subfield code="2">bound</subfield>
         </datafield>
         <datafield tag="255" ind1=" " ind2=" ">
-          <subfield code="a">Maßstab 1:50.000</subfield>
+          <subfield code="a">Maßstab 1:50 000</subfield>
           <subfield code="d">Subfield d</subfield>
         </datafield>
       </x:expect>
@@ -222,6 +256,127 @@
           <subfield code="c">E 08°88'88"-E 10°29'31"/N 47°48'30"-N 45°53'14"</subfield>
         </datafield>
       </x:expect>
+    </x:scenario>
+    <x:scenario label="Zuordnung über SF3">
+      <x:scenario label="mehrere 034er, keine 255">
+        <x:context>
+        <datafield tag="034" ind1=" " ind2=" ">
+            <subfield code="a">a</subfield>
+            <subfield code="b">500000</subfield>
+            <subfield code="d">E0071300</subfield>
+            <subfield code="e">E0143200</subfield>
+            <subfield code="f">N0480700</subfield>
+            <subfield code="g">N0420200</subfield>
+            <subfield code="2">bound</subfield>
+          </datafield>
+          <datafield tag="034" ind1=" " ind2=" ">
+            <subfield code="a">a</subfield>
+            <subfield code="b">9999999</subfield>
+            <subfield code="d">E0999999</subfield>
+            <subfield code="e">E0999999</subfield>
+            <subfield code="f">N0999999</subfield>
+            <subfield code="g">N0999999</subfield>
+            <subfield code="2">bound</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="SF3 automatisch generiert">
+        <datafield tag="034" ind1=" " ind2=" ">
+            <subfield code="a">a</subfield>
+            <subfield code="b">500000</subfield>
+            <subfield code="d">E0071300</subfield>
+            <subfield code="e">E0143200</subfield>
+            <subfield code="f">N0480700</subfield>
+            <subfield code="g">N0420200</subfield>
+            <subfield code="2">bound</subfield>
+            <subfield code="3">n:1</subfield>
+          </datafield>
+          <datafield tag="255" ind1=" " ind2=" ">
+            <subfield code="a">1:500 000</subfield>
+            <subfield code="c">E 07°13'00&quot;-E 14°32'00&quot;/N 48°07'00&quot;-N 42°02'00&quot;</subfield>
+            <subfield code="3">n:1</subfield>
+          </datafield>
+          <datafield tag="034" ind1=" " ind2=" ">
+            <subfield code="a">a</subfield>
+            <subfield code="b">9999999</subfield>
+            <subfield code="d">E0999999</subfield>
+            <subfield code="e">E0999999</subfield>
+            <subfield code="f">N0999999</subfield>
+            <subfield code="g">N0999999</subfield>
+            <subfield code="2">bound</subfield>
+            <subfield code="3">n:2</subfield>
+          </datafield>
+          <datafield tag="255" ind1=" " ind2=" ">
+            <subfield code="a">1:9 999 999</subfield>
+            <subfield code="c">E 99°99'99&quot;-E 99°99'99&quot;/N 99°99'99&quot;-N 99°99'99&quot;</subfield>
+            <subfield code="3">n:2</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+      <x:scenario label="teilweise Zuordnung möglich">
+        <x:context>
+          <datafield tag="034" ind1=" " ind2=" ">
+            <subfield code="a">a</subfield>
+            <subfield code="b">500000</subfield>
+            <subfield code="d">E0071300</subfield>
+            <subfield code="e">E0143200</subfield>
+            <subfield code="f">N0480700</subfield>
+            <subfield code="g">N0420200</subfield>
+            <subfield code="2">bound</subfield>
+            <subfield code="3">Hauptkarte</subfield>
+          </datafield>
+          <datafield tag="034" ind1=" " ind2=" ">
+            <subfield code="a">a</subfield>
+            <subfield code="b">9999999</subfield>
+            <subfield code="d">E0999999</subfield>
+            <subfield code="e">E0999999</subfield>
+            <subfield code="f">N0999999</subfield>
+            <subfield code="g">N0999999</subfield>
+            <subfield code="2">bound</subfield>
+            <subfield code="3">Katastralgemeinde Ponigl</subfield>
+          </datafield>
+          <datafield tag="255" ind1=" " ind2=" ">
+            <subfield code="a">1:50 000</subfield>
+            <subfield code="3">Gemeinde Thannhausen</subfield>
+          </datafield>
+          <datafield tag="255" ind1=" " ind2=" ">
+            <subfield code="a">1:25 000</subfield>
+            <subfield code="c">E 07°13'00&quot;-E 14°32'00&quot;/N 48°07'00&quot;-N 42°02'00&quot;</subfield>
+            <subfield code="3">Katastralgemeinde Ponigl</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="zugeordnete Felder aktualisiert, nicht zugeordnete 1:1 übernommen">
+          <datafield tag="034" ind1=" " ind2=" ">
+            <subfield code="a">a</subfield>
+            <subfield code="b">500000</subfield>
+            <subfield code="d">E0071300</subfield>
+            <subfield code="e">E0143200</subfield>
+            <subfield code="f">N0480700</subfield>
+            <subfield code="g">N0420200</subfield>
+            <subfield code="2">bound</subfield>
+            <subfield code="3">Hauptkarte</subfield>
+          </datafield>
+          <datafield tag="034" ind1=" " ind2=" ">
+            <subfield code="a">a</subfield>
+            <subfield code="b">9999999</subfield>
+            <subfield code="d">E0999999</subfield>
+            <subfield code="e">E0999999</subfield>
+            <subfield code="f">N0999999</subfield>
+            <subfield code="g">N0999999</subfield>
+            <subfield code="2">bound</subfield>
+            <subfield code="3">Katastralgemeinde Ponigl</subfield>
+          </datafield>
+          <datafield tag="255" ind1=" " ind2=" ">
+            <subfield code="a">1:50 000</subfield>
+            <subfield code="3">Gemeinde Thannhausen</subfield>
+          </datafield>
+          <datafield tag="255" ind1=" " ind2=" ">
+            <subfield code="a">1:25 000</subfield>
+            <subfield code="c">E 99°99'99&quot;-E 99°99'99&quot;/N 99°99'99&quot;-N 99°99'99&quot;</subfield>
+            <subfield code="3">Katastralgemeinde Ponigl</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
     </x:scenario>
   </x:scenario>
 </x:description>
