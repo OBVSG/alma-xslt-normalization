@@ -378,5 +378,27 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="mehrere maßstäbe in 034">
+      <x:context>
+        <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a">a</subfield>
+          <subfield code="b">20000</subfield>
+          <subfield code="b">10000</subfield>
+          <subfield code="b">30000</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="von-bis angabe in 255">
+        <datafield tag="034" ind1=" " ind2=" ">
+          <subfield code="a">a</subfield>
+          <subfield code="b">20000</subfield>
+          <subfield code="b">10000</subfield>
+          <subfield code="b">30000</subfield>
+        </datafield>
+        <datafield tag="255" ind1=" " ind2=" ">
+          <subfield code="a">1:10 000 - 1:30 000</subfield>
+        </datafield>
+      </x:expect>
+    </x:scenario>
+
   </x:scenario>
 </x:description>
