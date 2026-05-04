@@ -2,16 +2,20 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" xmlns:xs="http://www.w3.org/2001/XMLSchema" expand-text="yes" version="3.0">
 
   <!--~doc:stylesheet
-      Hier finden sich Templates und Funktionen, die sich speziell auf geografische Ressourcen beziehen.
+      Hier finden sich Templates und Funktionen, die sich speziell auf Kartenmaterial beziehen.
 
       Das sind z. B.:
       - Das Erstellen einer `255` aus der `034`
   -->
 
   <!--
-      Wenn es noch kein Feld `255` gibt, erstelle eines, mit den Koordinaten aus `034 $$d $$e $$f $$g`.
+      Wenn es noch kein Feld `255` gibt, erstelle je eines pro `034`, mit den Koordinaten aus `034 $$d $$e $$f $$g`
+      und dem Maßstab aus `$$b` (siehe das Template [create255from034](#temp;create255from034;nil)).
 
       Wenn das Feld nur `$$2bound` (also den Wert aus dem Template) enthält und sonst nichts, lösche es.
+
+      Wenn es mehr als ein Feld `034` gibt und keine `255`, erzeuge ein `$$3` mit `n:{position()}` für die Zuordnung
+      der neu entstehenden `255`.
       @_marcFields 034 255
   -->
   <xsl:template match="datafield[@tag='034']">
@@ -19,7 +23,7 @@
     <xsl:if test="not(subfield[@code='2'] and count(subfield[text()]) eq 1)">
       <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
         <xsl:apply-templates />
-        <xsl:if test="not(subfield[@code='3']) and count(../datafield[@tag='034']) gt 1 and not(../datafield[ftag='255'])">
+        <xsl:if test="not(subfield[@code='3']) and count(../datafield[@tag='034']) gt 1 and not(../datafield[@tag='255'])">
           <subfield code="3">n:{position()}</subfield>
         </xsl:if>
       </datafield>
@@ -27,14 +31,20 @@
 
     <xsl:call-template name="create255from034" />
   </xsl:template>
+
+  <!--
+      Helferfunktion zum Formatieren von Maßstäben.
+  -->
   <xsl:function name="utils:format-scale" as="xs:string">
       <xsl:param name="scale" as="xs:integer" />
       <xsl:sequence select="'1:' || format-integer($scale, '0 000')" />
     </xsl:function>
+
   <!--
       Generiere `255` aus `034`.
       - wenn `034$$b` vorhanden erzeuge `255$$a1:{034$$b mit ' ' als Tausender-Trennzeichen}`
       - wenn möglich, erzeuge `255$$c` mit formatierten Koordinaten
+      - erzeuge ein zur korrespondierenden `034` passendes `$$3`
   -->
   <xsl:template name="create255from034">
     <xsl:variable name="scales" select="subfield[@code='b'][matches(., '^\d+$')] ! xs:integer(.)" />

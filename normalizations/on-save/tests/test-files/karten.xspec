@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" stylesheet="../../normalize-on-save.xsl">
 
-  <x:scenario label="Geografika">
+  <x:scenario label="Karten">
     <x:scenario label="034 nur mit template text">
       <x:context>
         <datafield tag="034" ind1=" " ind2=" ">

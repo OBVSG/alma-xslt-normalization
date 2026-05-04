@@ -14,7 +14,7 @@
   <x:import href="test-files/80X-83X.xspec" />
   <x:import href="test-files/841-88X.xspec" />
   <x:import href="test-files/alpha.xspec" />
-  <x:import href="test-files/geografika.xspec" />
+  <x:import href="test-files/karten.xspec" />
   <x:import href="test-files/ids.xspec" />
   <x:import href="test-files/perFamKor.xspec" />
   <x:import href="test-files/sort.xspec" />

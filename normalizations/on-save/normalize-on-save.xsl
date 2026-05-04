@@ -37,7 +37,7 @@
   <xsl:include href="src/841-88X.xsl" />
   <xsl:include href="src/970-974.xsl" />
   <xsl:include href="src/alpha.xsl" />
-  <xsl:include href="src/geografika.xsl" />
+  <xsl:include href="src/karten.xsl" />
   <xsl:include href="src/ids.xsl" />
   <xsl:include href="src/perFamKor.xsl" />
   <xsl:include href="src/sort.xsl" />
