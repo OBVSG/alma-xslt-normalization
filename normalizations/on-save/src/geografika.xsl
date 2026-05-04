@@ -27,18 +27,25 @@
 
     <xsl:call-template name="create255from034" />
   </xsl:template>
-
+  <xsl:function name="utils:format-scale" as="xs:string">
+      <xsl:param name="scale" as="xs:integer" />
+      <xsl:sequence select="'1:' || format-integer($scale, '0 000')" />
+    </xsl:function>
   <!--
       Generiere `255` aus `034`.
       - wenn `034$$b` vorhanden erzeuge `255$$a1:{034$$b mit ' ' als Tausender-Trennzeichen}`
       - wenn möglich, erzeuge `255$$c` mit formatierten Koordinaten
   -->
   <xsl:template name="create255from034">
-    <xsl:variable name="scale" select="if (subfield[@code='b'][1][matches(., '^\d+$')]) then subfield[@code='b'][1] else ()" />
-    <xsl:if test="not(../datafield[@tag='255']) and ($scale or utils:df034isValid(.))">
+    <xsl:variable name="scales" select="subfield[@code='b'][matches(., '^\d+$')] ! xs:integer(.)" />
+
+    <xsl:if test="not(../datafield[@tag='255']) and (exists($scales) or utils:df034isValid(.))">
       <datafield tag="255" ind1=" " ind2=" ">
-        <xsl:if test="$scale">
-          <subfield code="a">1:{format-integer(xs:integer($scale), "0 000")}</subfield>
+        <xsl:if test="exists($scales)">
+          <subfield code="a">{if (count($scales) gt 1)
+          then ((utils:format-scale(min($scales)), utils:format-scale(max($scales))) => string-join(" - "))
+          else utils:format-scale($scales[1])
+          }</subfield>
         </xsl:if>
         <xsl:if test="utils:df034isValid(.)">
           <subfield code="c">{utils:formatCoordinatesFrom034(.)}</subfield>
