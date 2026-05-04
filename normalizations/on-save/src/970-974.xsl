@@ -30,6 +30,7 @@
     <xsl:variable name="instUrls" as="map(xs:string, xs:string)">
       <xsl:map>
         <xsl:map-entry key="'AT-UBW'" select="'https://bibliothek.univie.ac.at/literaturservice.html'" />
+        <xsl:map-entry key="'AT-UBMW'" select="'https://www.mdw.ac.at/bib/?PageId=2040'" />
       </xsl:map>
     </xsl:variable>
     <datafield tag="970" ind1="0" ind2=" ">

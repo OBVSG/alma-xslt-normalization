@@ -27,6 +27,10 @@
                    distName="OBV_aufsatz-ableiten-p"
                    main="normalizations/derive-record/aufsatz-p/aufsatz-p.xsl"
                    testMain="normalizations/derive-record/aufsatz-p/tests/aufsatz-p.xspec" />
+    <transformation name="TAT ableiten"
+                   distName="OBV_tat_ableiten"
+                   main="normalizations/derive-record/tat-ableiten/tat-ableiten.xsl"
+                   testMain="normalizations/derive-record/tat-ableiten/tests/tat-ableiten.xspec" />
     <transformation name="Import Library of Congress"
                    distName="OBV_EXTR_LoC"
                    main="normalizations/external-resources/libraryOfCongress/loc.xsl"
