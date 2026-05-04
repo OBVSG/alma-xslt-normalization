@@ -63,7 +63,7 @@
   -->
   <xsl:template match="datafield[@tag='240']" mode="sort">
     <xsl:call-template name="mrclib:sortSubfieldsToEnd">
-      <xsl:with-param name="sortSpec" select="('0', '1', '2', '7', '8', 'k', 'o', 'v', '9')" />
+      <xsl:with-param name="sortSpec" select="('l', '0', '1', '2', '7', '8', 'k', 'o', 'v', '9')" />
     </xsl:call-template>
   </xsl:template>
 
@@ -185,21 +185,18 @@
       behalte die Indikatoren bei.
       @_marcFields 880
   -->
-  <xsl:template match="datafield[@tag='880'][subfield[@code='6']]" mode="sort">
+  <xsl:template match="datafield[@tag='880']" mode="sort">
     <xsl:param name="transformedFields" tunnel="yes" select="()" />
     <xsl:variable name="assocTag" select="substring(subfield[@code='6'], 1, 3)" />
     <xsl:variable name="assocSeq" select="substring(subfield[@code='6'], 5, 2)" />
     <xsl:variable name="assocField" select="$transformedFields/self::datafield[@tag=$assocTag][subfield[@code='6'][.='880-' || $assocSeq]]" />
-    <xsl:choose>
-      <xsl:when test="count($assocField) eq 1">
-        <datafield tag="880" ind1="{$assocField/@ind1}" ind2="{$assocField/@ind2}">
-          <xsl:apply-templates />
-        </datafield>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="utils:shallow-copy" />
-      </xsl:otherwise>
-    </xsl:choose>
+    <!-- Felder ohne SF6 haben immer ein assozzieertes Feld, solange es mindestens ein Feld ohne SF6 gibt. -->
+    <xsl:if test="subfield[@code='6']/text() and count($assocField) eq 1">
+      <TEST />
+      <datafield tag="880" ind1="{$assocField/@ind1}" ind2="{$assocField/@ind2}">
+        <xsl:apply-templates />
+      </datafield>
+    </xsl:if>
   </xsl:template>
 
   <!--
