@@ -126,7 +126,7 @@
   -->
   <xsl:template match="datafield[@tag='245']">
     <datafield tag="245" ind1="{@ind1}" ind2="{@ind2}">
-      <xsl:sequence select="subfield[@code='a']" />
+      <xsl:sequence select="subfield[@code=('a', 'b')]" />
       <subfield code="n"></subfield>
       <subfield code="p"></subfield>
       <xsl:sequence select="subfield[@code='c']" />

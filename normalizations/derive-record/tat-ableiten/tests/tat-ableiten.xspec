@@ -189,6 +189,7 @@
         </datafield>
         <datafield tag="245" ind1="1" ind2="0">
           <subfield code="a">Gesammelte Werke</subfield>
+          <subfield code="b">alle, wirklich alle</subfield>
           <subfield code="c">Virginia Woolf ; herausgegeben von Klaus Reichert</subfield>
         </datafield>
         <datafield tag="264" ind1=" " ind2="1">
@@ -242,6 +243,7 @@
         </datafield>
         <datafield tag="245" ind1="1" ind2="0">
           <subfield code="a">Gesammelte Werke</subfield>
+          <subfield code="b">alle, wirklich alle</subfield>
           <subfield code="n"></subfield>
           <subfield code="p"></subfield>
           <subfield code="c">Virginia Woolf ; herausgegeben von Klaus Reichert</subfield>
