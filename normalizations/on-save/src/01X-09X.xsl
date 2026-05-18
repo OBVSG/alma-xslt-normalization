@@ -154,7 +154,7 @@
       es. Das erklärt die etwas umständlichen variablen `$hass336` und `$df040in`.
       @_marcFields 040
   -->
-  <xsl:template name="handle040" match="datafield[@tag='040']">
+  <xsl:template name="handle040" match="datafield[@tag='040'][1]">
     <xsl:param name="meta" tunnel="yes" />
     <xsl:variable name="isil" select="if ($meta('isil')) then $meta('isil') else 'AT-OBV'" />
     <xsl:variable name="has336" select="if (local-name() eq 'record')
