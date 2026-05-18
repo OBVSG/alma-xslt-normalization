@@ -192,7 +192,6 @@
     <xsl:variable name="assocField" select="$transformedFields/self::datafield[@tag=$assocTag][subfield[@code='6'][.='880-' || $assocSeq]]" />
     <!-- Felder ohne SF6 haben immer ein assozzieertes Feld, solange es mindestens ein Feld ohne SF6 gibt. -->
     <xsl:if test="subfield[@code='6']/text() and count($assocField) eq 1">
-      <TEST />
       <datafield tag="880" ind1="{$assocField/@ind1}" ind2="{$assocField/@ind2}">
         <xsl:apply-templates />
       </datafield>
