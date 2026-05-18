@@ -75,7 +75,7 @@
   <!--
       Entferne `546`, wenn `$$a` nur Vortexte enthält.
   -->
-  <xsl:template match="datafield[@tag='546'][matches(subfield[@code='a'], '^(Sprachfassungen|Untertitel): ?$')]" />
+  <xsl:template match="datafield[@tag='546'][subfield[@code='a'][matches(., '^(Sprachfassungen|Untertitel): ?$')]]" />
 
   <!--
       Markiere durch den KI-Assistenten angereicherte Aufnahmen.

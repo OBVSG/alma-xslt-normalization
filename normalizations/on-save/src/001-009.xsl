@@ -33,7 +33,7 @@
       Feldes 041 gemeint.
       @_marcFields 008
   -->
-  <xsl:template match="controlfield[@tag='008']">
+  <xsl:template match="controlfield[@tag='008'][string-length(.) eq 40]">
     <xsl:param name="meta" tunnel="yes" />
     <xsl:variable name="firstLang041" select="../datafield[@tag='041'][1]/subfield[@code='a'][1]" />
     <xsl:variable name="pos15_17"
