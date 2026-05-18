@@ -44,6 +44,7 @@
     <leader>{
       mrclib:replace-control-substring(., 18, 18, "c")
       => mrclib:replace-control-substring(19, 19, $pos19)
+      => replace("#", " ")
     }</leader>
   </xsl:template>
 
