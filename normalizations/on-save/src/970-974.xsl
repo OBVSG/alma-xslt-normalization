@@ -83,17 +83,17 @@
   <!--
       Ergänze Kontrollmarkierungen in `9700#$$r`.
 
-      Wenn Datensätze, die mit dem KI-Metadaten-Assistenten erstellt oder erweitert wurden, kontrolliert wurden, wird ein `$$rFE OK` bzw. `$$rSE OK` eingefügt. Beim Speichern wird das noch um Zeitstempel und ISIL ergänzt.
+      Wenn Datensätze, die mit dem KI-Metadaten-Assistenten erstellt oder erweitert wurden, kontrolliert wurden, wird ein `$$rFE-OK` bzw. `$$rSE-Prüfen` eingefügt. Beim Speichern wird das noch um Zeitstempel und ISIL ergänzt.
       @_marcFields 970
   -->
   <xsl:template match="datafield[@tag='970'][@ind1='0'][@ind2=' '][subfield[@code='a'][.='AI-Assistant']]/subfield[@code='r']">
     <xsl:param name="meta" tunnel="yes" />
     <xsl:choose>
-      <xsl:when test="matches(. , 'fe(-| )ok', 'i')">
+      <xsl:when test="matches(. , 'fe(-| )ok$', 'i')">
         <subfield code="r">FE-OK | {$meta('isil')} | {format-dateTime($currentDateTime, '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')}</subfield>
       </xsl:when>
-      <xsl:when test="matches(. , 'se(-| )ok', 'i')">
-        <subfield code="r">SE-OK | {$meta('isil')} | {format-dateTime($currentDateTime, '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')}</subfield>
+      <xsl:when test="matches(. , 'se(-| )prüfen$', 'i')">
+        <subfield code="r">SE-Prüfen | {$meta('isil')} | {format-dateTime($currentDateTime, '[Y0001]-[M01]-[D01]T[H01]:[m01]:[s01]')}</subfield>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="utils:shallow-copy" />
