@@ -54,7 +54,7 @@
   <!--
       Globaler Parameter fürs aktuelle Datum. Dieser ist notwending, damit bei Tests ein fixes Datum mitgegeben werden kann.
   -->
-  <xsl:param name="currentDateTime" select="current-dateTime()" />
+  <xsl:param name="currentDateTime" select="adjust-dateTime-to-timezone(current-dateTime(), xs:dayTimeDuration('PT2H'))" />
 
   <!--
       Dieses Template ist der Einsprungspunkt für die Normalisierung.
