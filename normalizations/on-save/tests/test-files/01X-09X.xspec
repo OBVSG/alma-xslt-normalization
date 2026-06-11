@@ -4,17 +4,17 @@
     <x:scenario label="ZDB-ID-Dinge">
       <x:scenario label="016 mit nur Vorlagewert">
         <x:context>
-          <datafield tag="016" ind1=" " ind2=" ">
+          <datafield tag="016" ind1="7" ind2=" ">
             <subfield code="a"></subfield>
             <subfield code="2">DE-600</subfield>
           </datafield>
-          <datafield tag="016" ind1=" " ind2=" ">
+          <datafield tag="016" ind1="7" ind2=" ">
             <subfield code="z">12345-6</subfield>
             <subfield code="2">DE-600</subfield>
           </datafield>
         </x:context>
         <x:expect label="016 ohne sinnvollen Wert gelöscht">
-          <datafield tag="016" ind1=" " ind2=" ">
+          <datafield tag="016" ind1="7" ind2=" ">
             <subfield code="z">12345-6</subfield>
             <subfield code="2">DE-600</subfield>
           </datafield>
@@ -31,7 +31,7 @@
             <datafield tag="035" ind1=" " ind2=" ">
               <subfield code="a">(DE-600)123-X</subfield>
             </datafield>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">123-X</subfield>
               <subfield code="2">DE-600</subfield>
             </datafield>
@@ -47,7 +47,7 @@
             <datafield tag="035" ind1=" " ind2=" ">
               <subfield code="a">(DE-600)123-X</subfield>
             </datafield>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">123-X</subfield>
               <subfield code="2">DE-600</subfield>
             </datafield>
@@ -58,7 +58,7 @@
             <datafield tag="016" ind1=" " ind2=" ">
               <subfield code="a">Meine unbekannte ID</subfield>
             </datafield>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">12345678</subfield>
               <subfield code="2">fake-voc</subfield>
             </datafield>
@@ -67,7 +67,7 @@
             <datafield tag="016" ind1=" " ind2=" ">
               <subfield code="a">Meine unbekannte ID</subfield>
             </datafield>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">12345678</subfield>
               <subfield code="2">fake-voc</subfield>
             </datafield>
@@ -75,7 +75,7 @@
         </x:scenario>
         <x:scenario label="035 mit DE-600, 016 vorhanden">
           <x:context>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">000-0</subfield>
               <subfield code="2">DE-600</subfield>
             </datafield>
@@ -87,7 +87,7 @@
             <datafield tag="035" ind1=" " ind2=" ">
               <subfield code="a">(DE-600)123-X</subfield>
             </datafield>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">123-X</subfield>
               <subfield code="2">DE-600</subfield>
             </datafield>
@@ -97,7 +97,7 @@
       <x:scenario label="035 aus 016 generieren">
         <x:scenario label="035 mit DE-600 vorhanden">
           <x:context>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">12345</subfield>
               <subfield code="2">DE-600</subfield>
             </datafield>
@@ -109,7 +109,7 @@
             <datafield tag="035" ind1=" " ind2=" ">
               <subfield code="a">(DE-600)12346</subfield>
             </datafield>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">12346</subfield>
               <subfield code="2">DE-600</subfield>
             </datafield>
@@ -117,7 +117,7 @@
         </x:scenario>
         <x:scenario label="keine 035 mit DE-600 vorhanden">
           <x:context>
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">12345</subfield>
               <subfield code="2">DE-600</subfield>
             </datafield>
@@ -126,7 +126,7 @@
             </datafield>
           </x:context>
           <x:expect label="035 aus 016 erstellt">
-            <datafield tag="016" ind1=" " ind2=" ">
+            <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">12345</subfield>
               <subfield code="2">DE-600</subfield>
             </datafield>
@@ -138,7 +138,7 @@
       </x:scenario>
       <x:scenario label="ZDB-NEU mit Datum">
         <x:context>
-          <datafield tag="016" ind1=" " ind2=" ">
+          <datafield tag="016" ind1="7" ind2=" ">
             <subfield code="a">ZDB-NEU-2233-03-22</subfield>
             <subfield code="2">DE-600</subfield>
           </datafield>
