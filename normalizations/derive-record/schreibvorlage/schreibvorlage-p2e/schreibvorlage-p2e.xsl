@@ -134,5 +134,5 @@
       Lösche alle `970`, außer der Fachgruppe
       @_marcFields 970
   -->
-  <xsl:template match="datafield[@tag='970'][not(@ind1 eq '1' and subfield[@code='c'])]" />
+  <xsl:template match="datafield[@tag='970'][not(@ind1 eq '1' and subfield[@code='c']/text())]" />
 </xsl:stylesheet>

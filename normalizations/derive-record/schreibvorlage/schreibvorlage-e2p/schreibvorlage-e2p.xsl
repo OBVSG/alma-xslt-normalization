@@ -78,7 +78,7 @@
   <xsl:template match="controlfield[@tag=('001', '007', '009')]" />
 
   <!-- Lösche datafields -->
-  <xsl:template match="datafield[@tag=('015', '016', '024', '035', '040', '336', '337', '338', '347', '506', '540', '856', '912', '972', '974')]" />
+  <xsl:template match="datafield[@tag=('015', '016', '024', '035', '040', '336', '337', '338', '347', '506', '540', '588', '856', '912', '972', '974')]" />
 
   <!--
       Bearbeite MARC `008`
@@ -122,5 +122,10 @@
 
   <!-- Lösche den Inhalt von `830$$w` -->
   <xsl:template match="datafield[@tag='830']/subfield[@code='w']/text()" />
+
+  <!--
+      Lösche alle `970` außer der Fachgruppe
+  -->
+  <xsl:template match="datafield[@tag='970'][not(@ind1 eq '1' and subfield[@code='c']/text())]" />
 
 </xsl:stylesheet>

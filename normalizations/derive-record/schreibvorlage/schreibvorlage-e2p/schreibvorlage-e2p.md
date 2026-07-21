@@ -23,12 +23,13 @@
 | 337                       | Medientyp                         | vorhandenes löschen und Sfb n hinzufügen                         | y             |
 | 338                       | Datenträgertyp                    | vorhandenes löschen und Sfb nc hinzufügen                        | y             |
 | 347                       | Eigenschaften der Digitalen Datei | löschen                                                          | y             |
+| 588                       | Markierung AI-Assistant           | löschen                                                          | y             |
 | 773                       | TAT-Link bzw. Aufsatz-Link        | Inhalt von SF-w löschen                                          | y             |
 | 776.{0,8}.n.Druck-Ausgabe | Link zur Druck-Ausgabe            | in 020 übertragen                                                | y             |
 | 776.{0,8}                 | Link zur Online-Ausgabe           | einfügen                                                         | y             |
 | 830                       | TUT-Link bzw. Serien-Link         | Inhalt von SF-w löschen                                          | y             |
 | 856                       | Linkfeld                          | Löschen                                                          | y             |
 | 912                       | Produktsigel                      | löschen                                                          | y             |
-| 970.{1,-}                 | Fachgruppen                       | Feld mit leerem Sfc hinzufügen, falls nicht vorhanden            | y             |
+| 970                       | diverse Verbund-lokale Daten      | alle bis auf Fachgruppe löschen                                  | y             |
 | 972                       | Local Owner                       | löschen                                                          | y             |
 | 974.{0,\*}                | "Wickelfelder"                    | löschen                                                          | y             |
