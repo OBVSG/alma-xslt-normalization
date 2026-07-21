@@ -244,6 +244,18 @@
       </x:scenario>
     </x:scenario>
     <x:scenario label="ZDB-Redaktionsfeld">
+      <x:scenario label="970 SfZ">
+        <x:context>
+          <datafield tag="970" ind1=" " ind2=" ">
+            <subfield code="Z">Krawuzikapuzi</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="auf SFa geändert">
+          <datafield tag="970" ind1=" " ind2=" ">
+            <subfield code="a">Krawuzikapuzi</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
       <x:scenario label="ZDB-NEU-Eintrag in 970, keine passende 035">
         <x:context>
           <record>
