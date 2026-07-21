@@ -6,27 +6,33 @@
   - [Allgemeines ](#allgemeines)
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
-  - [Standard Sandbox 18.05.2026 (geplant)](#standard-sandbox-18052026-geplant)
+  - [Standard Sandbox 27.08.2026](#standard-sandbox-27082026)
     - [Normalize on Save](#normalize-on-save)
-  - [Standard Sandbox 20.04.2026](#standard-sandbox-20042026)
+    - [Schreibvorlage P2E](#schreibvorlage-p2e)
+    - [Schreibvorlage E2P](#schreibvorlage-e2p)
+  - [Produktion, Stand 01.06.2026](#produktion-stand-01062026)
     - [Normalize on Save](#normalize-on-save-1)
+    - [TAT-Ableiten](#tat-ableiten)
+  - [Standard Sandbox 18.05.2026 (geplant)](#standard-sandbox-18052026-geplant)
+  - [Produktion 04.05.2026](#produktion-04052026)
+    - [Normalize on Save](#normalize-on-save-2)
     - [TAT ableiten](#tat-ableiten)
   - [Produktion 07.04.2026](#produktion-07042026)
-    - [Normalize on Save](#normalize-on-save-2)
+    - [Normalize on Save](#normalize-on-save-3)
     - [Library of Congress](#library-of-congress)
     - [KI-Assistent](#ki-assistent)
     - [Allgemeines](#allgemeines)
   - [Produktion 02.03.2026](#produktion-02032026)
-    - [Normalize on Save](#normalize-on-save-3)
+    - [Normalize on Save](#normalize-on-save-4)
     - [E2P](#e2p)
   - [Produktion 02.02.2026](#produktion-02022026)
-    - [Normalize on Save](#normalize-on-save-4)
+    - [Normalize on Save](#normalize-on-save-5)
     - [Datensatz ableiten](#datensatz-ableiten)
   - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
     - [Schreibvorlage](#schreibvorlage)
     - [Aufsatz ableiten - print](#aufsatz-ableiten---print)
     - [Externe Ressourcen Library of Congress](#externe-ressourcen-library-of-congress)
-    - [Normalize on Save](#normalize-on-save-5)
+    - [Normalize on Save](#normalize-on-save-6)
 
 <!-- markdown-toc end -->
 ## Allgemeines 
@@ -40,13 +46,31 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 - Am ersten Montag des Monats werden die Änderungen ins [Produktionssystem](https://obv-at-obvsg-psb.alma.exlibrisgroup.com/mng/login) übernommen. Erster geplanter Termin: 02.02.2026
 
 # Releases
-
-## Standard Sandbox 18.05.2026 (geplant)
+## Standard Sandbox 27.08.2026
 
 ### Normalize on Save
-- [ ] MARC-Escapes in `$$6` gegen ISO-Schriftcodes tauschen, wenn möglich
+- Umstellung von ZDB-NEU von `035` auf `9703#`.
 
-## Standard Sandbox 20.04.2026
+### Schreibvorlage P2E
+Neu eingerichtet. Doku [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_schreibvorlage_p2e/index.html)
+
+### Schreibvorlage E2P
+- Entferne Markierungen vom KI-Assistenten
+
+## Produktion, Stand 01.06.2026
+Kein reguläres Release, aber es gab ein paar Bugfixes und Anpassungen am KI-Assistenten.
+
+### Normalize on Save
+- Rauten im `leader` durch Leerzeichen ersetzen. Nicht sicht-/spürbar für Bearbeiter:innen, aber technisch wichtig.
+- Fixes/Verbesserungen bei Randfällen wie z. B. Feldern `008`, die nicht genau 40 Zeichen lang sind.
+
+### TAT-Ableiten
+- `245$$b` mitnehmen
+
+## Standard Sandbox 18.05.2026 (geplant)
+Mangels neuer Features keine Preview.
+
+## Produktion 04.05.2026
 
 ### Normalize on Save
 - [x] FIX: Löschen von `776` ohne sinnvollen Inhalt: Erweitere den Begriff "sinnvoll" um die Subfelder `atbdh`. Commit 4086da6; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='776'%5D%5Bnot(subfield%5B@code=('a',%20't',%20'b',%20'd',%20'h',%20'o',%20'w',%20'x',%20'z')%5D/text())%5D;nil)
@@ -55,6 +79,7 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 - [x] `591##$$aUnikaler Bestand ...` um ISIL ergänzen. Commit ef1ce33; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='591'%5D/subfield%5B@code='a'%5D%5B.='Unikaler%20Bestand%20-%20bitte%20nicht%20nutzen!'%5D;nil)
 - [x] ZDB-Artefakte aus `035` entfernen. D. h. "ZDB-NEU" etc. kommt in `9703#`. Commit c2bcedd; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code=('a',%20'Z')%5D%5Bstarts-with(.,%20'(DE-600)')%20or%20starts-with(upper-case(.),%20'ZDB-NEU')%5D%5D;nil)
 - [x] `880` ohne assoziiertes Feld löschen. Commit 12c6ac6; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#temp;datafield%5B@tag='880'%5D;sort)
+- [x] diverse Verbesserungen im Kartenbereich (`034/255`)
 
 ### TAT ableiten
 Ganze Normalisierung neu. Commit 642934b; [Dokumentation](https://share.obvsg.at/xsldocs/preview/xslt-normalization/OBV_normalize-on-save/index.html#file:///home/ss/projects/almaConfig/xsltNormalization/docs/OBV_tat_ableiten/index.html)
