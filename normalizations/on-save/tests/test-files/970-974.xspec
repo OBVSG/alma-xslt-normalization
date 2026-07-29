@@ -243,5 +243,100 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+    <x:scenario label="ZDB-Redaktionsfeld">
+      <x:scenario label="970 SfZ">
+        <x:context>
+          <datafield tag="970" ind1=" " ind2=" ">
+            <subfield code="Z">Krawuzikapuzi</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="auf SFa geändert">
+          <datafield tag="970" ind1=" " ind2=" ">
+            <subfield code="a">Krawuzikapuzi</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="ZDB-NEU-Eintrag in 970, keine passende 035">
+        <x:context>
+          <record>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="016" ind1="7" ind2=" ">
+              <subfield code="a">ZDB-123456-7</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-599)OBVAC12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)ZDB-123456-7</subfield>
+            </datafield>
+            <datafield tag="970" ind1=" " ind2=" ">
+              <subfield code="a">ZDB-NEU-2026-07-10</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="indikatoren angepasst"
+          test="/record/datafield[not(@tag='040')]">
+          <datafield tag="016" ind1="7" ind2=" ">
+            <subfield code="a">ZDB-123456-7</subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-600)ZDB-123456-7</subfield>
+          </datafield>
+          <datafield tag="970" ind1="3" ind2=" ">
+            <subfield code="a">ZDB-NEU-2026-07-10</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="ZDB-NEU-Eintrag in 970, valide ZDB-Nummer in 035">
+        <x:context>
+          <record>
+            <controlfield tag="009">AC12345678</controlfield>
+            <datafield tag="016" ind1="7" ind2=" ">
+              <subfield code="a">ZDB-123456-7</subfield>
+              <subfield code="2">DE-600</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(AT-OBV)AC12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-599)OBVAC12345678</subfield>
+            </datafield>
+            <datafield tag="035" ind1=" " ind2=" ">
+              <subfield code="a">(DE-600)123456-7</subfield>
+            </datafield>
+            <datafield tag="970" ind1="3" ind2=" ">
+              <subfield code="a">ZDB-NEU-2026-07-10</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect label="9703# gelöscht"
+          test="/record/datafield[not(@tag='040')]">
+          <datafield tag="016" ind1="7" ind2=" ">
+            <subfield code="a">123456-7</subfield>
+            <subfield code="2">DE-600</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(AT-OBV)AC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-599)OBVAC12345678</subfield>
+          </datafield>
+          <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(DE-600)123456-7</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
   </x:scenario>
 </x:description>
