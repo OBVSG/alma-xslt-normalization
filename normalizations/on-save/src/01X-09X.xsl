@@ -19,7 +19,7 @@
   <xsl:template match="datafield[@tag='016'][not(subfield[@code=('a', 'z')]/text())]" />
 
   <!--
-      Bearbeite `016##$$2DE-600`, d. h. die `016` bei ZDB-Datensätzen.
+      Bearbeite `0167#$$2DE-600`, d. h. die `016` bei ZDB-Datensätzen.
 
       - Wenn `$$a` mit 'ZDB-NEU' beinnt, lösche das Feld. Aus der korrespondierenden `035` wird ein Feld `9703#` gebildet.
       - Wenn es eine `035##$$a(DE-600)...` oder `035##$$aZDB-NEU-...` gibt, entferne sie. Sie wird anhand der `035` neu gebildet.
@@ -119,7 +119,7 @@
       <xsl:when test="not(subfield[@code=('a', 'Z')][.=('(DE-600)', 'ZDB-NEU-JJJJ-MM-TT')])">
         <xsl:call-template name="utils:shallow-copy" />
 
-        <datafield tag="016" ind1=" " ind2=" ">
+        <datafield tag="016" ind1="7" ind2=" ">
           <subfield code="a">{replace(., "^\(DE-600\)", "")}</subfield>
           <subfield code="2">DE-600</subfield>
         </datafield>

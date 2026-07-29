@@ -116,4 +116,26 @@
     </datafield>
   </xsl:template>
 
+  <!--
+      Bearbeite ZDB-Redaktionsfeld `970XX$$aZDB-NEU`.
+      - Wenn es eine valide ZDB-Nummer in `035` gibt, löschen
+      - Wenn nicht, die Indikatoren auf `3#` stellen.
+      @_marcFields 970
+  -->
+  <xsl:template match="datafield[@tag='970'][subfield[@code=('a', 'Z')][starts-with(., 'ZDB-NEU')]]">
+    <xsl:if test="not(../datafield[@tag='035'][subfield[@code='a'][matches(., '^\(DE-600\)\d+-[\dX]$')]])">
+      <datafield tag="970" ind1="3" ind2=" ">
+        <xsl:apply-templates />
+      </datafield>
+    </xsl:if>
+  </xsl:template>
+
+  <!--
+      Ändere `970$$Z` (für CV-Liste) in `$$a`.
+      @_marcFields 970
+  -->
+  <xsl:template match="datafield[@tag='970']/subfield[@code='Z']/@code">
+    <xsl:attribute name="code">a</xsl:attribute>
+  </xsl:template>
+
 </xsl:stylesheet>

@@ -74,6 +74,7 @@
     <leader>{
       mrclib:replace-control-substring($defaultLeader, 6, 6, substring(., 7, 1))
       => mrclib:replace-control-substring(7, 7, substring(., 8, 1))
+      => mrclib:replace-control-substring(19, 19, substring(., 20, 1))
     }</leader>
   </xsl:template>
 

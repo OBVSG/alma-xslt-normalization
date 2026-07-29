@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               stylesheet="schreibvorlage-p2e.xsl">
+
+  <x:scenario label="ganzer record">
+    <x:context>
+      <record>
+          <leader>01488nam a2200433 c 4500</leader>
+          <controlfield tag="001">990114613220203331</controlfield>
+          <controlfield tag="005">20230528122914.0</controlfield>
+          <controlfield tag="007">tu</controlfield>
+          <controlfield tag="008">140326|2013    |||           ||| | eng c</controlfield>
+          <controlfield tag="009">AC11575714</controlfield>
+          <datafield ind1=" " ind2=" " tag="010">
+            <subfield code="a">2013018962</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="020">
+            <subfield code="a">9780822354857</subfield>
+            <subfield code="c">(cloth : alk. paper)</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="020">
+            <subfield code="a">9780822354994</subfield>
+            <subfield code="c">(pbk. : alk. paper)</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(AT-OBV)AC11575714</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">AC11575714</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(Aleph)011461322ACC01</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(DE-599)GBV747527121</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(DE-601)747527121</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="040">
+            <subfield code="a">UBW</subfield>
+            <subfield code="b">ger</subfield>
+            <subfield code="c">GBV</subfield>
+            <subfield code="d">LBO</subfield>
+            <subfield code="e">aacr</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="041">
+            <subfield code="a">eng</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="044">
+            <subfield code="c">XD-US</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="082">
+            <subfield code="a">618.1780599</subfield>
+            <subfield code="2">23</subfield>
+        </datafield>
+        <datafield tag="090" ind1=" " ind2=" ">
+          <subfield code="a">b</subfield>
+          <subfield code="b">a</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="100">
+            <subfield code="a">Franklin, Sarah</subfield>
+            <subfield code="d">1960-</subfield>
+            <subfield code="0">(DE-588)132768682</subfield>
+            <subfield code="4">aut</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="0" tag="245">
+            <subfield code="a">Biological relatives</subfield>
+            <subfield code="b">IVF, stem cells, and the future of kinship</subfield>
+            <subfield code="c">Sarah Franklin</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="a">Durham, NC [u.a.]</subfield>
+            <subfield code="b">Duke Univ. Press</subfield>
+            <subfield code="c">2013</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="300">
+            <subfield code="a">X, 364 S.</subfield>
+            <subfield code="b">Ill.</subfield>
+            <subfield code="c">23 cm</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="490">
+            <subfield code="a">Experimental futures</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Literaturverz. S. [333] - 350</subfield>
+          </datafield>
+          <datafield tag="588" ind1=" " ind2=" ">
+              <subfield code="a">Part of the metadata in this record was created with the help of AI Metadata Assistant</subfield>
+            </datafield>
+          <datafield ind1=" " ind2="0" tag="650">
+            <subfield code="a">Fertilization in vitro, Human</subfield>
+            <subfield code="a">Social aspects</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="0" tag="650">
+            <subfield code="a">Kinship</subfield>
+            <subfield code="a">Philosophy</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="0" tag="650">
+            <subfield code="a">Feminist anthropology</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="0" tag="689">
+            <subfield code="a">Extrakorporale Befruchtung</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4153418-9</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="1" tag="689">
+            <subfield code="a">Verwandtschaft</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4133957-5</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="2" tag="689">
+            <subfield code="a">Anthropologie</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4002230-4</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="3" tag="689">
+            <subfield code="a">Feminismus</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4222126-2</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="689">
+            <subfield code="5">AT-OBV</subfield>
+            <subfield code="5">GBV</subfield>
+          </datafield>
+          <datafield ind1="4" ind2=" " tag="856">
+            <subfield code="u">http://www.gbv.de/dms/bowker/toc/9780822354994.pdf</subfield>
+            <subfield code="m">DE-601</subfield>
+            <subfield code="n">Bibl.ISILDE-601</subfield>
+            <subfield code="q">pdf/application</subfield>
+            <subfield code="y">Inhaltsverzeichnis</subfield>
+            <subfield code="3">04</subfield>
+          </datafield>
+            <datafield tag="970" ind1="0" ind2=" ">
+              <subfield code="a">Digitaler Assistent</subfield>
+            </datafield>
+        <datafield tag="970" ind1="7" ind2=" ">
+          <subfield code="a">LKR/ITM-OBV</subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="970">
+            <subfield code="c">11</subfield>
+          </datafield>
+        </record>
+    </x:context>
+    <x:expect label="">
+      <record>
+          <leader>01488nam a2200433 c 4500</leader>
+          <controlfield tag="007">cr |||||||||||</controlfield>
+          <controlfield tag="008">      s2013    |||     o     ||| | eng c</controlfield>
+          <datafield ind1=" " ind2=" " tag="020">
+            <subfield code="a"></subfield>
+            <subfield code="q"></subfield>
+          </datafield>
+          <datafield tag="024" ind1="7" ind2=" ">
+            <subfield code="a"></subfield>
+            <subfield code="2">doi</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="040">
+            <subfield code="b">ger</subfield>
+            <subfield code="e">rda</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="041">
+            <subfield code="a">eng</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="044">
+            <subfield code="c">XD-US</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="082">
+            <subfield code="a">618.1780599</subfield>
+            <subfield code="2">23</subfield>
+          </datafield>
+          <datafield ind1="1" ind2=" " tag="100">
+            <subfield code="a">Franklin, Sarah</subfield>
+            <subfield code="d">1960-</subfield>
+            <subfield code="0">(DE-588)132768682</subfield>
+            <subfield code="4">aut</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="0" tag="245">
+            <subfield code="a">Biological relatives</subfield>
+            <subfield code="b">IVF, stem cells, and the future of kinship</subfield>
+            <subfield code="c">Sarah Franklin</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="1" tag="264">
+            <subfield code="a">Durham, NC [u.a.]</subfield>
+            <subfield code="b">Duke Univ. Press</subfield>
+            <subfield code="c">2013</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="300">
+            <subfield code="a">1 Online-Ressource (X, 364 S.)</subfield>
+            <subfield code="b">Ill.</subfield>
+          </datafield>
+          <datafield tag="336" ind1=" " ind2=" ">
+            <subfield code="b">txt</subfield>
+          </datafield>
+          <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="b">c</subfield>
+          </datafield>
+          <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="b">cr</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="490">
+            <subfield code="a">Experimental futures</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Literaturverz. S. [333] - 350</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="0" tag="650">
+            <subfield code="a">Fertilization in vitro, Human</subfield>
+            <subfield code="a">Social aspects</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="0" tag="650">
+            <subfield code="a">Kinship</subfield>
+            <subfield code="a">Philosophy</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="0" tag="650">
+            <subfield code="a">Feminist anthropology</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="0" tag="689">
+            <subfield code="a">Extrakorporale Befruchtung</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4153418-9</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="1" tag="689">
+            <subfield code="a">Verwandtschaft</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4133957-5</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="2" tag="689">
+            <subfield code="a">Anthropologie</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4002230-4</subfield>
+          </datafield>
+          <datafield ind1="0" ind2="3" tag="689">
+            <subfield code="a">Feminismus</subfield>
+            <subfield code="D">s</subfield>
+            <subfield code="0">(DE-588)4222126-2</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="689">
+            <subfield code="5">AT-OBV</subfield>
+            <subfield code="5">GBV</subfield>
+          </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Druck-Ausgabe</subfield>
+          <subfield code="z">9780822354857</subfield>
+          <subfield code="z">9780822354994</subfield>
+          <subfield code="z"></subfield>
+        </datafield>
+        <datafield tag="856" ind1="4" ind2="0">
+          <subfield code="u"></subfield>
+          <subfield code="x"></subfield>
+          <subfield code="3">Volltext</subfield>
+        </datafield>
+        <datafield tag="912" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
+        </datafield>
+        <datafield ind1="1" ind2=" " tag="970">
+          <subfield code="c">11</subfield>
+        </datafield>
+      </record>
+    </x:expect>
+  </x:scenario>
+  <x:scenario label="ganzer ds">
+    <x:context>
+      <record>
+        <leader>01948nam a2200481 c 4500</leader>
+        <controlfield tag="001">990037523270203331</controlfield>
+        <controlfield tag="005">20240705124502.0</controlfield>
+        <controlfield tag="007">tu</controlfield>
+        <controlfield tag="008">030707|2003####|||###########|||#|#ger#c</controlfield>
+        <controlfield tag="009">AC03763336</controlfield>
+        <datafield tag="015" ind1=" " ind2=" ">
+          <subfield code="a">03,N19,0008</subfield>
+          <subfield code="2">dnb</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a">9783598116261</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a">3598116268</subfield>
+          <subfield code="q">Broschur</subfield>
+        </datafield>
+        <datafield tag="024" ind1="3" ind2=" ">
+          <subfield code="a">9783598116261</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(AT-OBV)AC03763336</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">AC03763336</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(Aleph)003752327ACC01</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+          <subfield code="a">(DE-599)OBVAC03763336</subfield>
+        </datafield>
+        <datafield tag="040" ind1=" " ind2=" ">
+          <subfield code="a">UBS</subfield>
+          <subfield code="b">ger</subfield>
+          <subfield code="c">292</subfield>
+          <subfield code="d">AT-OeAW</subfield>
+          <subfield code="e">rda</subfield>
+        </datafield>
+        <datafield tag="041" ind1=" " ind2=" ">
+          <subfield code="a">ger</subfield>
+        </datafield>
+        <datafield tag="044" ind1=" " ind2=" ">
+          <subfield code="c">XA-DE</subfield>
+        </datafield>
+        <datafield tag="082" ind1="0" ind2="4">
+          <subfield code="a">025.32</subfield>
+          <subfield code="q">UBWFRL</subfield>
+          <subfield code="2">22</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">02</subfield>
+          <subfield code="q">DE-101</subfield>
+          <subfield code="2">sdnb</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">06.41</subfield>
+          <subfield code="2">bkl</subfield>
+          <subfield code="9">O: Automatisch aus GBV_2011-10 2012-06-11</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">06.70</subfield>
+          <subfield code="2">bkl</subfield>
+          <subfield code="9">O: Automatisch aus GBV_2011-10 2012-06-11</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">AN 74400</subfield>
+          <subfield code="2">rvk</subfield>
+        </datafield>
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Haller, Klaus</subfield>
+          <subfield code="d">1939-2011</subfield>
+          <subfield code="0">(DE-588)128855967</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+        <datafield tag="245" ind1="1" ind2="0">
+          <subfield code="a">Katalogisierung nach den RAK-WB</subfield>
+          <subfield code="b">eine Einführung in die Regeln für die alphabetische
+            Katalogisierung in wissenschaftlichen Bibliotheken</subfield>
+          <subfield code="c">Klaus Haller, Hans Popst</subfield>
+        </datafield>
+        <datafield tag="250" ind1=" " ind2=" ">
+          <subfield code="a">6., durchgesehene und aktualisierte Auflage</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="1">
+          <subfield code="a">München</subfield>
+          <subfield code="b">K.G. Saur</subfield>
+          <subfield code="c">2003</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+          <subfield code="a">331 Seiten</subfield>
+          <subfield code="b">Illustrationen</subfield>
+          <subfield code="c">21 cm</subfield>
+        </datafield>
+        <datafield tag="336" ind1=" " ind2=" ">
+          <subfield code="b">txt</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+          <subfield code="b">n</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+          <subfield code="b">nc</subfield>
+        </datafield>
+        <datafield tag="689" ind1="0" ind2="0">
+          <subfield code="a">Regeln für die alphabetische Katalogisierung</subfield>
+          <subfield code="g">WB</subfield>
+          <subfield code="D">u</subfield>
+          <subfield code="0">(DE-588)4177377-9</subfield>
+        </datafield>
+        <datafield tag="689" ind1="0" ind2=" ">
+          <subfield code="5">AT-OBV</subfield>
+          <subfield code="5">UBS TUWMMM DDB</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Popst, Hans</subfield>
+          <subfield code="d">1940-2020</subfield>
+          <subfield code="0">(DE-588)128767146</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Onlineausgabe</subfield>
+          <subfield code="z">9783598116XXX</subfield>
+        </datafield>
+        <datafield tag="856" ind1="4" ind2="2">
+          <subfield code="q">application/pdf</subfield>
+          <subfield code="u">http://media.obvsg.at/AC03763336-1001</subfield>
+          <subfield code="x">HEB-CE</subfield>
+          <subfield code="3">Inhaltsverzeichnis</subfield>
+          <subfield code="o">OBV-HEB-CE</subfield>
+        </datafield>
+        <datafield tag="970" ind1="1" ind2=" ">
+          <subfield code="c">03</subfield>
+        </datafield>
+      </record>
+    </x:context>
+    <x:expect label="">
+      <record>
+        <leader>01948nam a2200481 c 4500</leader>
+        <controlfield tag="007">cr |||||||||||</controlfield>
+        <controlfield tag="008">      s2003####|||#####o#####|||#|#ger#c</controlfield>
+        <datafield tag="020" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="q"></subfield>
+        </datafield>
+        <datafield tag="024" ind1="7" ind2=" ">
+          <subfield code="a"></subfield>
+          <subfield code="2">doi</subfield>
+        </datafield>
+        <datafield tag="040" ind1=" " ind2=" ">
+          <subfield code="b">ger</subfield>
+          <subfield code="e">rda</subfield>
+        </datafield>
+        <datafield tag="041" ind1=" " ind2=" ">
+          <subfield code="a">ger</subfield>
+        </datafield>
+        <datafield tag="044" ind1=" " ind2=" ">
+          <subfield code="c">XA-DE</subfield>
+        </datafield>
+        <datafield tag="082" ind1="0" ind2="4">
+          <subfield code="a">025.32</subfield>
+          <subfield code="q">UBWFRL</subfield>
+          <subfield code="2">22</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">02</subfield>
+          <subfield code="q">DE-101</subfield>
+          <subfield code="2">sdnb</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">06.41</subfield>
+          <subfield code="2">bkl</subfield>
+          <subfield code="9">O: Automatisch aus GBV_2011-10 2012-06-11</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">06.70</subfield>
+          <subfield code="2">bkl</subfield>
+          <subfield code="9">O: Automatisch aus GBV_2011-10 2012-06-11</subfield>
+        </datafield>
+        <datafield tag="084" ind1=" " ind2=" ">
+          <subfield code="a">AN 74400</subfield>
+          <subfield code="2">rvk</subfield>
+        </datafield>
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Haller, Klaus</subfield>
+          <subfield code="d">1939-2011</subfield>
+          <subfield code="0">(DE-588)128855967</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+        <datafield tag="245" ind1="1" ind2="0">
+          <subfield code="a">Katalogisierung nach den RAK-WB</subfield>
+          <subfield code="b">eine Einführung in die Regeln für die alphabetische
+            Katalogisierung in wissenschaftlichen Bibliotheken</subfield>
+          <subfield code="c">Klaus Haller, Hans Popst</subfield>
+        </datafield>
+        <datafield tag="250" ind1=" " ind2=" ">
+          <subfield code="a">6., durchgesehene und aktualisierte Auflage</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="1">
+          <subfield code="a">München</subfield>
+          <subfield code="b">K.G. Saur</subfield>
+          <subfield code="c">2003</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+          <subfield code="a">1 Online-Ressource (331 Seiten)</subfield>
+          <subfield code="b">Illustrationen</subfield>
+        </datafield>
+        <datafield tag="336" ind1=" " ind2=" ">
+          <subfield code="b">txt</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+          <subfield code="b">c</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+          <subfield code="b">cr</subfield>
+        </datafield>
+        <datafield tag="689" ind1="0" ind2="0">
+          <subfield code="a">Regeln für die alphabetische Katalogisierung</subfield>
+          <subfield code="g">WB</subfield>
+          <subfield code="D">u</subfield>
+          <subfield code="0">(DE-588)4177377-9</subfield>
+        </datafield>
+        <datafield tag="689" ind1="0" ind2=" ">
+          <subfield code="5">AT-OBV</subfield>
+          <subfield code="5">UBS TUWMMM DDB</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+          <subfield code="a">Popst, Hans</subfield>
+          <subfield code="d">1940-2020</subfield>
+          <subfield code="0">(DE-588)128767146</subfield>
+          <subfield code="4">aut</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+          <subfield code="i">Erscheint auch als</subfield>
+          <subfield code="n">Druck-Ausgabe</subfield>
+          <subfield code="z">9783598116261</subfield>
+          <subfield code="z">3598116268</subfield>
+          <subfield code="z"></subfield>
+        </datafield>
+        <datafield tag="856" ind1="4" ind2="0">
+          <subfield code="u"></subfield>
+          <subfield code="x"></subfield>
+          <subfield code="3">Volltext</subfield>
+        </datafield>
+        <datafield tag="912" ind1=" " ind2=" ">
+          <subfield code="a"></subfield>
+        </datafield>
+        <datafield tag="970" ind1="1" ind2=" ">
+          <subfield code="c">03</subfield>
+        </datafield>
+      </record>
+    </x:expect>
+  </x:scenario>
+
+</x:description>

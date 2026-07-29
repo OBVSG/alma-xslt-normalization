@@ -154,6 +154,9 @@
             <subfield code="c">Universität Hamburg</subfield>
             <subfield code="d">2014</subfield>
          </datafield>
+         <datafield tag="588" ind1=" " ind2=" ">
+           <subfield code="a">Part of the metadata in this record was created with the help of AI Metadata Assistant</subfield>
+         </datafield>
          <datafield ind1=" " ind2="7" tag="655">
             <subfield code="a">Hochschulschrift</subfield>
             <subfield code="0">(DE-588)4113937-9</subfield>
@@ -176,6 +179,12 @@
          <datafield ind1="4" ind2=" " tag="970">
             <subfield code="b">DE-604</subfield>
          </datafield>
+          <datafield tag="970" ind1="0" ind2=" ">
+            <subfield code="a">AI-Assistant</subfield>
+            <subfield code="x">created</subfield>
+            <subfield code="y">2233-03-22T12:12:12</subfield>
+            <subfield code="i">AT-UBW</subfield>
+          </datafield>
       </record>
    </x:context>
    <x:expect label="richtig angepasst">
@@ -268,9 +277,6 @@
         </datafield>
         <datafield ind1="1" ind2=" " tag="970">
           <subfield code="c">54</subfield>
-        </datafield>
-        <datafield ind1="4" ind2=" " tag="970">
-          <subfield code="b">DE-604</subfield>
         </datafield>
       </record>
     </x:expect>
