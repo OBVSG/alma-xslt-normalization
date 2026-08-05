@@ -20,7 +20,7 @@
 
   <xsl:include
     href="../../../mrclib-xslt/xslt/mrclib.xsl" />
-
+  <xsl:import href="../common.xsl" />
   <xsl:variable name="today"
     select="current-date()" />
 

@@ -11,6 +11,8 @@
       @title aufsatz-p.xsl
   -->
 
+  <xsl:import href="../common.xsl" />
+
   <!--
       Template für den ganzen Record.
 
