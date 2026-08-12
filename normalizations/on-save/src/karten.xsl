@@ -98,8 +98,8 @@
     <xsl:choose>
       <xsl:when test="$assoc034">
         <datafield tag="{@tag}" ind1="{@ind1}" ind2="{@ind2}">
-          <xsl:if test="not(subfield[@code='a']) and $assoc034/subfield[@code='b']/text()">
-            <subfield code="a">1:{format-integer(xs:integer($assoc034/subfield[@code='b']), "0 000")}</subfield>
+          <xsl:if test="not(subfield[@code='a']) and $assoc034/subfield[@code='b'][1][matches(., '^\d+$')]">
+            <subfield code="a">{utils:format-scale(xs:integer($assoc034/subfield[@code='b'][1]))}</subfield>
           </xsl:if>
           <xsl:apply-templates select="subfield[@code=('a', 'b')]" />
           <xsl:choose>
