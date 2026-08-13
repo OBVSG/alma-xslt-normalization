@@ -127,6 +127,6 @@
   <!--
       Lösche alle `970` außer der Fachgruppe
   -->
-  <xsl:template match="datafield[@tag='970'][not(@ind1 eq '1' and subfield[@code='c']/text())]" />
+  <xsl:template match="datafield[@tag='970'][not(@ind1 eq '1' and subfield[@code='c']/text()) and not(@ind1 eq '2' and subfield[@code='d'])]" />
 
 </xsl:stylesheet>

@@ -129,17 +129,20 @@
             <subfield code="n">Bibl.ISILDE-601</subfield>
             <subfield code="q">pdf/application</subfield>
             <subfield code="y">Inhaltsverzeichnis</subfield>
-            <subfield code="3">04</subfield>
-          </datafield>
-            <datafield tag="970" ind1="0" ind2=" ">
-              <subfield code="a">Digitaler Assistent</subfield>
-            </datafield>
+          <subfield code="3">04</subfield>
+        </datafield>
+        <datafield tag="970" ind1="0" ind2=" ">
+          <subfield code="a">Digitaler Assistent</subfield>
+        </datafield>
         <datafield tag="970" ind1="7" ind2=" ">
           <subfield code="a">LKR/ITM-OBV</subfield>
         </datafield>
         <datafield ind1="1" ind2=" " tag="970">
-            <subfield code="c">11</subfield>
-          </datafield>
+          <subfield code="c">11</subfield>
+        </datafield>
+        <datafield tag="970" ind1="2" ind2=" ">
+          <subfield code="d">HS-DIPL</subfield>
+        </datafield>
         </record>
     </x:context>
     <x:expect label="">
@@ -256,6 +259,9 @@
         </datafield>
         <datafield ind1="1" ind2=" " tag="970">
           <subfield code="c">11</subfield>
+        </datafield>
+        <datafield tag="970" ind1="2" ind2=" ">
+          <subfield code="d">HS-DIPL</subfield>
         </datafield>
       </record>
     </x:expect>

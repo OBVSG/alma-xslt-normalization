@@ -185,6 +185,9 @@
             <subfield code="y">2233-03-22T12:12:12</subfield>
             <subfield code="i">AT-UBW</subfield>
           </datafield>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="d">HS-DIPL</subfield>
+          </datafield>
       </record>
    </x:context>
    <x:expect label="richtig angepasst">
@@ -277,6 +280,9 @@
         </datafield>
         <datafield ind1="1" ind2=" " tag="970">
           <subfield code="c">54</subfield>
+        </datafield>
+        <datafield tag="970" ind1="2" ind2=" ">
+          <subfield code="d">HS-DIPL</subfield>
         </datafield>
       </record>
     </x:expect>
