@@ -79,8 +79,9 @@
             <subfield code="b">Ill.</subfield>
             <subfield code="c">23 cm</subfield>
           </datafield>
-          <datafield ind1="0" ind2=" " tag="490">
+          <datafield ind1="1" ind2=" " tag="490">
             <subfield code="a">Experimental futures</subfield>
+            <subfield code="v">No. 1</subfield>
           </datafield>
           <datafield ind1=" " ind2=" " tag="500">
             <subfield code="a">Literaturverz. S. [333] - 350</subfield>
@@ -123,7 +124,11 @@
             <subfield code="5">AT-OBV</subfield>
             <subfield code="5">GBV</subfield>
           </datafield>
-          <datafield ind1="4" ind2=" " tag="856">
+        <datafield tag="830" ind1=" " ind2="0">
+          <subfield code="w">(AT-OBV)AC12345678</subfield>
+          <subfield code="v">1</subfield>
+        </datafield>
+        <datafield ind1="4" ind2=" " tag="856">
             <subfield code="u">http://www.gbv.de/dms/bowker/toc/9780822354994.pdf</subfield>
             <subfield code="m">DE-601</subfield>
             <subfield code="n">Bibl.ISILDE-601</subfield>
@@ -201,8 +206,13 @@
           <datafield tag="338" ind1=" " ind2=" ">
             <subfield code="b">cr</subfield>
           </datafield>
+          <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="a">Textdatei</subfield>
+            <subfield code="b"></subfield>
+          </datafield>
           <datafield ind1="0" ind2=" " tag="490">
             <subfield code="a">Experimental futures</subfield>
+            <subfield code="v">No. 1</subfield>
           </datafield>
           <datafield ind1=" " ind2=" " tag="500">
             <subfield code="a">Literaturverz. S. [333] - 350</subfield>
@@ -484,6 +494,10 @@
         </datafield>
         <datafield tag="338" ind1=" " ind2=" ">
           <subfield code="b">cr</subfield>
+        </datafield>
+        <datafield tag="347" ind1=" " ind2=" ">
+          <subfield code="a">Textdatei</subfield>
+          <subfield code="b"></subfield>
         </datafield>
         <datafield tag="689" ind1="0" ind2="0">
           <subfield code="a">Regeln für die alphabetische Katalogisierung</subfield>

@@ -63,6 +63,10 @@
       <datafield tag="338" ind1=" " ind2=" ">
         <subfield code="b">cr</subfield>
       </datafield>
+      <datafield tag="347" ind1=" " ind2=" ">
+        <subfield code="a">Textdatei</subfield>
+        <subfield code="b"></subfield>
+      </datafield>
       <datafield tag="776" ind1="0" ind2="8">
         <subfield code="i">Erscheint auch als</subfield>
         <subfield code="n">Druck-Ausgabe</subfield>
@@ -130,6 +134,14 @@
       @_marcFields 300
   -->
   <xsl:template match="datafield[@tag='300']/subfield[@code='c']" />
+
+  <!--
+      Setze `490 @ind1` bedingungslos auf `0`
+      @_marcFields 490
+  -->
+  <xsl:template match="datafield[@tag='490']/@ind1">
+    <xsl:attribute name="ind1">0</xsl:attribute>
+  </xsl:template>
 
   <!--
       Lösche alle `970`, außer der Fachgruppe
