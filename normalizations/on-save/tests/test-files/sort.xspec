@@ -435,6 +435,7 @@
     <x:scenario label="assoziiertes Feld vorhanden">
       <x:context>
         <record>
+          <controlfield tag="001">990000000003331</controlfield>
           <datafield tag="700" ind1="9" ind2="9">
             <subfield code="a">Dieses hier nicht</subfield>
           </datafield>
@@ -482,6 +483,7 @@
     <x:scenario label="kein assoziiertes Feld vorhanden">
       <x:context>
         <record>
+          <controlfield tag="001">990000000003331</controlfield>
           <datafield tag="880" ind1="X" ind2="X">
             <subfield code="6">700-01</subfield>
             <subfield code="a">test!</subfield>

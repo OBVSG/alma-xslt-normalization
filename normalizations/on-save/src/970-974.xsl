@@ -138,4 +138,14 @@
     <xsl:attribute name="code">a</xsl:attribute>
   </xsl:template>
 
+  <!--
+      Lösche `974e#` Fehlermeldungen. Diese werden von [#temp:flagErrors] frisch geschrieben.
+      Durch bedingungsloses löschen dieser Felder wird sichergestellt, dass die Fehlermeldungen
+      1. nicht bei jedem Speichern dupliziert werden
+      2. verschwinden, wenn der Fehler verschwindet
+      @referenced temp;flagErrors
+      @_marcFields 974
+  -->
+  <xsl:template match="datafield[@tag='974'][@ind1='e'][@ind2=' ']" />
+
 </xsl:stylesheet>

@@ -64,7 +64,7 @@
       - `035##$$a(AT-OBV)AC...` erzeugen
       - bei Bedarf die EKI (`035##$$a(DE-599)OBVAC...`) erzeugen. Bedarf heißt, dass es keine nicht-OBV-EKI gibt.
 
-      Die AC-Nummer und die OBV-EKI die vorhanden sind, werden in [einem anderen Template](#temp;datafield[@tag='035'][subfield[@code='a'][starts-with(., '(AT-OBV)')]];nil) gelöscht.
+      Die AC-Nummer und die OBV-EKI die vorhanden sind, werden in [einem anderen Template](#temp;datafield%5B@tag='035'%5D%5Bsubfield%5B@code='a'%5D%5Bstarts-with(.,%20'(AT-OBV)')%5D%5D;nil) gelöscht.
 
       @_marcFields 009 035
   -->

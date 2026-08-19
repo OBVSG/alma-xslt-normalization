@@ -37,6 +37,7 @@
   <xsl:include href="src/841-88X.xsl" />
   <xsl:include href="src/970-974.xsl" />
   <xsl:include href="src/alpha.xsl" />
+  <xsl:include href="src/flagErrors.xsl" />
   <xsl:include href="src/karten.xsl" />
   <xsl:include href="src/ids.xsl" />
   <xsl:include href="src/perFamKor.xsl" />
@@ -74,6 +75,7 @@
           <xsl:with-param name="meta" select="$meta" tunnel="yes" />
         </xsl:call-template>
       </xsl:if>
+      <xsl:call-template name="flagErrors" />
     </xsl:variable>
     <record>
       <xsl:apply-templates select="$transformedFields" mode="sort">
