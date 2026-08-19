@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" xmlns:utils="https://share.obvsg.at/xml/xsl/utils" stylesheet="../../normalize-on-save.xsl">
+  <x:scenario label="flagErrors">
+    <x:scenario label="repeated 001">
+      <x:scenario label="repeated 001">
+        <x:context>
+          <record>
+            <controlfield tag="001">990000000003331</controlfield>
+            <controlfield tag="001">991111111113331</controlfield>
+          </record>
+        </x:context>
+        <x:expect label="flag returned" test="record/datafield[@tag='974']">
+          <datafield tag="974" ind1="e" ind2=" ">
+            <subfield code="e">E0001</subfield>
+            <subfield code="t">Count of controlfield 001 should be exactly 1. Found: 2</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="repeated 001, other 974e">
+        <x:context>
+          <record>
+            <controlfield tag="001">990000000003331</controlfield>
+            <controlfield tag="001">991111111113331</controlfield>
+            <datafield tag="974" ind1="e" ind2=" ">
+              <subfield code="e">EXXXX</subfield>
+              <subfield code="t">Dummy error.</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect
+          label="existing 974e# deleted (not applicable anymore), new 974e# added"
+          test="record/datafield[@tag='974']">
+          <datafield tag="974" ind1="e" ind2=" ">
+            <subfield code="e">E0001</subfield>
+            <subfield code="t">Count of controlfield 001 should be exactly 1. Found: 2</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="no repeated 001, 974e present">
+        <x:context>
+          <record>
+            <controlfield tag="001">990000000003331</controlfield>
+            <datafield tag="974" ind1="e" ind2=" ">
+              <subfield code="e">E0001</subfield>
+              <subfield code="t">Count of controlfield 001 should be exactly 1. Found: 2</subfield>
+            </datafield>
+          </record>
+        </x:context>
+        <x:expect
+          label="existing 974e# deleted (not applicable anymore)"
+          test="record/datafield[@tag='974']"
+          select="()" />
+      </x:scenario>
+    </x:scenario>
+  </x:scenario>
+
+</x:description>
