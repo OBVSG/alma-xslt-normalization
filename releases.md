@@ -6,33 +6,37 @@
   - [Allgemeines ](#allgemeines)
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
-  - [Standard Sandbox 27.08.2026](#standard-sandbox-27082026)
+  - [Produktion, Stand 14.09.2026](#produktion-stand-14092026)
     - [Normalize on Save](#normalize-on-save)
     - [Schreibvorlage P2E](#schreibvorlage-p2e)
     - [Schreibvorlage E2P](#schreibvorlage-e2p)
-  - [Produktion, Stand 01.06.2026](#produktion-stand-01062026)
+  - [Produktion, Stand 01.08.2026](#produktion-stand-01082026)
     - [Normalize on Save](#normalize-on-save-1)
+    - [Schreibvorlage P2E](#schreibvorlage-p2e-1)
+    - [Schreibvorlage E2P](#schreibvorlage-e2p-1)
+  - [Produktion, Stand 01.06.2026](#produktion-stand-01062026)
+    - [Normalize on Save](#normalize-on-save-2)
     - [TAT-Ableiten](#tat-ableiten)
   - [Standard Sandbox 18.05.2026 (geplant)](#standard-sandbox-18052026-geplant)
   - [Produktion 04.05.2026](#produktion-04052026)
-    - [Normalize on Save](#normalize-on-save-2)
+    - [Normalize on Save](#normalize-on-save-3)
     - [TAT ableiten](#tat-ableiten)
   - [Produktion 07.04.2026](#produktion-07042026)
-    - [Normalize on Save](#normalize-on-save-3)
+    - [Normalize on Save](#normalize-on-save-4)
     - [Library of Congress](#library-of-congress)
     - [KI-Assistent](#ki-assistent)
     - [Allgemeines](#allgemeines)
   - [Produktion 02.03.2026](#produktion-02032026)
-    - [Normalize on Save](#normalize-on-save-4)
+    - [Normalize on Save](#normalize-on-save-5)
     - [E2P](#e2p)
   - [Produktion 02.02.2026](#produktion-02022026)
-    - [Normalize on Save](#normalize-on-save-5)
+    - [Normalize on Save](#normalize-on-save-6)
     - [Datensatz ableiten](#datensatz-ableiten)
   - [PROD initialer Stand 23.12.2025](#prod-initialer-stand-23122025)
     - [Schreibvorlage](#schreibvorlage)
     - [Aufsatz ableiten - print](#aufsatz-ableiten---print)
     - [Externe Ressourcen Library of Congress](#externe-ressourcen-library-of-congress)
-    - [Normalize on Save](#normalize-on-save-6)
+    - [Normalize on Save](#normalize-on-save-7)
 
 <!-- markdown-toc end -->
 ## Allgemeines 
@@ -46,13 +50,24 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 - Am ersten Montag des Monats werden die Änderungen ins [Produktionssystem](https://obv-at-obvsg-psb.alma.exlibrisgroup.com/mng/login) übernommen. Erster geplanter Termin: 02.02.2026
 
 # Releases
-## Standard Sandbox 27.08.2026
+
+## Produktion, Stand 14.09.2026
+### Normalize on Save
+- Fehlermeldungen in `974e#` bei wiederholter oder fehlender `001`
+
+### Schreibvorlage P2E
+- `9702#$$d` nicht löschen
+
+### Schreibvorlage E2P
+- `9702#$$d` nicht löschen
+
+## Produktion, Stand 01.08.2026
 
 ### Normalize on Save
 - Umstellung von ZDB-NEU von `035` auf `9703#`.
 
 ### Schreibvorlage P2E
-Neu eingerichtet. Doku [hier](https://share.obvsg.at/xsldocs/dev/xslt-normalization/OBV_schreibvorlage_p2e/index.html)
+Neu eingerichtet. Doku [hier](https://share.obvsg.at/xsldocs/xslt-normalization/OBV_schreibvorlage_p2e/index.html)
 
 ### Schreibvorlage E2P
 - Entferne Markierungen vom KI-Assistenten
