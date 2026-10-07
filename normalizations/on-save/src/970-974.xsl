@@ -31,6 +31,7 @@
       <xsl:map>
         <xsl:map-entry key="'AT-UBW'" select="'https://bibliothek.univie.ac.at/literaturservice.html'" />
         <xsl:map-entry key="'AT-UBMW'" select="'https://www.mdw.ac.at/bib/?PageId=2040'" />
+        <xsl:map-entry key="'AT-UBWW'" select="'mailto:bibliothek@wu.ac.at?subject=Anfrage / Austausch barrierefreie Version'" />
       </xsl:map>
     </xsl:variable>
     <datafield tag="970" ind1="0" ind2=" ">
