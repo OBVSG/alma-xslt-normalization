@@ -537,4 +537,20 @@
     </x:expect>
   </x:scenario>
 
+  <x:scenario label="006">
+    <x:scenario label="006/0=m">
+      <x:context>
+        <controlfield tag="006">m|||| q||u| ||||||</controlfield>
+      </x:context>
+      <x:expect label="gelöscht" />
+    </x:scenario>
+    <x:scenario label="006/0!=m">
+      <x:context>
+        <controlfield tag="006">a      |||| 10||| </controlfield>
+      </x:context>
+      <x:expect label="keine Änderung">
+        <controlfield tag="006">a      |||| 10||| </controlfield>
+      </x:expect>
+    </x:scenario>
+  </x:scenario>
 </x:description>

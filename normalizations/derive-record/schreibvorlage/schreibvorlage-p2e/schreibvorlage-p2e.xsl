@@ -109,6 +109,9 @@
   -->
   <xsl:template match="(controlfield|datafield)[@tag=$tagsToDelete]" />
 
+  <!-- Lösche 006, wenn sie mit 'm' beginnt -->
+  <xsl:template match="controlfield[@tag='006'][starts-with(., 'm')]" />
+
   <!--
       Bearbeite Feld `008`.
       @_marcFields

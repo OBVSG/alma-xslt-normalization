@@ -2,6 +2,7 @@
 | Feld                      | Beschreibung                                              | Aktion                                                           | implementiert |
 |---------------------------|-----------------------------------------------------------|------------------------------------------------------------------|---------------|
 | 001                       | Kontrollnummer                                            | löschen                                                          | y             |
+| 006                       |                                                           | wenn 006/0=m löschen                                             | n             |
 | 007                       |                                                           | auf "tu" setzen                                                  | y             |
 | 008, Pos. 0-5             | Date entered on file                                      | auf ###### setzen                                                | y             |
 | 008, Pos. 7-10            | Date 1                                                    | bleibt                                                           | y             |
