@@ -1,10 +1,11 @@
 # Schreibvorlage P2E
 
 | Feld                           | Beschreibung                           | Aktion                                                           |
-|--------------------------------|----------------------------------------|------------------------------------------------------------------|---|
+|--------------------------------|----------------------------------------|------------------------------------------------------------------|
 | LDR                            |                                        | alles bis auf 06-08 auf Standard setzen                          |
 | 001                            | Kontrollnummer                         | löschen                                                          |
 | 003                            |                                        | löschen                                                          |
+| 006                            |                                        | wenn 006/0=m löschen                                             |
 | 005                            | Änderungsdatum                         | löschen                                                          |
 | 007                            |                                        | auf "cr" setzen                                                  |
 | 010                            |                                        | löschen                                                          |
@@ -42,7 +43,7 @@
 | 856.{4,2}.3.Umschlagbild       | Link                                   | löschen                                                          |
 | 856.{4,0}                      | Link                                   | einfügen mit leerem Sfu und Sf3 Volltext                         |
 | 912                            | Produktsigel                           | einfügen                                                         |
-| 970                            | diverse Verbund-lokale Daten           | alle bis auf Fachgruppe löschen                                  | y |
+| 970                            | diverse Verbund-lokale Daten           | alle bis auf Fachgruppe löschen                                  |
 | 972                            | Local Owner                            | Feldlöschen                                                      |
 | 974.{0,*}                      | "Wickelfelder"                         | Feld löschen                                                     |
 

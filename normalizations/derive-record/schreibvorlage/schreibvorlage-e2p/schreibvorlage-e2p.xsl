@@ -81,6 +81,9 @@
   <!-- Lösche datafields -->
   <xsl:template match="datafield[@tag=('015', '016', '024', '035', '040', '336', '337', '338', '347', '506', '540', '588', '856', '912', '972', '974')]" />
 
+  <!-- Lösche 006, wenn sie mit 'm' beginnt -->
+  <xsl:template match="controlfield[@tag='006'][starts-with(., 'm')]" />
+
   <!--
       Bearbeite MARC `008`
   -->
