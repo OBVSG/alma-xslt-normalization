@@ -4,7 +4,6 @@
                xmlns:marc="http://www.loc.gov/MARC21/slim"
                stylesheet="../../normalize-on-save.xsl">
 
-  <x:param name="currentDateTime" select="dateTime(xs:date('2233-03-22'), xs:time('12:12:12'))" />
   <x:scenario label="5XX">
     <x:scenario label="Feld 500">
       <x:scenario label="beliebige 500">

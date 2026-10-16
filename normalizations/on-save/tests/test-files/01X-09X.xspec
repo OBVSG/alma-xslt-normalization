@@ -589,6 +589,60 @@
         </x:expect>
       </x:scenario>
     </x:scenario>
+
+    <x:scenario label="046">
+      <x:scenario label="korrekte Eintragung in sfk">
+        <x:context>
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="k">22330322</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="k">22330322</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Eintragung passt nicht in Schema">
+        <x:context>
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="m">Zweiundzwanzigster zehnter Oktober</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Äenderung">
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="m">Zweiundzwanzigster zehnter Oktober</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Eintrag in der Form TT.MM.JJJJ">
+        <x:context>
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="k">22.03.2233</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="korrigiert">
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="k">22330322</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Eintrag in der Form TT.MM.JJJJ, mit Subfeld 2">
+        <x:context>
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="k">22.03.2233</subfield>
+            <subfield code="2">fakevocab</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="k">22.03.2233</subfield>
+            <subfield code="2">fakevocab</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+
     <x:scenario label="084 nur mit Template-Inhalt entfernen">
       <x:context>
         <datafield tag="084" ind1=" " ind2=" ">
