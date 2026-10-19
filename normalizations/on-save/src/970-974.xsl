@@ -102,6 +102,34 @@
   </xsl:template>
 
   <!--
+      Verschiebe die Fachgruppe in `970$$c` in ein Feld mit dem richtigen Indikator 1.
+      @_marcFields 970
+  -->
+  <xsl:template match="datafield[@tag='970'][not(@ind1='1')][subfield[@code='c'][matches(., '^[0-5][0-9]$')]]">
+    <xsl:if test="count(subfield) gt 1">
+      <xsl:copy>
+        <xsl:apply-templates select="subfield[not(@code='c')]|@*" />
+      </xsl:copy>
+    </xsl:if>
+    <datafield tag="970" ind1="1" ind2=" ">
+      <xsl:sequence select="subfield[@code='c']" />
+    </datafield>
+  </xsl:template>
+
+  <!--
+      Lösche `9702#$$a`. Das wurde aufgrund fehlender, mittlerweile aber
+      verfügbarer Indexierung von MARC 040 ## $$a nach dem Abspeichern
+      automatisch ergänzt. Wird seit Juli 2020 nicht mehr belegt.
+      @_marcFields 970
+  -->
+  <xsl:template match="datafield[@tag='970'][@ind1='2'][@ind2=' ']/subfield[@code='a']">
+    <xsl:variable name="whitelist" select="('HS-BACHELOR', 'HS-DIPL', 'HS-DISS', 'HS-Dissertation', 'HS-HABIL', 'HS-MASTER', 'IV-SCAN', 'LKR/ITM', 'LKR/ITM-FHJ', 'LKR/ITM-OeNB', 'LKR/ITM-UBMW', 'LKR/ITM-UBS', 'NAK', 'NAK-Bestand', 'OA-MONOGRAPH', 'RETRODIGITALISAT')" />
+    <xsl:if test=".=$whitelist">
+      <xsl:call-template name="utils:shallow-copy" />
+    </xsl:if>
+  </xsl:template>
+
+  <!--
       Ergänze `$$vNAK-Bestand` in `9702#`, wenn `090##$$v1` vorhanden.
 
       Wenn es noch kein Feld `9702#` gibt, wird dieses vom [Template für 090](#temp;datafield[@tag='090'][1];nil) erstellt.
@@ -147,5 +175,11 @@
       @_marcFields 974
   -->
   <xsl:template match="datafield[@tag='974'][@ind1='e'][@ind2=' ']" />
+
+  <!--
+      Lösche Wickelfelder `9740s` und `9740u`.
+      @_marcFields 974
+  -->
+  <xsl:template match="datafield[@tag='974'][@ind1='0'][@ind2=('s', 'u')]" />
 
 </xsl:stylesheet>

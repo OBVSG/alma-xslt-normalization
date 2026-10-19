@@ -4,7 +4,6 @@
                xmlns:marc="http://www.loc.gov/MARC21/slim"
                stylesheet="../../normalize-on-save.xsl">
 
-  <x:param name="currentDateTime" select="dateTime(xs:date('2233-03-22'), xs:time('12:12:12'))" />
   <x:scenario label="970-974">
     <x:scenario label="9700# bei barrierefrei aufbereiteten Ressourcen">
       <x:scenario label="9700#$$abarrierefrei aufbereitet, kein $$i">
@@ -115,6 +114,108 @@
         </datafield>
       </x:expect>
     </x:scenario>
+    <x:scenario label="Indikatoren bei Fachgruppen berichtigen">
+      <x:scenario label="Indikatoren stimmen">
+        <x:context>
+          <datafield tag="970" ind1="1" ind2=" ">
+            <subfield code="c">54</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="970" ind1="1" ind2=" ">
+            <subfield code="c">54</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Indikator falsch, nur SFc">
+        <x:context>
+          <datafield tag="970" ind1=" " ind2=" ">
+            <subfield code="c">54</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Indikator berichtigt">
+          <datafield tag="970" ind1="1" ind2=" ">
+            <subfield code="c">54</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Indikator falsch, mehrere Subfelder">
+        <x:context>
+          <datafield tag="970" ind1="4" ind2=" ">
+            <subfield code="b">DE-627</subfield>
+            <subfield code="c">54</subfield>
+            <subfield code="d">Subfield d</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="ein Feld 970 für jedes Subfeld">
+          <datafield tag="970" ind1="4" ind2=" ">
+            <subfield code="b">DE-627</subfield>
+            <subfield code="d">Subfield d</subfield>
+          </datafield>
+          <datafield tag="970" ind1="1" ind2=" ">
+            <subfield code="c">54</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="970##$$c mit Wert der nicht ins Schema passt">
+        <x:context>
+          <datafield tag="970" ind1=" " ind2=" ">
+            <subfield code="c">99</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="970" ind1=" " ind2=" ">
+            <subfield code="c">99</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+    </x:scenario>
+    <x:scenario label="9702#$$a entfernen">
+      <x:scenario label="beliebiger Wert">
+        <x:context>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="a">AT-UBG</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="Subfeld a gelöscht">
+          <datafield tag="970" ind1="2" ind2=" ">
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="Wert, der in ein anderes Feld sollte">
+        <x:context>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="a">NAK</subfield>
+          </datafield>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="a">HS-DISS</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="behalten">
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="a">NAK</subfield>
+          </datafield>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="a">HS-DISS</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+      <x:scenario label="mehrere Subfelder">
+        <x:context>
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="a">UBI</subfield>
+            <subfield code="d">HS-MASTER</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="nur Subfeld a gelöscht">
+          <datafield tag="970" ind1="2" ind2=" ">
+            <subfield code="d">HS-MASTER</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
+    </x:scenario>
+
     <x:scenario label="LKR-Markierung in 9707#">
       <x:context>
         <record>
@@ -184,7 +285,6 @@
         </x:context>
         <x:expect label="SFv hinzugefügt" test="/record/datafield[@tag='970']">
           <datafield tag="970" ind1="2" ind2=" ">
-            <subfield code="a">AT-OeNB</subfield>
             <subfield code="d">NAK</subfield>
             <subfield code="v">NAK-Bestand</subfield>
           </datafield>
@@ -259,6 +359,7 @@
       <x:scenario label="ZDB-NEU-Eintrag in 970, keine passende 035">
         <x:context>
           <record>
+            <controlfield tag="001">990000000000000003331</controlfield>
             <controlfield tag="009">AC12345678</controlfield>
             <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">ZDB-123456-7</subfield>
@@ -301,6 +402,7 @@
       <x:scenario label="ZDB-NEU-Eintrag in 970, valide ZDB-Nummer in 035">
         <x:context>
           <record>
+            <controlfield tag="001">990000000000000003331</controlfield>
             <controlfield tag="009">AC12345678</controlfield>
             <datafield tag="016" ind1="7" ind2=" ">
               <subfield code="a">ZDB-123456-7</subfield>
@@ -337,6 +439,31 @@
           </datafield>
         </x:expect>
       </x:scenario>
+    </x:scenario>
+    <x:scenario label="974">
+      <x:scenario label="9740u, 9740s, 9740p">
+        <x:context>
+          <datafield tag="974" ind1="0" ind2="u">
+            <subfield code="V">903</subfield>
+            <subfield code="a">21</subfield>
+          </datafield>
+          <datafield tag="974" ind1="0" ind2="s">
+            <subfield code="F">050</subfield>
+            <subfield code="A">a|a|||||||||||</subfield>
+          </datafield>
+          <datafield tag="974" ind1="0" ind2="p">
+            <subfield code="V">500##</subfield>
+            <subfield code="a">Geparktes Feld</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="9740u und 9740s gelöscht">
+          <datafield tag="974" ind1="0" ind2="p">
+            <subfield code="V">500##</subfield>
+            <subfield code="a">Geparktes Feld</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
+
     </x:scenario>
   </x:scenario>
 </x:description>

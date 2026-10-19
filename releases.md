@@ -60,7 +60,7 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 ### Normalize on Save
 - [x] `046$$j$$k$$l$$m$$n`: Datum von `TT.MM.JJJJ` auf ISO 8601 (`yyyymmdd`)
 - [x] `9700#$$[a|A]barrierefrei aufbereitet`: WUW hinzugefügt
-- [ ] `970`: Fachgruppe mit falschen Indikatoren fixen
+- [x] `970`: Fachgruppe mit falschen Indikatoren fixen; `9702#$$a` löschen
 
 ### P2E/P2E
 - [x] `006/01=m` löschen
