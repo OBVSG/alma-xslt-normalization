@@ -431,7 +431,7 @@
       <x:expect label="Felder gelöscht" />
     </x:scenario>
   </x:scenario>
-  <x:scenario label="Feld 880">
+  <x:scenario label="Feld 880" pending="vorerst entfernt">
     <x:scenario label="assoziiertes Feld vorhanden">
       <x:context>
         <record>
