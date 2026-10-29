@@ -8,7 +8,7 @@
                 version="3.0">
 
   <!--~doc:global
-      @title Schreibvorlage E2P
+      @title Schreibvorlage P2E
       @includeMd schreibvorlage-p2e.md
   -->
   <!--~doc:stylesheet
