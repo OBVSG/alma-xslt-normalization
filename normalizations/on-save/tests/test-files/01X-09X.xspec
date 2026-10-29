@@ -627,6 +627,18 @@
           </datafield>
         </x:expect>
       </x:scenario>
+      <x:scenario label="Eintrag in der JJJJ.MM.TT">
+        <x:context>
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="k">2233.03.22</subfield>
+          </datafield>
+        </x:context>
+        <x:expect label="keine Änderung">
+          <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="k">22330322</subfield>
+          </datafield>
+        </x:expect>
+      </x:scenario>
       <x:scenario label="Eintrag in der Form TT.MM.JJJJ, mit Subfeld 2">
         <x:context>
           <datafield tag="046" ind1=" " ind2=" ">
