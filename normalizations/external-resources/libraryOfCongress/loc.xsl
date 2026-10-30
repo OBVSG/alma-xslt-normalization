@@ -14,6 +14,7 @@
   -->
 
   <xsl:include href="../../../mrclib-xslt/xslt/mrclib.xsl" />
+  <xsl:import href="../common/common.xsl" />
 
   <!--
       Template für den Datensatz als ganzes.
