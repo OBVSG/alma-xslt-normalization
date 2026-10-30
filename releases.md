@@ -10,7 +10,6 @@
     - [Normalize on Save](#normalize-on-save)
     - [P2E/P2E](#p2ep2e)
     - [Importe](#importe)
-    - [Exporte (nicht in Testsystem)](#exporte-nicht-in-testsystem)
   - [Produktion, Stand 14.09.2026](#produktion-stand-14092026)
     - [Normalize on Save](#normalize-on-save-1)
     - [Schreibvorlage P2E](#schreibvorlage-p2e)
@@ -58,7 +57,7 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 
 ## Sandbox 19.10.2026
 ### Normalize on Save
-- [x] `046$$j$$k$$l$$m$$n`: Datum von `TT.MM.JJJJ` auf ISO 8601 (`yyyymmdd`)
+- [x] `046$$j$$k$$l$$m$$n`: Datum von `TT.MM.JJJJ` bzw. `JJJJ.MM.TT` auf ISO 8601 (`yyyymmdd`) normalisieren
 - [x] `9700#$$[a|A]barrierefrei aufbereitet`: WUW hinzugefügt
 - [x] `970`: Fachgruppe mit falschen Indikatoren fixen; `9702#$$a` löschen
 
@@ -66,10 +65,7 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 - [x] `006/01=m` löschen
 
 ### Importe
-- [ ] `653`: Felder mit unerwünschten Werten ausfiltern
-
-### Exporte (nicht in Testsystem)
-- [ ] `361` in GVI-Export anreichern
+- [x] `653`: Felder mit unerwünschten Werten ausfiltern
 
 ## Produktion, Stand 14.09.2026
 ### Normalize on Save
