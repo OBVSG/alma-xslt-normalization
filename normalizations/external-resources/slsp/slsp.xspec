@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="slsp.xsl">
+
+  <x:scenario label="nope" pending="yes"></x:scenario>
+
+</x:description>

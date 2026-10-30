@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+               xmlns:marc="http://www.loc.gov/MARC21/slim"
+               stylesheet="common.xsl">
+
+  <x:scenario label="">
+    <x:context>
+      <datafield tag="653" ind1=" " ind2=" ">
+        <subfield code="a">SCE14000: Ethics ; Springer Subject Code</subfield>
+      </datafield>
+      <datafield tag="653" ind1=" " ind2=" ">
+        <subfield code="a">1521: Hardcover, Softcover / Philosophie/Allgemeines, Lexika ; VLB-WN</subfield>
+      </datafield>
+      <datafield tag="653" ind1=" " ind2=" ">
+        <subfield code="a">Hardcover, Softcover / Philosophie/20., 21. Jahrhundert</subfield>
+      </datafield>
+      <datafield tag="653" ind1=" " ind2=" ">
+        <subfield code="a">Steiermark</subfield>
+      </datafield>
+    </x:context>
+    <x:expect label="">
+      <datafield tag="653" ind1=" " ind2=" ">
+      </datafield>
+      <datafield tag="653" ind1=" " ind2=" ">
+      </datafield>
+      <datafield tag="653" ind1=" " ind2=" ">
+      </datafield>
+      <datafield tag="653" ind1=" " ind2=" ">
+        <subfield code="a">Steiermark</subfield>
+      </datafield>
+    </x:expect>
+  </x:scenario>
+</x:description>
