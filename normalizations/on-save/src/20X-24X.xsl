@@ -89,7 +89,7 @@
       @_marcFields 245
   -->
   <xsl:template match="datafield[@tag='245'][@ind2 ne '0']/subfield[@code='a'][not(starts-with(., '&lt;'))]/text()">
-    <xsl:text>{mrclib:nonFilingChars(., ../../@ind2)}</xsl:text>
+    <xsl:text>{mrclib:non-filing-chars(.., ../../@ind2)}</xsl:text>
   </xsl:template>
 
   <!--
