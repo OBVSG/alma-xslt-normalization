@@ -3,32 +3,35 @@
                xmlns:marc="http://www.loc.gov/MARC21/slim"
                stylesheet="common.xsl">
 
-  <x:scenario label="verschiedene Subfelder 9">
-    <x:context>
-      <datafield tag="100" ind1="1" ind2=" ">
-        <subfield code="a">Maier, Hans</subfield>
-        <subfield code="0">(DE-588)123456-7</subfield>
-        <subfield code="4">aut</subfield>
-        <subfield code="9">O:cgwrk 2026-08-05</subfield>
-      </datafield>
-      <datafield tag="689" ind1="0" ind2="0">
-        <subfield code="a">Terminologie</subfield>
-        <subfield code="0">(DE-588)1234567-8</subfield>
-        <subfield code="9">O: Automatisch aus BVB</subfield>
-      </datafield>
-    </x:context>
-    <x:expect label="">
-      <datafield tag="100" ind1="1" ind2=" ">
-        <subfield code="a">Maier, Hans</subfield>
-        <subfield code="0">(DE-588)123456-7</subfield>
-        <subfield code="4">aut</subfield>
-      </datafield>
-      <datafield tag="689" ind1="0" ind2="0">
-        <subfield code="a">Terminologie</subfield>
-        <subfield code="0">(DE-588)1234567-8</subfield>
-        <subfield code="9">O: Automatisch aus BVB</subfield>
-      </datafield>
-    </x:expect>
+  <x:scenario label="common operations on deriving records">
+    <x:scenario label="verschiedene Subfelder 9">
+      <x:context select="datafield/subfield[@code='9']">
+        <datafield tag="100" ind1="1" ind2=" ">
+          <subfield code="a">Maier, Hans</subfield>
+          <subfield code="0">(DE-588)123456-7</subfield>
+          <subfield code="4">aut</subfield>
+          <subfield code="9">O:cgwrk 2026-08-05</subfield>
+        </datafield>
+        <datafield tag="689" ind1="0" ind2="0">
+          <subfield code="a">Terminologie</subfield>
+          <subfield code="0">(DE-588)1234567-8</subfield>
+          <subfield code="9">O: Automatisch aus BVB</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="SF9O:cgwrk ... entfernt; Textknoten ist Test-Artefakt (weil Anwendung des Default-Templates)">O: Automatisch aus BVB</x:expect>
+    </x:scenario>
+    <x:scenario label="Feld 591">
+      <x:context>
+        <datafield tag="591" ind1=" " ind2=" ">
+          <subfield code="a">Unikaler Bestand</subfield>
+        </datafield>
+        <datafield tag="591" ind1=" " ind2=" ">
+          <subfield code="a">B</subfield>
+        </datafield>
+      </x:context>
+      <x:expect label="entfernt">
+      </x:expect>
+    </x:scenario>
   </x:scenario>
 
 </x:description>

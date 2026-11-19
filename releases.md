@@ -6,6 +6,8 @@
   - [Allgemeines ](#allgemeines)
   - [Workflow und Zeitplan](#workflow-und-zeitplan)
 - [Releases](#releases)
+  - [Sandbox 23.11.2026](#sandbox-23112026)
+    - [Datensatz ableiten (alle)](#datensatz-ableiten-alle)
   - [Sandbox 19.10.2026](#sandbox-19102026)
     - [Normalize on Save](#normalize-on-save)
     - [P2E/P2E](#p2ep2e)
@@ -54,6 +56,10 @@ Nach Möglichkeit soll kein neuer Drools-Code mehr geschrieben werden. D. h. auc
 - Am ersten Montag des Monats werden die Änderungen ins [Produktionssystem](https://obv-at-obvsg-psb.alma.exlibrisgroup.com/mng/login) übernommen. Erster geplanter Termin: 02.02.2026
 
 # Releases
+
+## Sandbox 23.11.2026
+### Datensatz ableiten (alle)
+- [ ] `591` löschen
 
 ## Sandbox 19.10.2026
 ### Normalize on Save

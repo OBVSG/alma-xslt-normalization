@@ -7,11 +7,20 @@
                 expand-text="yes"
                 version="3.0">
 
+  <!-- Mode for testing, not to be used in actual transformations -->
+  <xsl:mode name="test" on-no-match="shallow-copy" />
+
   <!--~doc:stylesheet
       Templates, die für alle "Datensatz ableiten"-Normalisierungen gelten.
 
       @title ../common.xsl
   -->
+
+  <!--
+      Entferne `591`.
+      @_marcFields 591
+  -->
+  <xsl:template match="datafield[@tag='591']" />
 
   <!--
       Entferne Culturegraph-Markierungen (`$$9O:cgwrk ...`)
