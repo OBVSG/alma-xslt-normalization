@@ -210,8 +210,7 @@
       Eintragungen mit einem `$$2` werden unverändert übernommen, genauso wie alle Eintragungen, die nicht
       dem regulären Ausdruck `^([012][0-9]|3[01])\.(0[0-9]|1[012])\.[0-9]{4}$` entsprechen.
   -->
-  <xsl:template match="datafield[@tag='046'][not(subfield[@code='2'])]/subfield[@code=('j', 'k', 'l', 'm', 'n')][matches(., '^(([012][0-9]|3[01])\.(0[0-9]|1[012])\.([0-9]{4}))|
-                       $')]">
+  <xsl:template match="datafield[@tag='046'][not(subfield[@code='2'])]/subfield[@code=('j', 'k', 'l', 'm', 'n')][matches(., '^(([012][0-9]|3[01])\.(0[0-9]|1[012])\.([0-9]{4}))|$')]">
     <subfield code="{@code}">{replace(., "^([012][0-9]|3[01])\.(0[0-9]|1[012])\.([0-9]{4})$", "$3$2$1")}</subfield>
   </xsl:template>
 
